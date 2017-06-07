@@ -25,7 +25,7 @@ $dbName = "dndhelper"
 $collection = "characters"
 
 if(-Not (Confirm-WindowsServiceExists($serviceName))){
-    #Invoke-MdbcCommand --install --serviceName $serviceName --serviceDisplayName "MongoDB Server Instance 27017" --serviceDescription "MongoDB Server Instance running on 27017"
+    Invoke-MdbcCommand --install --serviceName $serviceName --serviceDisplayName "MongoDB Server Instance 27017" --serviceDescription "MongoDB Server Instance running on 27017"
 }
 
 $service = Get-Service -Name $name;
