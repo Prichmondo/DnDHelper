@@ -5,7 +5,7 @@ import { DiceRollerComponent } from './components/app.diceroller';
 
 const routes: Routes = [
     //ROUTES
-    {   path: '',               component: HomeComponent  },
+    //{   path: '',               component: HomeComponent  },
     {   path: 'dice-roller',    component: DiceRollerComponent  },
     //{   path: 'campains',       component: CampainsComponent  },
     //{   path: 'equip',          component: EquipilComponent  },
