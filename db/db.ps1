@@ -21,7 +21,7 @@ function Confirm-WindowsServiceExists($name)
 $serviceName = "mdb27017"
 $mongoDbDriverPath = "C:\mongodb"
 $connectionString = "mongodb://localhost:27017"
-$dbName = "testdb"
+$dbName = "dndhelper"
 $collection = "characters"
 
 if(-Not (Confirm-WindowsServiceExists($serviceName))){
