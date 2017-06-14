@@ -1,6 +1,5 @@
 const express = require('express');
-const Character = require('../models/character');
-const Characters = require('../controllers/characters');
+const Characters = require('../services/characters');
 const router = express.Router();
 
 const url = "/characters";
@@ -27,7 +26,7 @@ router.get(url + "/:id", (req, res)=>{
 router.post(url, (req, res)=>{
     
     var character = req.body;
-    
+
     Characters.add(character, (error, character)=>{
         if(error){
             throw error;

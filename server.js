@@ -2,21 +2,32 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
+
+const expressJWT = require('express-jwt');
+const jwt = require('jsonwebtoken');
+
 var mongoose = require("mongoose");
 const app = express();
+
+//Auth
+/*
+app.use(expressJWT({ secret: "DnDAuthSecret" }).unless({ 
+  path:["/api/characters", "/api/users"]})
+);
+*/
 
 //DB COnnection
 mongoose.connect('mongodb://localhost:27017/testdb');
 var db = mongoose.connection;
 
+// Config
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'dist')));
+
 //api
 const api = require('./server/api.main');
 app.use('/api', api);
-
-// Config
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'dist')));
 
 // Trick to work with angular
 app.get('*', (req, res) => {
