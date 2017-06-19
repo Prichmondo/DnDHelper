@@ -6,6 +6,12 @@ ul li {
     text-decoration: none;
     list-style: none;
 }
+
+.base-border {
+    border: 0;
+    border-bottom: 1px solid black;
+    box-shadow: none;
+}
 .subtitle {
     background-color: black;
     color:white;
