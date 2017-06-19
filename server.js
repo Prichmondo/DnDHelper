@@ -2,10 +2,6 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
-
-const expressJWT = require('express-jwt');
-const jwt = require('jsonwebtoken');
-
 var mongoose = require("mongoose");
 const app = express();
 

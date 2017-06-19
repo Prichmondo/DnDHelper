@@ -3,10 +3,6 @@ var UserModel = require('../models/user');
 
 var user = {
 
-    autheticate: function(){
-        //...
-    },
-
     getAll: function(callback, limit){
         UserModel
             .find(callback)
