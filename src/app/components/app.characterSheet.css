@@ -2,9 +2,11 @@
     background-color: black;
     color: white;
 }
-ul li {
+ul, li {
     text-decoration: none;
     list-style: none;
+    margin:0;
+    padding:0;
 }
 
 .base-border {
@@ -13,6 +15,7 @@ ul li {
     box-shadow: none;
 }
 .subtitle {
+    
     background-color: black;
     color:white;
     text-align: center;
@@ -49,16 +52,12 @@ ul li {
     text-align: center;
     
 }
-.long-input-text{
+.input-block{
+    display: block;
+    width: 100%;
 
 }
-.medium-input-text{
-    width: 100px;
-}
-.short-input-text{
-    width: 80px;
-    
-}
+
 table{
     margin-left: 40px;
     margin-top: 10px;
