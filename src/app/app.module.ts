@@ -7,11 +7,8 @@ import { RouterModule }   from '@angular/router';
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { DiceRollerComponent } from './components/app.diceroller';
-<<<<<<< HEAD
 import { Utilities } from './utilities/app.utilities';
-=======
 import { CharacterSheetComponent } from './components/app.characterSheet';
->>>>>>> 8d11855b8b1e05b11630cd1919abdae7045dcc0e
 
 @NgModule({
   declarations: [
