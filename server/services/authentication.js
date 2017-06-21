@@ -1,35 +1,41 @@
 const expressJWT = require('express-jwt');
 const jwt = require('jsonwebtoken');
+const User = require('../models/user')
+const jwtSecret = "mySecret";
 
 var authentication = {
-    check: expressJWT({ secret:"mySecret" })
+
+    check: expressJWT({ secret: jwtSecret }),
+
+    login: function(userForm, callback){
+
+        var username = userForm.username;
+        var password = userForm.password;
+
+        User.findOne({ username: username }, function(err, user){
+
+            if(!user) { 
+
+                callback(null, 'user not found');
+
+            } else {
+
+                user.comparePassword(password, function(err,isMatch){
+                    if(isMatch && isMatch == true){
+                        var token = jwt.sign({username: username}, jwtSecret);
+                        callback({ token: token, user: user }, null);
+                    } else {
+                        callback(null, 'Invalid email or password');
+                    }
+                });
+
+            }
+        });
+    }
+
 }
 
 module.exports = authentication;
-/*
-const jwt = require('express-jwt');
-const jwks = require('jwks-rsa');
-
-// We are going to implement a JWT middleware that will ensure the validity of our token. We'll require each protected route to have a valid access_token sent in the Authorization header
-var authentication = {
-
-    authCheck: jwt({
-            secret: jwks.expressJwtSecret({
-                cache: true,
-                rateLimit: true,
-                jwksRequestsPerMinute: 5,
-                jwksUri: "https://{YOUR-AUTH0-DOMAIN}.auth0.com/.well-known/jwks.json"
-            }),
-            // This is the identifier we set when we created the API
-            audience: '{YOUR-API-AUDIENCE-ATTRIBUTE}',
-            issuer: "https://{YOUR-AUTH0-DOMAIN}.auth0.com/",
-            algorithms: ['RS256']
-        })
-
-}
-
-module.exports = authentication;
-*/
 
  
 
