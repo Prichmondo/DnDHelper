@@ -7,6 +7,7 @@ import { RouterModule }   from '@angular/router';
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { DiceRollerComponent } from './components/app.diceroller';
+import { Utilities } from './utilities/app.utilities';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { DiceRollerComponent } from './components/app.diceroller';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [Utilities],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
