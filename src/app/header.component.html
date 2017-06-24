@@ -1,0 +1,22 @@
+<header class="main-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-9 col-sm-6">
+                <img class="logo" src="/assets/images/logo_full.png" alt="">
+                <h1>{{title}}</h1>
+            </div>
+            <div class="col-xs-3 col-sm-6 text-right">
+                <nav class="hidden-xs">
+                    <ul>
+                        <li *ngFor="let route of routes">
+                            <a [routerLink] = "['/'+route.path]">
+                                {{ route.data.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <span class="fa fa-bars fa-lg visible-xs"></span>
+            </div>
+        </div>
+    </div>
+</header>

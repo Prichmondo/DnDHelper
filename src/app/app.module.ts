@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { DiceRollerComponent } from './components/app.diceroller';
 import { Utilities } from './utilities/app.utilities';
 import { CharacterSheetComponent } from './components/app.characterSheet';
+import { HeaderComponent } from './header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DiceRollerComponent,
-    CharacterSheetComponent
+    CharacterSheetComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json \"npm run _server:run\"",
     "build": "ng build && node server",
     "test": "ng test",
     "lint": "ng lint",

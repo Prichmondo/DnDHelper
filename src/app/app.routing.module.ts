@@ -6,8 +6,9 @@ import { CharacterSheetComponent } from './components/app.characterSheet';
 
 const routes: Routes = [
     //ROUTES
-    {   path: 'dice-roller',        component: DiceRollerComponent  },
-    {   path: 'character-sheet',    component: CharacterSheetComponent  }
+    {   data: { name: "Home" },             path: '',                   component: CharacterSheetComponent  },
+    {   data: { name: "Dice Roller" },      path: 'dice-roller',        component: DiceRollerComponent  },
+    {   data: { name: "Character Sheet" },  path: 'character-sheet',    component: CharacterSheetComponent  }    
 
     //REDIRECTION
     //{   path: '', redirectTo: '/', pathMatch: 'full' },
@@ -17,4 +18,6 @@ const routes: Routes = [
   imports: [ RouterModule.forRoot(routes) ],
   exports: [ RouterModule ]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+  static routes: Routes = routes;
+}
