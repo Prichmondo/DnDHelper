@@ -1,22 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { RouterModule }   from '@angular/router';
+//ANGULAR
+import { BrowserModule }            from '@angular/platform-browser';
+import { NgModule }                 from '@angular/core';
+import { FormsModule }              from '@angular/forms';
+import { HttpModule }               from '@angular/http';
+import { RouterModule, Router }     from '@angular/router';
 
-import { AppRoutingModule } from './app.routing.module';
-import { AppComponent } from './app.component';
-import { DiceRollerComponent } from './components/app.diceroller';
-import { CharacterSheetComponent } from './components/app.characterSheet';
-import { HeaderComponent } from './header.component';
-import { LoginComponent } from './components/login/app.login';
+//COMPONENTS
+import { AppRoutingModule }         from './app.routing.module';
+import { AppComponent }             from './app.component';
+import { DiceRollerComponent }      from './components/app.diceroller';
+import { CharacterSheetComponent }  from './components/app.characterSheet';
+import { HeaderComponent }          from './header.component';
+import { LoginComponent }           from './components/login/app.login';
+import { CampainsComponent }        from './components/campains/app.campains';
+import { HomeComponent }            from './components/home/app.home';
 
-import { Utilities } from './utilities/app.utilities';
-import { AuthenticationService } from './services/authentication.service';
-import { LocalStoreService } from './services/localStore.service';
+//SERVICES
+import { Utilities }                from './utilities/app.utilities';
+import { AuthenticationService }    from './services/authentication.service';
+import { LocalStoreService }        from './services/localStore.service';
 import { LocalStoreManagerService } from './services/localStoreManager.service';
-import { AppRequestOptions } from './helpers/app.requestOptions' 
-import { HttpService } from './services/http.service';
+import { AppRequestOptions }        from './helpers/app.requestOptions' 
+import { HttpService }              from './services/http.service';
+import { CampainsService }          from './services/campains.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,9 @@ import { HttpService } from './services/http.service';
     DiceRollerComponent,
     CharacterSheetComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    CampainsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +46,8 @@ import { HttpService } from './services/http.service';
     LocalStoreService,
     LocalStoreManagerService,
     AppRequestOptions,
-    HttpService, 
+    HttpService,
+    CampainsService 
   ],
   bootstrap: [AppComponent]
 })

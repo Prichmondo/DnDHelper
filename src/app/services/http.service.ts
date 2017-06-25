@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
     Http,
     RequestOptions,
@@ -19,13 +20,14 @@ export class HttpService extends Http {
     
     constructor(
         backend: XHRBackend,
-        defaultOptions: AppRequestOptions,
-        private authService: AuthenticationService
+        defaultOptions: RequestOptions,
+        private authService: AuthenticationService,
+        private router: Router
         ) {
             super(backend, defaultOptions);
         }
     
-    private setCustomHeaders(options: RequestOptionsArgs){
+    private setCustomHeaders(options: RequestOptionsArgs = { headers: new Headers() }){
         var token = this.authService.getToken();
         if(token){
             options.headers.append("Authorization", `Bearer ${token}`);
@@ -33,9 +35,20 @@ export class HttpService extends Http {
         return options;
     }
 
+    httpErrorHandler(error: Response) {
+        switch(error.status){
+            case 401:
+            case 403:
+                console.log('The authentication session expires or the user is not authorised');
+                location.href = "/login"
+                //this.router.navigate(['/login']);
+        }
+        return Observable.throw(error);
+    }
+
     request(url: string | Request, options?: RequestOptionsArgs): Observable<Response>{
-        console.log("request", url, options);
         return super.request(url, options)
+            .catch(this.httpErrorHandler);
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {

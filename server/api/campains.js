@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../services/authentication');
 
 router.route("/campains")
-  .get((req, res) => {
+  .get(auth.check, (req, res) => {
     res.json({ name: "Dragon Lance" });
   })
   .post(()=>{})
