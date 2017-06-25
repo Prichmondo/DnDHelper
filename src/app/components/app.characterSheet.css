@@ -14,6 +14,9 @@ ul, li {
     border-bottom: 1px solid black;
     box-shadow: none;
 }
+.standard-spacer{
+    margin-top:20px;
+}
 .subtitle {
     
     background-color: black;
@@ -21,8 +24,19 @@ ul, li {
     text-align: center;
     font-weight: bolder;
     width:80px;
-    height: 50px;
+    height: 65px;
+    margin-top: 35px;
 }
+
+.row-adj{
+    padding-left: 15px;
+}
+
+.subtitle-label{
+    font-size:11px;
+    margin:0;
+}
+
 .small-subtitle-layout {
     
     text-align: center;
@@ -34,21 +48,19 @@ ul, li {
 
 .subtitle > h5 {
     margin-top:0;
+    font-size:11px;
 }
 .subtitle > h4{
     padding-top: 10%;
     margin-bottom: 0;    
 }
 
-.td-abilities-sub-adj {
-    width:80px;
-    
-}
+
 .number-input-layout{
-    width: 50px;
+    width: 40px;
     font-size: 150%;
-    margin-top: 10px;
-    height: 50px;
+    margin-top: 5px;
+    height: 40px;
     text-align: center;
     
 }
@@ -58,14 +70,5 @@ ul, li {
 
 }
 
-table{
-    margin-left: 40px;
-    margin-top: 10px;
-    border-top: 2px solid #ddd;
-}
 
-thead >tr > th >p {
-    font-size: 10px;
-    margin-bottom: 0;
-}
 
