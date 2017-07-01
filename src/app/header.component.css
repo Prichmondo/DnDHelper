@@ -20,26 +20,35 @@ header .container{
     padding: 10px;
 }
 
-header.main-header nav {
-    padding-top: 15px;
-}
-
-header.main-header nav ul,
-header.main-header nav ul li{
+nav ul,
+nav ul li{
     padding: 0;
     margin: 0;
     list-style: none;
 }
 
-header.main-header nav ul li{
+nav ul li{
     display: inline-block;
-    margin: 0 10px;
+    padding: 0px 10px;
     color:#fff;
+    border-right: 1px solid rgba(255,255,255,0.3);
 }
+
 
 header.main-header a{
     color:#fff;
 }
+
+nav.user-nav ul li,
+nav.user-nav ul li a {
+    font-size: 12px;
+    color: #cccccc;
+}
+
+.main-nav {
+    margin-top: 15px;
+}
+
 
 header.main-header img.logo {
     width: 90px;

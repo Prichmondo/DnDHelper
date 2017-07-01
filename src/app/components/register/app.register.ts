@@ -1,13 +1,14 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
+import { UsersService } from '../../services/users.service';
 import { Broadcaster } from '../../services/broadcast';
 
 @Component({
-  selector: 'login',
-  templateUrl: './app.login.html'
+  selector: 'register',
+  templateUrl: './app.register.html'
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   
   username: string = "";
   password: string = "";
@@ -15,13 +16,14 @@ export class LoginComponent implements OnInit {
   constructor(
       private authService: AuthenticationService,
       private router: Router,
-      private broadcaster: Broadcaster
+      private broadcaster: Broadcaster,
+      private usersService: UsersService
   ){}
 
   onLoginClick(){
       
-      this.authService
-        .login({
+      this.usersService
+        .register({
             username: this.username,
             password: this.password
         })
