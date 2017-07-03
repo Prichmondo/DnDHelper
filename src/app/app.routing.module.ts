@@ -9,22 +9,22 @@ import { LoginComponent }           from './components/login/app.login';
 import { RegisterComponent }        from './components/register/app.register';
 import { CampainsComponent }        from './components/campains/app.campains';
 import { HomeComponent }            from './components/home/app.home';
-<<<<<<< HEAD
+
 import { ShowCharacters }           from './components/app.showCharacters';
-=======
+
 import { AuthGuard, Anonymus }      from './services/authGard.service';
->>>>>>> e29677fbec58be60fedcd8547789ada5a92d4427
+
 
 const routes: AppRoute[] = [
     //ROUTES
-<<<<<<< HEAD
+
     {   data: { name: "Home" },             path: '',                   component: HomeComponent  },
     {   data: { name: "Dice Roller" },      path: 'dice-roller',        component: DiceRollerComponent  },
     {   data: { name: "Character Sheet" },  path: 'character-sheet',    component: CharacterSheetComponent  },    
     {   data: { name: "Campains" },         path: 'campains',           component: CampainsComponent  },
     {   data: { name: "Login" },            path: 'login',              component: LoginComponent  },
-    {   data: { name: "Party Editor"},      path: 'party-editor',       component: ShowCharacters }
-=======
+    {   data: { name: "Party Editor"},      path: 'party-editor',       component: ShowCharacters },
+
     { nav: { 
         name        : "Home",        
         position    : NavMenu.Main, 
@@ -81,7 +81,7 @@ const routes: AppRoute[] = [
       component     : RegisterComponent,
       canActivate   : [Anonymus] 
     }
->>>>>>> e29677fbec58be60fedcd8547789ada5a92d4427
+
     //CampainsComponent
 
     //REDIRECTION
