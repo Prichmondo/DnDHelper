@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core'
 import { Http, Response } from '@angular/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { LocalStoreManagerService, LocalKey } from './localStoreManager.service';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { ILoginForm } from '../models/ILoginForm';
-/*
-export interface ILoginForm{
-    username: string;
-    password: string;
-}*/
 
 @Injectable()
 export class AuthenticationService{
@@ -19,8 +15,9 @@ export class AuthenticationService{
     
     constructor(
       private http: Http, 
-      private localStore: LocalStoreManagerService
-      ){}
+      private localStore: LocalStoreManagerService,
+      private router: Router
+      ){console.log("AuthenticationService constructor");}
 
     login(loginForm: ILoginForm): Observable<any> {
         return this.http
@@ -30,6 +27,20 @@ export class AuthenticationService{
                 this.localStore.set(LocalKey.JWToken, body.token);
                 return body || { };
             });
+    }
+
+    register(loginForm: ILoginForm): Observable<any> {
+        return this.http
+            .post("/api/users", loginForm)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            });
+    }
+
+    logout(){
+      this.localStore.delete(LocalKey.JWToken);
+      this.router.navigate(["/login"])
     }
     
     private getPaylodData(token: string): any{
