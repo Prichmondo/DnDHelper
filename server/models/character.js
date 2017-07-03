@@ -4,9 +4,15 @@ var characterSchema = mongoose.Schema({
     firstName: {
         type: String
     },
-    campain: {
+    lastName: {
+        type: String
+    },
+    campaign: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Campain'
+    },
+    race: {
+        type: String
     },
     classes:{
         type: Array

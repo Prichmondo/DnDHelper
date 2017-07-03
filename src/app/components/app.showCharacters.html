@@ -1,0 +1,71 @@
+
+<h1>Party Editor</h1>
+
+<h2>Select your Heroes</h2>
+
+<div class="col-xs-6 col-sm-6 col-md-6">   
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Race
+                </th>
+                <th>
+                    Class
+                </th>
+                <th>
+                    Level
+                </th>
+                <th>
+                    Campaigns
+                </th>
+                <th>
+                    Select
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th>
+                    Remove
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let character of characters">
+                <td>
+                    {{character.firstName}} {{character.lastName}}
+                </td>
+                <td>
+                    {{character.race}}
+                </td>
+                <td>
+                    <span *ngFor="let pgClass of character.classes">{{pgClass.name}}{{pgClass.level}}/</span>
+                </td>
+                <td>
+                    11
+                </td>
+                <td>
+                    War of the Lance
+                </td>
+                <td>
+                    <button class="btn btn-info">
+                        select
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-info">
+                        edit
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-info">
+                        remove
+                    </button>
+                </td>                
+            </tr>
+        </tbody> 
+    </table>
+</div>

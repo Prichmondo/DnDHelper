@@ -14,6 +14,7 @@ import { HeaderComponent }          from './header.component';
 import { LoginComponent }           from './components/login/app.login';
 import { CampainsComponent }        from './components/campains/app.campains';
 import { HomeComponent }            from './components/home/app.home';
+import { ShowCharacters }           from './components/app.showCharacters';
 
 //SERVICES
 import { Utilities }                from './utilities/app.utilities';
@@ -32,7 +33,8 @@ import { CampainsService }          from './services/campains.service';
     HeaderComponent,
     LoginComponent,
     CampainsComponent,
-    HomeComponent
+    HomeComponent,
+    ShowCharacters,
   ],
   imports: [
     BrowserModule,

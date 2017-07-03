@@ -55,6 +55,21 @@ ul, li {
     margin-bottom: 0;    
 }
 
+.bg-bar-ok{
+    background-color: none;
+    color: darkgreen;
+}
+
+.bg-bar-no-good{
+    background-color: none;
+    color: darkgoldenrod;
+}
+
+.bg-bar-danger{
+    background-color: none;
+    color: darkred;
+}
+
 
 .number-input-layout{
     width: 40px;
