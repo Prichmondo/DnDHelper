@@ -15,13 +15,13 @@ import { LoginComponent }           from './components/login/app.login';
 import { RegisterComponent }        from './components/register/app.register';
 import { CampainsComponent }        from './components/campains/app.campains';
 import { HomeComponent }            from './components/home/app.home';
-<<<<<<< HEAD
+
 import { ShowCharacters }           from './components/app.showCharacters';
-=======
+
 import { InputNumberComponent }     from './components/inputs/input-number';
 import { DiceInputComponent }       from './components/inputs/dice-input';
 import { RollFilterPipe }           from './utilities/roll-filter-pipe';
->>>>>>> 8a64d228309c7651edf43171b339abaa61724226
+
 
 //SERVICES
 import { Utilities }                from './utilities/app.utilities';
