@@ -1,0 +1,11 @@
+<div class="row roll-results">
+    <div class="col-sx-12" [ngClass] = "{'col-sm-5': showRollButton, 'col-sm-6': !showRollButton}">
+        <input-number [(ngModel)]="quantity" [description]="dice.name" [(value)]="quantity" [setMin]="0" [setMax]="200" ngDefaultControl></input-number>    
+    </div>
+    <div class="col-sx-12" [ngClass] = "{'col-sm-5': showRollButton, 'col-sm-6': !showRollButton}">
+        <input-number [(ngModel)]="modifier" [description]="'+/-'" [(value)]="modifier" [setMin]="-1000" [setMax]="1000" ngDefaultControl></input-number>
+    </div>
+    <div class="col-sx-12 col-sm-2" *ngIf="showRollButton">
+        <button class="btn btn-success btn-block" (click)="roll()">Roll</button>
+    </div>
+</div>

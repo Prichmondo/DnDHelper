@@ -1,0 +1,8 @@
+<div class="input-group">
+    <span class="input-group-addon description-span">{{description}}</span>
+    <input id="input-component" [(ngModel)]="value" type="number" class="form-control" placeholder="Value" value={{value}} min={{setMin}} max={{setMax}}>
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-primary" (click)="spinnerDecrease()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-primary" (click)="spinnerIncrease()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    </div>
+</div>
