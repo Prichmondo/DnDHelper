@@ -23,9 +23,9 @@ ul, li {
     color:white;
     text-align: center;
     font-weight: bolder;
-    width:80px;
-    height: 65px;
-    margin-top: 35px;
+    width:60px;
+    height: 50px;
+    margin-bottom: 2px;
 }
 
 .row-adj{
@@ -33,7 +33,8 @@ ul, li {
 }
 
 .subtitle-label{
-    font-size:11px;
+    
+    font-size:10px;
     margin:0;
 }
 
@@ -48,7 +49,7 @@ ul, li {
 
 .subtitle > h5 {
     margin-top:0;
-    font-size:11px;
+    font-size:9px;
 }
 .subtitle > h4{
     padding-top: 10%;
@@ -72,11 +73,13 @@ ul, li {
 
 
 .number-input-layout{
-    width: 40px;
+    width: 44px;
     font-size: 150%;
-    margin-top: 5px;
-    height: 40px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    height: 44px;
     text-align: center;
+
     
 }
 .input-block{

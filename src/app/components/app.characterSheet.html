@@ -34,35 +34,52 @@
     <div class="standard-spacer row ">
 
         <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="small-subtitle-layout  row row-adj">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <label class="subtitle-label" >Ability</label>
+                    <label class="subtitle-label" >Name</label>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <label class="subtitle-label" for="ability-total">Ability</label>
+                    <label class="subtitle-label" for="ability-total">Score</label>                
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <label class="subtitle-label" for="ability-bonus">Ability</label>
+                    <label class="subtitle-label" for="ability-bonus">Modifier</label>               
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
+                    <label class="subtitle-label" for="ability-temporary">Score</label>              
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
+                    <label class="subtitle-label" for="ability-temporary">Modifier</label>              
+                </div>
+            </div>
             <div class="row row-adj">
                 <div id="ability" class="col-xs-4 col-sm-4 col-md-4 subtitle">
                     <h4>STR</h4>
-                    <h5>Strenght</h5>
                 </div>
                 <div id="ability-total" class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-total">Ability</label>
-                    <label class="subtitle-label" for="ability-total">Score</label>
+
                     <div class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-bonus">Ability</label>
-                    <label class="subtitle-label" for="ability-bonus">Modifier</label>
+
                     <div id="ability-bonus" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div>
                 </div> 
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
-                    <label class="subtitle-label" for="ability-temporary">Score</label>
+
                     <div id="ability-temporary-score" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
-                    <label class="subtitle-label" for="ability-temporary">Modifier</label>
+
                     <div id="ability-temporary-modifier" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
@@ -70,24 +87,31 @@
             </div>
         </div>
          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="small-subtitle-layout row row-adj">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <label class="subtitle-label" for="hit-poits-total">Total</label>              
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-6">
+                    <label class="subtitle-label" for="hit-poits-current">Wound/Current HP</label>             
+                </div>
+            </div>
             <div class="row row-adj">
-                <div id="hit-poits" class="col-xs-4 col-sm-4 col-md-4 subtitle">
+                <div id="hit-poits" class="standard-spacer col-xs-4 col-sm-4 col-md-4 subtitle">
                     <h4>HP</h4>
-                    <h5>Hit Points</h5>
                 </div>
                 <div id="hit-poits-total" class="standard-spacer col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="hit-poits-total">Total</label>
+
                     <div class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="standard-spacer col-xs-2 col-sm-2 col-md-6">
-                    <label class="subtitle-label" for="hit-poits-current">Wound/Current HP</label>
+
                     <div id="hit-poits-current" class="input-group">
                         <input  type="number" [(ngModel)]="hp" (ngModelChange)="updatedHp(newValue)"  placeholder="10">
                         <div class="progress">
                             <div class="progress-bar progress-bar-success" role="progressbar" [style.width]="hp + '%'" aria-valuenow="0"
-  aria-valuemin="0" aria-valuemax="100"></div>
+  aria-valuemin="0" aria-valuemax="hp"></div>
                         </div>
                     </div>
                 </div>                               
@@ -99,32 +123,27 @@
             <div class="row row-adj">
                 <div id="ability" class="col-xs-4 col-sm-4 col-md-4 subtitle">
                     <h4>DEX</h4>
-                    <h5>Dexterity</h5>
                 </div>
                 <div id="ability-total" class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-total">Ability</label>
-                    <label class="subtitle-label" for="ability-total">Score</label>
+
                     <div class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-bonus">Ability</label>
-                    <label class="subtitle-label" for="ability-bonus">Modifier</label>
+
                     <div id="ability-bonus" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div>
                 </div> 
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
-                    <label class="subtitle-label" for="ability-temporary">Score</label>
+
                     <div id="ability-temporary-score" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
-                    <label class="subtitle-label" for="ability-temporary">Modifier</label>
+
                     <div id="ability-temporary-modifier" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
@@ -138,32 +157,27 @@
             <div class="row row-adj">
                 <div id="ability" class="col-xs-4 col-sm-4 col-md-4 subtitle">
                     <h4>CON</h4>
-                    <h5>Constitution</h5>
                 </div>
                 <div id="ability-total" class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-total">Ability</label>
-                    <label class="subtitle-label" for="ability-total">Score</label>
+
                     <div class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-bonus">Ability</label>
-                    <label class="subtitle-label" for="ability-bonus">Modifier</label>
+
                     <div id="ability-bonus" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div>
                 </div> 
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
-                    <label class="subtitle-label" for="ability-temporary">Score</label>
+
                     <div id="ability-temporary-score" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
-                    <label class="subtitle-label" for="ability-temporary">Modifier</label>
+
                     <div id="ability-temporary-modifier" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
@@ -177,32 +191,27 @@
             <div class="row row-adj">
                 <div id="ability" class="col-xs-4 col-sm-4 col-md-4 subtitle">
                     <h4>INT</h4>
-                    <h5>Intelligence</h5>
                 </div>
                 <div id="ability-total" class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-total">Ability</label>
-                    <label class="subtitle-label" for="ability-total">Score</label>
+
                     <div class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-bonus">Ability</label>
-                    <label class="subtitle-label" for="ability-bonus">Modifier</label>
+
                     <div id="ability-bonus" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div>
                 </div> 
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
-                    <label class="subtitle-label" for="ability-temporary">Score</label>
+
                     <div id="ability-temporary-score" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
-                    <label class="subtitle-label" for="ability-temporary">Modifier</label>
+
                     <div id="ability-temporary-modifier" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
@@ -216,32 +225,27 @@
             <div class="row row-adj">
                 <div id="ability" class="col-xs-4 col-sm-4 col-md-4 subtitle">
                     <h4>WIS</h4>
-                    <h5>Wisdom</h5>
                 </div>
                 <div id="ability-total" class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-total">Ability</label>
-                    <label class="subtitle-label" for="ability-total">Score</label>
+
                     <div class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-bonus">Ability</label>
-                    <label class="subtitle-label" for="ability-bonus">Modifier</label>
+
                     <div id="ability-bonus" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div>
                 </div> 
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
-                    <label class="subtitle-label" for="ability-temporary">Score</label>
+
                     <div id="ability-temporary-score" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
-                    <label class="subtitle-label" for="ability-temporary">Modifier</label>
+
                     <div id="ability-temporary-modifier" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
@@ -255,32 +259,27 @@
             <div class="row row-adj">
                 <div id="ability" class="col-xs-4 col-sm-4 col-md-4 subtitle">
                     <h4>CHA</h4>
-                    <h5>Charisma</h5>
                 </div>
                 <div id="ability-total" class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-total">Ability</label>
-                    <label class="subtitle-label" for="ability-total">Score</label>
+
                     <div class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-bonus">Ability</label>
-                    <label class="subtitle-label" for="ability-bonus">Modifier</label>
+
                     <div id="ability-bonus" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div>
                 </div> 
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
-                    <label class="subtitle-label" for="ability-temporary">Score</label>
+
                     <div id="ability-temporary-score" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <label class="subtitle-label" for="ability-temporary">Temporary</label>
-                    <label class="subtitle-label" for="ability-temporary">Modifier</label>
+
                     <div id="ability-temporary-modifier" class="input-group input-div-layout">
                         <input class="number-input-layout" type="number" placeholder="10">
                     </div> 

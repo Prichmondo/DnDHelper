@@ -8,10 +8,13 @@ import { NgForm } from '@angular/forms';
 })
 export class CharacterSheetComponent {
   
-    private hp= 100;
-    
-    updatedHp(newValue:number){
+    hp=100;
+        
+    updatedHp(newValue){
       this.hp=newValue;
+      
+      return this.hp
+      
     }
 
     
