@@ -1,8 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Dice } from './dice';
-import { DICES } from '../mocks/mock-dices';
-import { Utilities } from '../utilities/app.utilities'
+import { Dice }                     from '../models/dice';
+import { Roll }                     from '../models/roll';
+import { DICES }                    from '../mocks/mock-dices';
+import { Utilities }                from '../utilities/app.utilities';
+import { InputNumberComponent }     from './inputs/input-number';
+import { DiceInputComponent }       from './inputs/dice-input';
+import { RollFilterPipe }           from '../utilities/roll-filter-pipe';
 
 @Component({
   selector: 'app-dice-roller',
@@ -12,8 +16,13 @@ import { Utilities } from '../utilities/app.utilities'
 
 export class DiceRollerComponent {
   title = 'Dice Roller';
+  dicesSet: Dice[] = DICES;
+  rolls: Roll[] = [];
+/*
   prova = 0;
   dicesOnTable: Dice[] = DICES;
+  value: number = 3;
+  filter: Dice = new Dice();
 
   private totalRoll = 0;
 
@@ -456,5 +465,5 @@ export class DiceRollerComponent {
     } else {
       controlName = controlName - 1;
     }
-  }
+  }*/
 }
