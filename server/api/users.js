@@ -1,11 +1,11 @@
 const express = require('express');
 const UserService = require('../services/user');
 const router = express.Router();
-const auth = require('../services/authentication');
+const AuthService = require('../services/authentication');
 
 const url = "/users";
 
-router.get(url, auth.check, (req, res)=>{
+router.get(url, AuthService.check, (req, res)=>{
     UserService
         .getAll((error, users)=>{
             if(error){
@@ -17,16 +17,31 @@ router.get(url, auth.check, (req, res)=>{
 
 router.post(url, (req, res)=>{
     
-    var user = req.body;
+    var userForm = req.body;
     
     console.log("USER POST BODY", req.body);
 
     UserService
-        .create(user, (error, user)=>{
+        .create(userForm, (error, user)=>{
             if(error){
                 throw error;
             }
-            res.json(user);
+
+            AuthService.login(userForm, function(authResp, error){
+        
+                if(authResp){            
+                    res.status(200).send({
+                        userId:     authResp.user._id,
+                        username:   authResp.user.username,
+                        created:    authResp.user.createDate,
+                        token:      authResp.token
+                    });
+                } else {
+                    res.status(400).end(error);
+                }
+
+            });
+
         });
 });
 

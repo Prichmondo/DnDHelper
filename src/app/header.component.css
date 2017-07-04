@@ -1,0 +1,60 @@
+body{
+    margin:0;
+    padding: 0;
+    font-family: "Roboto Condensed"
+}
+
+header.main-header{
+    background-color: #000;
+    color: #fff;
+}
+
+header.main-header h1 {
+    margin: 0px;
+    font-size: 25px;
+    display: inline-block;
+    padding: 12px 0px 0px 13px;
+}
+
+header .container{
+    padding: 10px;
+}
+
+nav ul,
+nav ul li{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+nav ul li{
+    display: inline-block;
+    padding: 0px 10px;
+    color:#fff;
+    border-right: 1px solid rgba(255,255,255,0.3);
+}
+
+
+header.main-header a{
+    color:#fff;
+}
+
+nav.user-nav ul li,
+nav.user-nav ul li a {
+    font-size: 12px;
+    color: #cccccc;
+}
+
+.main-nav {
+    margin-top: 15px;
+}
+
+
+header.main-header img.logo {
+    width: 90px;
+    float: left;
+}
+.fa-bars{
+    font-size: 2em;
+    padding:14px;
+}

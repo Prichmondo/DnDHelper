@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { Utilities } from './utilities/app.utilities';
 
 @Component({
@@ -7,6 +6,4 @@ import { Utilities } from './utilities/app.utilities';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'My D&D Helper';
-}
+export class AppComponent {}

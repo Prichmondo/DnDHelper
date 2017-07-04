@@ -1,0 +1,39 @@
+<header class="main-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-9 col-sm-6">
+                <img class="logo" src="/assets/images/logo_full.png" alt="">
+                <h1>{{title}} {{ isLoggedIn }}</h1>
+            </div>
+            <div class="col-xs-3 col-sm-6 text-right">
+                <nav class="hidden-xs user-nav">
+                    <ul>
+                        <li *ngFor="let route of userRoutes">
+                            <a [routerLink] = "['/'+route.path]">
+                                {{ route.nav.name }}
+                            </a>
+                        </li>
+                        <li *ngIf="isLoggedin">
+                            {{ userEmail }}
+                        </li>
+                        <li *ngIf="isLoggedin">
+                            <a (click)="onLogout()">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav class="hidden-xs main-nav">
+                    <ul>
+                        <li *ngFor="let route of mainRoutes">
+                            <a [routerLink] = "['/'+route.path]">
+                                {{ route.nav.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <span class="fa fa-bars fa-lg visible-xs"></span>
+            </div>
+        </div>
+    </div>
+</header>
