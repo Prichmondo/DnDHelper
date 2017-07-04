@@ -5,16 +5,6 @@ import { FormsModule }              from '@angular/forms';
 import { HttpModule }               from '@angular/http';
 import { RouterModule, Router }     from '@angular/router';
 
-<<<<<<< HEAD
-import { AppRoutingModule } from './app.routing.module';
-import { AppComponent } from './app.component';
-import { DiceRollerComponent } from './components/app.diceroller';
-import { Utilities } from './utilities/app.utilities';
-import { CharacterSheetComponent } from './components/app.characterSheet';
-import { InputNumberComponent } from './components/inputs/input-number';
-import { DiceInputComponent } from './components/inputs/dice-input';
-import { RollFilterPipe } from './utilities/roll-filter-pipe';
-=======
 //COMPONENTS
 import { AppRoutingModule }         from './app.routing.module';
 import { AppComponent }             from './app.component';
@@ -25,6 +15,9 @@ import { LoginComponent }           from './components/login/app.login';
 import { RegisterComponent }        from './components/register/app.register';
 import { CampainsComponent }        from './components/campains/app.campains';
 import { HomeComponent }            from './components/home/app.home';
+import { InputNumberComponent }     from './components/inputs/input-number';
+import { DiceInputComponent }       from './components/inputs/dice-input';
+import { RollFilterPipe }           from './utilities/roll-filter-pipe';
 
 //SERVICES
 import { Utilities }                from './utilities/app.utilities';
@@ -37,24 +30,20 @@ import { HttpService }              from './services/http.service';
 import { CampainsService }          from './services/campains.service';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { Broadcaster }              from './services/broadcast';
->>>>>>> e29677fbec58be60fedcd8547789ada5a92d4427
 
 @NgModule({
   declarations: [
     AppComponent,
     DiceRollerComponent,
     CharacterSheetComponent,
-<<<<<<< HEAD
     InputNumberComponent,
     DiceInputComponent,
-    RollFilterPipe
-=======
+    RollFilterPipe,
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
     CampainsComponent,
     HomeComponent
->>>>>>> e29677fbec58be60fedcd8547789ada5a92d4427
   ],
   imports: [
     BrowserModule,
