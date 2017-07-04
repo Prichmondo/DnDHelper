@@ -10,6 +10,7 @@ import { RegisterComponent }        from './components/register/app.register';
 import { CampainsComponent }        from './components/campains/app.campains';
 import { HomeComponent }            from './components/home/app.home';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
+import { ShowCharacters }            from './components/app.showCharacters';
 
 const routes: AppRoute[] = [
     //ROUTES
@@ -48,6 +49,15 @@ const routes: AppRoute[] = [
       path          : 'campains',           
       component     : CampainsComponent,       
       canActivate   : [AuthGuard] 
+    },
+
+    { nav: { 
+        name        : "Party Editor",        
+        position    : NavMenu.Main, 
+        visible     : NavVisibility.Always       
+      },  
+      path          : 'Party Editor', 
+      component     : ShowCharacters 
     },
 
     { nav: { 

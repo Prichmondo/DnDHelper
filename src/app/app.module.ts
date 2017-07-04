@@ -34,6 +34,7 @@ import { HttpService }              from './services/http.service';
 import { CampainsService }          from './services/campains.service';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { Broadcaster }              from './services/broadcast';
+import { CharactersService }        from './services/characthers.service'
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { Broadcaster }              from './services/broadcast';
     AppRequestOptions,
     HttpService,
     CampainsService,
+    CharactersService,
     AuthGuard, Anonymus,
     Broadcaster, UsersService
   ],

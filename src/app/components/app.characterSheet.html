@@ -9,7 +9,7 @@
         </div>
         <div class="col-sm-6 col-md-4 col-md-pull-4">
             <div class="row">   
-                <div class="col-md-12"><input class="input-block from-control base-border" type="text"><label> Character name </label></div>
+                <div class="col-md-12"><input class="input-block from-control base-border" type="text" ><label> Character name </label></div>
                 <div class="col-md-12"><input class="input-block from-control base-border" type="text"><label> Class and level </label></div>
                 <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Size </label></div>
                 <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Age </label></div>
@@ -102,15 +102,15 @@
                 <div id="hit-poits-total" class="standard-spacer col-xs-2 col-sm-2 col-md-2">
 
                     <div class="input-group input-div-layout">
-                        <input class="number-input-layout" type="number" placeholder="10">
+                        <input class="hp-input" [ngModel]="hp" type="number" placeholder="10">
                     </div> 
                 </div>
                 <div class="standard-spacer col-xs-2 col-sm-2 col-md-6">
 
                     <div id="hit-poits-current" class="input-group">
-                        <input  type="number" [(ngModel)]="hp" (ngModelChange)="updatedHp(newValue)"  placeholder="10">
+                        <input  type="number" [(ngModel)]="current" (OnChange)="updatedHp(newValue)"  placeholder="10">
                         <div class="progress">
-                            <div class="progress-bar progress-bar-success" role="progressbar" [style.width]="hp + '%'" aria-valuenow="0"
+                            <div class="progress-bar progress-bar-success" role="progressbar" [style.width]="current + '%'" aria-valuenow="0"
   aria-valuemin="0" aria-valuemax="hp"></div>
                         </div>
                     </div>

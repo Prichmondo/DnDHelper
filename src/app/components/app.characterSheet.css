@@ -82,6 +82,11 @@ ul, li {
 
     
 }
+.hp-input{
+    height: 44px;
+    width: 60px;
+    font-size: 150%;
+}
 .input-block{
     display: block;
     width: 100%;
