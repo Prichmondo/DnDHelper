@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ICharacter } from '../models/Character';
 import { CharactersService } from '../services/characthers.service';
 
@@ -12,16 +12,13 @@ import { CharactersService } from '../services/characthers.service';
 export class ShowCharacters{
 
     characters: ICharacter[];
+    
 
     constructor(
         private charactersService: CharactersService
         ){}
 
-    AddTableRow(row:string){
-
-        
-    }
-    
+   
     ngOnInit(){
         this.charactersService
             .get()
@@ -29,5 +26,5 @@ export class ShowCharacters{
                 console.log(response);
                 this.characters = response;
             });
-    }
+    };
 }
