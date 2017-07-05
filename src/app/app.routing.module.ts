@@ -54,10 +54,11 @@ const routes: AppRoute[] = [
     { nav: { 
         name        : "Party Editor",        
         position    : NavMenu.Main, 
-        visible     : NavVisibility.Always       
+        visible     : NavVisibility.LoggedIn       
       },  
-      path          : 'Party Editor', 
-      component     : ShowCharacters 
+      path          : 'party-editor', 
+      component     : ShowCharacters,
+      canActivate   : [AuthGuard] 
     },
 
     { nav: { 
