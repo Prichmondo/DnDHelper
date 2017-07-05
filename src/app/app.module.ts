@@ -15,9 +15,7 @@ import { LoginComponent }           from './components/login/app.login';
 import { RegisterComponent }        from './components/register/app.register';
 import { CampainsComponent }        from './components/campains/app.campains';
 import { HomeComponent }            from './components/home/app.home';
-
 import { ShowCharacters }           from './components/app.showCharacters';
-
 import { InputNumberComponent }     from './components/inputs/input-number';
 import { DiceInputComponent }       from './components/inputs/dice-input';
 import { RollFilterPipe }           from './utilities/roll-filter-pipe';

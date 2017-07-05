@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter } from '@angular/core';
 
 import { Dice }                     from '../models/dice';
 import { Roll }                     from '../models/roll';
@@ -11,13 +11,51 @@ import { RollFilterPipe }           from '../utilities/roll-filter-pipe';
 @Component({
   selector: 'app-dice-roller',
   templateUrl: './app.diceroller.html',
-  styleUrls: ['./app.diceroller.css']
+  styleUrls: ['./app.diceroller.css'],
 })
 
 export class DiceRollerComponent {
   title = 'Dice Roller';
   dicesSet: Dice[] = DICES;
   rolls: Roll[] = [];
+  addRollsMode: boolean = false;
+
+  onDiceRoll(newRoll: Roll[]){
+    console.log("notify!");
+    if (!newRoll){return this.rolls}
+
+    if (this.addRollsMode === false) {
+      console.log("enter remove dice form roll with dice:");
+      console.log(newRoll[0].dice);
+      this.removeDicesFromRolls(newRoll[0].dice)}
+
+    for (var i = 0; i < newRoll.length; i++){
+      this.rolls.push(newRoll[i]);
+    }
+    console.log(this.rolls);
+  }
+
+  onDiceReset(dice: Dice){
+    console.log("on dice reset!");
+    this.removeDicesFromRolls(dice);
+  }
+
+  private removeDicesFromRolls(dice: Dice): void{
+    console.log("entered remove dice");
+    console.log(dice);
+    if (!dice || this.rolls.length < 1) {
+      console.log("exiting remove");
+      return
+    }
+
+    for (var i = (this.rolls.length - 1); i > -1; i--){
+      console.log(i);
+      if (this.rolls[i].dice == dice){
+        this.rolls.splice(i, 1);
+        console.log("spliced");
+      }
+    }
+  }
 /*
   prova = 0;
   dicesOnTable: Dice[] = DICES;
