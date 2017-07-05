@@ -21,7 +21,8 @@ export class DiceInputComponent {
     @Input() modifier :number = 0;
     @Input() showRollButton :boolean = true;
 
-    @Output() notify: EventEmitter<Roll[]> = new EventEmitter<Roll[]>();
+    @Output() rollDiceEvent: EventEmitter<Roll[]> = new EventEmitter<Roll[]>();
+    @Output() resetDiceEvent: EventEmitter<Dice> = new EventEmitter<Dice>();
 
     rolls: Roll[] = [];
     
@@ -45,8 +46,17 @@ export class DiceInputComponent {
           })
         }
         console.log(this.rolls);
-        this.notify.emit(this.rolls);
+        this.rollDiceEvent.emit(this.rolls);
+      } else{
+        console.log("reset "+this.dice.name);
+        this.resetDiceEvent.emit(this.dice);
       }
+    }
+
+    reset(){
+      this.quantity = 0;
+      this.modifier = 0;
+      this.roll();
     }
 
 }

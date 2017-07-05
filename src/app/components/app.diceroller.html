@@ -14,7 +14,7 @@
         
         <div class="dice-container">
             <div *ngFor="let dice of dicesSet">
-                <dice-input [dice]="dice" [quantity]="0" [modifier]="0" [showRollButton]="true" (notify)="onNotify($event)" ngDefaultControl></dice-input>
+                <dice-input [dice]="dice" [quantity]="0" [modifier]="0" [showRollButton]="true" (rollDiceEvent)="onDiceRoll($event)" (resetDiceEvent)="onDiceReset($event)" ngDefaultControl></dice-input>
             </div>
         </div>
 

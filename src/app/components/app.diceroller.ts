@@ -20,7 +20,7 @@ export class DiceRollerComponent {
   rolls: Roll[] = [];
   addRollsMode: boolean = false;
 
-  onNotify(newRoll: Roll[]){
+  onDiceRoll(newRoll: Roll[]){
     console.log("notify!");
     if (!newRoll){return this.rolls}
 
@@ -33,6 +33,11 @@ export class DiceRollerComponent {
       this.rolls.push(newRoll[i]);
     }
     console.log(this.rolls);
+  }
+
+  onDiceReset(dice: Dice){
+    console.log("on dice reset!");
+    this.removeDicesFromRolls(dice);
   }
 
   private removeDicesFromRolls(dice: Dice): void{
