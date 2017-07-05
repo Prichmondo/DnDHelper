@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { ICharacter } from '../models/Character';
 import { CharactersService } from '../services/characthers.service';
 
@@ -6,7 +8,7 @@ import { CharactersService } from '../services/characthers.service';
 
     selector:"show-char",
     templateUrl:"./app.showCharacters.html",
-    providers: [CharactersService]
+    
 
 })
 export class ShowCharacters{
@@ -15,9 +17,13 @@ export class ShowCharacters{
     
 
     constructor(
-        private charactersService: CharactersService
+        private charactersService: CharactersService,
+        private router: Router
         ){}
 
+    onSelect(character: ICharacter){
+        this.router.navigate(["/character-sheet", character._id]);
+    }
    
     ngOnInit(){
         this.charactersService
@@ -27,4 +33,6 @@ export class ShowCharacters{
                 this.characters = response;
             });
     };
+
+
 }

@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import { ICharacter } from '../models/Character';
+
 @Injectable()
 export class CharactersService{
 
@@ -14,7 +16,7 @@ export class CharactersService{
       private http: HttpService
       ){}
 
-    get(): Observable<any> {
+    get(): Observable<Array<ICharacter>> {
         return this.http
             .get(this.apiUrl)
             .map((res: Response) => {
