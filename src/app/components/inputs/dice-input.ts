@@ -1,4 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component,
+         Input,
+         Output,
+         EventEmitter,
+         OnInit }                   from '@angular/core';
 
 import { Utilities }                from '../../utilities/app.utilities';
 import { InputNumberComponent }     from './input-number';
@@ -17,8 +21,10 @@ export class DiceInputComponent {
     @Input() modifier :number = 0;
     @Input() showRollButton :boolean = true;
 
-    rolls: Roll[] = [];
+    @Output() notify: EventEmitter<Roll[]> = new EventEmitter<Roll[]>();
 
+    rolls: Roll[] = [];
+    
     constructor(
       private utils: Utilities,
     ){}
@@ -29,16 +35,17 @@ export class DiceInputComponent {
         this.rolls = []
         this.modifier = Math.floor(this.modifier);
         console.log("started");
-        console.log(this.rolls);
+        console.log(this.dice);
 
         for (var i = 0; i < this.quantity; i++){
           this.rolls.push({
-            dice: this.dice[0],
+            dice: this.dice,
             modifier: this.modifier,
             roll: this.utils.getRandomInteger(1, this.dice.faces)
           })
         }
-        return this.rolls;
+        console.log(this.rolls);
+        this.notify.emit(this.rolls);
       }
     }
 
