@@ -37,7 +37,7 @@ const routes: AppRoute[] = [
         position    : NavMenu.Main, 
         visible     : NavVisibility.LoggedIn   
       },  
-      path          : 'character-sheet',    
+      path          : 'character-sheet/:id',    
       component     : CharacterSheetComponent  
     },
 
