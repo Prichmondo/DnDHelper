@@ -42,7 +42,7 @@ export class DiceInputComponent {
           this.rolls.push({
             dice: this.dice,
             modifier: this.modifier,
-            roll: this.utils.getRandomInteger(1, this.dice.faces)
+            roll: 0
           })
         }
         console.log(this.rolls);
