@@ -10,7 +10,8 @@ import { RegisterComponent }        from './components/register/app.register';
 import { CampainsComponent }        from './components/campains/app.campains';
 import { HomeComponent }            from './components/home/app.home';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
-import { ShowCharacters }            from './components/app.showCharacters';
+import { ShowCharacters }           from './components/app.showCharacters';
+import { ShowClasses }              from './components/app.showClasses';
 
 const routes: AppRoute[] = [
     //ROUTES
@@ -58,6 +59,15 @@ const routes: AppRoute[] = [
       },  
       path          : 'Party Editor', 
       component     : ShowCharacters 
+    },
+
+    { nav: { 
+        name        : "Classes",        
+        position    : NavMenu.Main, 
+        visible     : NavVisibility.LoggedIn       
+      },  
+      path          : 'Classes', 
+      component     : ShowClasses
     },
 
     { nav: { 

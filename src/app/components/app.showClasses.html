@@ -1,0 +1,62 @@
+<h2>Classes</h2>
+
+<div class="table-responsive">   
+    <table class="table table-stripped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Total Levels
+                </th>
+                <th>
+                    Save Throw
+                </th>
+                <th>
+                    Attack Bonus
+                </th>
+                <th>
+                    Select
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th>
+                    Remove
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let characterClass of characterClasses">
+                <td>
+                    {{characterClass.name}}
+                </td>
+                <td>
+                    20
+                </td>
+                <td>
+                    Slow
+                </td>
+                <td>
+                    Fast
+                </td>
+                <td>
+                    <button (click)="onSelect(character)" class="btn btn-info">
+                        select
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-info">
+                        edit
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-info">
+                        remove
+                    </button>
+                </td>                
+            </tr>
+        </tbody> 
+    </table>
+</div>
