@@ -15,6 +15,18 @@
         <div class="dice-container">
             <div *ngFor="let dice of dicesSet">
                 <dice-input [dice]="dice" [quantity]="0" [modifier]="0" [showRollButton]="true" (rollDiceEvent)="onDiceRoll($event)" (resetDiceEvent)="onDiceReset($event)" ngDefaultControl></dice-input>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 roll-results">
+                        <div class="dice" *ngFor="let roll of (rolls | filter_rolls_by_dice:dice)">
+                            <span class="dice-value">{{roll.roll}}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <div *ngFor="let total of (totals | filter_totals_by_dice:dice)">
+                            <h3 *ngIf="total.totalRoll > 0">{{total.dice.name}} Total: {{total.totalRoll}} + {{total.totalModifier}} = {{total.total}}</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -22,7 +34,7 @@
 
 
         <div class="footer text-right">
-            <h3 *ngIf="totalRoll > 0"><span class="label label-info text-center btn-block">Total Roll: {{totalRoll}}</span></h3>
+            <h3 *ngIf="totalRollOnTable > 0"><span class="label label-info text-center btn-block">Total Roll: {{totalRollOnTable}}</span></h3>
         </div>
     </div>
 </div>

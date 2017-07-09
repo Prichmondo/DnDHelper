@@ -1,0 +1,63 @@
+
+<h2>Character sheet</h2>
+
+<div class="table-responsive">   
+    <table class="table table-stripped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Size
+                </th>
+                <th>
+                    Abilities Modifiers
+                </th>
+                <th>
+                    Select
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th>
+                    Remove
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let race of races">
+                <td>
+                    {{race.name}}
+                </td>
+                <td>
+                    {{race.type}}
+                </td>
+                <td>
+                    {{race.size}}
+                </td>
+                <td>
+                    {{race.abilitiesModifier}}
+                </td>
+                <td>
+                    <button (click)="onSelect(race)" class="btn btn-info">
+                        select
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-info">
+                        edit
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-info">
+                        remove
+                    </button>
+                </td>                
+            </tr>
+        </tbody> 
+    </table>
+</div>

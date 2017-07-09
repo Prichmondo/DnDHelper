@@ -23,4 +23,4 @@ var characterSchema = mongoose.Schema({
     }
 });
 
-var Character = module.exports = mongoose.model("Character", characterSchema);
+module.exports = mongoose.model("Character", characterSchema);

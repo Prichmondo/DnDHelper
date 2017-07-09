@@ -12,23 +12,28 @@ input {
 
 .dice{
   position: relative;
+  background-color: darkgray;
+  border-radius: 5px;
   width: 40px;
   height: 40px;
   margin-left: 3px;
   margin-right: 3px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
+  margin-top: 3px;
   display: inline-block;
 }
 
 .dice-value{
-  font-size: 14px;
+  font-size: 16px;
+  text-align: center;
+  color: whitesmoke;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   width: 50%;
-  height: 30%;
+  height: 50%;
   margin: auto;
 
 }
@@ -50,13 +55,4 @@ input {
 .header {
   margin-top: 5px;
   margin-bottom: 5px;
-}
-
-.roll-results {
-  padding: 5px;
-  /*background-color: lightgray;*/
-  border-color: lightgreen;
-  border-style: none;
-  border-radius: 5px;
-  border-width: 1px;
 }

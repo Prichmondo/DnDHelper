@@ -8,7 +8,7 @@ import { RouterModule, Router }     from '@angular/router';
 //COMPONENTS
 import { AppRoutingModule }         from './app.routing.module';
 import { AppComponent }             from './app.component';
-import { DiceRollerComponent }      from './components/app.diceroller';
+import { DiceRollerComponent }      from './components/dice-roller/app.diceroller';
 import { CharacterSheetComponent }  from './components/app.characterSheet';
 import { HeaderComponent }          from './header.component';
 import { LoginComponent }           from './components/login/app.login';
@@ -19,7 +19,9 @@ import { ShowCharacters }           from './components/app.showCharacters';
 import { ShowClasses }              from './components/app.showClasses';
 import { InputNumberComponent }     from './components/inputs/input-number';
 import { DiceInputComponent }       from './components/inputs/dice-input';
-import { RollFilterPipe }           from './utilities/roll-filter-pipe';
+import { RollFilterByDice,
+         TotalFilterByDice }        from './components/dice-roller/app.diceroller.pipes';
+import { RacesList }                from './components/races-list/app.races-list';
 
 
 //SERVICES
@@ -42,14 +44,19 @@ import { CharactersService }        from './services/characthers.service'
     CharacterSheetComponent,
     InputNumberComponent,
     DiceInputComponent,
-    RollFilterPipe,
+    RollFilterByDice,
+    TotalFilterByDice,
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
     CampainsComponent,
     HomeComponent,
     ShowCharacters,
+<<<<<<< HEAD
     ShowClasses
+=======
+    RacesList
+>>>>>>> b8b8c8ca505f7c4f11bef9131f5f4b1d75b62855
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@ import { RouterModule, Routes }     from '@angular/router';
 import { AppRoute, NavMenu, 
   NavVisibility }                   from './models/AppRoute';
 
-import { DiceRollerComponent }      from './components/app.diceroller';
+import { DiceRollerComponent }      from './components/dice-roller/app.diceroller';
 import { CharacterSheetComponent }  from './components/app.characterSheet';
 import { LoginComponent }           from './components/login/app.login';
 import { RegisterComponent }        from './components/register/app.register';
@@ -11,7 +11,11 @@ import { CampainsComponent }        from './components/campains/app.campains';
 import { HomeComponent }            from './components/home/app.home';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { ShowCharacters }           from './components/app.showCharacters';
+<<<<<<< HEAD
 import { ShowClasses }              from './components/app.showClasses';
+=======
+import { RacesList }                from './components/races-list/app.races-list';
+>>>>>>> b8b8c8ca505f7c4f11bef9131f5f4b1d75b62855
 
 const routes: AppRoute[] = [
     //ROUTES
@@ -55,10 +59,11 @@ const routes: AppRoute[] = [
     { nav: { 
         name        : "Party Editor",        
         position    : NavMenu.Main, 
-        visible     : NavVisibility.Always       
+        visible     : NavVisibility.LoggedIn       
       },  
-      path          : 'Party Editor', 
-      component     : ShowCharacters 
+      path          : 'party-editor', 
+      component     : ShowCharacters,
+      canActivate   : [AuthGuard] 
     },
 
     { nav: { 
@@ -87,6 +92,16 @@ const routes: AppRoute[] = [
       },  
       path          : 'register',
       component     : RegisterComponent,
+      canActivate   : [Anonymus] 
+    },
+
+    { nav: { 
+        name        : "Races List",
+        position    : NavMenu.User,
+        visible     : NavVisibility.LoggedOut
+      },  
+      path          : 'races-list',
+      component     : RacesList,
       canActivate   : [Anonymus] 
     }
     //CampainsComponent
