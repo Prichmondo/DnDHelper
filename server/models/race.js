@@ -1,17 +1,9 @@
 var mongoose = require('mongoose');
-
-var raceTypes = ["Humanoid", "Animal", "Undead", "Outsider"]
-
-var size = ["tiny", "Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal"]
-
-var abilities = mongoose.Schema({
-    strenght: Number,
-    dexterity: Number,
-    constitution: Number,
-    intelligence: Number,
-    wisdom: Number,
-    charisma: Number
-})
+var abilities = require('./abilities');
+var speed = require('./speed');
+var commons = require('./commons');
+var bonus = require('./bonus');
+var special = require('./special');
 
 var raceSchema = mongoose.Schema({
     name: {
@@ -20,20 +12,24 @@ var raceSchema = mongoose.Schema({
     },
     type: {
         type: String,
-        enum: raceTypes,
+        enum: commons.raceType,
         required: true
     },
     size: {
         type: String,
-        enum: size,
+        enum: commons.size,
         require: true
     },
+    speeds: [speed],
     abilitiesModifiers: { 
         type: abilities
     },
     createDate: {
         type: Date,
         default: Date.now
+    },
+    specials:{
+        type: [special]
     }
 });
 
