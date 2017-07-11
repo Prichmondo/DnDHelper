@@ -31,13 +31,9 @@ export class DiceInputComponent {
     ){}
 
     roll(){
-      console.log("click q = "+this.quantity + "m = "+this.modifier);
       if (this.quantity > 0) {
         this.rolls = []
         this.modifier = Math.floor(this.modifier);
-        console.log("started");
-        console.log(this.dice);
-
         for (var i = 0; i < this.quantity; i++){
           this.rolls.push({
             dice: this.dice,
@@ -45,10 +41,8 @@ export class DiceInputComponent {
             roll: 0
           })
         }
-        console.log(this.rolls);
         this.rollDiceEvent.emit(this.rolls);
       } else{
-        console.log("reset "+this.dice.name);
         this.resetDiceEvent.emit(this.dice);
       }
     }

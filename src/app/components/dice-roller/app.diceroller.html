@@ -8,7 +8,7 @@
                 <button class="btn btn-success btn-block" (click)="rollAll()">Roll All</button>
             </div>
             <div class="col-xs-6 col-sm-3">
-                <button class="btn btn-warning btn-block" (click)="resetDices('all',false)">Reset All</button>
+                <button class="btn btn-warning btn-block" (click)="resetAll()">Reset All</button>
             </div>
         </div>
         
@@ -24,6 +24,7 @@
                     <div class="col-xs-12 col-sm-4">
                         <div *ngFor="let total of (totals | filter_totals_by_dice:dice)">
                             <h3 *ngIf="total.totalRoll > 0">{{total.dice.name}} Total: {{total.totalRoll}} + {{total.totalModifier}} = {{total.total}}</h3>
+                            <h5 *ngIf="total.totalRoll > 0">Luck rate: {{total.luck}}%</h5>
                         </div>
                     </div>
                 </div>

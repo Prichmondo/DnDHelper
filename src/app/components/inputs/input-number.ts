@@ -28,7 +28,6 @@ export class InputNumberComponent {
     }
     
     spinnerIncrease(){
-        console.log("increase");
         this.mousePressed = true;
         this.spinnerChange(1);
     }
@@ -42,7 +41,6 @@ export class InputNumberComponent {
     }
 
     private spinnerChange(interval){
-        console.log("spinnerchange");
         if ((interval > 0 && this.value < this.setMax) || (interval < 0 && this.value > this.setMin)){
             this.value = this.value + interval;
             this.valueChange.emit(this.value);
