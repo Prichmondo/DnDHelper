@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 @Injectable()
 
 export class Utilities {
-    //private numberInterval: any;
-    //private randomInteger: any;
 
   public getRandomInteger (minVal, maxVal) {
     if (!minVal || !maxVal || Math.floor(minVal)>=Math.floor(maxVal)) {
@@ -37,5 +35,15 @@ export class Utilities {
         str = "" + str;
         str = str.toUpperCase();
         return str;
+    }
+
+    public formatNumberAsTextFroceSign(inputNumber: number): string{
+        if (!inputNumber){ return null };
+
+        if (inputNumber < 0) {
+            return "" + inputNumber;
+        } else {
+            return "+" + inputNumber;
+        }
     }
 }

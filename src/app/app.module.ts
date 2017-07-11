@@ -21,6 +21,8 @@ import { DiceInputComponent }       from './components/inputs/dice-input';
 import { RollFilterByDice,
          TotalFilterByDice }        from './components/dice-roller/app.diceroller.pipes';
 import { RacesList }                from './components/races-list/app.races-list';
+import { FormatRaceSize,
+         FormatRaceAbilities }      from './components/races-list/app.race-list.pipes'
 
 
 //SERVICES
@@ -51,7 +53,9 @@ import { CharactersService }        from './services/characthers.service'
     CampainsComponent,
     HomeComponent,
     ShowCharacters,
-    RacesList
+    RacesList,
+    FormatRaceSize,
+    FormatRaceAbilities
   ],
   imports: [
     BrowserModule,
