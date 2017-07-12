@@ -37,10 +37,12 @@
                     {{race.type}}
                 </td>
                 <td>
-                    {{race.size}}
+                    {{race.size | format_race_size:race.size}}
                 </td>
                 <td>
-                    {{race.abilitiesModifier}}
+                    <ul *ngFor="let ability of (race.abilitiesModifiers | format_race_abilities: race.abilitiesModifiers)">
+                        <li>{{ability}}</li>
+                    </ul>
                 </td>
                 <td>
                     <button (click)="onSelect(race)" class="btn btn-info">

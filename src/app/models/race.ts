@@ -4,7 +4,7 @@ export interface IAbilities {
     constitution: number;
     intelligence: number;
     wisdom: number;
-    charisma: number;
+    charisma: number
 }
 
 export enum Size {

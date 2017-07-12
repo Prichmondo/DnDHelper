@@ -1,8 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input }     from '@angular/core';
+import { Router }                       from '@angular/router';
 
-import { Race } from '../../models/race';
-import { RACES } from '../../mocks/mock-races';
+import { Race }                         from '../../models/race';
+import { RACES }                        from '../../mocks/mock-races';
+
+import { FormatRaceSize,
+         FormatRaceAbilities }          from './app.race-list.pipes'
 //import { CharactersService } from '../services/characthers.service';
 
 @Component({
@@ -15,7 +18,6 @@ import { RACES } from '../../mocks/mock-races';
 export class RacesList{
 
     races: Race[] = RACES;
-    
 
     constructor(
         //private charactersService: CharactersService,
@@ -24,6 +26,7 @@ export class RacesList{
 
    
     ngOnInit(){
+
     /*    this.charactersService
             .get()
             .subscribe((response: ICharacter[])=>{

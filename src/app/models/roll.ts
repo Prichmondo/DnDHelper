@@ -11,4 +11,5 @@ export class Totals{
   totalRoll: number;
   totalModifier: number;
   total: number;
+  luck: number;
 }
