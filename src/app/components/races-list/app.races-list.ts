@@ -3,6 +3,7 @@ import { Router }                       from '@angular/router';
 
 import { Race }                         from '../../models/race';
 import { RACES }                        from '../../mocks/mock-races';
+import { RacesService }                 from '../../services/races.service';
 
 import { FormatRaceSize,
          FormatRaceAbilities }          from './app.race-list.pipes'
@@ -17,23 +18,23 @@ import { FormatRaceSize,
 })
 export class RacesList{
 
-    races: Race[] = RACES;
+    //races: Race[] = RACES;
+    races: Race[] = [];
 
     constructor(
-        //private charactersService: CharactersService,
+        private racesService: RacesService,
         private router: Router
         ){}
 
    
     ngOnInit(){
 
-    /*    this.charactersService
+        this.racesService
             .get()
-            .subscribe((response: ICharacter[])=>{
+            .subscribe((response: Race[])=>{
                 console.log(response);
-                this.characters = response;
+                this.races = response;
             });
     };
-    */
-    }
+    
 }
