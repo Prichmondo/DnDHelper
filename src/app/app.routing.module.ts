@@ -11,14 +11,11 @@ import { CampainsComponent }        from './components/campains/app.campains';
 import { HomeComponent }            from './components/home/app.home';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { ShowCharacters }           from './components/app.showCharacters';
-<<<<<<< HEAD
 import { ShowClasses }              from './components/app.showClasses';
-=======
 import { RacesList }                from './components/races-list/app.races-list';
->>>>>>> b8b8c8ca505f7c4f11bef9131f5f4b1d75b62855
 
 const routes: AppRoute[] = [
-    //ROUTES
+    //ROUTESs
     { nav: { 
         name        : "Home",        
         position    : NavMenu.Main, 

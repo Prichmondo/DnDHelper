@@ -35,7 +35,9 @@ import { HttpService }              from './services/http.service';
 import { CampainsService }          from './services/campains.service';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { Broadcaster }              from './services/broadcast';
-import { CharactersService }        from './services/characthers.service'
+import { CharactersService }        from './services/characthers.service';
+import { CharacterClassService }    from './services/characterClasses.service';
+
 
 @NgModule({
   declarations: [
@@ -52,11 +54,8 @@ import { CharactersService }        from './services/characthers.service'
     CampainsComponent,
     HomeComponent,
     ShowCharacters,
-<<<<<<< HEAD
-    ShowClasses
-=======
+    ShowClasses,
     RacesList
->>>>>>> b8b8c8ca505f7c4f11bef9131f5f4b1d75b62855
   ],
   imports: [
     BrowserModule,
@@ -73,6 +72,7 @@ import { CharactersService }        from './services/characthers.service'
     HttpService,
     CampainsService,
     CharactersService,
+    CharacterClassService,
     AuthGuard, Anonymus,
     Broadcaster, UsersService
   ],
