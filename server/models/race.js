@@ -29,7 +29,10 @@ var raceSchema = mongoose.Schema({
         default: Date.now
     },
     specials:{
-        type: [special]
+        type: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Special',
+        }]
     }
 });
 

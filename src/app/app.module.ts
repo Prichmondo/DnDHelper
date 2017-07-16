@@ -56,15 +56,11 @@ import { CharacterClassService }    from './services/characterClasses.service';
     CampainsComponent,
     HomeComponent,
     ShowCharacters,
-<<<<<<< HEAD
     ShowClasses,
-    RacesList
-=======
     RacesList,
     FormatRaceSize,
     FormatRaceAbilities
->>>>>>> f60352afa4cdf077b0097f1082ac28c896a5218e
-  ],
+    ],
   imports: [
     BrowserModule,
     FormsModule,

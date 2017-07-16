@@ -94,12 +94,11 @@ const routes: AppRoute[] = [
 
     { nav: { 
         name        : "Races List",
-        position    : NavMenu.User,
-        visible     : NavVisibility.LoggedOut
+        position    : NavMenu.Main,
+        visible     : NavVisibility.LoggedIn
       },  
       path          : 'races-list',
-      component     : RacesList,
-      canActivate   : [Anonymus] 
+      component     : RacesList 
     }
     //CampainsComponent
 
