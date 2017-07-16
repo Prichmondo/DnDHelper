@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var abilities = require('./abilities');
+var abilitiesBonus = require('./abilitiesBonus');
 var speed = require('./speed');
 var commons = require('./commons');
 var bonus = require('./bonus');
@@ -8,7 +8,8 @@ var special = require('./special');
 var raceSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     type: {
         type: String,
@@ -18,11 +19,12 @@ var raceSchema = mongoose.Schema({
     size: {
         type: String,
         enum: commons.size,
-        require: true
+        required: true
     },
     speeds: [speed],
     abilitiesModifiers: { 
-        type: abilities
+        type: abilitiesBonus,
+        required: true
     },
     createDate: {
         type: Date,

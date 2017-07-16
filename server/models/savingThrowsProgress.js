@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var commons = require('./commons');
 
-var savingThrowsBonus = {
+var savingThrowsBonus = mongoose.Schema({
     fortitude: {
         type: String,
         required: true,
@@ -17,6 +17,6 @@ var savingThrowsBonus = {
         required: true,
         enum: commons.savingThrowsBonusType
     },
-};
+}, { _id: false });
 
 module.exports = savingThrowsBonus;

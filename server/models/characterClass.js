@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var abilities = require('./abilities');
+var abilitiesBonus = require('./abilitiesBonus');
 var speed = require('./speed');
 var savingThrowsProgress = require('./savingThrowsProgress');
 var commons = require('./commons');
@@ -36,8 +36,7 @@ var characterClassSchema = mongoose.Schema({
     },
     skills:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Skill',
-        unique: true
+        ref: 'Skill'
     }],
     specials: {
         type: [{
