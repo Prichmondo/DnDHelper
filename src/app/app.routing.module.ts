@@ -12,6 +12,7 @@ import { HomeComponent }            from './components/home/app.home';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { ShowCharacters }           from './components/app.showCharacters';
 import { ShowClasses }              from './components/app.showClasses';
+import { ClassForm }                from './components/app.classForm';
 import { RacesList }                from './components/races-list/app.races-list';
 
 const routes: AppRoute[] = [
@@ -70,6 +71,14 @@ const routes: AppRoute[] = [
       },  
       path          : 'Classes', 
       component     : ShowClasses
+    },
+
+    { nav: { 
+        name        : "Character Class",
+        visible     : NavVisibility.LoggedIn
+      },  
+      path          : 'character-class',
+      component     : ClassForm,
     },
 
     { nav: { 

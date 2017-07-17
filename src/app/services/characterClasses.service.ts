@@ -14,6 +14,7 @@ export class CharacterClassService{
     
     constructor(
       private http: HttpService
+      
       ){}
 
     get(): Observable<Array<IClass>> {

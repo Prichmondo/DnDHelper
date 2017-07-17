@@ -24,6 +24,7 @@ import { RollFilterByDice,
 import { RacesList }                from './components/races-list/app.races-list';
 import { FormatRaceSize,
          FormatRaceAbilities }      from './components/races-list/app.race-list.pipes'
+import { ClassForm }                from './components/app.classForm';
 
 
 //SERVICES
@@ -56,14 +57,11 @@ import { CharacterClassService }    from './services/characterClasses.service';
     CampainsComponent,
     HomeComponent,
     ShowCharacters,
-<<<<<<< HEAD
     ShowClasses,
-    RacesList
-=======
+    ClassForm,
     RacesList,
     FormatRaceSize,
     FormatRaceAbilities
->>>>>>> f60352afa4cdf077b0097f1082ac28c896a5218e
   ],
   imports: [
     BrowserModule,

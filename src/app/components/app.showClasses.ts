@@ -33,7 +33,8 @@ export class ShowClasses{
         private characterClassService:CharacterClassService,
         private router:Router
 
-    ){}
+    ){   }
+
 
     ngOnInit(){
         this.characterClassService
