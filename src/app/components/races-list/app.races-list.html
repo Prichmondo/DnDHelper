@@ -37,7 +37,7 @@
                     {{race.type}}
                 </td>
                 <td>
-                    {{race.size | format_race_size:race.size}}
+                    {{sizeEnum[race.size]}}
                 </td>
                 <td>
                     <ul *ngFor="let ability of (race.abilitiesModifiers | format_race_abilities: race.abilitiesModifiers)">

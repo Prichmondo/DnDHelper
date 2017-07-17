@@ -1,22 +1,16 @@
 var mongoose = require('mongoose');
-
-var abilities = require('./abilities');
-var savingThrowsBonus = require('./savingThrowsBonus');
-var speed = require('./speed');
-var bonus = require('./bonus');
 var commons = require('./commons');
 
-var special = {
-
+var specialSchema = mongoose.Schema({
     name: {
         type: String,
-        require: true
+        required: true,
+        unique: true
     },
     description: {
         type: String,
-        require: true
-    },
-    bonus: bonus
-};
+        required: true
+    }
+});
 
-module.exports = special;
+var Special = module.exports = mongoose.model("Special", specialSchema);
