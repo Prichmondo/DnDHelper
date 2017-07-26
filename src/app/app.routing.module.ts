@@ -14,6 +14,7 @@ import { ShowCharacters }           from './components/app.showCharacters';
 import { ShowClasses }              from './components/app.showClasses';
 import { ClassForm }                from './components/app.classForm';
 import { RacesList }                from './components/races-list/app.races-list';
+import { RaceForm }                 from './components/races-list/app.race.form';
 
 const routes: AppRoute[] = [
     //ROUTESs
@@ -108,7 +109,14 @@ const routes: AppRoute[] = [
       },  
       path          : 'races-list',
       component     : RacesList 
+    },
+
+    { nav: { 
+      },  
+      path          : 'races-form',
+      component     : RaceForm 
     }
+    
     //CampainsComponent
 
     //REDIRECTION

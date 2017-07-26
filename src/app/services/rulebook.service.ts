@@ -6,9 +6,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class RolebookService{
+export class RulebookService{
 
-    private apiUrl = '/api/rolebook'; 
+    private apiUrl = '/api/rulebook'; 
     
     constructor(
       private http: HttpService

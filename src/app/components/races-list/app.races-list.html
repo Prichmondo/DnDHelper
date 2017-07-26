@@ -1,5 +1,5 @@
 
-<h2>Character sheet</h2>
+<h2>Races List</h2>
 
 <div class="table-responsive">   
     <table class="table table-stripped table-hover">
@@ -18,9 +18,6 @@
                     Abilities Modifiers
                 </th>
                 <th>
-                    Select
-                </th>
-                <th>
                     Edit
                 </th>
                 <th>
@@ -28,6 +25,12 @@
                 </th>
             </tr>
         </thead>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    <button class="btn btn-success">Add new race</button>
+                </td>
+            </tr>
         <tbody>
             <tr *ngFor="let race of races">
                 <td>
@@ -37,17 +40,12 @@
                     {{race.type}}
                 </td>
                 <td>
-                    {{sizeEnum[race.size]}}
+                    {{race.size}}
                 </td>
                 <td>
                     <ul *ngFor="let ability of (race.abilitiesModifiers | format_race_abilities: race.abilitiesModifiers)">
                         <li>{{ability}}</li>
                     </ul>
-                </td>
-                <td>
-                    <button (click)="onSelect(race)" class="btn btn-info">
-                        select
-                    </button>
                 </td>
                 <td>
                     <button class="btn btn-info">
@@ -62,4 +60,5 @@
             </tr>
         </tbody> 
     </table>
+
 </div>

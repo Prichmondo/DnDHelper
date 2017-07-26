@@ -1,11 +1,11 @@
 import { Component, OnInit, Input }     from '@angular/core';
 import { Router }                       from '@angular/router';
 
-import { Race, Size }                         from '../../models/race';
-import { RACES }                        from '../../mocks/mock-races';
+import { Race }                         from '../../models/race';
+import { RacesService }                 from '../../services/races.service';
+import { RaceForm }                     from './app.race.form';
 
-import { FormatRaceSize,
-         FormatRaceAbilities }          from './app.race-list.pipes'
+import { FormatRaceAbilities }          from './app.race-list.pipes'
 //import { CharactersService } from '../services/characthers.service';
 
 @Component({
@@ -17,23 +17,22 @@ import { FormatRaceSize,
 })
 export class RacesList{
 
-    races: Race[] = RACES;
-    sizeEnum = Size;
+    //races: Race[] = RACES;
+    races: Race[] = [];
 
     constructor(
-        //private charactersService: CharactersService,
+        private racesService: RacesService,
         private router: Router
         ){}
 
     ngOnInit(){
-        console.log(this.sizeEnum);
-    /*    this.charactersService
+
+        this.racesService
             .get()
-            .subscribe((response: ICharacter[])=>{
+            .subscribe((response: any[])=>{
                 console.log(response);
-                this.characters = response;
+                this.races = response;
             });
     };
-    */
-    }
+    
 }
