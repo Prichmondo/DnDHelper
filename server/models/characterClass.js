@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var abilities = require('./abilities');
+var abilitiesBonus = require('./abilitiesBonus');
 var speed = require('./speed');
 var savingThrowsProgress = require('./savingThrowsProgress');
 var commons = require('./commons');
@@ -9,14 +9,16 @@ var special = require('./special');
 var characterClassSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     levels: {
         type: Number,
         required: true
     },    
     baseAttackBonus: {
-        type: commons.attackBonusType,
+        type: String,
+        enum: commons.attackBonusType,
         required: true
     },
     savingThrows: {
@@ -25,18 +27,26 @@ var characterClassSchema = mongoose.Schema({
     },
     type: {
         type: String,
-        required: true,
-        enum: commons.classType
+        enum: commons.classType,
+        required: true
     },
     hitDice:{
         type: Number,
         required: true
     },
-    skills:{
-        type: Array
-    },
+    skills:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Skill'
+    }],
     specials: {
-        type: Array
+        type: [{
+            specials:{
+                type: [{
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'Special',
+                }]
+            }
+        }]
     },
     createDate: {
         type: Date,

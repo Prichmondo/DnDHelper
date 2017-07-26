@@ -12,7 +12,9 @@ import { HomeComponent }            from './components/home/app.home';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { ShowCharacters }           from './components/app.showCharacters';
 import { ShowClasses }              from './components/app.showClasses';
+import { ClassForm }                from './components/app.classForm';
 import { RacesList }                from './components/races-list/app.races-list';
+import { RaceForm }                 from './components/races-list/app.race.form';
 
 const routes: AppRoute[] = [
     //ROUTESs
@@ -73,6 +75,14 @@ const routes: AppRoute[] = [
     },
 
     { nav: { 
+        name        : "Character Class",
+        visible     : NavVisibility.LoggedIn
+      },  
+      path          : 'character-class',
+      component     : ClassForm,
+    },
+
+    { nav: { 
         name        : "Login",           
         position    : NavMenu.User, 
         visible     : NavVisibility.LoggedOut  
@@ -94,13 +104,19 @@ const routes: AppRoute[] = [
 
     { nav: { 
         name        : "Races List",
-        position    : NavMenu.User,
-        visible     : NavVisibility.LoggedOut
+        position    : NavMenu.Main,
+        visible     : NavVisibility.LoggedIn
       },  
       path          : 'races-list',
-      component     : RacesList,
-      canActivate   : [Anonymus] 
+      component     : RacesList 
+    },
+
+    { nav: { 
+      },  
+      path          : 'races-form',
+      component     : RaceForm 
     }
+    
     //CampainsComponent
 
     //REDIRECTION

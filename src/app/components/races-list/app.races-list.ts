@@ -3,6 +3,7 @@ import { Router }                       from '@angular/router';
 
 import { Race }                         from '../../models/race';
 import { RacesService }                 from '../../services/races.service';
+import { RaceForm }                     from './app.race.form';
 
 import { FormatRaceAbilities }          from './app.race-list.pipes'
 //import { CharactersService } from '../services/characthers.service';
@@ -24,7 +25,6 @@ export class RacesList{
         private router: Router
         ){}
 
-   
     ngOnInit(){
 
         this.racesService

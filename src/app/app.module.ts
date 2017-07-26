@@ -22,11 +22,14 @@ import { DiceInputComponent }       from './components/inputs/dice-input';
 import { RollFilterByDice,
          TotalFilterByDice }        from './components/dice-roller/app.diceroller.pipes';
 import { RacesList }                from './components/races-list/app.races-list';
-import { FormatRaceAbilities }      from './components/races-list/app.race-list.pipes'
+import { RaceForm }                 from './components/races-list/app.race.form';
+import { FormatRaceAbilities }      from './components/races-list/app.race-list.pipes';
+import { ClassForm }                from './components/app.classForm';
 
 
 //SERVICES
 import { Utilities }                from './utilities/app.utilities';
+import { RulebookService }          from './services/rulebook.service';
 import { AuthenticationService }    from './services/authentication.service';
 import { UsersService }             from './services/users.service';
 import { LocalStoreService }        from './services/localStore.service';
@@ -37,8 +40,8 @@ import { CampainsService }          from './services/campains.service';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { Broadcaster }              from './services/broadcast';
 import { CharactersService }        from './services/characthers.service';
-import { RacesService }             from './services/races.service';
 import { CharacterClassService }    from './services/characterClasses.service';
+import { RacesService }             from './services/races.service';
 
 
 @NgModule({
@@ -57,7 +60,9 @@ import { CharacterClassService }    from './services/characterClasses.service';
     HomeComponent,
     ShowCharacters,
     ShowClasses,
+    ClassForm,
     RacesList,
+    RaceForm,
     FormatRaceAbilities
   ],
   imports: [
@@ -68,6 +73,7 @@ import { CharacterClassService }    from './services/characterClasses.service';
   ],
   providers: [
     Utilities, 
+    RulebookService,
     AuthenticationService,
     LocalStoreService,
     LocalStoreManagerService,
@@ -75,8 +81,8 @@ import { CharacterClassService }    from './services/characterClasses.service';
     HttpService,
     CampainsService,
     CharactersService,
-    RacesService,
     CharacterClassService,
+    RacesService,
     AuthGuard, Anonymus,
     Broadcaster, UsersService
   ],

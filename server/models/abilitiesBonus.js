@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 
-var abilitiesSchema = {
+var abilitiesBonusSchema = mongoose.Schema({
     strenght: Number,
     dexterity: Number,
     constitution: Number,
     intelligence: Number,
     wisdom: Number,
     charisma: Number
-};
+}, { _id: false });
 
-module.exports = abilitiesSchema;
+module.exports = abilitiesBonusSchema;

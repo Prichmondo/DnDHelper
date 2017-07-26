@@ -27,7 +27,7 @@ var characters = {
     },
 
     update: function(id, character, options, callback){
-        Character.findOneAndUpdate(id, character, options, callback);
+        Character.findByIdAndUpdate(id, character, options, callback);
     }
 
 }
