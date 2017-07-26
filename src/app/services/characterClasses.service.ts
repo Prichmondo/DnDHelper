@@ -26,22 +26,6 @@ export class CharacterClassService{
             });
     }
 
-<<<<<<< HEAD
-    delete(id:string): Observable<any> {
-        return this.http
-                .delete(this.apiUrl + "/" + id)
-                .map((res: Response)=>{
-                    let body = res.json();
-                    return body || { };
-                })
-      
-            
-            
-            
-    }
-
-
-=======
     delete(id:string): Observable<Array<IClass>> {
         return this.http
             .delete(this.apiUrl + "/" + id)
@@ -51,5 +35,4 @@ export class CharacterClassService{
             });
     }
 
->>>>>>> 3d225d0bb76c72d91538a903f4007d3866e32a55
 }
