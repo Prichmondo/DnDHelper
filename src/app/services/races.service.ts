@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core'
-import { Http, Response } from '@angular/http';
-import { HttpService } from './http.service';
-import { Observable } from 'rxjs/Observable';
+import { Injectable }       from '@angular/core'
+import { Http, Response }   from '@angular/http';
+import { HttpService }      from './http.service';
+import { Observable }       from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { Race }            from '../models/race';
+import { Race }             from '../models/race';
 
 @Injectable()
 export class RacesService{
 
-    private apiUrl = '/api/races'; 
+    private apiUrl = '/api/races';
     
     constructor(
       private http: HttpService

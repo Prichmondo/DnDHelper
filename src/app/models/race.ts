@@ -7,14 +7,10 @@ export interface IAbilities {
     charisma: number
 }
 
-export enum Size {
-    Thiny, Small, Medium, Large, Huge, Gargantuan, Colossal
-}
-
 export class Race {
     _id?: string;
     name: string;
     type: string;
-    size: Size;
+    size: string;
     abilitiesModifiers: IAbilities;
 }

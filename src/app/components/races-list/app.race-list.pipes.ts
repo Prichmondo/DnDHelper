@@ -1,24 +1,8 @@
 import { Pipe, PipeTransform }                      from '@angular/core';
 
-import { Race, Size, IAbilities }                   from '../../models/race';
-import { RACES }                                    from '../../mocks/mock-races';
+import { Race, IAbilities }                         from '../../models/race';
 import { Utilities }                                from '../../utilities/app.utilities';
 
-
-@Pipe({
-    name: 'format_race_size',
-    pure: false
-})
-
-export class FormatRaceSize implements PipeTransform {
-    
-    transform(size: Size): string {
-        if (!size) {
-            return "";
-        }
-        return Size[size];
-    }
-}
 
 @Pipe({
     name: 'format_race_abilities',

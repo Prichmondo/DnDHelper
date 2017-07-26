@@ -2,11 +2,9 @@ import { Component, OnInit, Input }     from '@angular/core';
 import { Router }                       from '@angular/router';
 
 import { Race }                         from '../../models/race';
-import { RACES }                        from '../../mocks/mock-races';
 import { RacesService }                 from '../../services/races.service';
 
-import { FormatRaceSize,
-         FormatRaceAbilities }          from './app.race-list.pipes'
+import { FormatRaceAbilities }          from './app.race-list.pipes'
 //import { CharactersService } from '../services/characthers.service';
 
 @Component({
@@ -31,7 +29,7 @@ export class RacesList{
 
         this.racesService
             .get()
-            .subscribe((response: Race[])=>{
+            .subscribe((response: any[])=>{
                 console.log(response);
                 this.races = response;
             });

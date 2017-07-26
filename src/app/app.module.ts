@@ -16,13 +16,13 @@ import { RegisterComponent }        from './components/register/app.register';
 import { CampainsComponent }        from './components/campains/app.campains';
 import { HomeComponent }            from './components/home/app.home';
 import { ShowCharacters }           from './components/app.showCharacters';
+import { ShowClasses }              from './components/app.showClasses';
 import { InputNumberComponent }     from './components/inputs/input-number';
 import { DiceInputComponent }       from './components/inputs/dice-input';
 import { RollFilterByDice,
          TotalFilterByDice }        from './components/dice-roller/app.diceroller.pipes';
 import { RacesList }                from './components/races-list/app.races-list';
-import { FormatRaceSize,
-         FormatRaceAbilities }      from './components/races-list/app.race-list.pipes'
+import { FormatRaceAbilities }      from './components/races-list/app.race-list.pipes'
 
 
 //SERVICES
@@ -38,6 +38,8 @@ import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { Broadcaster }              from './services/broadcast';
 import { CharactersService }        from './services/characthers.service';
 import { RacesService }             from './services/races.service';
+import { CharacterClassService }    from './services/characterClasses.service';
+
 
 @NgModule({
   declarations: [
@@ -54,8 +56,8 @@ import { RacesService }             from './services/races.service';
     CampainsComponent,
     HomeComponent,
     ShowCharacters,
+    ShowClasses,
     RacesList,
-    FormatRaceSize,
     FormatRaceAbilities
   ],
   imports: [
@@ -74,6 +76,7 @@ import { RacesService }             from './services/races.service';
     CampainsService,
     CharactersService,
     RacesService,
+    CharacterClassService,
     AuthGuard, Anonymus,
     Broadcaster, UsersService
   ],

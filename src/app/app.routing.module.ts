@@ -11,10 +11,11 @@ import { CampainsComponent }        from './components/campains/app.campains';
 import { HomeComponent }            from './components/home/app.home';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { ShowCharacters }           from './components/app.showCharacters';
+import { ShowClasses }              from './components/app.showClasses';
 import { RacesList }                from './components/races-list/app.races-list';
 
 const routes: AppRoute[] = [
-    //ROUTES
+    //ROUTESs
     { nav: { 
         name        : "Home",        
         position    : NavMenu.Main, 
@@ -60,6 +61,15 @@ const routes: AppRoute[] = [
       path          : 'party-editor', 
       component     : ShowCharacters,
       canActivate   : [AuthGuard] 
+    },
+
+    { nav: { 
+        name        : "Classes",        
+        position    : NavMenu.Main, 
+        visible     : NavVisibility.LoggedIn       
+      },  
+      path          : 'Classes', 
+      component     : ShowClasses
     },
 
     { nav: { 
