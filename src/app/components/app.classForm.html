@@ -2,22 +2,44 @@
 <h1>Please fill this lovely form</h1>
 
 <div class="row">
-    <div class="col-sx-12 col-sm-6 col-md-6">
+    <div class="col-sx-12 col-sm-6 col-md-3">
         <form #classForm = "ngForm" (ngSubmit)="onSubmit()" class="">
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Name</span>
-                <input type="text" name="name" [(ngModel)]="characterClass.name" class="form-control" aria-describedby="basic-addon1">  
+            <label id="basic-addon1">Name</label>
+            <input type="text" name="name" [(ngModel)]="characterClass.name" class="form-control" aria-describedby="basic-addon1">  
+            
+            <label id="basic-addon2">MaxLevel</label>
+            <input type="text" class="form-control" aria-describedby="basic-addon2">  
+             
+            <label>Saving Throws</label>
+            <div class="row">
+                <div class="col-xs-4">
+                    Fortitude
+                </div>
+                <div class="col-xs-8 text-right">
+                    <toggle-button 
+                        [(value)]="stFort" 
+                        [options]="['Slow','Fast']">
+                    </toggle-button>
+                </div>
             </div>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon2">MaxLevel</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon2">  
-            </div> 
-            <div class="input-group">
-                <span>Saving Throws</span>
-                <label class="checkbox-inline"><input type="checkbox" value="">Fast</label>
-                <label class="checkbox-inline"><input type="checkbox" value="">Slow</label>
-            </div>        
-            <button type="submit">Ciao</button>
+            <div class="row">
+                <div class="col-xs-6">
+                    Reflex
+                </div>
+                <div class="col-xs-6 text-right">
+                    <toggle-button> </toggle-button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    Will
+                </div>
+                <div class="col-xs-6 text-right">
+                    <toggle-button> </toggle-button>
+                </div>
+            </div>
+                   
+            <button type="submit">Submit</button>
         </form>
     </div>
 </div>

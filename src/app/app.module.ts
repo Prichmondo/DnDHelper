@@ -25,7 +25,7 @@ import { RacesList }                from './components/races-list/app.races-list
 import { FormatRaceSize,
          FormatRaceAbilities }      from './components/races-list/app.race-list.pipes'
 import { ClassForm }                from './components/app.classForm';
-
+import { ToggleButtonComponent }    from './components/inputs/toggle-button'
 
 //SERVICES
 import { Utilities }                from './utilities/app.utilities';
@@ -61,7 +61,8 @@ import { CharacterClassService }    from './services/characterClasses.service';
     ClassForm,
     RacesList,
     FormatRaceSize,
-    FormatRaceAbilities
+    FormatRaceAbilities,
+    ToggleButtonComponent
   ],
   imports: [
     BrowserModule,

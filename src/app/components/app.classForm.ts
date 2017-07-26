@@ -2,19 +2,18 @@ import { Component, OnInit }         from '@angular/core';
 import { Router }                    from '@angular/router';
 import { NgForm }                    from '@angular/forms';
 
-import { IClass, AttackBonusProgress,SaveThrowsProgress,ISaveThrows } from '../models/CharacterClass';
+import { IClass, AttackBonusProgress,SaveThrowsProgress,ISaveThrows } from '../models/CharacterClass';      
 
 @Component({
 
     selector:"class-form",
-    templateUrl:"./app.classForm.html",
-    
-
+    templateUrl:"./app.classForm.html"
 })
 export class ClassForm {
 
     characterClass:IClass;
-
+    stFort="Slow";
+    
     constructor(){}
 
     ngOnInit(){
