@@ -58,18 +58,11 @@ import { CharacterClassService }    from './services/characterClasses.service';
     HomeComponent,
     ShowCharacters,
     ShowClasses,
-<<<<<<< HEAD
     ClassForm,
     RacesList,
     FormatRaceSize,
     FormatRaceAbilities
   ],
-=======
-    RacesList,
-    FormatRaceSize,
-    FormatRaceAbilities
-    ],
->>>>>>> 1710e2d62e9bef16cb12d58acba0a84f4f2074dc
   imports: [
     BrowserModule,
     FormsModule,

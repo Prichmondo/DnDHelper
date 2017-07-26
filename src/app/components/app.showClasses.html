@@ -1,7 +1,7 @@
 <h2>Classes</h2>
 
 <div class="table-responsive"> 
-    <button (click)="onSelect(pgClass)" class=btn btn-info> Add class </button>  
+    <button (click)="onSelect(characterClass)" class=btn btn-info> Add class </button>  
     <table class="table table-stripped table-hover">
         <thead>
             <tr>
@@ -11,14 +11,11 @@
                 <th>
                     Total Levels
                 </th>
-                <th>
-                    Save Throw
-                </th>
+                <th>Fortitude</th>
+                <th>Reflex</th>
+                <th>Will</th>
                 <th>
                     Attack Bonus
-                </th>
-                <th>
-                    Select
                 </th>
                 <th>
                     Edit
@@ -29,32 +26,28 @@
             </tr>
         </thead>
         <tbody>
-            <tr  *ngFor="let characterClass of characterClasses">
+            <tr  *ngFor="let characterClass of characterClasses; let i = index">
                 <td>
                     {{characterClass.name}}
                 </td>
                 <td>
-                    20
+                    {{characterClass.levels}}
+                </td>
+                <td>{{characterClass.savingThrows.fortitude}}</td>
+                <td>{{characterClass.savingThrows.reflex}}</td>
+                <td>{{characterClass.savingThrows.will}}</td>
+
+                <td>
+                    {{characterClass.baseAttackBonus}}
                 </td>
                 <td>
-                    Slow
-                </td>
-                <td>
-                    Fast
-                </td>
-                <td>
-                    <button class="btn btn-info">
-                        select
-                    </button>
-                </td>
-                <td>
-                    <button class="btn btn-info">
+                    <button (click)="onSelect(characterClass)" class="btn btn-info">
                         edit
                     </button>
                 </td>
                 <td>
-                    <button class="btn btn-info">
-                        remove
+                    <button (click)="onDelete(characterClass, i)" class="btn btn-info">
+                        delete
                     </button>
                 </td>                
             </tr>
