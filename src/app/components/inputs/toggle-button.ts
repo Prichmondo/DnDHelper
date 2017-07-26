@@ -1,6 +1,7 @@
 import { Component,
          Input,
          Output,
+         EventEmitter,
          OnInit }                   from '@angular/core';
 
 
@@ -12,19 +13,13 @@ import { Component,
 
 export class ToggleButtonComponent {
     @Input() options: string[] = [];
-    @Input() value: string; 
+    @Input() value: string;
+    @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
         
-    constructor(
-      
-    ){
-
-    }
-
-    ngOnInit(){
-        console.log(this.value);
-    }
+    constructor(){}
 
     onClick(value :string){
         this.value = value;
+        this.valueChange.emit(this.value);
     }
 }

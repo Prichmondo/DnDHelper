@@ -9,7 +9,7 @@ const auth = require('./api/authentication');
 const users = require('./api/users');
 const skills = require('./api/skills');
 const specials = require('./api/specials');
-const rolebook = require('./api/rolebook');
+const rulebook = require('./api/rulebook');
 
 router.use(users);
 router.use(campains);
@@ -19,6 +19,6 @@ router.use(characterClasses);
 router.use(auth);
 router.use(skills);
 router.use(specials);
-router.use(rolebook);
+router.use(rulebook);
 
 module.exports = router;

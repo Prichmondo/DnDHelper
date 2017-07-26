@@ -1,8 +1,8 @@
 
 <h1>Please fill this lovely form</h1>
 
-<div class="row">
-    <div class="col-sx-12 col-sm-6 col-md-3">
+<div class="row" *ngIf="ruleBook">
+    <div class="col-sx-12 col-sm-6 col-md-4">
         <form #classForm = "ngForm" (ngSubmit)="onSubmit()" class="">
             <label id="basic-addon1">Name</label>
             <input type="text" name="name" [(ngModel)]="characterClass.name" class="form-control" aria-describedby="basic-addon1">  
@@ -17,8 +17,8 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <toggle-button 
-                        [(value)]="stFort" 
-                        [options]="['Slow','Fast']">
+                        [(value)]="characterClass.saveThrows.fortitude" 
+                        [options]="ruleBook.savingThrowsBonusType">
                     </toggle-button>
                 </div>
             </div>
@@ -27,7 +27,10 @@
                     Reflex
                 </div>
                 <div class="col-xs-6 text-right">
-                    <toggle-button> </toggle-button>
+                    <toggle-button 
+                        [(value)]="characterClass.saveThrows.reflexes" 
+                        [options]="ruleBook.savingThrowsBonusType">
+                    </toggle-button>
                 </div>
             </div>
             <div class="row">
@@ -35,10 +38,24 @@
                     Will
                 </div>
                 <div class="col-xs-6 text-right">
-                    <toggle-button> </toggle-button>
+                    <toggle-button 
+                        [(value)]="characterClass.saveThrows.will" 
+                        [options]="ruleBook.savingThrowsBonusType">
+                    </toggle-button>
                 </div>
             </div>
-                   
+            <label>Attack Bonus Base</label>
+            <div class="row">
+                <div class="col-xs-4">
+                    Attack Bonus
+                </div>
+                <div class="col-xs-8 text-right">
+                    <toggle-button 
+                        [(value)]="characterClass.attackBonus" 
+                        [options]="ruleBook.attackBonusType">
+                    </toggle-button>
+                </div>
+            </div>       
             <button type="submit">Submit</button>
         </form>
     </div>
