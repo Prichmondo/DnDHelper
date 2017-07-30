@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const campains = require('./api/campains');
+const campaigns = require('./api/campaigns');
 const characters = require('./api/characters');
 const races = require('./api/races');
 const characterClasses = require('./api/characterClasses');
@@ -12,7 +12,7 @@ const specials = require('./api/specials');
 const rulebook = require('./api/rulebook');
 
 router.use(users);
-router.use(campains);
+router.use(campaigns);
 router.use(characters);
 router.use(races);
 router.use(characterClasses);

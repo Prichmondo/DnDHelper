@@ -8,9 +8,9 @@ import 'rxjs/add/operator/map';
 import { Campaign } from '../models/Campaign';
 
 @Injectable()
-export class CampainsService{
+export class CampaignsService{
 
-    private apiUrl = '/api/campains'; 
+    private apiUrl = '/api/campaigns'; 
     
     constructor(
       private http: HttpService
@@ -19,6 +19,15 @@ export class CampainsService{
     get(): Observable<Campaign[]> {
         return this.http
             .get(this.apiUrl)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            });
+    }
+
+    getById(id:string): Observable<Campaign> {
+        return this.http
+            .get(this.apiUrl + "/" + id)
             .map((res: Response) => {
                 let body = res.json();
                 return body || { };

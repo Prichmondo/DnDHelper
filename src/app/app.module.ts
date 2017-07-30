@@ -13,7 +13,8 @@ import { CharacterSheetComponent }  from './components/app.characterSheet';
 import { HeaderComponent }          from './header.component';
 import { LoginComponent }           from './components/login/app.login';
 import { RegisterComponent }        from './components/register/app.register';
-import { CampainsComponent }        from './components/campains/app.campains';
+import { CampaignsComponent }       from './components/campaigns/app.campaigns';
+import { CampaignComponent }       from './components/campaigns/app.campaign';
 import { HomeComponent }            from './components/home/app.home';
 import { ShowCharacters }           from './components/app.showCharacters';
 import { ShowClasses }              from './components/app.showClasses';
@@ -36,7 +37,7 @@ import { LocalStoreService }        from './services/localStore.service';
 import { LocalStoreManagerService } from './services/localStoreManager.service';
 import { AppRequestOptions }        from './helpers/app.requestOptions' 
 import { HttpService }              from './services/http.service';
-import { CampainsService }          from './services/campains.service';
+import { CampaignsService }          from './services/campaigns.service';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { Broadcaster }              from './services/broadcast';
 import { CharactersService }        from './services/characthers.service';
@@ -56,7 +57,8 @@ import { RacesService }             from './services/races.service';
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    CampainsComponent,
+    CampaignsComponent,
+    CampaignComponent,
     HomeComponent,
     ShowCharacters,
     ShowClasses,
@@ -80,7 +82,7 @@ import { RacesService }             from './services/races.service';
     LocalStoreManagerService,
     AppRequestOptions,
     HttpService,
-    CampainsService,
+    CampaignsService,
     CharactersService,
     CharacterClassService,
     RacesService,

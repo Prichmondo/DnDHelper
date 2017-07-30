@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var campainMilestoneSchema = mongoose.Schema({
+var campaignMilestoneSchema = mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -13,7 +13,7 @@ var campainMilestoneSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    campainDate: {
+    campaignDate: {
         type: Date,
         default: Date.now
     },
@@ -23,4 +23,4 @@ var campainMilestoneSchema = mongoose.Schema({
     }
 });
 
-module.exports = campainMilestoneSchema;
+module.exports = campaignMilestoneSchema;

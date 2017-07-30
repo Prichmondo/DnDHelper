@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var campainMilestone = require('./campainMilestone');
+var campaignMilestone = require('./campaignMilestone');
 
-var campainSchema = mongoose.Schema({
+var campaignSchema = mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -20,12 +20,12 @@ var campainSchema = mongoose.Schema({
         default: Date.now
     },
     milestones: {
-        type: [campainMilestone]
+        type: [campaignMilestone]
     }
 });
 
-var Campain = module.exports = mongoose.model("Campain", campainSchema);
+var Campaign = module.exports = mongoose.model("Campaign", campaignSchema);
 
 module.exports.get = function(callback, limit){
-    Campain.find(callback).limit(limit);
+    Campaign.find(callback).limit(limit);
 }
