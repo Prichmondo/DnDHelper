@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import { Campaign } from '../models/Campaign';
+
 @Injectable()
 export class CampainsService{
 
@@ -14,7 +16,7 @@ export class CampainsService{
       private http: HttpService
       ){}
 
-    get(): Observable<any> {
+    get(): Observable<Campaign[]> {
         return this.http
             .get(this.apiUrl)
             .map((res: Response) => {

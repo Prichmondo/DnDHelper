@@ -1,1 +1,25 @@
-App campains!
+
+<h2>Campains</h2>
+<button class="btn btn-default">New Campain</button>
+<table class="table table stripped">
+
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Setting</th>
+            <th>Players</th>
+            <th>Actions</th>
+        </tr>        
+    </thead>
+    <tbody>
+        <tr *ngFor="let campain of campains">
+            <td>{{ campain.title }}</td>
+            <td>{{ campain.setting }}</td>
+            <td>...</td>
+            <td>
+                <button class="btn btn-info">Select</button>
+                <button class="btn btn-danger">Delete</button>
+            </td>
+        </tr>        
+    </tbody>
+</table>
