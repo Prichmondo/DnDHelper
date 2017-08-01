@@ -1,0 +1,25 @@
+
+<h2>Campaigns</h2>
+<button class="btn btn-default">New Campaign</button>
+<table class="table table stripped">
+
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Setting</th>
+            <th>Players</th>
+            <th>Actions</th>
+        </tr>        
+    </thead>
+    <tbody>
+        <tr *ngFor="let campaign of campaigns">
+            <td>{{ campaign.title }}</td>
+            <td>{{ campaign.setting }}</td>
+            <td>...</td>
+            <td>
+                <button class="btn btn-info">Select</button>
+                <button class="btn btn-danger">Delete</button>
+            </td>
+        </tr>        
+    </tbody>
+</table>

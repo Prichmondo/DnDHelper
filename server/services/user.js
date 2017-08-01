@@ -14,6 +14,11 @@ var user = {
             .findById(id, callback);
     },
 
+    getByUsername: function(username, callback){
+        UserModel
+            .findOne({ username: username }, callback);
+    },
+
     create: function(user, callback){
         UserModel
             .create(user, callback);

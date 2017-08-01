@@ -5,18 +5,29 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-@Injectable()
-export class CampainsService{
+import { Campaign } from '../models/Campaign';
 
-    private apiUrl = '/api/campains'; 
+@Injectable()
+export class CampaignsService{
+
+    private apiUrl = '/api/campaigns'; 
     
     constructor(
       private http: HttpService
       ){}
 
-    get(): Observable<any> {
+    get(): Observable<Campaign[]> {
         return this.http
             .get(this.apiUrl)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            });
+    }
+
+    getById(id:string): Observable<Campaign> {
+        return this.http
+            .get(this.apiUrl + "/" + id)
             .map((res: Response) => {
                 let body = res.json();
                 return body || { };

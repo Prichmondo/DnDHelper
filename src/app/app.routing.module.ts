@@ -7,7 +7,8 @@ import { DiceRollerComponent }      from './components/dice-roller/app.dicerolle
 import { CharacterSheetComponent }  from './components/app.characterSheet';
 import { LoginComponent }           from './components/login/app.login';
 import { RegisterComponent }        from './components/register/app.register';
-import { CampainsComponent }        from './components/campains/app.campains';
+import { CampaignsComponent }       from './components/campaigns/app.campaigns';
+import { CampaignComponent }        from './components/campaigns/app.campaign';
 import { HomeComponent }            from './components/home/app.home';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { ShowCharacters }           from './components/app.showCharacters';
@@ -46,12 +47,19 @@ const routes: AppRoute[] = [
     },
 
     { nav: { 
-        name        : "Campains",        
+        name        : "Campaigns",        
         position    : NavMenu.Main, 
         visible     : NavVisibility.LoggedIn   
       },  
-      path          : 'campains',           
-      component     : CampainsComponent,       
+      path          : 'campaigns',           
+      component     : CampaignsComponent,       
+      canActivate   : [AuthGuard] 
+    },
+
+    { 
+      nav           : null,  
+      path          : 'campaign/:id',           
+      component     : CampaignComponent,       
       canActivate   : [AuthGuard] 
     },
 
@@ -117,7 +125,7 @@ const routes: AppRoute[] = [
       component     : RaceForm 
     }
     
-    //CampainsComponent
+    //CampaignsComponent
 
     //REDIRECTION
     //{   path: '', redirectTo: '/', pathMatch: 'full' },

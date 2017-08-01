@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Character = require('../models/character');
-var Campain = require('../models/campain');
+var Campaign = require('../models/campaign');
 
 var characters = {
 
@@ -8,13 +8,13 @@ var characters = {
         Character
             .find(callback)
             .limit(limit)
-            .populate("campain");
+            .populate("Campaign");
     },
 
     getById: function(id, callback){
         Character
             .findById(id, callback)
-            .populate("campain");
+            .populate("Campaign");
     },
 
     add: function(character, callback){
