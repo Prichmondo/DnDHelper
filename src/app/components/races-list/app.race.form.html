@@ -3,17 +3,46 @@
         <form>
             <div class="form-group">
                 <label for="raceName">Race Name</label>
-                <input class="form-control" id="raceName" placeholder="">
+                <input [(ngModel)]="race.name" class="form-control" id="raceName" placeholder="" [(value)]="race.name" name="input-race-name" required="true">
             </div>
             <div class="form-group">
                 <label for="raceType">Type</label>
-                <input class="form-control" id="raceType" placeholder="">
+                <select [(ngModel)]="race.type" class="form-control" id="raceType" placeholder="" name="input-race-type" [(value)]="race.type" required="true">
+                    <option [value]="item" [label]="item" *ngFor="let item of rulebook.raceType"></option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="raceSize">Size</label>
-                <select class="form-control" id="raceSize" placeholder="" *ngFor="let item of sizeEnum">
-                    <option [value]="item" [label]="sizeEnum[item]"></option>
+                <select [(ngModel)]="race.size" class="form-control" id="raceSize" placeholder="" name="input-race-size" [(value)]="race.size">
+                    <option [value]="item" [label]="item" *ngFor="let item of rulebook.size"></option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label>Abilities Modifiers</label>
+                <div class="row">
+                    <div class="col-sx-12 col-sm-4">
+                        <input-number [description]="'STR'" [(value)]="race.abilitiesModifiers.strength" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-str"></input-number>
+                    </div>
+                    <div class="col-sx-12 col-sm-4">
+                        <input-number [description]="'DEX'" [(value)]="race.abilitiesModifiers.dexterity" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-dex"></input-number>
+                    </div>
+                    <div class="col-sx-12 col-sm-4">
+                        <input-number [description]="'CON'" [(value)]="race.abilitiesModifiers.constitution" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-con"></input-number>
+                    </div>
+                    <div class="col-sx-12 col-sm-4">
+                        <input-number [description]="'INT'" [(value)]="race.abilitiesModifiers.intelligence" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-int"></input-number>
+                    </div>
+                    <div class="col-sx-12 col-sm-4">
+                        <input-number [description]="'WIS'" [(value)]="race.abilitiesModifiers.wisdom" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-wis"></input-number>
+                    </div>
+                    <div class="col-sx-12 col-sm-4">
+                        <input-number [description]="'CHA'" [(value)]="race.abilitiesModifiers.charisma" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-cha"></input-number>
+                    </div>
+                </div>
+            </div>
+            <div class="text-right">
+                <button type="submit" calss="btn btn-success" (click)="raceSave()">Save</button>
+                <button calss="btn btn-warning" (click)="Cancel()">Cancel</button>
             </div>     
         </form>
     </div>

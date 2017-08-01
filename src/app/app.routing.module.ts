@@ -113,7 +113,7 @@ const routes: AppRoute[] = [
 
     { nav: { 
       },  
-      path          : 'races-form',
+      path          : 'race-form',
       component     : RaceForm 
     }
     
