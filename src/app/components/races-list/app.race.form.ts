@@ -1,5 +1,7 @@
-import { Component, OnInit, Input }     from '@angular/core';
+import { Component, OnInit, Input,
+         AfterViewInit }                from '@angular/core';
 import { Router }                       from '@angular/router';
+import { NgForm }                       from '@angular/forms';
 
 import { InputNumberComponent }         from '../inputs/input-number';
 
@@ -17,9 +19,9 @@ import { RulebookService }              from '../../services/rulebook.service';
 
 export class RaceForm {
 
-    rulebook: RulebookService[] = [];
+    rulebook: any;
 
-    @Input() race :Race = {name: "", type: "", size: "",
+    @Input() race :Race = {_id: "", name: "", type: "", size: "",
         abilitiesModifiers: {
             strength: 0,
             dexterity: 0,
@@ -41,12 +43,20 @@ export class RaceForm {
             .get()
             .subscribe((response: RulebookService[])=>{
                 this.rulebook = response;
+                if (this.race.type === ""){this.race.type = this.rulebook.raceType[0]};
+                if (this.race.size === ""){this.race.size = this.rulebook.size[0]};
             });
 
-        //if (this.race.type === ""){this.race.type = this.rulebook.raceType[0]}
     }
 
     raceSave(){
         console.log(this.race);
+    }
+
+    cancel(){
+
+    }
+
+    ngAfterViewInit(){
     }
 }

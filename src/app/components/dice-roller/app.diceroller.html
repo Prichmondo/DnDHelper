@@ -17,7 +17,7 @@
                 <dice-input [dice]="dice" [quantity]="0" [modifier]="0" [showRollButton]="true" (rollDiceEvent)="onDiceRoll($event)" (resetDiceEvent)="onDiceReset($event)" ngDefaultControl></dice-input>
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 roll-results">
-                        <div class="dice" *ngFor="let roll of (rolls | filter_rolls_by_dice:dice)">
+                        <div class="dice" *ngFor="let roll of (rolls | filter_rolls_by_dice:dice)" [ngClass]="{'roll-success': roll.roll > dice.markOver}">
                             <span class="dice-value">{{roll.roll}}</span>
                         </div>
                     </div>
@@ -25,6 +25,11 @@
                         <div *ngFor="let total of (totals | filter_totals_by_dice:dice)">
                             <h3 *ngIf="total.totalRoll > 0">{{total.dice.name}} Total: {{total.totalRoll}} + {{total.totalModifier}} = {{total.total}}</h3>
                             <h5 *ngIf="total.totalRoll > 0">Luck rate: {{total.luck}}%</h5>
+                            <div *ngIf="total.totalRoll > 0">
+                                <h5 class="in-line">Mark rolls over:</h5>
+                                <input [(ngModel)]="dice.markOver" type="number" min="0" [max]="dice.faces" [(value)]="dice.markOver" name="markover">
+                                <h5 class="in-line">:  {{calculateSuccessfulRolls(dice)}} Successful</h5>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,13 +1,9 @@
-input {
-  
-}
-
-.input-group{
-
-}
-
 .dice-span{
   min-width: 60px;
+}
+
+.in-line{
+  display: inline;
 }
 
 .dice{
@@ -21,6 +17,10 @@ input {
   margin-bottom: 0px;
   margin-top: 3px;
   display: inline-block;
+}
+
+.roll-success{
+  background-color: green;
 }
 
 .dice-value{
