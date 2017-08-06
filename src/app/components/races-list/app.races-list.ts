@@ -17,7 +17,6 @@ import { FormatRaceAbilities }          from './app.race-list.pipes'
 })
 export class RacesList{
 
-    //races: Race[] = RACES;
     races: Race[] = [];
 
     constructor(
