@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IClass, AttackBonusProgress,SaveThrowsProgress,ISaveThrows } from '../models/CharacterClass';
-import { fighterMock } from '../mocks/mock-class';
+import { IClass, ISaveThrows } from '../models/CharacterClass';
 import { CharacterClassService } from '../services/characterClasses.service';
 
 @Component({

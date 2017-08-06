@@ -1,14 +1,32 @@
 
 <h1>Please fill this lovely form</h1>
 
-<div class="row" *ngIf="ruleBook">
+<div class="row" *ngIf="ruleBook && characterClass">
     <div class="col-sx-12 col-sm-6 col-md-4">
-        <form #classForm = "ngForm" (ngSubmit)="onSubmit()" class="">
-            <label id="basic-addon1">Name</label>
-            <input type="text" name="name" [(ngModel)]="characterClass.name" class="form-control" aria-describedby="basic-addon1">  
-            
-            <label id="basic-addon2">MaxLevel</label>
-            <input type="text" class="form-control" aria-describedby="basic-addon2">  
+        <form #classForm = "ngForm" (ngSubmit)="save()">
+            <div class="row">
+                <div class="form-group col-sx-12 col-sm-12 col-md-12">
+                    <label id="basic-addon1">Name</label>
+                    <input type="text" name="name" [(ngModel)]="characterClass.name" class="form-control" aria-describedby="basic-addon1">  
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sx-3 col-sm-3 col-md-3">
+                    <label id="basic-addon2">MaxLevel</label>
+                    <input type="number" name="level" [(ngModel)]="characterClass.levels"class="form-control" aria-describedby="basic-addon2" max="20" min="5">    
+                </div>
+
+                <div class="form-group col-sx-3 col-sm-3 col-md-3">
+                    <label id="basic-addon2">Hit-dice</label>
+                    <input type="number" name="hit-dice" [(ngModel)]="characterClass.hitDice"class="form-control" aria-describedby="basic-addon2" max="20" min="4">    
+                </div>
+
+                <div class="form-group col-sx-3 col-sm-3 col-md-6">
+                    <label id="basic-addon2">Type</label>
+                    <input type="text" name="type" [(ngModel)]="characterClass.type"class="form-control" aria-describedby="basic-addon2">    
+                </div>
+            </div>
+
              
             <label>Saving Throws</label>
             <div class="row">
@@ -17,7 +35,7 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <toggle-button 
-                        [(value)]="characterClass.saveThrows.fortitude" 
+                        [(value)]="characterClass.savingThrows.fortitude" 
                         [options]="ruleBook.savingThrowsBonusType">
                     </toggle-button>
                 </div>
@@ -28,7 +46,7 @@
                 </div>
                 <div class="col-xs-6 text-right">
                     <toggle-button 
-                        [(value)]="characterClass.saveThrows.reflexes" 
+                        [(value)]="characterClass.savingThrows.reflex" 
                         [options]="ruleBook.savingThrowsBonusType">
                     </toggle-button>
                 </div>
@@ -39,7 +57,7 @@
                 </div>
                 <div class="col-xs-6 text-right">
                     <toggle-button 
-                        [(value)]="characterClass.saveThrows.will" 
+                        [(value)]="characterClass.savingThrows.will" 
                         [options]="ruleBook.savingThrowsBonusType">
                     </toggle-button>
                 </div>
@@ -51,12 +69,12 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <toggle-button 
-                        [(value)]="characterClass.attackBonus" 
+                        [(value)]="characterClass.baseAttackBonus" 
                         [options]="ruleBook.attackBonusType">
                     </toggle-button>
                 </div>
             </div>       
-            <button type="submit">Submit</button>
+            <button class="btn btn-success" type="submit">Submit</button>
         </form>
     </div>
 </div>
