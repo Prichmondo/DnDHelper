@@ -17,7 +17,11 @@
             <td>{{ campaign.setting }}</td>
             <td>...</td>
             <td>
-                <button class="btn btn-info">Select</button>
+                <button 
+                    class="btn btn-info" 
+                    (click)="onSelect(campaign)">
+                    Select
+                </button>
                 <button class="btn btn-danger">Delete</button>
             </td>
         </tr>        

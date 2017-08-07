@@ -18,6 +18,30 @@ export class CampaignComponent implements OnInit {
       private activatedRoute: ActivatedRoute
   ){}
 
+  formatDate(stringDate: string): string {
+    var date = new Date(stringDate);
+    var monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+  }
+
+  getDuration(){
+    var startDate = new Date(this.campaign.startDate);
+    var currentDate = new Date(this.campaign.currentDate);
+    var timeDiff = Math.abs(startDate.getTime() - currentDate.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return diffDays;
+  }
+
   getCampaign(id){
     this.campaignsService
         .getById(id)
