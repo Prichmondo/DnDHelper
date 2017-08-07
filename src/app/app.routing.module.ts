@@ -91,6 +91,14 @@ const routes: AppRoute[] = [
     },
 
     { nav: { 
+        name        : "Character Class",
+        visible     : NavVisibility.LoggedIn
+      },  
+      path          : 'character-class/:id',
+      component     : ClassForm,
+    },
+
+    { nav: { 
         name        : "Login",           
         position    : NavMenu.User, 
         visible     : NavVisibility.LoggedOut  
@@ -121,7 +129,7 @@ const routes: AppRoute[] = [
 
     { nav: { 
       },  
-      path          : 'races-form',
+      path          : 'race-form',
       component     : RaceForm 
     }
     

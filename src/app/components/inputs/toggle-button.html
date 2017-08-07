@@ -1,5 +1,6 @@
 <div class="btn-group">
-    <button 
+    <button
+        type="button"
         class="btn btn-sm"
         *ngFor="let option of options"
         [ngClass] = "{'btn-default': option !== value, 'btn-primary': option === value}"

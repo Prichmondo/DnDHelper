@@ -34,5 +34,23 @@ export class CharacterClassService{
                 return body || { };
             });
     }
-
+    
+    post(characterClass :IClass): Observable<any> {
+        return this.http
+            .post(this.apiUrl, characterClass)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            })
+    }
+    
+    getById(id:string): Observable<Array<IClass>> {
+        return this.http
+            .get(this.apiUrl + "/" + id)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            });
+    
+    }        
 }

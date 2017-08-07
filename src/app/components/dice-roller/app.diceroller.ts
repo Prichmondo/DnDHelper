@@ -50,6 +50,7 @@ export class DiceRollerComponent implements AfterViewInit{
     if (!showAlert || this.utils.confirmBox("Are you sure to reset all dices and results?")){
       this.diceComponents.forEach(diceComponent => diceComponent.reset());
     }
+    this.resetMarkOver();
   }
 
   onDiceRoll(newRoll: Roll[]){
@@ -68,6 +69,12 @@ export class DiceRollerComponent implements AfterViewInit{
     this.calculateTotals();
   }
 
+  resetMarkOver(){
+    for (var i = 0; i < this.dicesSet.length; i++){
+      this.dicesSet[i].markOver = this.dicesSet[i].faces;
+    }
+  }
+
   onDiceReset(dice: Dice){
     this.removeDicesFromRolls(dice);
     this.calculateTotals();
@@ -78,7 +85,7 @@ export class DiceRollerComponent implements AfterViewInit{
       return
     }
     for (var i = (this.rolls.length - 1); i > -1; i--){
-      if (this.rolls[i].dice == dice){
+      if (this.rolls[i].dice.faces === dice.faces){
         this.rolls.splice(i, 1);
       }
     }
@@ -100,7 +107,7 @@ export class DiceRollerComponent implements AfterViewInit{
           luck: 0
         })
         for (iRolls = 0, diceCounter = 0; iRolls < this.rolls.length; iRolls++){
-          if (this.rolls[iRolls].dice == this.totals[iDices].dice){
+          if (this.rolls[iRolls].dice.name == this.totals[iDices].dice.name){
             diceCounter += 1;
             this.totals[iDices].totalRoll += this.rolls[iRolls].roll;
             this.totals[iDices].totalModifier += this.rolls[iRolls].modifier;
@@ -112,6 +119,24 @@ export class DiceRollerComponent implements AfterViewInit{
       }
     }
     return this.totalRollOnTable;
+  }
+
+  calculateSuccessfulRolls(dice: Dice): number{
+    if (!dice || !this.rolls){return 0};
+    
+    var count: number = 0;
+    for (var i = 0; i < this.rolls.length; i++){
+      if (this.rolls[i].dice.name === dice.name){
+        if (this.rolls[i].roll > dice.markOver){
+          count ++;
+        }
+      }
+    }
+    return count;
+  }
+
+  ngOnInit(){
+    this.resetMarkOver()
   }
 
 }
