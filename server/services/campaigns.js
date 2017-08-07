@@ -9,7 +9,8 @@ var campaigns = {
             if(user){
                 Campaign
                     .find({user: user._id}, callback)
-                    .limit(limit);
+                    .limit(limit)
+                    .populate("CampaignMilestone");
             } else {
                 callBack(null, []);
             }
@@ -21,7 +22,8 @@ var campaigns = {
             if(user){
                 Campaign
                     .findOne({user: user._id, _id:id}, callback)
-                    .limit(limit);
+                    .limit(limit)
+                    .populate("CampaignMilestone");
             } else {
                 callBack(null, []);
             }
