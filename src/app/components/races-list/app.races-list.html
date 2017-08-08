@@ -1,7 +1,7 @@
 
 <h2>Races List</h2>
 
-<div class="table-responsive">   
+<div>   
     <table class="table table-stripped table-hover">
         <thead>
             <tr>
@@ -17,7 +17,7 @@
                 <th>
                     Abilities Modifiers
                 </th>
-                <th>
+                <th class="text-center">
                     Options
                 </th>
             </tr>
@@ -25,7 +25,7 @@
         <tfoot>
             <tr>
                 <td colspan="6">
-                    <button class="btn btn-success">Add new race</button>
+                    <button class="btn btn-success" (click)="add()">Add new race</button>
                 </td>
             </tr>
         <tbody>
@@ -40,18 +40,18 @@
                     {{race.size}}
                 </td>
                 <td>
-                    <ul *ngFor="let ability of (race.abilitiesModifiers | format_race_abilities: race.abilitiesModifiers)">
-                        <li>{{ability}}</li>
+                    <ul class="ability-container list-inline">
+                        <li *ngFor="let ability of (race.abilitiesModifiers | format_race_abilities: race.abilitiesModifiers)">{{ability}}</li>
                     </ul>
                 </td>
-                <td>
-                    <button class="btn btn-info">
-                        edit
+                <td class="text-center">
+                    <button class="btn btn-info action-button" (click)="edit(race._id)">
+                        Edit
                     </button>
-                    <button class="btn btn-info">
-                        remove
+                    <button class="btn btn-info action-button" (click)="delete(race._id)">
+                        Remove
                     </button>
-                </td>                
+                </td>
             </tr>
         </tbody> 
     </table>

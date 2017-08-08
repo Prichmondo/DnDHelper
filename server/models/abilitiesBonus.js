@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var abilitiesBonusSchema = mongoose.Schema({
-    strenght: Number,
+    strength: Number,
     dexterity: Number,
     constitution: Number,
     intelligence: Number,

@@ -25,4 +25,41 @@ export class RacesService{
             });
     }
 
+    getById(id: string): Observable<Race> {
+        return this.http
+            .get(this.apiUrl + "/" + id)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            });
+    }
+    
+    post(race: Race): Observable<any>{
+        return this.http
+            .post(this.apiUrl, race)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            });
+    }
+
+    put(race: Race): Observable<Array<Race>> {
+        race._id = undefined;
+        return this.http
+            .put(this.apiUrl + "/" + race._id, race)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            });
+    }
+
+    delete(id: string): Observable<Array<Race>> {
+        return this.http
+            .delete(this.apiUrl + "/" + id)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            });
+    }
+
 }

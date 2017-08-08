@@ -123,6 +123,12 @@ const routes: AppRoute[] = [
       },  
       path          : 'race-form',
       component     : RaceForm 
+    },
+
+    { nav: { 
+      },  
+      path          : 'race-form/:id',
+      component     : RaceForm 
     }
     
     //CampaignsComponent
