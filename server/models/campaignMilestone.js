@@ -5,6 +5,14 @@ var campaignMilestoneSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    campaign: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Campaign'
+    },
     description: {
         type: String,
         required: true
@@ -23,4 +31,4 @@ var campaignMilestoneSchema = mongoose.Schema({
     }
 });
 
-module.exports = campaignMilestoneSchema;
+var CampaignMilestone = module.exports = mongoose.model("CampaignMilestone", campaignMilestoneSchema    );

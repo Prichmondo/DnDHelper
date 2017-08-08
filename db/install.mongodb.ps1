@@ -1,7 +1,7 @@
 Set-ExecutionPolicy RemoteSigned
 
-$mongoDbPath = "C:\mongodb" 
-$mongoDbConfigPath = "$mongoDbPath\mongod.cfg"
+$mongoDbPath = "C:\mongodb"
+$mongoDbConfigPath = "$mongoDbPath\mongodb.conf"
 $url = "http://downloads.mongodb.org/win32/mongodb-win32-x86_64-2008plus-2.4.9.zip" 
 $zipFile = "$mongoDbPath\mongo.zip" 
 $unzippedFolderContent ="$mongoDbPath\mongodb-win32-x86_64-2008plus-2.4.9"

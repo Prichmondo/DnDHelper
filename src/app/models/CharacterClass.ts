@@ -1,14 +1,7 @@
-export enum SaveThrowsProgress{
-    Slow, Fast
-};
-export enum AttackBonusProgress{
-    Slow, Medium, Fast
-};
 export interface ISaveThrows{
-
-    fortitude: SaveThrowsProgress;
-    reflexes: SaveThrowsProgress;
-    will: SaveThrowsProgress;
+    fortitude: string;
+    reflex: string;
+    will: string;
 };
 
 export interface IClass{
@@ -16,6 +9,10 @@ export interface IClass{
     _id?:string;
     name:string;
     levels:number;
-    saveThrows:ISaveThrows;
-    attackBonus:AttackBonusProgress;
+    savingThrows:ISaveThrows;
+    baseAttackBonus:string;
+    type:string;
+    hitDice:number;
+    skills:any[];
+    specials:any[];
 }

@@ -1,3 +1,13 @@
 <div class="campaign" *ngIf="campaign">
-    <h2>{{campaign.title}}</h2>
+
+    <div class="dnd-title">
+        <h3>{{campaign.setting}}</h3>
+        <h1>{{campaign.title}}</h1>
+    <div>
+
+    <b>Start Date:</b> {{ formatDate(campaign.startDate) }}
+    &nbsp;|&nbsp;
+    <b>Current Date:</b> {{ formatDate(campaign.currentDate) }}
+    &nbsp;|&nbsp;
+    <b>Duration:</b> {{ getDuration() }} days
 </div>

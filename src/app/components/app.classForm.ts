@@ -1,9 +1,10 @@
 import { Component, OnInit }         from '@angular/core';
-import { Router }                    from '@angular/router';
+import { Router, ActivatedRoute }                    from '@angular/router';
 import { NgForm }                    from '@angular/forms';
 
-import { IClass, AttackBonusProgress,SaveThrowsProgress,ISaveThrows } from '../models/CharacterClass'; 
+import { IClass, ISaveThrows } from '../models/CharacterClass'; 
 import { RulebookService }              from '../services/rulebook.service';
+import { CharacterClassService }     from '../services/characterClasses.service';
 
 @Component({
 
@@ -16,7 +17,10 @@ export class ClassForm {
     stFort="Slow";
     ruleBook: any;
 
-    constructor(private ruleBookService:RulebookService){}
+    constructor(
+        private ruleBookService:RulebookService,
+        private CharacterClassService:CharacterClassService,
+        private activatedRoute:ActivatedRoute){}
 
     ngOnInit(){
 
@@ -27,21 +31,44 @@ export class ClassForm {
                 console.log("RuleBook", this.ruleBook);
 
                 
-                this.characterClass = {
-                    _id: "",
-                    attackBonus: ruleBook.attackBonusType[0],
-                    levels: 20,
-                    name: "",
-                    saveThrows: {
-                        fortitude: ruleBook.savingThrowsBonusType[0],
-                        reflexes: ruleBook.savingThrowsBonusType[0],
-                        will: ruleBook.savingThrowsBonusType[0]
-                    }
-                }
+                this.activatedRoute
+                    .params
+                    .subscribe((params)=>{
+                        if(typeof params.id !== "undefined"){
+                            this.CharacterClassService
+                                .getById(params.id)
+                                .subscribe((response:any)=>{
+                                    this.characterClass = response;
+                                })
+                        }
+                        else{
+                            
+                            this.characterClass = {
+                                baseAttackBonus: ruleBook.attackBonusType[0],
+                                levels: 20,
+                                name: "",
+                                savingThrows: {
+                                    fortitude: ruleBook.savingThrowsBonusType[0],
+                                    reflex: ruleBook.savingThrowsBonusType[0],
+                                    will: ruleBook.savingThrowsBonusType[0]
+                                },
+                                type: "",
+                                hitDice:4,
+                                skills: [],
+                                specials:[]
+                            }
+                        }
+                    })
             });
 
     }
-    onSubmit(classForm: NgForm){
-        console.log(this.characterClass);
+    
+    save(){
+        this.CharacterClassService
+            .post(this.characterClass)
+            .subscribe((response:any)=>{
+                console.log("response", response)
+            })
     }
+  
 }

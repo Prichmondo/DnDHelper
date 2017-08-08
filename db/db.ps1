@@ -21,8 +21,6 @@ function Confirm-WindowsServiceExists($name)
 $serviceName = "mdb27017"
 $mongoDbDriverPath = "C:\mongodb"
 $connectionString = "mongodb://localhost:27017"
-$dbName = "dndhelper"
-$collection = "characters"
 
 if(-Not (Confirm-WindowsServiceExists($serviceName))){
     Invoke-MdbcCommand --install --serviceName $serviceName --serviceDisplayName "MongoDB Server Instance 27017" --serviceDescription "MongoDB Server Instance running on 27017"
