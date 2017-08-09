@@ -21,22 +21,22 @@
                 <label>Abilities Modifiers</label>
                 <div class="row">
                     <div class="col-sx-12 col-sm-4">
-                        <input-number [description]="'STR'" [(value)]="race.abilitiesModifiers.strength" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-str"></input-number>
+                        <input-number [(ngModel)]="race.abilitiesModifiers.strength" [description]="'STR'" [(value)]="race.abilitiesModifiers.strength" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-str"></input-number>
                     </div>
                     <div class="col-sx-12 col-sm-4">
-                        <input-number [description]="'DEX'" [(value)]="race.abilitiesModifiers.dexterity" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-dex"></input-number>
+                        <input-number [(ngModel)]="race.abilitiesModifiers.dexterity" [description]="'DEX'" [(value)]="race.abilitiesModifiers.dexterity" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-dex"></input-number>
                     </div>
                     <div class="col-sx-12 col-sm-4">
-                        <input-number [description]="'CON'" [(value)]="race.abilitiesModifiers.constitution" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-con"></input-number>
+                        <input-number [(ngModel)]="race.abilitiesModifiers.constitution" [description]="'CON'" [(value)]="race.abilitiesModifiers.constitution" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-con"></input-number>
                     </div>
                     <div class="col-sx-12 col-sm-4">
-                        <input-number [description]="'INT'" [(value)]="race.abilitiesModifiers.intelligence" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-int"></input-number>
+                        <input-number [(ngModel)]="race.abilitiesModifiers.intelligence" [description]="'INT'" [(value)]="race.abilitiesModifiers.intelligence" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-int"></input-number>
                     </div>
                     <div class="col-sx-12 col-sm-4">
-                        <input-number [description]="'WIS'" [(value)]="race.abilitiesModifiers.wisdom" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-wis"></input-number>
+                        <input-number [(ngModel)]="race.abilitiesModifiers.wisdom" [description]="'WIS'" [(value)]="race.abilitiesModifiers.wisdom" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-wis"></input-number>
                     </div>
                     <div class="col-sx-12 col-sm-4">
-                        <input-number [description]="'CHA'" [(value)]="race.abilitiesModifiers.charisma" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-cha"></input-number>
+                        <input-number [(ngModel)]="race.abilitiesModifiers.charisma" [description]="'CHA'" [(value)]="race.abilitiesModifiers.charisma" [setMin]="-10" [setMax]="10" ngDefaultControl name="input-race-cha"></input-number>
                     </div>
                 </div>
             </div>
