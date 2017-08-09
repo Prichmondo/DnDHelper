@@ -10,3 +10,10 @@ export class Campaign{
     milestones: any[];
 
 }
+
+export interface IAddCampaignRequest {
+    title: string;
+    setting: string;
+    startDate?: string;
+    currentDate?: string;
+}

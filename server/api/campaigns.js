@@ -26,5 +26,17 @@ router.get(url + "/:id", AuthService.check, (req, res) => {
   });
 
 });
-  
+
+router.post(url, AuthService.check, (req, res)=>{
+    
+    var campaign = req.body;
+    
+    Campaigns.add(req.user.username, campaign, (error, campaign)=>{
+        if(error){
+            throw error;
+        }
+        res.json(campaign);
+    });
+});
+
 module.exports = router;

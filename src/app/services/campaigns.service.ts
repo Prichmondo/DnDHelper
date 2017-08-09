@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { Campaign } from '../models/Campaign';
+import { Campaign, IAddCampaignRequest } from '../models/Campaign';
 
 @Injectable()
 export class CampaignsService{
@@ -28,6 +28,15 @@ export class CampaignsService{
     getById(id:string): Observable<Campaign> {
         return this.http
             .get(this.apiUrl + "/" + id)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            });
+    }
+    
+    post(addCampaignRequest:IAddCampaignRequest): Observable<Campaign> {
+        return this.http
+            .post(this.apiUrl, addCampaignRequest)
             .map((res: Response) => {
                 let body = res.json();
                 return body || { };

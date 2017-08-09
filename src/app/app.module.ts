@@ -14,7 +14,8 @@ import { HeaderComponent }          from './header.component';
 import { LoginComponent }           from './components/login/app.login';
 import { RegisterComponent }        from './components/register/app.register';
 import { CampaignsComponent }       from './components/campaigns/app.campaigns';
-import { CampaignComponent }       from './components/campaigns/app.campaign';
+import { CampaignComponent }        from './components/campaigns/app.campaign';
+import { AddCampaignComponent }     from './components/campaigns/app.addCampaign';
 import { HomeComponent }            from './components/home/app.home';
 import { ShowCharacters }           from './components/app.showCharacters';
 import { ShowClasses }              from './components/app.showClasses';
@@ -59,6 +60,7 @@ import { RacesService }             from './services/races.service';
     RegisterComponent,
     CampaignsComponent,
     CampaignComponent,
+    AddCampaignComponent,
     HomeComponent,
     ShowCharacters,
     ShowClasses,

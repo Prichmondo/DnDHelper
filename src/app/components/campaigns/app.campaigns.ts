@@ -7,8 +7,7 @@ import { Campaign } from '../../models/Campaign';
 
 @Component({
   selector: 'campaigns',
-  templateUrl: './app.campaigns.html',
-  providers: [AuthenticationService, CampaignsService]
+  templateUrl: './app.campaigns.html'
 })
 export class CampaignsComponent implements OnInit {
   
