@@ -6,7 +6,7 @@ import { CharacterClassService } from '../services/characterClasses.service';
 
 @Component({
 
-    selector:"show-class",
+    selector:"Classes",
     templateUrl:"./app.showClasses.html",
     
 

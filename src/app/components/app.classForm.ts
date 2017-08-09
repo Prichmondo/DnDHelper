@@ -20,7 +20,8 @@ export class ClassForm {
     constructor(
         private ruleBookService:RulebookService,
         private CharacterClassService:CharacterClassService,
-        private activatedRoute:ActivatedRoute){}
+        private activatedRoute:ActivatedRoute,
+        private router:Router){}
 
     ngOnInit(){
 
@@ -63,12 +64,31 @@ export class ClassForm {
 
     }
     
-    save(){
+    saveClass(){
+      
         this.CharacterClassService
             .post(this.characterClass)
             .subscribe((response:any)=>{
-                console.log("response", response)
+                console.log("Saving...", response)
             })
+    }
+    updateClass(){
+        this.CharacterClassService
+            .update(this.characterClass)
+            .subscribe((response :any)=>{
+                console.log("Updating...", response)
+                this.router.navigate(["/Classes"]);
+            })
+    }
+
+    onUpdate(){
+          if(this.characterClass._id){
+            this.updateClass();
+            
+        }else{
+            this.saveClass();
+        }
+
     }
   
 }

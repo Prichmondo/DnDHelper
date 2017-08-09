@@ -3,7 +3,7 @@
 
 <div class="row" *ngIf="ruleBook && characterClass">
     <div class="col-sx-12 col-sm-6 col-md-4">
-        <form #classForm = "ngForm" (ngSubmit)="save()">
+        <form #classForm = "ngForm" (ngSubmit)="onUpdate()">
             <div class="row">
                 <div class="form-group col-sx-12 col-sm-12 col-md-12">
                     <label id="basic-addon1">Name</label>

@@ -52,5 +52,15 @@ export class CharacterClassService{
                 return body || { };
             });
     
-    }        
+    } 
+    
+    update(characterClass :IClass): Observable<any> {
+        return this.http
+            .put(this.apiUrl + "/" + characterClass._id, characterClass)
+            .map((res: Response)=>{
+                let body = res.json();
+                return body || { };
+            })
+
+    }
 }
