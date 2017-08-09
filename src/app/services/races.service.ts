@@ -44,7 +44,6 @@ export class RacesService{
     }
 
     put(race: Race): Observable<Array<Race>> {
-        race._id = undefined;
         return this.http
             .put(this.apiUrl + "/" + race._id, race)
             .map((res: Response) => {

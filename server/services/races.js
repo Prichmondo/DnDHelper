@@ -26,7 +26,8 @@ var races = {
     },
 
     update: function(id, race, options, callback){
-        Race.findOneAndUpdate(id, race, options, callback);
+        if(race._id) delete race._id;
+        Race.findOneAndUpdate({ _id: id }, race, options, callback);
     }
 
 }

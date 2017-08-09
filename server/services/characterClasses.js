@@ -26,6 +26,7 @@ var characterClasses = {
     },
 
     update: function(id, characterClass, options, callback){
+        if(characterClass._id) delete characterClass._id;
         CharacterClass.findOneAndUpdate(id, characterClass, options, callback);
     }
 
