@@ -30,8 +30,15 @@ var campaigns = {
         });
     },
 
-    add: function(character, callback){
-        Campaign.create(character, callback);
+    add: function(username, campaign, callback){
+        User.getByUsername(username, (error, user)=>{
+            if(user){
+                campaign.user = user._id;
+                Campaign.create(campaign, callback);
+            } else {
+                callBack(null, []);
+            }
+        });        
     },
 
     delete: function(id, callback){

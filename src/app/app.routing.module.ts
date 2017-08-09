@@ -9,6 +9,7 @@ import { LoginComponent }           from './components/login/app.login';
 import { RegisterComponent }        from './components/register/app.register';
 import { CampaignsComponent }       from './components/campaigns/app.campaigns';
 import { CampaignComponent }        from './components/campaigns/app.campaign';
+import { AddCampaignComponent }     from './components/campaigns/app.addCampaign';
 import { HomeComponent }            from './components/home/app.home';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { ShowCharacters }           from './components/app.showCharacters';
@@ -60,6 +61,13 @@ const routes: AppRoute[] = [
       nav           : null,  
       path          : 'campaign/:id',           
       component     : CampaignComponent,       
+      canActivate   : [AuthGuard] 
+    },
+    
+    { 
+      nav           : null,  
+      path          : 'add-campaign',           
+      component     : AddCampaignComponent,       
       canActivate   : [AuthGuard] 
     },
 

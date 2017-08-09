@@ -6,8 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'campaigns',
-  templateUrl: './app.campaign.html',
-  providers: [AuthenticationService, CampaignsService]
+  templateUrl: './app.campaign.html'
 })
 export class CampaignComponent implements OnInit {
   

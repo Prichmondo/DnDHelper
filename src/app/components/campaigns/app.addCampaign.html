@@ -1,0 +1,18 @@
+<div class="campaign" *ngIf="campaign">
+    <form (submit)="onSubmit()">
+        <label>Title</label>
+        <input name="title" [(ngModel)]="campaign.title" type="text" class="form-control" />
+
+        <label>Setting</label>
+        <input name="setting" [(ngModel)]="campaign.setting" type="text" class="form-control" />
+
+        <label>Start Date</label>
+        <input name="startDate" [(ngModel)]="campaign.startDate" type="text" class="form-control" />
+
+        <label>Current Date</label>
+        <input name="currentDate" [(ngModel)]="campaign.currentDate" type="text" class="form-control" />
+        
+        <button type="submit" class="btn btn-primary">Save</button>
+        
+    </form>
+</div>
