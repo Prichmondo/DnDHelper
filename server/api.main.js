@@ -10,6 +10,7 @@ const users = require('./api/users');
 const skills = require('./api/skills');
 const specials = require('./api/specials');
 const rulebook = require('./api/rulebook');
+const settings = require('./api/settings');
 
 router.use(users);
 router.use(campaigns);
@@ -20,5 +21,6 @@ router.use(auth);
 router.use(skills);
 router.use(specials);
 router.use(rulebook);
+router.use(settings);
 
 module.exports = router;

@@ -10,6 +10,7 @@ var campaigns = {
                 Campaign
                     .find({user: user._id}, callback)
                     .limit(limit)
+                    .populate("setting")
                     .populate("CampaignMilestone");
             } else {
                 callBack(null, []);
@@ -23,6 +24,7 @@ var campaigns = {
                 Campaign
                     .findOne({user: user._id, _id:id}, callback)
                     .limit(limit)
+                    .populate("setting")
                     .populate("CampaignMilestone");
             } else {
                 callBack(null, []);

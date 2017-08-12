@@ -10,8 +10,8 @@ var campaignSchema = mongoose.Schema({
         ref: 'User'
     },
     setting: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Setting'
     },
     createDate: {
         type: Date,
