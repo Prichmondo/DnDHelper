@@ -1,0 +1,141 @@
+.moon {
+  border-radius: 50%;
+  position: absolute;
+  transition: all 3s ease;
+  background-image: url("/assets/images/moon.png");
+  background-position: 0;
+  background-size: 110%;
+  overflow: hidden;
+}
+
+.moon-shadow {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+.moon-shadow > div{
+  transition: opacity 3s ease;
+}
+
+.shadow-phase-2 {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: inset -10px 0 4px 4px rgba(0,0,0,0.8);
+}
+
+.shadow-phase-3 {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  z-index: 2;
+  top: -50%;
+  left: 42%;
+  border-radius: 50%;
+  opacity: 0.8;
+  background-color: #000;
+  box-shadow: 0 0 4px 4px rgba(0,0,0,1);
+}
+
+.shadow-phase-4 {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  left: 21%;
+  border-radius: 50%;
+  opacity: 0.8;
+  background-color: #000;
+  box-shadow: 0px 0px 3px 3px rgba(0,0,0,1);
+}
+
+.shadow-phase-5 {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  opacity: 0.8;
+  background-color: #000;
+}
+
+.shadow-phase-6 {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  left: -21%;
+  border-radius: 50%;
+  opacity: 0.8;
+  background-color: #000;
+  box-shadow: 0px 0px 3px 3px rgba(0,0,0,1);
+}
+
+.shadow-phase-7 {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  z-index: 2;
+  top: -50%;
+  left: -42%;
+  border-radius: 50%;
+  opacity: 0.8;
+  background-color: #000;
+  box-shadow: 0 0 4px 4px rgba(0,0,0,1);
+}
+
+.shadow-phase-8 {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: inset 10px 0 4px 4px rgba(0,0,0,0.8);
+}
+
+.moon-color {
+  position: absolute;
+  top:0; bottom:0; left: 0; right: 0;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.moons-orbit {
+  position: relative;
+  position: absolute;
+  margin-left: 100px;
+  margin-top: 100px;
+}
+
+.planet{
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.5);;
+  background-color: #ccc;
+  width: 200px;
+  height: 200px;
+  background-image: url('/assets/images/ansalon-map.png');
+  background-position: 2387px 905px;
+  box-shadow: inset 2px 2px 5px 5px rgba(0,0,0,0.3);
+}
