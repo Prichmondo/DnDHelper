@@ -3,8 +3,10 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { ICharacter } from '../models/character';
+import { Iskill } from '../models/pgSkills';
 import { PgClass } from '../models/pgClass';
 import { CharactersService } from '../services/characthers.service';
+import { PgSkillsService } from '../services/pgSkills.service';
 import { ShowCharacters} from './app.showCharacters';
 
 @Component({
@@ -21,6 +23,8 @@ export class CharacterSheetComponent {
       race:"",
       classes: []
     };
+
+    skills: Iskill[];
     
     hp = 100;
     current= this.hp;
@@ -28,6 +32,7 @@ export class CharacterSheetComponent {
 
     constructor(
       private charactersService: CharactersService,
+      private pgSkillsService: PgSkillsService,
       private activatedRoute: ActivatedRoute){
     };
 
@@ -40,6 +45,13 @@ export class CharacterSheetComponent {
           console.log("params", params);
           this.getCharacter(params.id);
         })
+      
+      this.pgSkillsService
+        .get()
+        .subscribe((response: Iskill[])=>{
+            console.log("hey" + response);
+            this.skills = response;
+        });
     }
 
     getCharacter(id:string){
@@ -55,10 +67,10 @@ export class CharacterSheetComponent {
       })
     }
 
-     updatedHp(newValue){
-          this.current=newValue;
-                 
-        };    
+    updatedHp(newValue){
+        this.current=newValue;
+                
+      };    
       
         
       

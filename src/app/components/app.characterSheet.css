@@ -17,6 +17,9 @@ ul, li {
 .standard-spacer{
     margin-top:20px;
 }
+.double-spacer{
+    margin-top: 40px;
+}
 .subtitle {
     
     background-color: black;

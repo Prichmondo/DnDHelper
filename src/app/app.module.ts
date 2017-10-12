@@ -44,6 +44,7 @@ import { Broadcaster }              from './services/broadcast';
 import { CharactersService }        from './services/characthers.service';
 import { CharacterClassService }    from './services/characterClasses.service';
 import { RacesService }             from './services/races.service';
+import { PgSkillsService }             from './services/pgSkills.service';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { RacesService }             from './services/races.service';
     CharactersService,
     CharacterClassService,
     RacesService,
+    PgSkillsService,
     AuthGuard, Anonymus,
     Broadcaster, UsersService
   ],
