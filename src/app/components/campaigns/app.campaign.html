@@ -1,5 +1,5 @@
 <div class="campaign" *ngIf="campaign">
-
+    
     <div class="dnd-title">
         <h3>{{campaign.setting.name}}</h3>
         <h1>{{campaign.title}}</h1>
@@ -10,4 +10,30 @@
     <b>Current Date:</b> {{ formatDate(campaign.currentDate) }}
     &nbsp;|&nbsp;
     <b>Duration:</b> {{ getDuration() }} days
+
+    <div class="setting-atlante">
+        <div class="moons-orbit">
+            <div 
+                *ngFor="let moon of campaign.setting.satellites.reverse(); let i = index"
+                class="moon"
+                [ngStyle]="getMoonStyle(moon, i)"
+                >
+                <div 
+                    class="moon-color"
+                    [ngStyle]="{ 'background-color': moon.color }"
+                    ></div>
+                <div class="moon-shadow">
+                    <div class="shadow-phase-2" [ngStyle]="getPahseStyle(moon, 2)"></div>
+                    <div class="shadow-phase-3" [ngStyle]="getPahseStyle(moon, 3)"></div>
+                    <div class="shadow-phase-4" [ngStyle]="getPahseStyle(moon, 4)"></div>
+                    <div class="shadow-phase-5" [ngStyle]="getPahseStyle(moon, 5)"></div>
+                    <div class="shadow-phase-6" [ngStyle]="getPahseStyle(moon, 6)"></div>
+                    <div class="shadow-phase-7" [ngStyle]="getPahseStyle(moon, 7)"></div>
+                    <div class="shadow-phase-8" [ngStyle]="getPahseStyle(moon, 8)"></div>
+                </div>
+            </div>
+        </div>
+        <div class="planet" (click)="click()"></div>
+    </div>
+
 </div>
