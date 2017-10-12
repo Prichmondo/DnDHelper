@@ -24,7 +24,7 @@ var skills = {
     get: function(callback, limit){
         Skill
             .find((req, res)=>{
-                callback(req, mapSkills(res));
+                callback(req, res);
             })
             .limit(limit)
             .populate("synergies");
