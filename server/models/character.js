@@ -1,26 +1,39 @@
-var mongoose = require('mongoose');
+const utils = require('../helpers/utils');
 
-var characterSchema = mongoose.Schema({
-    firstName: {
-        type: String
-    },
-    lastName: {
-        type: String
-    },
-    campaign: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Campain'
-    },
-    race: {
-        type: String
-    },
-    classes:{
-        type: Array
-    },
-    createDate: {
-        type: Date,
-        default: Date.now
-    }
-});
+function character(
+    _id,
+    firstName,
+    lastName,
+    campaign,
+    race,
+    classes,
+    createDate,
+    skills
+) {
+    this._id = _id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.campaign = campaign;
+    this.race = race;
+    this.classes = classes;
+    this.createDate = createDate;
+    this.skill = skills;
+}
 
-module.exports = mongoose.model("Character", characterSchema);
+character.map = (character) => {
+
+    var characterResp = {}
+
+    characterResp._id = character._id;
+    characterResp.firstName = character.firstName;
+    characterResp.lastName = character.lastName;
+    characterResp.campaign = character.campaign;
+    characterResp.race = character.race;
+    characterResp.classes = character.classes;
+    characterResp.createDate = character.createDate;
+    characterResp.skills = utils.arrayToObject(character.skills, item => item.skill.name);
+
+    return characterResp;
+}
+
+module.exports = character;

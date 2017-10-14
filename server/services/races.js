@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Race = require('../models/race');
+var Race = require('../schemas/race');
 
 var races = {
 
