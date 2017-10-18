@@ -1,14 +1,21 @@
-var mongoose = require('mongoose');
-var Character = require('../models/character');
-var Campaign = require('../models/campaign');
+const mongoose = require('mongoose');
+const Character = require('../schemas/character');
+const Campaign = require('../schemas/campaign');
+const characterModel = require("../models/character")
 
 var characters = {
 
     get: function(callback, limit){
         Character
-            .find(callback)
+            .find((req, characters)=>{
+                var response = characters.map((character, index)=>{
+                    return characterModel.map(character);
+                });
+                callback(req, response);
+            })
             .limit(limit)
-            .populate("Campaign");
+            .populate("Campaign")
+            .populate("skills.skill")
     },
 
     getById: function(id, callback){

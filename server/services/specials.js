@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Special = require('../models/special');
+var Special = require('../schemas/special');
 
 var spacials = {
 

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Skill = require('../models/skill');
+var Skill = require('../schemas/skill');
 
 function mapSkill(skill){
     return {
