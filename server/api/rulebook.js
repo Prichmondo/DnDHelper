@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const commons = require('../models/commons')
+const commons = require('../schemas/commons')
 
 const url = "/rulebook";
 

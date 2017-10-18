@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var CharacterClass = require('../models/characterClass');
+var CharacterClass = require('../schemas/characterClass');
 
 var characterClasses = {
 

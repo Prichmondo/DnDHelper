@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Setting = require('../models/setting');
+var Setting = require('../schemas/setting');
 
 var settings = {
 

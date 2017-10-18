@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Skill = require('../models/skill');
+var Skill = require('../schemas/skill');
 
 function mapSkill(skill){
     return {
@@ -24,7 +24,7 @@ var skills = {
     get: function(callback, limit){
         Skill
             .find((req, res)=>{
-                callback(req, mapSkills(res));
+                callback(req, res);
             })
             .limit(limit)
             .populate("synergies");

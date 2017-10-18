@@ -5,11 +5,11 @@ const Skills = require('../services/skills');
 const url = "/skills";
 
 router.get(url, (req, res)=>{
-    Skills.get((error, characters)=>{
+    Skills.get((error, skills)=>{
         if(error){
             throw error;
         }
-        res.json(characters);
+        res.json(skills);
     });
 });
 

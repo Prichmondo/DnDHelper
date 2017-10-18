@@ -1,6 +1,6 @@
 const expressJWT = require('express-jwt');
 const jwt = require('jsonwebtoken');
-const User = require('../models/user')
+const User = require('../schemas/user')
 const jwtSecret = "mySecret";
 
 var authentication = {

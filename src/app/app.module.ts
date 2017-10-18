@@ -38,12 +38,13 @@ import { LocalStoreService }        from './services/localStore.service';
 import { LocalStoreManagerService } from './services/localStoreManager.service';
 import { AppRequestOptions }        from './helpers/app.requestOptions' 
 import { HttpService }              from './services/http.service';
-import { CampaignsService }          from './services/campaigns.service';
+import { CampaignsService }         from './services/campaigns.service';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { Broadcaster }              from './services/broadcast';
 import { CharactersService }        from './services/characthers.service';
 import { CharacterClassService }    from './services/characterClasses.service';
 import { RacesService }             from './services/races.service';
+import { PgSkillsService }          from './services/pgSkills.service';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { RacesService }             from './services/races.service';
     CharactersService,
     CharacterClassService,
     RacesService,
+    PgSkillsService,
     AuthGuard, Anonymus,
     Broadcaster, UsersService
   ],

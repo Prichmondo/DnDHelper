@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var CampaignMileston = require('../models/campaignMilestone');
+var CampaignMileston = require('../schemas/campaignMilestone');
 var User = require('./user');
 
 var campaigns = {
