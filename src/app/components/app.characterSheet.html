@@ -109,41 +109,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-4">
-            <table class="table table-hover">
-                <thead>
-                    <th>Name</th>
-                    <th>Total</th>
-                    <th>Rank</th>
-                    <th>Ability</th>
-                    <th>TrainOnly</th>
-                    <th>Sinergies</th>
-                </thead>
-                <tbody>
-                    <tr  *ngFor="let skill of skills">
-                        <td>
-                            {{skill.name}}
-                        </td>
-                        <td>
-                            
-                        </td>
-                        <td>
-                            <input type="number" min="0" class="input-block from-control base-border">
-                        </td>
-                        <td>
-                            {{skill.modifier}}
-                        </td>
-                        <td>
-                            {{skill.TrainOnly}} 
-                        </td>
-                        <td>
-                            {{skill.Sinergies}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+        
+        <div *ngFor="let skill of skills" class="col-md-4">
+            <div class="col-md-3">{{skill.name}}</div>
+            <div class="col-md-3">{{skill.modifier}}</div>            
+            <div class="col-md-3" [textContent]="skill.trainedOnly ? 'Y' : 'N'"></div>
         </div>
+
+        
     </div>
+ 
    
 </div>
 
