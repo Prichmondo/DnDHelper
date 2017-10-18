@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import { IRulebook } from '../models/rulebook';
+
 @Injectable()
 export class RulebookService{
 
@@ -14,7 +16,7 @@ export class RulebookService{
       private http: HttpService
       ){}
 
-    get(): Observable<any> {
+    get(): Observable<IRulebook> {
         return this.http
             .get(this.apiUrl)
             .map((res: Response) => {

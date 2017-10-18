@@ -7,10 +7,16 @@ export interface IAbilities {
     charisma: number
 }
 
+export interface ISpeeds {
+    name: string;
+    value: number
+}
+
 export class Race {
     _id?: string;
     name: string;
     type: string;
     size: string;
-    abilitiesModifiers: IAbilities;
+    speeds: ISpeeds[];
+    abilitiesModifiers: IAbilities
 }

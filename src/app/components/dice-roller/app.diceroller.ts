@@ -42,6 +42,21 @@ export class DiceRollerComponent implements AfterViewInit{
     private utils: Utilities,
   ){}
 
+  roll(cmdLine: string){
+    //phase 1: analyze command line
+    if (!cmdLine || cmdLine.length < 1){
+      console.log("Invalid or missing command line" + cmdLine);
+      return null;
+    }
+    var i = 0;
+    var cmdLineParameters: string[] = [];
+
+    for (i = 0; i < cmdLine.length; i++){
+      
+    }
+
+  }
+
   rollAll(){
     this.diceComponents.forEach(diceComponent => diceComponent.roll());
   }

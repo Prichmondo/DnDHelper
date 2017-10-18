@@ -18,6 +18,14 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="raceSpeed">Speed</label>
+                <div class="row">
+                    <div *ngFor="let speed of tempSpeeds" class="col-sx-12 col-sm-4">
+                        <input-number [description]="speed.name" [(value)]="speed.value" [setMin]="0" [setMax]="100" [greenCondition]="1" ngDefaultControl name="input-race-speed"></input-number>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
                 <label>Abilities Modifiers</label>
                 <div class="row">
                     <div class="col-sx-12 col-sm-4">

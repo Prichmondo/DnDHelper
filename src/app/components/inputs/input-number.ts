@@ -14,6 +14,7 @@ export class InputNumberComponent {
     @Input() value: number = 0;
     @Input() setMin: number = 0;
     @Input() setMax: number = 100;
+    @Input() greenCondition: number = 9999;
 
     @Output() valueChange: EventEmitter<Number>;
 
@@ -24,7 +25,6 @@ export class InputNumberComponent {
     }
 
     ngOnInit() {
-
     }
     
     spinnerIncrease(){

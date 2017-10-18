@@ -1,7 +1,7 @@
 var commons = {
     raceType:               ["Humanoid", "Animal", "Undead", "Outsider"],
     size:                   ["Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal"],
-    speeds:                 ["Walk", "Fly", "Swim", "Climb"],
+    speeds:                 ["Walk", "Fly", "Swim", "Climb", "Dig"],
     bonusType:              ["None", "Enhancement", "Holy", "Natural", "Racial", "Morale"],
     attackType:             ["Poison", "Fire", "Ice", "Acid", "Sound", "Electricity", "Holy", "Unholy"],
     abilities:              ["Str", "Dex", "Con", "Int", "Wis", "Cha"],
