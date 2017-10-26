@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var pgSkill = require('./pgSkill') 
+var pgSkill = require('./pgSkill');
+var abilitiesBonus = require('./abilitiesBonus');
 
 var characterSchema = mongoose.Schema({
     firstName: {
@@ -11,6 +12,9 @@ var characterSchema = mongoose.Schema({
     campaign: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Campain'
+    },
+    abilities: {
+        type: abilitiesBonus
     },
     race: {
         type: String
