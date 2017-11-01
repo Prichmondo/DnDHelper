@@ -19,7 +19,7 @@ function arrayToObject(array, getKey) {
 
         for(var i=0, item; i<array.length; i++){
             item = array[i];
-            obj[getKey(item)] = item;
+            obj[getKey(item, i)] = item;
         }
     }   
 
