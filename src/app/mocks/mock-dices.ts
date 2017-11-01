@@ -1,6 +1,6 @@
-import { IDice } from '../models/dice';
+import { Dice } from '../models/dice';
 
-export const DICES: IDice[] =[
+export const DICES: Dice[] =[
     { name: "D4", faces: 4},
     { name: "D6", faces: 6},
     { name: "D8", faces: 8},
