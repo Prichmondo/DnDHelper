@@ -31,7 +31,12 @@ character.map = (character) => {
     characterResp.race = character.race;
     characterResp.classes = character.classes;
     characterResp.createDate = character.createDate;
-    characterResp.skills = utils.arrayToObject(character.skills, item => item.skill.name);
+    characterResp.skills = utils.arrayToObject(character.skills, (item, i) => {
+        if(item.skill)
+            return item.skill.name
+        
+        return "skill" + i;
+    });
 
     return characterResp;
 }
