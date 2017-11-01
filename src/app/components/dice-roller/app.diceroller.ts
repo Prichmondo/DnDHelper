@@ -6,8 +6,10 @@ import { Component,
          AfterViewInit,
          QueryList }                from '@angular/core';
 
-import { Dice }                     from '../../models/dice';
-import { Roll, Totals }             from '../../models/roll';
+import { Dice }                    from '../../models/dice';
+import { Roll,
+         Totals,
+         RollRequest }              from '../../models/roll';
 import { DICES }                    from '../../mocks/mock-dices';
 import { Utilities }                from '../../utilities/app.utilities';
 import { InputNumberComponent }     from '../inputs/input-number';
@@ -15,6 +17,12 @@ import { DiceInputComponent }       from '../inputs/dice-input';
 import { RollFilterByDice,
          TotalFilterByDice }        from './app.diceroller.pipes';
 
+
+export class DiceGui extends Dice {
+  
+  markOver?: number;
+}
+        
 
 @Component({
   selector: 'app-dice-roller',
@@ -24,7 +32,7 @@ import { RollFilterByDice,
 
 export class DiceRollerComponent implements AfterViewInit{
   title = 'Dice Roller';
-  dicesSet: Dice[] = DICES;
+  dicesSet: DiceGui[] = DICES;
   rolls: Roll[] = [];
   totals: Totals[] = [];
   totalRollOnTable: number = 0;
@@ -42,7 +50,17 @@ export class DiceRollerComponent implements AfterViewInit{
     private utils: Utilities,
   ){}
 
-  roll(cmdLine: string){
+  roll(){
+    return "ciao";
+  }
+
+  /*roll(DicesToRoll: RollRequest[]): {total: number, details: Roll[]}{
+    if (DicesToRoll.length = 0){return {total: 0, details: []}};
+
+
+  }*/
+
+  rollCmd(cmdLine: string){
     //phase 1: analyze command line
     if (!cmdLine || cmdLine.length < 1){
       console.log("Invalid or missing command line" + cmdLine);
@@ -90,12 +108,12 @@ export class DiceRollerComponent implements AfterViewInit{
     }
   }
 
-  onDiceReset(dice: Dice){
+  onDiceReset(dice: DiceGui){
     this.removeDicesFromRolls(dice);
     this.calculateTotals();
   }
 
-  private removeDicesFromRolls(dice: Dice): void{
+  private removeDicesFromRolls(dice: DiceGui): void{
     if (!dice || this.rolls.length < 1) {
       return
     }
@@ -136,7 +154,7 @@ export class DiceRollerComponent implements AfterViewInit{
     return this.totalRollOnTable;
   }
 
-  calculateSuccessfulRolls(dice: Dice): number{
+  calculateSuccessfulRolls(dice: DiceGui): number{
     if (!dice || !this.rolls){return 0};
     
     var count: number = 0;

@@ -7,13 +7,11 @@ var races = {
         Race
             .find(callback)
             .limit(limit)
-            .populate("race");
     },
 
     getById: function(id, callback){
         Race
             .findById(id, callback)
-            .populate("race");
     },
 
     add: function(race, callback){
@@ -26,6 +24,7 @@ var races = {
     },
 
     update: function(id, race, options, callback){
+        console.log(race);
         if(race._id) delete race._id;
         Race.findOneAndUpdate({ _id: id }, race, options, callback);
     }

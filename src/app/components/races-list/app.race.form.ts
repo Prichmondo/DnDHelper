@@ -4,12 +4,17 @@ import { Router, ActivatedRoute }       from '@angular/router';
 import { NgForm }                       from '@angular/forms';
 
 import { InputNumberComponent }         from '../inputs/input-number';
+import { TableDisplayData }             from '../table-data/table-display-data';
 
 import { Race, IAbilities, ISpeeds }    from '../../models/race';
 import { IRulebook }                    from '../../models/rulebook';
 import { RacesService }                 from '../../services/races.service';
 import { RulebookService }              from '../../services/rulebook.service';
 import { Utilities }                    from '../../utilities/app.utilities';
+import { DiceRoller }                   from '../dice-roller/diceroller.engine';
+import { RollRequest }                  from '../../models/roll';
+import { Dice }                         from '../../models/dice';
+
 
 @Component({
 
@@ -19,7 +24,7 @@ import { Utilities }                    from '../../utilities/app.utilities';
 
 })
 
-export class RaceForm {
+export class RaceForm implements AfterViewInit{
 
     rulebook: any;
 
@@ -31,7 +36,8 @@ export class RaceForm {
         private rulebookService: RulebookService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
-        private utils: Utilities
+        private utils: Utilities,
+        private diceRoller: DiceRoller
         ){}
 
     ngOnInit(){
@@ -57,6 +63,8 @@ export class RaceForm {
                                 .getById(params.id)
                                 .subscribe(race => {
                                     this.race = race;
+                                    console.log("Razza", race);
+                                    this.fixTempSpeeds(this.race.speeds);
                                 })
                         } else{
                             this.race = {
@@ -73,13 +81,12 @@ export class RaceForm {
                                     wisdom: 0,
                                     charisma: 0}
                                 }
+                            this.fixTempSpeeds(this.race.speeds);
                         }
-                        this.fixTempSpeeds(this.race.speeds);
+                        
                     });
 
-            });
-        
-        
+            });          
     }
 
     raceSave(){
@@ -91,8 +98,7 @@ export class RaceForm {
                 break;
             }
         }
-        if (!wControl){
-            alert("You must select at least one movement type");
+        if (!wControl && !this.utils.confirmBox("No speed selected for this race. This race won't be able to move. Do you want to confirm race creation?")){
             return;
         }
         
@@ -139,6 +145,17 @@ export class RaceForm {
             }
             if (wFound == false){console.log("Error in speed database: loaded data doesn't match rulebook!")}
         }
+    }
+
+    prova(){
+        var tmp: RollRequest[];
+        tmp = [
+            {dice: {name: "D8", faces: 8}, rolls: 3, modifier: 8, modifierIsActiveOnEveryRoll: false},
+            {dice: {name: "D6", faces: 6}, rolls: 4, modifier: 2, modifierIsActiveOnEveryRoll: true},
+            {dice: {name: "D20", faces: 20}, rolls: 2},
+        ];
+        console.log(tmp);
+        console.log(this.diceRoller.roll(tmp));
     }
 
     ngAfterViewInit(){

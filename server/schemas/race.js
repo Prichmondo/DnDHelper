@@ -21,7 +21,9 @@ var raceSchema = mongoose.Schema({
         enum: commons.size,
         required: true
     },
-    speeds: [speed],
+    speeds: {
+        type: [speed]
+    },
     abilitiesModifiers: { 
         type: abilitiesBonus,
         required: true

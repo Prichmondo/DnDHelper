@@ -21,7 +21,7 @@
                 <label for="raceSpeed">Speed</label>
                 <div class="row">
                     <div *ngFor="let speed of tempSpeeds" class="col-sx-12 col-sm-4">
-                        <input-number [description]="speed.name" [(value)]="speed.value" [setMin]="0" [setMax]="100" [greenCondition]="1" ngDefaultControl name="input-race-speed"></input-number>
+                        <input-number [(ngModel)]="speed.value" [description]="speed.name" [(value)]="speed.value" [setMin]="0" [setMax]="100" [greenCondition]="1" ngDefaultControl name="input-race-speed"></input-number>
                     </div>
                 </div>
             </div>
@@ -48,9 +48,15 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="raceSpecialAbilities">Special Abilities</label>
+                <table-display-data></table-display-data>
+            </div>
+
             <div class="text-right">
                 <button type="submit" class="btn btn-success">Save</button>
                 <button type="button" class="btn btn-warning" (click)="cancelEdit()">Cancel</button>
             </div>     
         </form>
+        <button type="button" class="btn btn-warning" (click)="prova()">prova</button>
     </div>

@@ -1,0 +1,46 @@
+<div *ngIf="initIsComplete">   
+    <table class="table table-stripped table-hover">
+        <thead>
+            <tr>
+                <ng-container *ngFor="let header of headers; let i = index">
+                    <ng-container *ngIf="isVisibleColumn(i)">
+                        <th>
+                            {{header}}
+                        </th>
+                    </ng-container>
+                </ng-container>
+                <th *ngIf="showView || (showEdit || showDelete) && !isReadOnly" class="text-center">
+                    Options
+                </th>
+            </tr>
+    </thead>
+        <tfoot>
+            <tr>
+                <td id="tableFooter" colspan="1000">
+                    <button *ngIf="showAdd && !isReadOnly" class="btn btn-info" (click)="add()">Add ability</button>
+                </td>
+            </tr>
+        <tbody>
+            <tr *ngFor="let item of items">
+                <ng-container *ngFor="let prop of listProperties; let i = index">
+                    <ng-container *ngIf="isVisibleColumn(i)">
+                        <td >
+                            {{item[prop]}}
+                        </td>
+                    </ng-container>
+                </ng-container>
+                <td *ngIf="showView || (showEdit || showDelete) && !isReadOnly" class="text-center">
+                    <button *ngIf="showView" class="btn btn-info action-button" type="button" (click)="delete(item[listProperties[0]])">
+                        View
+                    </button>
+                    <button *ngIf="showEdit && !isReadOnly" class="btn btn-info action-button" type="button" (click)="delete(item[listProperties[0]])">
+                        Edit
+                    </button>
+                    <button *ngIf="showDelete && !isReadOnly" class="btn btn-danger action-button" type="button" (click)="delete(item[listProperties[0]])">
+                        Remove
+                    </button>
+                </td>
+            </tr>
+        </tbody> 
+    </table>
+</div>

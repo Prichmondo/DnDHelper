@@ -27,7 +27,8 @@ import { RacesList }                from './components/races-list/app.races-list
 import { RaceForm }                 from './components/races-list/app.race.form';
 import { FormatRaceAbilities }      from './components/races-list/app.race-list.pipes';
 import { ClassForm }                from './components/app.classForm';
-import { ToggleButtonComponent }    from './components/inputs/toggle-button'
+import { ToggleButtonComponent }    from './components/inputs/toggle-button';
+import { TableDisplayData }         from './components/table-data/table-display-data';
 
 //SERVICES
 import { Utilities }                from './utilities/app.utilities';
@@ -45,6 +46,7 @@ import { CharactersService }        from './services/characthers.service';
 import { CharacterClassService }    from './services/characterClasses.service';
 import { RacesService }             from './services/races.service';
 import { PgSkillsService }          from './services/pgSkills.service';
+import { DiceRoller }               from './components/dice-roller/diceroller.engine';
 
 
 @NgModule({
@@ -69,7 +71,8 @@ import { PgSkillsService }          from './services/pgSkills.service';
     RacesList,
     RaceForm,
     FormatRaceAbilities,
-    ToggleButtonComponent
+    ToggleButtonComponent,
+    TableDisplayData
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ import { PgSkillsService }          from './services/pgSkills.service';
     AppRoutingModule,
   ],
   providers: [
-    Utilities, 
+    Utilities,
+    DiceRoller, 
     RulebookService,
     AuthenticationService,
     LocalStoreService,

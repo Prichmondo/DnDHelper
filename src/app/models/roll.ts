@@ -2,8 +2,15 @@ import { Dice } from './dice';
 
 export class Roll{
     dice: Dice;
-    modifier: number;
+    modifier?: number;
     roll: number;
+}
+
+export class RollRequest{
+  dice: Dice;
+  rolls: number;
+  modifier?: number;
+  modifierIsActiveOnEveryRoll?: boolean;
 }
 
 export class Totals{

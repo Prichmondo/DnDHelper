@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 export class Utilities {
 
-  public getRandomInteger (minVal, maxVal) {
+  public getRandomInteger (minVal, maxVal): number {
     if (!minVal || !maxVal || Math.floor(minVal)>=Math.floor(maxVal)) {
         console.log("Incorrect parameters");
         return null;
