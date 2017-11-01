@@ -9,10 +9,10 @@
         </div>
         <div class="col-sm-6 col-md-4 col-md-pull-4">
             <div class="row">   
-                <div class="col-md-12">
+                <div class="base-border col-md-12">
                     <input [ngModel]="character.firstName" class="input-inline-block from-control base-border" type="text" >
                     <input [ngModel]="character.lastName" class="input-inline-block from-control base-border" type="text" >
-                    <label> Character name </label>
+                    <label > Character name </label>
                 </div>
                 <div class="col-md-12"><input class="input-block from-control base-border" type="text"><label> Class and level </label></div>
                 <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Size </label></div>
@@ -114,14 +114,14 @@
             </div>
         </div>
 
-       <!-- <ng-container *ngIf="skills">
+       <ng-container *ngIf="skills">
             <div *ngFor="let skill of skills" class="col-md-4">
                 <div class="col-md-3">{{skill.name}}</div>
                 <div class="col-md-3">{{skill.modifier}}</div>            
                 <div class="col-md-3" [textContent]="skill.trainedOnly ? 'Y' : 'N'"></div>
                 <div class="col-md-3"><input type="number" min="0" max="23" [(ngModel)]="skill.rank"></div>
             </div>
-        </ng-container> -->
+        </ng-container> 
         
     </div>
  
