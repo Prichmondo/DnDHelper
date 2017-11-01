@@ -14,3 +14,9 @@ export interface IPgSkill extends Iskill{
 export interface IPgSkillsCollection {
     [key: string]: IPgSkill
 }
+
+export interface ISkillRequest {
+    
+    skill: string;
+    rank: number;
+}

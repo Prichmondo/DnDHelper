@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { ICharacter, ICharacterRequest } from '../models/character';
-import { Iskill, IPgSkill, IPgSkillsCollection } from '../models/pgSkills';
+import { Iskill, IPgSkill, IPgSkillsCollection, ISkillRequest } from '../models/pgSkills';
 import { PgClass } from '../models/pgClass';
 import { CharactersService } from '../services/characthers.service';
 import { PgSkillsService } from '../services/pgSkills.service';
@@ -68,10 +68,10 @@ export class CharacterSheetComponent {
      
     };
     
-    getSkillForm(skillForm:IPgSkill[]){
+    getSkillForm(skillForm:IPgSkill[]): ISkillRequest[]{
       var newSkillArr = skillForm.filter(s => s.rank > 0);
 
-      return newSkillArr.map(s => ({_id: s._id, rank: s.rank}));
+      return newSkillArr.map(s => ({skill: s._id.toString(), rank: s.rank}));
 
     }
 

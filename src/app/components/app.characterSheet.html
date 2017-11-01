@@ -9,7 +9,11 @@
         </div>
         <div class="col-sm-6 col-md-4 col-md-pull-4">
             <div class="row">   
-                <div class="col-md-12"><input [ngModel]="character.firstName" class="input-block from-control base-border" type="text" ><label> Character name </label></div>
+                <div class="col-md-12">
+                    <input [ngModel]="character.firstName" class="input-inline-block from-control base-border" type="text" >
+                    <input [ngModel]="character.lastName" class="input-inline-block from-control base-border" type="text" >
+                    <label> Character name </label>
+                </div>
                 <div class="col-md-12"><input class="input-block from-control base-border" type="text"><label> Class and level </label></div>
                 <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Size </label></div>
                 <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Age </label></div>
