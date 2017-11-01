@@ -40,11 +40,11 @@ router.put(url + "/:id", (req, res)=>{
     var id = req.params.id;
     var character = req.body;
     
-    Characters.update(id, character, {}, (error, character)=>{
+    Characters.update(id, character, {}, (error, characterResponse)=>{
         if(error){
             throw error;
         }
-        res.json(character);
+        res.json(characterResponse);
     });
 });
 
