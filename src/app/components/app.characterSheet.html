@@ -110,17 +110,18 @@
             </div>
         </div>
 
-        
-        <div *ngFor="let skill of skills" class="col-md-4">
-            <div class="col-md-3">{{skill.name}}</div>
-            <div class="col-md-3">{{skill.modifier}}</div>            
-            <div class="col-md-3" [textContent]="skill.trainedOnly ? 'Y' : 'N'"></div>
-        </div>
-
+       <!-- <ng-container *ngIf="skills">
+            <div *ngFor="let skill of skills" class="col-md-4">
+                <div class="col-md-3">{{skill.name}}</div>
+                <div class="col-md-3">{{skill.modifier}}</div>            
+                <div class="col-md-3" [textContent]="skill.trainedOnly ? 'Y' : 'N'"></div>
+                <div class="col-md-3"><input type="number" min="0" max="23" [(ngModel)]="skill.rank"></div>
+            </div>
+        </ng-container> -->
         
     </div>
  
-   
+   <div><button class="button" (click)="save()"> SALVA CAZZO   </button></div>
 </div>
 
 

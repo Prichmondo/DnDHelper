@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { ICharacter } from '../models/Character';
+import { ICharacter, ICharacterRequest } from '../models/Character';
 
 @Injectable()
 export class CharactersService{
@@ -24,5 +24,16 @@ export class CharactersService{
                 return body || { };
             });
     }
+
+    put(id: string, character: ICharacterRequest): Observable<ICharacter> {
+
+        return this.http
+            .put(this.apiUrl + "/" + id, character)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            });
+    }
+
 
 }
