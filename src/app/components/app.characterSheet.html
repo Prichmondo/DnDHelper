@@ -10,7 +10,7 @@
         <div class="col-sm-6 col-md-4 col-md-pull-4">
             <div class="row">   
                 <div class="col-md-12">
-                    <input [ngModel]="character.firstName" class="input-block from-control base-border" type="text" >                   
+                    <input [(ngModel)]="character.firstName" class="input-block from-control base-border" type="text" >                   
                     <label > Character name </label>
                 </div>
                 <div class="col-md-12"><input class="input-block from-control base-border" type="text"><label> Class and level </label></div>
@@ -40,38 +40,38 @@
             <div class="row"> 
                 <div class="col-sm-12 col-md-12"> 
                     <div class="standard-spacer row">  
-                        <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> STR </label></div>
+                        <div class="col-xs-3 col-sm-3 col-md-3"><input [(ngModel)]="character.abilities.strength" class="input-block from-control " type="text"><label> STR </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Score </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Temp </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Mod </label></div>
                     </div>
                     <div class="standard-spacer row">   
 
-                        <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> DEX </label></div>
+                        <div class="col-xs-3 col-sm-3 col-md-3"><input [(ngModel)]="character.abilities.dexterity" class="input-block from-control " type="text"><label> DEX </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Score </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Temp </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Mod </label></div>
                     </div>
                     <div class="standard-spacer row">   
-                        <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> CON </label></div>
+                        <div class="col-xs-3 col-sm-3 col-md-3"><input [(ngModel)]="character.abilities.constitution" class="input-block from-control " type="text"><label> CON </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Score </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Temp </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Mod </label></div>
                     </div>
                     <div class="standard-spacer row">   
-                        <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> WIS </label></div>
+                        <div class="col-xs-3 col-sm-3 col-md-3"><input [(ngModel)]="character.abilities.intelligence" class="input-block from-control " type="text"><label> WIS </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Score </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Temp </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Mod </label></div>
                     </div>
                     <div class="standard-spacer row">   
-                        <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> INT </label></div>
+                        <div class="col-xs-3 col-sm-3 col-md-3"><input [(ngModel)]="character.abilities.wisdom" class="input-block from-control " type="text"><label> INT </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Score </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Temp </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Mod </label></div>
                     </div>
                     <div class="standard-spacer row">   
-                        <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> CHA </label></div>
+                        <div class="col-xs-3 col-sm-3 col-md-3"><input [(ngModel)]="character.abilities.charisma" class="input-block from-control " type="text"><label> CHA </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Score </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Temp </label></div>
                         <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control " type="text"><label> Mod </label></div>

@@ -6,7 +6,8 @@ import { NgForm }                       from '@angular/forms';
 import { InputNumberComponent }         from '../inputs/input-number';
 import { TableDisplayData }             from '../table-data/table-display-data';
 
-import { Race, IAbilities, ISpeeds }    from '../../models/race';
+import { Race, ISpeeds }                from '../../models/race';
+import { IAbilities }                   from '../../models/Abilities'
 import { IRulebook }                    from '../../models/rulebook';
 import { RacesService }                 from '../../services/races.service';
 import { RulebookService }              from '../../services/rulebook.service';
