@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { ICharacter, ICharacterRequest } from '../models/character';
 import { Iskill, IPgSkill, IPgSkillsCollection, ISkillRequest } from '../models/pgSkills';
@@ -43,15 +44,7 @@ export class CharacterSheetComponent {
       this.activatedRoute
         .params
         .subscribe(params=>{
-          console.log("params", params);
-          this.getCharacter(params.id);
-
-          this.pgSkillsService
-          .get()
-          .subscribe((response: Iskill[])=>{
-              console.log("hey" + response);
-              this.skills = this.mapPgSkills(response, this.character.skills);
-          });
+          this.getData(params.id);
         })
     }
 
@@ -60,6 +53,9 @@ export class CharacterSheetComponent {
       return rolesBookSkills.map((rolesBookSkill: Iskill) => {
           var skill = {...rolesBookSkill} as IPgSkill;
           var characterSkill = characterSkills[skill.name];
+
+          console.log("characterSkill", skill.name, characterSkills)
+          
           skill.rank = characterSkill ? characterSkill.rank : 0 ;
           
           return skill;
@@ -75,13 +71,18 @@ export class CharacterSheetComponent {
 
     }
 
-    getCharacter(id:string){
-      this.charactersService.get().subscribe(characters => {
+    getData(id:string){
+    
+      Observable.zip(
+        this.charactersService.get(),
+        this.pgSkillsService.get()
+      ).subscribe(([characters, skills]) => {
+                       
         characters.map(character=>{
           if(character._id === id)
           {
             this.character = character;
-            return false;
+            this.skills = this.mapPgSkills(skills, this.character.skills);
           }
         });
 
@@ -92,10 +93,18 @@ export class CharacterSheetComponent {
     save(){
       var updateCharacter = {...this.character, skills: this.getSkillForm(this.skills)};
       delete updateCharacter._id;
+<<<<<<< HEAD
       this.charactersService.put(this.character._id, updateCharacter as ICharacterRequest).subscribe((character : ICharacter)=>{
         console.log(character)
       })
       
+=======
+      this.charactersService
+        .put(this.character._id, updateCharacter as ICharacterRequest)
+        .subscribe((character : ICharacter)=>{
+          console.log(character)
+        })
+>>>>>>> 97498c2ffb38d962bd53dc7eb332863d40bfffd0
     }
 
     updatedHp(newValue){
