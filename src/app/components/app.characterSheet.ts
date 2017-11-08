@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { ICharacter, ICharacterRequest } from '../models/character';
+import { IAbilities } from '../models/Abilities';
 import { Iskill, IPgSkill, IPgSkillsCollection, ISkillRequest } from '../models/pgSkills';
 import { PgClass } from '../models/pgClass';
 import { CharactersService } from '../services/characthers.service';
@@ -22,11 +23,14 @@ export class CharacterSheetComponent {
       lastName:"",
       campaign: null,
       race:"",
-      classes: [],
-      skills: {} as IPgSkillsCollection
+      classes:[],
+      skills: {} as IPgSkillsCollection,
+      abilities: {} as IAbilities
+      
     };
 
     skills: IPgSkill[];
+    
     
     hp = 100;
     current= this.hp;
@@ -46,6 +50,7 @@ export class CharacterSheetComponent {
         .subscribe(params=>{
           this.getData(params.id);
         })
+      
     }
 
     mapPgSkills(rolesBookSkills: Iskill[], characterSkills: IPgSkillsCollection): IPgSkill[] {
@@ -82,6 +87,8 @@ export class CharacterSheetComponent {
           if(character._id === id)
           {
             this.character = character;
+            this.checkAbilities(this.character);
+            console.log(character.abilities.strength)
             this.skills = this.mapPgSkills(skills, this.character.skills);
           }
         });
@@ -89,7 +96,24 @@ export class CharacterSheetComponent {
       })
     }
     
+    checkAbilities(character){
 
+      if (character.abilities === null || "undefined"){
+        
+        character.abilities = {
+          strength: 0,
+          dexterity: 0,
+          constitution: 0,
+          intelligence: 0,
+          wisdom: 0,
+          charisma: 0 
+        };
+        return character.abilities      
+      };
+      
+    };
+    
+  
     save(){
       var updateCharacter = {...this.character, skills: this.getSkillForm(this.skills)};
       delete updateCharacter._id;
