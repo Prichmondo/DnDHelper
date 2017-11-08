@@ -95,6 +95,7 @@ export class CharacterSheetComponent {
       this.charactersService.put(this.character._id, updateCharacter as ICharacterRequest).subscribe((character : ICharacter)=>{
         console.log(character)
       })
+      
     }
 
     updatedHp(newValue){
