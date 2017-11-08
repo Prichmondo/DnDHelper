@@ -6,6 +6,7 @@ function character(
     lastName,
     campaign,
     race,
+    abilities,
     classes,
     createDate,
     skills
@@ -15,6 +16,7 @@ function character(
     this.lastName = lastName;
     this.campaign = campaign;
     this.race = race;
+    this.abilities = abilities;
     this.classes = classes;
     this.createDate = createDate;
     this.skill = skills;
@@ -29,6 +31,7 @@ character.map = (character) => {
     characterResp.lastName = character.lastName;
     characterResp.campaign = character.campaign;
     characterResp.race = character.race;
+    characterResp.abilities = character.abilities;
     characterResp.classes = character.classes;
     characterResp.createDate = character.createDate;
     characterResp.skills = utils.arrayToObject(character.skills, (item, i) => {
