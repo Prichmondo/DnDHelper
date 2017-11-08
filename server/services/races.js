@@ -7,11 +7,13 @@ var races = {
         Race
             .find(callback)
             .limit(limit)
+            .populate("specials")
     },
 
     getById: function(id, callback){
         Race
             .findById(id, callback)
+            .populate("specials")
     },
 
     add: function(race, callback){

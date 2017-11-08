@@ -2,8 +2,8 @@ import { IAbilities } from './Abilities';
 
 
 export interface ISpeeds {
-    name: string;
-    value: number
+    type: string;
+    speed: number
 }
 
 export class Race {

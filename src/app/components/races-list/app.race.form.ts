@@ -46,16 +46,13 @@ export class RaceForm implements AfterViewInit{
             .get()
             .subscribe((response: IRulebook)=>{
                 this.rulebook = response;
-                console.log(this.rulebook.speeds);
-                console.log(this.rulebook.speeds.length);
                 for (var i = 0; i < this.rulebook.speeds.length; i++){
                     this.tempSpeeds.push({
-                        name: this.rulebook.speeds[i],
-                        value: 0
+                        type: this.rulebook.speeds[i],
+                        speed: 0
                     });
                 }
-                console.log(this.tempSpeeds);
-
+                
                 this.activatedRoute
                     .params
                     .subscribe(params => {
@@ -72,7 +69,7 @@ export class RaceForm implements AfterViewInit{
                                 _id: "", 
                                 name: "", 
                                 type: this.rulebook.raceType[0], 
-                                speeds: [{name: "Walk", value: 6}],
+                                speeds: [{type: "Walk", speed: 6}],
                                 size: this.rulebook.size[0],
                                 abilitiesModifiers: {
                                     strength: 0,
@@ -94,7 +91,7 @@ export class RaceForm implements AfterViewInit{
         //check selected speeds
         var wControl: boolean = false;
         for (var i = 0; i < this.tempSpeeds.length; i++){
-            if (this.tempSpeeds[i].value > 0){
+            if (this.tempSpeeds[i].speed > 0){
                 wControl = true;
                 break;
             }
@@ -131,20 +128,22 @@ export class RaceForm implements AfterViewInit{
             this.router.navigate(["/races-list"]);
         }
     }
-
+    
     private fixTempSpeeds(loadedSpeeds: ISpeeds[]){
-        if (!loadedSpeeds || !this.tempSpeeds || loadedSpeeds.length === 0){return}
 
-        var wFound: boolean = false
-        for (var i1 = 0; i1 < loadedSpeeds.length; i1++){
+        if (!loadedSpeeds || !this.tempSpeeds || loadedSpeeds.length === 0) return
+
+        var wFound: boolean = false;
+
+        for (var i = 0; i < loadedSpeeds.length; i++){
             wFound = false;
-            for (var i2 = 0; i2 < this.tempSpeeds.length; i2++){
-                if (loadedSpeeds[i1].name === this.tempSpeeds[i2].name){
-                    this.tempSpeeds[i2].value = loadedSpeeds[i1].value;
+            for (var j = 0; j < this.tempSpeeds.length; j++){
+                if (loadedSpeeds[i].type === this.tempSpeeds[j].type){
+                    this.tempSpeeds[j].speed = loadedSpeeds[i].speed;
                     wFound = true;
                 }
             }
-            if (wFound == false){console.log("Error in speed database: loaded data doesn't match rulebook!")}
+            if (wFound == false){console.log("Error in speed database: loaded data doesn't match rulebook!", loadedSpeeds)}
         }
     }
 
