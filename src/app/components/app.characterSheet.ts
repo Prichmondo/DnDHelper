@@ -93,18 +93,11 @@ export class CharacterSheetComponent {
     save(){
       var updateCharacter = {...this.character, skills: this.getSkillForm(this.skills)};
       delete updateCharacter._id;
-<<<<<<< HEAD
-      this.charactersService.put(this.character._id, updateCharacter as ICharacterRequest).subscribe((character : ICharacter)=>{
-        console.log(character)
-      })
-      
-=======
       this.charactersService
         .put(this.character._id, updateCharacter as ICharacterRequest)
         .subscribe((character : ICharacter)=>{
           console.log(character)
         })
->>>>>>> 97498c2ffb38d962bd53dc7eb332863d40bfffd0
     }
 
     updatedHp(newValue){
