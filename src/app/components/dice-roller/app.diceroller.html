@@ -2,16 +2,16 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-6">
-                <input type="text" class="form-control" id="textroll" placeholder="Roll command line">
+                <input type="text" class="form-control" id="textroll" placeholder="Roll command line" *ngIf="showCommandLine">
             </div>
-            <div class="col-xs-12 col-sm-2">
-                <button class="btn btn-success btn-block" (click)="rollAll()">Roll All</button>
+            <div class="col-xs-12 col-sm-2" *ngIf="showOptionButton">
+                <button class="btn btn-primary btn-block" (click)="toggleSettingsPane()"><i class="fa fa-cog" aria-hidden="true"></i> Settings   <i [ngClass]="settingPaneIsVisibe ? 'fa fa-caret-up' : 'fa fa-caret-down'" aria-hidden="true"></i> </button>
             </div>
-            <div class="col-xs-12 col-sm-2">
-                <button class="btn btn-warning btn-block" (click)="resetAll()">Reset All</button>
+            <div class="col-xs-12" [ngClass]="showOptionButton ? 'col-sm-2' : 'col-sm-3'">
+                <button class="btn btn-warning btn-block" (click)="resetAll()"><i class="fa fa-refresh" aria-hidden="true"></i> Reset All</button>
             </div>
-            <div class="col-xs-12 col-sm-2">
-                <button class="btn btn-primary btn-block" (click)="toggleSettingsPane()">Settings   <i [ngClass]="settingPaneIsVisibe ? 'fa fa-caret-up' : 'fa fa-caret-down'" aria-hidden="true"></i> </button>
+            <div class="col-xs-12" [ngClass]="showOptionButton ? 'col-sm-2' : 'col-sm-3'">
+                <button class="btn btn-success btn-block" (click)="rollAll()"><i class="fa fa-forward" aria-hidden="true"></i> Roll All</button>
             </div>
         </div>
         <div class="option-container" *ngIf="settingPaneIsVisibe">

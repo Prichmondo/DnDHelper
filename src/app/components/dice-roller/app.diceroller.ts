@@ -1,5 +1,6 @@
 import { Component,
          Input,
+         Output,
          OnInit,
          EventEmitter,
          ViewChildren,
@@ -35,20 +36,24 @@ export class DiceGui extends Dice {
 
 export class DiceRollerComponent implements AfterViewInit{
   title = 'Dice Roller';
-  dicesSet: DiceGui[] = DICES;
   rolls: Roll[] = [];
   totals: RollTotal[] = [];
   totalRollOnTable: number = 0;
   
-  settingPaneIsVisibe:boolean = false;
+  settingPaneIsVisibe: boolean = false;
+  readyToReturnResults: boolean = true;
 
   //component options
+  @Input() dicesSet: DiceGui[] = DICES;
   @Input() addRollsMode: boolean = false;
   @Input() addModifierToEveryRoll: boolean = false;
   @Input() showOptionButton: boolean = true;
   @Input() showLuckRate: boolean = true;
   @Input() showMarkerOptions: boolean = true;
   @Input() showCompactMode: boolean = true;
+  @Input() showCommandLine: boolean = true;
+  
+  @Output() onReturnResults: EventEmitter<object> = new EventEmitter<object>();
   
   @ViewChildren(DiceInputComponent) diceComponents:DiceInputComponent[];
   @ViewChildren(ToggleButtonComponentB) diceToggles:ToggleButtonComponentB[];
@@ -86,7 +91,10 @@ export class DiceRollerComponent implements AfterViewInit{
   }
 
   rollAll(){
+    this.readyToReturnResults = false;
     this.diceComponents.forEach(diceComponent => diceComponent.roll());
+    this.readyToReturnResults = true;
+    this.onReturnResults.emit({total: this.totalRollOnTable, rolls: this.rolls, totals: this.totals});
   }
 
   resetAll(showAlert: boolean = true){
@@ -108,6 +116,7 @@ export class DiceRollerComponent implements AfterViewInit{
     this.rolls.push(...this.engine.roll(newRequest).details);
     console.log(this.rolls);
     this.calculateTotals();
+    if (this.readyToReturnResults){this.onReturnResults.emit({total: this.totalRollOnTable, rolls: this.rolls, totals: this.totals})}
   }
 
   resetMarkOver(){
