@@ -12,8 +12,7 @@ import { RacesService }                 from '../../services/races.service';
 import { RulebookService }              from '../../services/rulebook.service';
 import { Utilities }                    from '../../utilities/app.utilities';
 import { DiceRoller }                   from '../dice-roller/diceroller.engine';
-import { RollRequest }                  from '../../models/roll';
-import { Dice }                         from '../../models/dice';
+import { Dice, RollRequest }            from '../../models/dice';
 
 
 @Component({
@@ -150,9 +149,9 @@ export class RaceForm implements AfterViewInit{
     prova(){
         var tmp: RollRequest[];
         tmp = [
-            {dice: {name: "D8", faces: 8}, rolls: 3, modifier: 8, modifierIsActiveOnEveryRoll: false},
-            {dice: {name: "D6", faces: 6}, rolls: 4, modifier: 2, modifierIsActiveOnEveryRoll: true},
-            {dice: {name: "D20", faces: 20}, rolls: 2},
+            {faces: 8, throws: 3, modifier: 8, modifierIsActiveOnEveryRoll: false},
+            {faces: 6, throws: 4, modifier: 2, modifierIsActiveOnEveryRoll: true},
+            {faces: 20, throws: 2},
         ];
         console.log(tmp);
         console.log(this.diceRoller.roll(tmp));

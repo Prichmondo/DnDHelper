@@ -4,35 +4,53 @@
             <div class="col-xs-12 col-sm-6">
                 <input type="text" class="form-control" id="textroll" placeholder="Roll command line">
             </div>
-            <div class="col-xs-6 col-sm-3">
+            <div class="col-xs-12 col-sm-2">
                 <button class="btn btn-success btn-block" (click)="rollAll()">Roll All</button>
             </div>
-            <div class="col-xs-6 col-sm-3">
+            <div class="col-xs-12 col-sm-2">
                 <button class="btn btn-warning btn-block" (click)="resetAll()">Reset All</button>
             </div>
+            <div class="col-xs-12 col-sm-2">
+                <button class="btn btn-primary btn-block" (click)="toggleSettingsPane()">Settings   <i [ngClass]="settingPaneIsVisibe ? 'fa fa-caret-up' : 'fa fa-caret-down'" aria-hidden="true"></i> </button>
+            </div>
         </div>
-        
+        <div class="option-container" *ngIf="settingPaneIsVisibe">
+            <toggle-button-boolean [(ngModel)]="showCompactMode" [(status)]="showCompactMode" [id]="'opt_compact'" [textToDisplay]="'Compact Mode'" (valueChange)="onOptionChange($event)" ngDefaultControl></toggle-button-boolean>
+            <toggle-button-boolean [(ngModel)]="addRollsMode" [(status)]="addRollsMode" [id]="'opt_addRolls'" [textToDisplay]="'Add Rolls'" (valueChange)="onOptionChange($event)" ngDefaultControl></toggle-button-boolean>
+            <toggle-button-boolean [(ngModel)]="addModifierToEveryRoll" [(status)]="addModifierToEveryRoll" [id]="'opt_modifierAllRolls'" [textToDisplay]="'Modifier on every dice'" (valueChange)="onOptionChange($event)" ngDefaultControl></toggle-button-boolean>
+            <toggle-button-boolean [(ngModel)]="showLuckRate" [(status)]="showLuckRate" [id]="'opt_luck'" [textToDisplay]="'Show Luck'" (valueChange)="onOptionChange($event)" ngDefaultControl></toggle-button-boolean>
+            <toggle-button-boolean [(ngModel)]="showMarkerOptions" [(status)]="showMarkerOptions" [id]="'opt_marker'" [textToDisplay]="'Use markers'" (valueChange)="onOptionChange($event)" ngDefaultControl></toggle-button-boolean>
+        </div>
+
+        <div class="option-container" *ngIf="showCompactMode">
+            <ng-container *ngFor="let dice of dicesSet">
+                <toggle-button-boolean [(ngModel)]="dice.isDiceVisible" [(status)]="dice.isDiceVisible" [id]="dice" [textToDisplay]="'D' + dice.faces" (valueChange)="onDiceToggle($event)" ngDefaultControl></toggle-button-boolean>
+            </ng-container>
+        </div>
+            
         <div class="dice-container">
             <div *ngFor="let dice of dicesSet">
-                <dice-input [dice]="dice" [quantity]="0" [modifier]="0" [showRollButton]="true" (rollDiceEvent)="onDiceRoll($event)" (resetDiceEvent)="onDiceReset($event)" ngDefaultControl></dice-input>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8 roll-results">
-                        <div class="dice" *ngFor="let roll of (rolls | filter_rolls_by_dice:dice)" [ngClass]="{'roll-success': roll.roll > dice.markOver}">
-                            <span class="dice-value">{{roll.roll}}</span>
+                <ng-container *ngIf="!showCompactMode || dice.isDiceVisible">
+                    <dice-input [dice]="dice" [quantity]="0" [modifier]="0" [showRollButton]="true" (rollDiceEvent)="onDiceRoll($event)" (resetDiceEvent)="onDiceReset($event)" ngDefaultControl></dice-input>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-8 roll-results">
+                            <div class="dice" *ngFor="let roll of (rolls | filter_rolls_by_dice:dice)" [ngClass]="{'roll-success': roll.roll > dice.markOver}">
+                                <span class="dice-value">{{roll.roll}}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <div *ngFor="let total of (totals | filter_totals_by_dice:dice)">
-                            <h3 *ngIf="total.totalRoll > 0">{{total.dice.name}} Total: {{total.totalRoll}} + {{total.totalModifier}} = {{total.total}}</h3>
-                            <h5 *ngIf="total.totalRoll > 0">Luck rate: {{total.luck}}%</h5>
-                            <div *ngIf="total.totalRoll > 0">
-                                <h5 class="in-line">Mark rolls over:</h5>
-                                <input [(ngModel)]="dice.markOver" type="number" min="0" [max]="dice.faces" [(value)]="dice.markOver" name="markover">
-                                <h5 class="in-line">:  {{calculateSuccessfulRolls(dice)}} Successful</h5>
+                        <div class="col-xs-12 col-sm-4">
+                            <div *ngFor="let total of (totals | filter_totals_by_dice:dice)">
+                                <h3 *ngIf="total.totalRoll > 0">D{{total.faces}} Total: {{total.totalRoll}} + {{total.totalModifier}} = {{total.total}}</h3>
+                                <h5 *ngIf="showLuckRate && total.totalRoll > 0">Luck rate: {{total.luck}}%</h5>
+                                <div *ngIf="showMarkerOptions && total.totalRoll > 0" class="marker-box">
+                                    <h5 class="in-line">Mark rolls over:</h5>
+                                    <input [(ngModel)]="dice.markOver" type="number" min="0" [max]="dice.faces" [(value)]="dice.markOver" name="markover">
+                                    <h5 class="in-line">:  {{calculateSuccessfulRolls(dice)}} Successful</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </ng-container>
             </div>
         </div>
 

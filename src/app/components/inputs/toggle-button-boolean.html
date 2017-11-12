@@ -1,0 +1,8 @@
+<button
+    type="checkbox"
+    class="btn btn-sm"
+    [ngClass] = "{'btn-default': !status, 'btn-primary': status}"
+    (click)="onClick(status)"
+>
+    {{textToDisplay}}
+</button>

@@ -28,6 +28,7 @@ import { RaceForm }                 from './components/races-list/app.race.form'
 import { FormatRaceAbilities }      from './components/races-list/app.race-list.pipes';
 import { ClassForm }                from './components/app.classForm';
 import { ToggleButtonComponent }    from './components/inputs/toggle-button';
+import { ToggleButtonComponentB }   from './components/inputs/toggle-button-boolean';
 import { TableDisplayData }         from './components/table-data/table-display-data';
 
 //SERVICES
@@ -72,6 +73,7 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
     RaceForm,
     FormatRaceAbilities,
     ToggleButtonComponent,
+    ToggleButtonComponentB,
     TableDisplayData
   ],
   imports: [

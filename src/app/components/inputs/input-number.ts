@@ -17,9 +17,7 @@ export class InputNumberComponent {
     @Input() greenCondition: number = 9999;
 
     @Output() valueChange: EventEmitter<Number>;
-
-    mousePressed: boolean = false;
-    
+  
     constructor () {
         this.valueChange = new EventEmitter<Number>();
     }
@@ -28,12 +26,7 @@ export class InputNumberComponent {
     }
     
     spinnerIncrease(){
-        this.mousePressed = true;
         this.spinnerChange(1);
-    }
-
-    private spinnerIncreaseMouseUp(){
-        this.mousePressed = false;
     }
 
     private spinnerDecrease() {

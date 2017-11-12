@@ -9,7 +9,7 @@
                         </th>
                     </ng-container>
                 </ng-container>
-                <th *ngIf="showView || (showEdit || showDelete) && !isReadOnly" class="text-center">
+                <th *ngIf="showView || (showEdit || showDelete) && !isReadOnly" class="text-right">
                     Options
                 </th>
             </tr>
@@ -17,7 +17,7 @@
         <tfoot>
             <tr>
                 <td id="tableFooter" colspan="1000">
-                    <button *ngIf="showAdd && !isReadOnly" class="btn btn-info" (click)="add()">Add ability</button>
+                    <button *ngIf="showAdd && !isReadOnly" class="btn btn-primary" (click)="add()">Add ability</button>
                 </td>
             </tr>
         <tbody>
@@ -29,11 +29,11 @@
                         </td>
                     </ng-container>
                 </ng-container>
-                <td *ngIf="showView || (showEdit || showDelete) && !isReadOnly" class="text-center">
-                    <button *ngIf="showView" class="btn btn-info action-button" type="button" (click)="delete(item[listProperties[0]])">
+                <td *ngIf="showView || (showEdit || showDelete) && !isReadOnly" class="text-right">
+                    <button *ngIf="showView" class="btn btn-primary action-button" type="button" (click)="delete(item[listProperties[0]])">
                         View
                     </button>
-                    <button *ngIf="showEdit && !isReadOnly" class="btn btn-info action-button" type="button" (click)="delete(item[listProperties[0]])">
+                    <button *ngIf="showEdit && !isReadOnly" class="btn btn-primary action-button" type="button" (click)="delete(item[listProperties[0]])">
                         Edit
                     </button>
                     <button *ngIf="showDelete && !isReadOnly" class="btn btn-danger action-button" type="button" (click)="delete(item[listProperties[0]])">
