@@ -85,6 +85,10 @@ ul, li {
     width: 100%;
 
 }
+.input-inline-block{
+    display: inline-block;
+    width: auto;
+}
 
 
 

@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform }                      from '@angular/core';
 
-import { Race, IAbilities }                         from '../../models/race';
-import { Utilities }                                from '../../utilities/app.utilities';
+import { Race }                         from '../../models/race';
+import { IAbilities }                   from '../../models/Abilities';
+import { Utilities }                                   from '../../utilities/app.utilities';
 
 
 @Pipe({

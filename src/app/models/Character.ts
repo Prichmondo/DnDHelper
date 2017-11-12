@@ -1,6 +1,7 @@
 import { Campaign } from './campaign';
 import { PgClass } from './pgClass';
-import { IPgSkillsCollection, IPgSkill, Iskill } from '../models/pgSkills';
+import { IPgSkillsCollection, IPgSkill, Iskill, ISkillRequest } from '../models/pgSkills';
+import { IAbilities } from '../models/Abilities';
 
 export interface ICharacter{
 
@@ -11,6 +12,7 @@ export interface ICharacter{
     race:string;
     classes:PgClass[];
     skills: IPgSkillsCollection;
+    abilities: IAbilities;
 }
 
 export interface ICharacterRequest{
@@ -19,6 +21,6 @@ export interface ICharacterRequest{
     campaign:Campaign;
     race:string;
     classes:PgClass[];
-    skills: IPgSkill[];
+    skills: ISkillRequest[];
 }
 

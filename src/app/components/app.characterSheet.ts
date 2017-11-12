@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { ICharacter, ICharacterRequest } from '../models/character';
-import { Iskill, IPgSkill, IPgSkillsCollection } from '../models/pgSkills';
+import { IAbilities } from '../models/Abilities';
+import { Iskill, IPgSkill, IPgSkillsCollection, ISkillRequest } from '../models/pgSkills';
 import { PgClass } from '../models/pgClass';
 import { CharactersService } from '../services/characthers.service';
 import { PgSkillsService } from '../services/pgSkills.service';
@@ -21,11 +23,14 @@ export class CharacterSheetComponent {
       lastName:"",
       campaign: null,
       race:"",
-      classes: [],
-      skills: {} as IPgSkillsCollection
+      classes:[],
+      skills: {} as IPgSkillsCollection,
+      abilities: {} as IAbilities
+      
     };
 
     skills: IPgSkill[];
+    
     
     hp = 100;
     current= this.hp;
@@ -43,16 +48,9 @@ export class CharacterSheetComponent {
       this.activatedRoute
         .params
         .subscribe(params=>{
-          console.log("params", params);
-          this.getCharacter(params.id);
-
-          this.pgSkillsService
-          .get()
-          .subscribe((response: Iskill[])=>{
-              console.log("hey" + response);
-              this.skills = this.mapPgSkills(response, this.character.skills);
-          });
+          this.getData(params.id);
         })
+      
     }
 
     mapPgSkills(rolesBookSkills: Iskill[], characterSkills: IPgSkillsCollection): IPgSkill[] {
@@ -60,6 +58,9 @@ export class CharacterSheetComponent {
       return rolesBookSkills.map((rolesBookSkill: Iskill) => {
           var skill = {...rolesBookSkill} as IPgSkill;
           var characterSkill = characterSkills[skill.name];
+
+          console.log("characterSkill", skill.name, characterSkills)
+          
           skill.rank = characterSkill ? characterSkill.rank : 0 ;
           
           return skill;
@@ -68,33 +69,59 @@ export class CharacterSheetComponent {
      
     };
     
-    getSkillForm(skillForm:IPgSkill[]){
+    getSkillForm(skillForm:IPgSkill[]): ISkillRequest[]{
       var newSkillArr = skillForm.filter(s => s.rank > 0);
 
-      return newSkillArr.map(s => ({_id: s._id, rank: s.rank}));
+      return newSkillArr.map(s => ({skill: s._id.toString(), rank: s.rank}));
 
     }
 
-    getCharacter(id:string){
-      this.charactersService.get().subscribe(characters => {
+    getData(id:string){
+    
+      Observable.zip(
+        this.charactersService.get(),
+        this.pgSkillsService.get()
+      ).subscribe(([characters, skills]) => {
+                       
         characters.map(character=>{
           if(character._id === id)
           {
             this.character = character;
-            return false;
+            this.checkAbilities(this.character);
+            console.log(character.abilities.strength)
+            this.skills = this.mapPgSkills(skills, this.character.skills);
           }
         });
 
       })
     }
     
+    checkAbilities(character){
 
+      if (character.abilities === null || "undefined"){
+        
+        character.abilities = {
+          strength: 0,
+          dexterity: 0,
+          constitution: 0,
+          intelligence: 0,
+          wisdom: 0,
+          charisma: 0 
+        };
+        return character.abilities      
+      };
+      
+    };
+    
+  
     save(){
       var updateCharacter = {...this.character, skills: this.getSkillForm(this.skills)};
       delete updateCharacter._id;
-      this.charactersService.put(this.character._id, updateCharacter as ICharacterRequest).subscribe((character : ICharacter)=>{
-        console.log(character)
-      })
+      this.charactersService
+        .put(this.character._id, updateCharacter as ICharacterRequest)
+        .subscribe((character : ICharacter)=>{
+          console.log(character)
+        })
     }
 
     updatedHp(newValue){
