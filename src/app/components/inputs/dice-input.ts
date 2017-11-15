@@ -6,8 +6,8 @@ import { Component,
 
 import { Utilities }                from '../../utilities/app.utilities';
 import { InputNumberComponent }     from './input-number';
-import { Dice }                     from '../../models/dice';
-import { Roll }                     from '../../models/roll';
+
+import { Dice, RollRequest }        from '../../models/dice';
 
 @Component({
   selector: 'dice-input',
@@ -16,15 +16,15 @@ import { Roll }                     from '../../models/roll';
 })
 
 export class DiceInputComponent {
-    @Input() dice :Dice = {name: "d4", faces: 4};
+    @Input() dice :Dice = {faces: 4};
     @Input() quantity :number = 0;
     @Input() modifier :number = 0;
     @Input() showRollButton :boolean = true;
 
-    @Output() rollDiceEvent: EventEmitter<Roll[]> = new EventEmitter<Roll[]>();
+    @Output() rollDiceEvent: EventEmitter<RollRequest> = new EventEmitter<RollRequest>();
     @Output() resetDiceEvent: EventEmitter<Dice> = new EventEmitter<Dice>();
 
-    rolls: Roll[] = [];
+    rollRequest: RollRequest;
     
     constructor(
       private utils: Utilities,
@@ -32,16 +32,7 @@ export class DiceInputComponent {
 
     roll(){
       if (this.quantity > 0) {
-        this.rolls = []
-        this.modifier = Math.floor(this.modifier);
-        for (var i = 0; i < this.quantity; i++){
-          this.rolls.push({
-            dice: this.dice,
-            modifier: this.modifier,
-            roll: 0
-          })
-        }
-        this.rollDiceEvent.emit(this.rolls);
+        this.rollDiceEvent.emit(this.rollRequest = {faces: this.dice.faces, throws: Math.floor(this.quantity), modifier: Math.floor(this.modifier)});
       } else{
         this.resetDiceEvent.emit(this.dice);
       }

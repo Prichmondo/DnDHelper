@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform }  from '@angular/core';
 
-import { Dice }                 from '../../models/dice';
-import { Roll, Totals }         from '../../models/roll';
+import { Dice, Roll, RollTotal }   from '../../models/dice';
 
 
 @Pipe({
@@ -15,7 +14,7 @@ export class RollFilterByDice implements PipeTransform {
         if (!rolls || !filter) {
             return rolls;
         }
-        return rolls.filter(roll => roll.dice.faces == filter.faces);
+        return rolls.filter(roll => roll.faces == filter.faces);
     }
 }
 
@@ -26,10 +25,10 @@ export class RollFilterByDice implements PipeTransform {
 
 export class TotalFilterByDice implements PipeTransform {
     
-    transform(totals: Totals[], filter: Dice): Totals[] {
+    transform(totals: RollTotal[], filter: Dice): RollTotal[] {
         if (!totals || !filter) {
             return totals;
         }
-        return totals.filter(total => total.dice.faces == filter.faces);
+        return totals.filter(total => total.faces == filter.faces);
     }
 }

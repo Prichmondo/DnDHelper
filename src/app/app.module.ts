@@ -4,6 +4,7 @@ import { NgModule }                 from '@angular/core';
 import { FormsModule }              from '@angular/forms';
 import { HttpModule }               from '@angular/http';
 import { RouterModule, Router }     from '@angular/router';
+import { from }                     from 'rxjs/observable/from';
 
 //COMPONENTS
 import { AppRoutingModule }         from './app.routing.module';
@@ -25,10 +26,12 @@ import { RollFilterByDice,
          TotalFilterByDice }        from './components/dice-roller/app.diceroller.pipes';
 import { RacesList }                from './components/races-list/app.races-list';
 import { RaceForm }                 from './components/races-list/app.race.form';
-import { FormatRaceAbilities }      from './components/races-list/app.race-list.pipes';
+import { SpecialAbilitiesComponent }from './components/races-list/app.race-special-abilities';
 import { ClassForm }                from './components/app.classForm';
 import { ToggleButtonComponent }    from './components/inputs/toggle-button';
+import { ToggleButtonComponentB }   from './components/inputs/toggle-button-boolean';
 import { TableDisplayData }         from './components/table-data/table-display-data';
+import { Pipe3FiltersText }         from './utilities/pipe.3filters.text';
 
 //SERVICES
 import { Utilities }                from './utilities/app.utilities';
@@ -70,9 +73,11 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
     ClassForm,
     RacesList,
     RaceForm,
-    FormatRaceAbilities,
+    SpecialAbilitiesComponent,
     ToggleButtonComponent,
-    TableDisplayData
+    ToggleButtonComponentB,
+    TableDisplayData,
+    Pipe3FiltersText
   ],
   imports: [
     BrowserModule,
@@ -94,6 +99,7 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
     CharacterClassService,
     RacesService,
     PgSkillsService,
+    Pipe3FiltersText,
     AuthGuard, Anonymus,
     Broadcaster, UsersService
   ],

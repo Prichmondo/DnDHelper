@@ -17,6 +17,7 @@ import { ShowClasses }              from './components/app.showClasses';
 import { ClassForm }                from './components/app.classForm';
 import { RacesList }                from './components/races-list/app.races-list';
 import { RaceForm }                 from './components/races-list/app.race.form';
+import { SpecialAbilitiesComponent }from './components/races-list/app.race-special-abilities';
 
 const routes: AppRoute[] = [
     //ROUTESs
@@ -145,8 +146,17 @@ const routes: AppRoute[] = [
       },  
       path          : 'race-form/:id',
       component     : RaceForm 
-    }
-    
+    },
+
+    { nav: { 
+      name        : "Special Abilities",
+      position    : NavMenu.Main,
+      visible     : NavVisibility.LoggedIn
+  },  
+    path          : 'race-special-abilities',
+    component     : SpecialAbilitiesComponent 
+  },
+  
     //CampaignsComponent
 
     //REDIRECTION

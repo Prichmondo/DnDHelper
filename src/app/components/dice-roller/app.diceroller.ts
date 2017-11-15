@@ -1,26 +1,30 @@
 import { Component,
          Input,
+         Output,
          OnInit,
          EventEmitter,
          ViewChildren,
          AfterViewInit,
          QueryList }                from '@angular/core';
 
-import { Dice }                    from '../../models/dice';
-import { Roll,
-         Totals,
-         RollRequest }              from '../../models/roll';
+import { Dice,
+         Roll,
+         RollTotal,
+         RollRequest }              from '../../models/dice';
 import { DICES }                    from '../../mocks/mock-dices';
 import { Utilities }                from '../../utilities/app.utilities';
 import { InputNumberComponent }     from '../inputs/input-number';
 import { DiceInputComponent }       from '../inputs/dice-input';
+import { ToggleButtonComponentB }   from '../inputs/toggle-button-boolean';
 import { RollFilterByDice,
          TotalFilterByDice }        from './app.diceroller.pipes';
+import { DiceRoller }               from './diceroller.engine';
 
 
 export class DiceGui extends Dice {
   
   markOver?: number;
+  isDiceVisible?: boolean;
 }
         
 
@@ -32,33 +36,36 @@ export class DiceGui extends Dice {
 
 export class DiceRollerComponent implements AfterViewInit{
   title = 'Dice Roller';
-  dicesSet: DiceGui[] = DICES;
   rolls: Roll[] = [];
-  totals: Totals[] = [];
+  totals: RollTotal[] = [];
   totalRollOnTable: number = 0;
+  
+  settingPaneIsVisibe: boolean = false;
+  readyToReturnResults: boolean = true;
 
   //component options
-  addRollsMode: boolean = false;
+  @Input() dicesSet: DiceGui[] = DICES;
+  @Input() addRollsMode: boolean = false;
+  @Input() addModifierToEveryRoll: boolean = false;
+  @Input() showOptionButton: boolean = true;
+  @Input() showLuckRate: boolean = true;
+  @Input() showMarkerOptions: boolean = true;
+  @Input() showCompactMode: boolean = true;
+  @Input() showCommandLine: boolean = true;
+  
+  @Output() onReturnResults: EventEmitter<object> = new EventEmitter<object>();
   
   @ViewChildren(DiceInputComponent) diceComponents:DiceInputComponent[];
+  @ViewChildren(ToggleButtonComponentB) diceToggles:ToggleButtonComponentB[];
+
+  constructor(
+    private utils: Utilities,
+    private engine: DiceRoller
+  ){}
 
   ngAfterViewInit(){
     
   }
-
-  constructor(
-    private utils: Utilities,
-  ){}
-
-  roll(){
-    return "ciao";
-  }
-
-  /*roll(DicesToRoll: RollRequest[]): {total: number, details: Roll[]}{
-    if (DicesToRoll.length = 0){return {total: 0, details: []}};
-
-
-  }*/
 
   rollCmd(cmdLine: string){
     //phase 1: analyze command line
@@ -76,7 +83,10 @@ export class DiceRollerComponent implements AfterViewInit{
   }
 
   rollAll(){
+    this.readyToReturnResults = false;
     this.diceComponents.forEach(diceComponent => diceComponent.roll());
+    this.readyToReturnResults = true;
+    this.onReturnResults.emit({total: this.totalRollOnTable, rolls: this.rolls, totals: this.totals});
   }
 
   resetAll(showAlert: boolean = true){
@@ -86,41 +96,75 @@ export class DiceRollerComponent implements AfterViewInit{
     this.resetMarkOver();
   }
 
-  onDiceRoll(newRoll: Roll[]){
-    if (!newRoll){return this.rolls}
-
-    if (this.addRollsMode === false) {
-      this.removeDicesFromRolls(newRoll[0].dice)
+  onDiceRoll(newRequest: RollRequest[]){
+    if (!newRequest){return this.rolls}
+    if (typeof(newRequest) === "object"){newRequest = [].concat(newRequest)}
+    console.log(newRequest);
+    if (!this.addRollsMode) {
+      this.removeDicesFromRolls(newRequest[0].faces);
     }
+    newRequest.forEach(request => {request.modifierIsActiveOnEveryRoll = this.addModifierToEveryRoll});
 
-    for (var i = 0; i < newRoll.length; i++){
-      if (newRoll[i].roll === 0) {
-        newRoll[i].roll = this.utils.getRandomInteger(1,newRoll[i].dice.faces);
-      }
-      this.rolls.push(newRoll[i]);
-    }
+    this.rolls.push(...this.engine.roll(newRequest).details);
+    console.log(this.rolls);
     this.calculateTotals();
+    if (this.readyToReturnResults){this.onReturnResults.emit({total: this.totalRollOnTable, rolls: this.rolls, totals: this.totals})}
   }
 
   resetMarkOver(){
-    for (var i = 0; i < this.dicesSet.length; i++){
-      this.dicesSet[i].markOver = this.dicesSet[i].faces;
-    }
+    this.dicesSet.map(dice => {dice.markOver = dice.faces});
   }
 
   onDiceReset(dice: DiceGui){
-    this.removeDicesFromRolls(dice);
+    this.removeDicesFromRolls(dice.faces);
     this.calculateTotals();
   }
 
-  private removeDicesFromRolls(dice: DiceGui): void{
-    if (!dice || this.rolls.length < 1) {
+  private removeDicesFromRolls(diceTypeToBeRemoved: number): void{
+    console.log("removing dice", diceTypeToBeRemoved);
+    if (!diceTypeToBeRemoved || this.rolls.length < 1) {
       return
     }
     for (var i = (this.rolls.length - 1); i > -1; i--){
-      if (this.rolls[i].dice.faces === dice.faces){
+      if (this.rolls[i].faces === diceTypeToBeRemoved){
         this.rolls.splice(i, 1);
       }
+    }
+  }
+
+  onDiceToggle(receivedData){
+    for (var i = 0; i < this.dicesSet.length; i++){
+      if (receivedData.id.faces === this.dicesSet[i].faces){
+        this.dicesSet[i].isDiceVisible = receivedData.value;
+        if (receivedData.value === false){this.onDiceReset(receivedData.id)}
+        return;
+      }
+    }
+  }
+
+  onOptionChange(receivedData){
+    console.log("option changed", receivedData);
+    if (!receivedData) return
+
+    switch (receivedData.id) {
+      case "opt_compact":
+        this.showCompactMode = receivedData.value;
+        break;
+        case "opt_addRolls":
+        this.addRollsMode = receivedData.value;
+        break;
+        case "opt_modifierAllRolls":
+        this.addModifierToEveryRoll = receivedData.value;
+        break;
+        case "opt_luck":
+        this.showLuckRate = receivedData.value;
+        break;
+        case "opt_marker":
+        this.showMarkerOptions = receivedData.value;
+        break;
+      default:
+        console.log("Unknown option:", receivedData);
+        break;
     }
   }
 
@@ -128,30 +172,10 @@ export class DiceRollerComponent implements AfterViewInit{
     this.totals = [];
     this.totalRollOnTable = 0;
     if (this.rolls.length > 0) {
-      var iDices = 0;
-      var iRolls = 0;
-      var diceCounter = 0;
-      for (iDices = 0; iDices < this.dicesSet.length; iDices++){
-        this.totals.push({
-          dice: this.dicesSet[iDices],
-          totalRoll: 0,
-          totalModifier: 0,
-          total: 0,
-          luck: 0
-        })
-        for (iRolls = 0, diceCounter = 0; iRolls < this.rolls.length; iRolls++){
-          if (this.rolls[iRolls].dice.name == this.totals[iDices].dice.name){
-            diceCounter += 1;
-            this.totals[iDices].totalRoll += this.rolls[iRolls].roll;
-            this.totals[iDices].totalModifier += this.rolls[iRolls].modifier;
-            this.totals[iDices].total += (this.rolls[iRolls].roll + this.rolls[iRolls].modifier);
-            this.totals[iDices].luck = Math.round((this.totals[iDices].totalRoll - diceCounter) / ((this.totals[iDices].dice.faces -1) * diceCounter) * 100);
-            this.totalRollOnTable += (this.rolls[iRolls].roll + this.rolls[iRolls].modifier);
-          }
-        }
-      }
+      var tmpTotal = this.engine.calculateTotals(this.rolls, this.dicesSet);
+      this.totals = tmpTotal.totalsByDice;
+      this.totalRollOnTable = tmpTotal.tot;
     }
-    return this.totalRollOnTable;
   }
 
   calculateSuccessfulRolls(dice: DiceGui): number{
@@ -159,13 +183,17 @@ export class DiceRollerComponent implements AfterViewInit{
     
     var count: number = 0;
     for (var i = 0; i < this.rolls.length; i++){
-      if (this.rolls[i].dice.name === dice.name){
+      if (this.rolls[i].faces === dice.faces){
         if (this.rolls[i].roll > dice.markOver){
           count ++;
         }
       }
     }
     return count;
+  }
+
+  toggleSettingsPane(){
+    this.settingPaneIsVisibe = !this.settingPaneIsVisibe;
   }
 
   ngOnInit(){

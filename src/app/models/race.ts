@@ -6,6 +6,12 @@ export interface ISpeeds {
     speed: number
 }
 
+export interface ISpecialAbilities {
+    _id?: string;
+    name: string;
+    description: string
+}
+
 export class Race {
     _id?: string;
     name: string;

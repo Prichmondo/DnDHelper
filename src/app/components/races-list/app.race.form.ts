@@ -12,9 +12,6 @@ import { IRulebook }                    from '../../models/rulebook';
 import { RacesService }                 from '../../services/races.service';
 import { RulebookService }              from '../../services/rulebook.service';
 import { Utilities }                    from '../../utilities/app.utilities';
-import { DiceRoller }                   from '../dice-roller/diceroller.engine';
-import { RollRequest }                  from '../../models/roll';
-import { Dice }                         from '../../models/dice';
 
 
 @Component({
@@ -38,7 +35,6 @@ export class RaceForm implements AfterViewInit{
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private utils: Utilities,
-        private diceRoller: DiceRoller
         ){}
 
     ngOnInit(){
@@ -145,17 +141,6 @@ export class RaceForm implements AfterViewInit{
             }
             if (wFound == false){console.log("Error in speed database: loaded data doesn't match rulebook!", loadedSpeeds)}
         }
-    }
-
-    prova(){
-        var tmp: RollRequest[];
-        tmp = [
-            {dice: {name: "D8", faces: 8}, rolls: 3, modifier: 8, modifierIsActiveOnEveryRoll: false},
-            {dice: {name: "D6", faces: 6}, rolls: 4, modifier: 2, modifierIsActiveOnEveryRoll: true},
-            {dice: {name: "D20", faces: 20}, rolls: 2},
-        ];
-        console.log(tmp);
-        console.log(this.diceRoller.roll(tmp));
     }
 
     ngAfterViewInit(){

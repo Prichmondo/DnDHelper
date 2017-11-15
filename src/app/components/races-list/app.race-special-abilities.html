@@ -1,0 +1,67 @@
+
+<h2>Races: Special Abilities List</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="input-group input-group">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+            <input type="text" class="form-control" placeholder="Type to search or add special"
+                [(ngModel)]="currentSearch" [(value)]="currentSearch"
+                aria-label="Username" aria-describedby="sizing-addon1"
+                (keyup)="onSearchBoxChange(value)"
+                (paste)="onSearchBoxChange(value)"
+            >
+            <span class="input-group-btn">
+                <button class="btn btn-success option-column" [disabled]="filterCount > 0"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+            </span>
+        </div>
+    </div>
+</div>
+<div>   
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th class="checkmark-column">
+                    
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th class="text-center option-column">
+                    Options
+                </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    
+                </td>
+            </tr>
+        <tbody>
+            <tr *ngFor="let special of applyTextFilter(specials, currentSearch)">
+                <td (click)="rowSelect(special._id)">
+                    <i class="check-sign" [ngClass]="{'fa fa-check' : special.selected}" aria-hidden="true"></i>
+                </td>
+                <td (click)="rowSelect(special._id)">
+                    {{special.name}}
+                </td>
+                <td (click)="rowSelect(special._id)">
+                    {{special.description}}
+                </td>
+                <td class="text-center" *ngIf="canEdit">
+                    <button class="btn btn-info action-button" (click)="edit(special._id)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-danger action-button" (click)="delete(special._id)">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody> 
+    </table>
+
+</div>

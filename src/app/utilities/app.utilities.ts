@@ -37,6 +37,19 @@ export class Utilities {
         return str;
     }
 
+    public trim(str): string{
+        str = "" + str;
+        str = str.trim();
+        return str;
+    }
+
+    public trimUCase(str): string{
+        str = "" + str;
+        str = str.trim();
+        str = str.toUpperCase();
+        return str;
+    }
+
     public formatNumberAsTextFroceSign(inputNumber: number): string{
         if (!inputNumber){ return null };
 

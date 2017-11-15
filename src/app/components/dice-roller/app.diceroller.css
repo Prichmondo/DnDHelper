@@ -20,7 +20,7 @@
 }
 
 .roll-success{
-  background-color: green;
+  background-color: #5cb85c;
 }
 
 .dice-value{
@@ -52,7 +52,29 @@
   margin-top: 5px;
 }
 
+.option-container {
+  padding: 5px;
+  /*background-color: white;*/
+  border-color: lightgray;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 1px;
+  margin-top: 5px;
+  text-align: center;
+}
+
 .header {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.marker-box {
+  margin-bottom: 5px;
+}
+
+.footer {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: bold;
 }

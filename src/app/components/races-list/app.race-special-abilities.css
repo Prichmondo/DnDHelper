@@ -1,0 +1,23 @@
+
+.option-column{
+    min-width: 100px;
+}
+
+.checkmark-column{
+    width: 30px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.selected-row{
+    background-color: #5cb85c;
+    color: white;
+}
+
+.check-sign {
+    color: #5cb85c;
+}
+
+.line-selected-text{
+    font-weight: bold;
+}
