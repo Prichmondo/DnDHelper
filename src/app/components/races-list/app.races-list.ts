@@ -2,12 +2,11 @@ import { Component, OnInit, Input }     from '@angular/core';
 import { Router }                       from '@angular/router';
 
 import { Race }                         from '../../models/race';
+import { IAbilities }                   from '../../models/Abilities';
+
 import { RacesService }                 from '../../services/races.service';
 import { RaceForm }                     from './app.race.form';
 import { Utilities }                    from '../../utilities/app.utilities';
-
-import { FormatRaceAbilities }          from './app.race-list.pipes'
-//import { CharactersService } from '../services/characthers.service';
 
 @Component({
 
@@ -19,11 +18,12 @@ import { FormatRaceAbilities }          from './app.race-list.pipes'
 export class RacesList{
 
     races: Race[] = [];
-    utils: Utilities;
+    
 
     constructor(
         private racesService: RacesService,
-        private router: Router
+        private router: Router,
+        private utils: Utilities
         ){}
 
     ngOnInit(){
@@ -55,5 +55,39 @@ export class RacesList{
     add(){
         this.router.navigate(["/race-form"]);
     }
+
+    private formatRaceAbilitiesForRaceList(abilities: IAbilities): string[] {
+        if (!abilities) {
+            return [];
+        }
+        var formattedAbilities: string[] = [];
+        var count: number = 0;
+        if (abilities.strength != 0) {
+            count += 1;
+            formattedAbilities.push("STR " + this.utils.formatNumberAsTextFroceSign(abilities.strength));
+        }
+        if (abilities.dexterity != 0) {
+            count += 1;
+            formattedAbilities.push("DEX " + this.utils.formatNumberAsTextFroceSign(abilities.dexterity));
+        }
+        if (abilities.constitution != 0) {
+            count += 1;
+            formattedAbilities.push("CON " + this.utils.formatNumberAsTextFroceSign(abilities.constitution));
+        }
+        if (abilities.intelligence != 0) {
+            count += 1;
+            formattedAbilities.push("INT " + this.utils.formatNumberAsTextFroceSign(abilities.intelligence));
+        }
+        if (abilities.wisdom != 0) {
+            count += 1;
+            formattedAbilities.push("WIS " + this.utils.formatNumberAsTextFroceSign(abilities.wisdom));
+        }
+        if (abilities.charisma != 0) {
+            count += 1;
+            formattedAbilities.push("CHA " + this.utils.formatNumberAsTextFroceSign(abilities.charisma));
+        }
+        return formattedAbilities;
+    }
+
     
 }

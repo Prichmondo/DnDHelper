@@ -58,21 +58,13 @@ export class DiceRollerComponent implements AfterViewInit{
   @ViewChildren(DiceInputComponent) diceComponents:DiceInputComponent[];
   @ViewChildren(ToggleButtonComponentB) diceToggles:ToggleButtonComponentB[];
 
-  ngAfterViewInit(){
-    
-  }
-
   constructor(
     private utils: Utilities,
     private engine: DiceRoller
   ){}
 
-  test(checked){
-    console.log(checked);
-  }
-
-  roll(){
-    return "ciao";
+  ngAfterViewInit(){
+    
   }
 
   rollCmd(cmdLine: string){

@@ -41,7 +41,7 @@
                 </td>
                 <td>
                     <ul class="ability-container list-inline">
-                        <li *ngFor="let ability of (race.abilitiesModifiers | format_race_abilities: race.abilitiesModifiers)">{{ability}}</li>
+                        <li *ngFor="let ability of formatRaceAbilitiesForRaceList(race.abilitiesModifiers)">{{ability}}</li>
                     </ul>
                 </td>
                 <td class="text-center">

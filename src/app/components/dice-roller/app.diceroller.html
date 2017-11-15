@@ -17,9 +17,9 @@
         <div class="option-container" *ngIf="settingPaneIsVisibe">
             <toggle-button-boolean [(ngModel)]="showCompactMode" [(status)]="showCompactMode" [id]="'opt_compact'" [textToDisplay]="'Compact Mode'" (valueChange)="onOptionChange($event)" ngDefaultControl></toggle-button-boolean>
             <toggle-button-boolean [(ngModel)]="addRollsMode" [(status)]="addRollsMode" [id]="'opt_addRolls'" [textToDisplay]="'Add Rolls'" (valueChange)="onOptionChange($event)" ngDefaultControl></toggle-button-boolean>
-            <toggle-button-boolean [(ngModel)]="addModifierToEveryRoll" [(status)]="addModifierToEveryRoll" [id]="'opt_modifierAllRolls'" [textToDisplay]="'Modifier on every dice'" (valueChange)="onOptionChange($event)" ngDefaultControl></toggle-button-boolean>
+            <toggle-button-boolean [(ngModel)]="addModifierToEveryRoll" [(status)]="addModifierToEveryRoll" [id]="'opt_modifierAllRolls'" [textToDisplay]="'Modifier on Every Dice'" (valueChange)="onOptionChange($event)" ngDefaultControl></toggle-button-boolean>
             <toggle-button-boolean [(ngModel)]="showLuckRate" [(status)]="showLuckRate" [id]="'opt_luck'" [textToDisplay]="'Show Luck'" (valueChange)="onOptionChange($event)" ngDefaultControl></toggle-button-boolean>
-            <toggle-button-boolean [(ngModel)]="showMarkerOptions" [(status)]="showMarkerOptions" [id]="'opt_marker'" [textToDisplay]="'Use markers'" (valueChange)="onOptionChange($event)" ngDefaultControl></toggle-button-boolean>
+            <toggle-button-boolean [(ngModel)]="showMarkerOptions" [(status)]="showMarkerOptions" [id]="'opt_marker'" [textToDisplay]="'Use Markers'" (valueChange)="onOptionChange($event)" ngDefaultControl></toggle-button-boolean>
         </div>
 
         <div class="option-container" *ngIf="showCompactMode">
@@ -57,8 +57,8 @@
 
 
 
-        <div class="footer text-right">
-            <h3 *ngIf="totalRollOnTable > 0"><span class="label label-info text-center btn-block">Total Roll: {{totalRollOnTable}}</span></h3>
+        <div class="alert alert-success text-right footer" *ngIf="totalRollOnTable > 0">
+            Total Roll: {{totalRollOnTable}}
         </div>
     </div>
 </div>
