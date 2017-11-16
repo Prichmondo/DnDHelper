@@ -14,6 +14,12 @@ ul, li {
     border-bottom: 1px solid black;
     box-shadow: none;
 }
+
+.no-border {
+    border: 0;
+    box-shadow: none;
+}
+
 .standard-spacer{
     margin-top:20px;
 }
@@ -90,5 +96,11 @@ ul, li {
     width: auto;
 }
 
-
+.centered {
+    text-align: center;
+}
+.ability-input{
+    max-width:45px;
+    text-align: center;
+}
 

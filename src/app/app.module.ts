@@ -52,6 +52,7 @@ import { PgSkillsService }          from './services/pgSkills.service';
 import { DiceRoller }               from './components/dice-roller/diceroller.engine';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +78,8 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
     ToggleButtonComponent,
     ToggleButtonComponentB,
     TableDisplayData,
-    Pipe3FiltersText
+    Pipe3FiltersText,
+    
   ],
   imports: [
     BrowserModule,
