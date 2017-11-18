@@ -98,7 +98,7 @@ export class CharacterSheetComponent {
     
     checkAbilities(character){
 
-      if (character.abilities === null || "undefined"){
+      if (typeof character.abilities === "undefined" || character.abilities === null){
         
         character.abilities = {
           strength: 0,
@@ -108,7 +108,7 @@ export class CharacterSheetComponent {
           wisdom: 0,
           charisma: 0 
         };
-        return character.abilities      
+              
       };
       
     };

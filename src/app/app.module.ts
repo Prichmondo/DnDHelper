@@ -54,7 +54,6 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
 import { ModalComponent }           from './components/modal/modal.component';
 import { ModalService }             from './services/modal.service'
 
-
 @NgModule({
   declarations: [
     AppComponent,
