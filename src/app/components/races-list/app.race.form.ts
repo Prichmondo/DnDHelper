@@ -12,7 +12,7 @@ import { IRulebook }                    from '../../models/rulebook';
 import { RacesService }                 from '../../services/races.service';
 import { RulebookService }              from '../../services/rulebook.service';
 import { Utilities }                    from '../../utilities/app.utilities';
-
+import { ModalService }                 from '../../services/modal.service'
 
 @Component({
 
@@ -25,7 +25,6 @@ import { Utilities }                    from '../../utilities/app.utilities';
 export class RaceForm implements AfterViewInit{
 
     rulebook: any;
-
     race :Race;
     tempSpeeds: ISpeeds[] = [];
 
@@ -35,6 +34,7 @@ export class RaceForm implements AfterViewInit{
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private utils: Utilities,
+        private modalService: ModalService
         ){}
 
     ngOnInit(){
@@ -141,6 +141,10 @@ export class RaceForm implements AfterViewInit{
             }
             if (wFound == false){console.log("Error in speed database: loaded data doesn't match rulebook!", loadedSpeeds)}
         }
+    }
+
+    toggleModal(){
+        this.modalService.open("specialsModal"); 
     }
 
     ngAfterViewInit(){

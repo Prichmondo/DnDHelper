@@ -1,0 +1,7 @@
+.modal {
+    display: block;
+}
+
+[hidden], template {
+    display: none !important;
+}

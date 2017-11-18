@@ -4,6 +4,7 @@ import { NgModule }                 from '@angular/core';
 import { FormsModule }              from '@angular/forms';
 import { HttpModule }               from '@angular/http';
 import { RouterModule, Router }     from '@angular/router';
+import { BrowserAnimationsModule }  from '@angular/platform-browser/animations'
 import { from }                     from 'rxjs/observable/from';
 
 //COMPONENTS
@@ -50,6 +51,8 @@ import { CharacterClassService }    from './services/characterClasses.service';
 import { RacesService }             from './services/races.service';
 import { PgSkillsService }          from './services/pgSkills.service';
 import { DiceRoller }               from './components/dice-roller/diceroller.engine';
+import { ModalComponent }           from './components/modal/modal.component';
+import { ModalService }             from './services/modal.service'
 
 
 @NgModule({
@@ -77,13 +80,15 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
     ToggleButtonComponent,
     ToggleButtonComponentB,
     TableDisplayData,
-    Pipe3FiltersText
+    Pipe3FiltersText,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
     Utilities,
@@ -101,7 +106,8 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
     PgSkillsService,
     Pipe3FiltersText,
     AuthGuard, Anonymus,
-    Broadcaster, UsersService
+    Broadcaster, UsersService, 
+    ModalService
   ],
   bootstrap: [AppComponent]
 })

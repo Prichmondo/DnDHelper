@@ -19,8 +19,6 @@ router.post(url, (req, res)=>{
     
     var userForm = req.body;
     
-    console.log("USER POST BODY", req.body);
-
     UserService
         .create(userForm, (error, user)=>{
             if(error){
