@@ -1,5 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ModalService } from '../../services/modal.service'
+import { IButton } from '../../models/button';
+
+export interface IMobalButton extends IButton {}
 
 @Component({
   selector: 'app-modal',
@@ -9,6 +12,11 @@ import { ModalService } from '../../services/modal.service'
 export class ModalComponent implements OnInit, OnDestroy {
 
   @Input() id: string;
+  @Input() title: string;
+  @Input() hideCloseBtn: boolean = false;
+  @Input() width: number = 600;
+  @Input() buttons: IMobalButton[] = [];
+
   visible: boolean = false;
   display: boolean = false;
   timeout;
@@ -16,6 +24,22 @@ export class ModalComponent implements OnInit, OnDestroy {
   constructor(
     public modalService: ModalService
   ) {}
+
+  getButtons():IMobalButton[] {
+    
+    var buttons:IMobalButton[] = [];
+
+    buttons = this.buttons.map((button, i)=>{
+      if(typeof button.className === "undefined" || button.className === null)
+        button.className = "btn btn-default"
+      return button;
+    }) || [];
+
+    if(!this.hideCloseBtn)
+      buttons.push({text:"Close", className: "btn btn-default", click:this.toggleModal.bind(this)});
+
+    return buttons;
+  }
 
   ngOnInit() {
     this.modalService
@@ -52,10 +76,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   toggleModal(){
-    if(this.visible)
-      this.modalService.close(this.id);
-    else
-      this.modalService.open(this.id);
+    this.modalService.toggle(this.id);
   }
 
 }

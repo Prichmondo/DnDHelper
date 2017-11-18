@@ -28,14 +28,11 @@ export class ModalService {
         delete this.modals[id];
   }
 
-  open(id:string): void {
-    if(this.exist(id))
-      this.modals[id].next(true);
-  }
-
-  close(id:string): void {
-    if(this.exist(id))
-      this.modals[id].next(false);
+  toggle(id:string): void {
+    if(this.exist(id)){
+      this.modals[id].next(!this.isVisible(id));
+    }
+    
   }
 
   isVisible(id:string): boolean {

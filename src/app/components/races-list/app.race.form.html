@@ -60,7 +60,13 @@
         </form>
         <button class="btn btn-primary" (click)="toggleModal()">Add Special</button>
 
-        <app-modal id="specialsModal">
+        <app-modal
+            id="specialsModal"
+            title="Select Specials"
+            [hideCloseBtn]="false"
+            [width]="1000"
+            [buttons]="[{ text:'Save', click:toggleModal }, { text:'Close', click:toggleModal }]">
             <app-race-special-abilities></app-race-special-abilities>
         </app-modal>
+        
     </div>

@@ -143,8 +143,8 @@ export class RaceForm implements AfterViewInit{
         }
     }
 
-    toggleModal(){
-        this.modalService.open("specialsModal"); 
+    toggleModal = (): void => {
+        this.modalService.toggle("specialsModal");
     }
 
     ngAfterViewInit(){
