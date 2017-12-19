@@ -26,7 +26,8 @@ import { RollFilterByDice,
          TotalFilterByDice }        from './components/dice-roller/app.diceroller.pipes';
 import { RacesList }                from './components/races-list/app.races-list';
 import { RaceForm }                 from './components/races-list/app.race.form';
-import { SpecialAbilitiesComponent }from './components/races-list/app.race-special-abilities';
+import { SpecialAbilitiesComponent }from './components/special-abilities/app.race-special-abilities';
+import { SpecialAbilityForm }       from './components/special-abilities/app.race-specials.form';
 import { ClassForm }                from './components/app.classForm';
 import { ToggleButtonComponent }    from './components/inputs/toggle-button';
 import { ToggleButtonComponentB }   from './components/inputs/toggle-button-boolean';
@@ -48,6 +49,7 @@ import { Broadcaster }              from './services/broadcast';
 import { CharactersService }        from './services/characthers.service';
 import { CharacterClassService }    from './services/characterClasses.service';
 import { RacesService }             from './services/races.service';
+import { SpecialAbilitiesService }  from './services/special.abilities.service';
 import { PgSkillsService }          from './services/pgSkills.service';
 import { DiceRoller }               from './components/dice-roller/diceroller.engine';
 import { ModalComponent }           from './components/modal/modal.component';
@@ -75,6 +77,7 @@ import { ModalService }             from './services/modal.service'
     RacesList,
     RaceForm,
     SpecialAbilitiesComponent,
+    SpecialAbilityForm,
     ToggleButtonComponent,
     ToggleButtonComponentB,
     TableDisplayData,
@@ -100,6 +103,7 @@ import { ModalService }             from './services/modal.service'
     CharactersService,
     CharacterClassService,
     RacesService,
+    SpecialAbilitiesService,
     PgSkillsService,
     Pipe3FiltersText,
     AuthGuard, Anonymus,

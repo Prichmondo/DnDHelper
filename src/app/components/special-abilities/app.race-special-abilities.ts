@@ -11,7 +11,8 @@ import { validateConfig }           from '@angular/router/src/config';
 import { ISpecialAbilities }        from '../../models/race';
 
 import { Utilities }                from '../../utilities/app.utilities';
-
+import { ModalService }             from '../../services/modal.service'
+import { SpecialAbilitiesService }  from '../../services/special.abilities.service';
 
 export interface ISpecialAbilitiesList extends ISpecialAbilities {
 
@@ -46,6 +47,8 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
 
   constructor(
     private utils: Utilities,
+    private modalService: ModalService,
+    private specialService: SpecialAbilitiesService
   ){}
 
 
@@ -61,12 +64,41 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
     }
   }
 
+  add(){
+    this.modalService.toggle("specialsFormModal");
+  }
+
   edit(id: string){
 
   }
 
   delete(id: string){
 
+  }
+
+  onFormClosed(newSpecial: ISpecialAbilitiesList){
+    console.log("on form closed", newSpecial);
+    if (!newSpecial || newSpecial._id === "-1"){
+      this.modalService.toggle("specialsFormModal");
+      return;
+    }
+
+    if (this.filterCount > 0){ //edit table line
+      for (var i = 0; i < this.specials.length; i++){
+        if (newSpecial._id === this.specials[i]._id){
+          this.specials[i].name = newSpecial.name;
+          this.specials[i].description = newSpecial.description;
+          break;
+        }
+      }
+    } else { //add line to table
+      newSpecial.selected = true;
+      newSpecial.unsaved = true;
+      this.specials.unshift(newSpecial);
+      this.currentSearch = "";
+    }
+    this.modalService.toggle("specialsFormModal");
+    return;
   }
 
   onSearchBoxChange(value: string){
@@ -92,15 +124,37 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
 
   ngOnInit(){
     this.specials = [
-      {_id: "0", name: "Scoreggiare Migliorato", description: "Può scoreggiare mentre fa una capriola"},
+      {_id: "0", name: "Scoreggiare Migliorato", description: "Può scoreggiare mentre fa una capriola", selected: false},
       {_id: "1", name: "Maestro Laido", description: "+2 a tutte le prove da laido", selected: true},
-      {_id: "2", name: "Peto eroico", description: "Una volta al giorno, se gli scappa una scoreggia può dare la colpa a un goblin. Non cumulabile con Scoreggiare migliorato"},
-      {_id: "3", name: "Visione del vero", description: "A lui nun ce lo freghi"},
+      {_id: "2", name: "Peto eroico", description: "Una volta al giorno, se gli scappa una scoreggia può dare la colpa a un goblin. Non cumulabile con Scoreggiare migliorato", selected: false},
+      {_id: "3", name: "Visione del vero", description: "A lui nun ce lo freghi", selected: false},
       {_id: "4", name: "Scurovisione", description: "Vedi sempre come se avessi gli occhiali da sole", selected: true},
-      {_id: "5", name: "Immunità ai veleni", description: "Puoi mangiare il cilantro senza che ti venga il cagotto"},
-      {_id: "6", name: "Immunità al fuoco", description: "Sì sì, come no."}
+      {_id: "5", name: "Immunità ai veleni", description: "Puoi mangiare il cilantro senza che ti venga il cagotto", selected: false},
+      {_id: "6", name: "Immunità al fuoco", description: "Sì sì, come no.", selected: false}
     ];
 
+    this.specialService
+      .get()
+      .subscribe((response: any[])=>{
+          console.log(response);
+          this.specials = response;
+
+          for (var i = 0; i < this.specials.length; i++){
+            this.specials[i].selected = false;
+            this.specials[i].unsaved = false;
+          }
+
+          if (this.selected.length > 0){
+            for (i = 0; i < this.selected.length; i++){
+              for (var j = 0; j < this.specials.length; j++){
+                if (this.selected[i] === this.specials[j]._id){
+                  this.specials[j].selected = true;
+                }
+              }
+            }
+          }
+          this.specials.sort(this.utils.sortByKey("selected",true,"name"));
+      });
   }
 
 }

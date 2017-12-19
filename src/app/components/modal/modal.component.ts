@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, ViewChild, ViewChildren } from '@angular/core';
 import { ModalService } from '../../services/modal.service'
 import { IButton } from '../../models/button';
 

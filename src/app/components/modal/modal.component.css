@@ -9,3 +9,7 @@
 [hidden], template {
     display: none !important;
 }
+
+.allow-overflow {
+    overflow: visible;
+}
