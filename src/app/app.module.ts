@@ -4,7 +4,6 @@ import { NgModule }                 from '@angular/core';
 import { FormsModule }              from '@angular/forms';
 import { HttpModule }               from '@angular/http';
 import { RouterModule, Router }     from '@angular/router';
-import { BrowserAnimationsModule }  from '@angular/platform-browser/animations'
 import { from }                     from 'rxjs/observable/from';
 
 //COMPONENTS
@@ -87,7 +86,6 @@ import { ModalService }             from './services/modal.service'
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    BrowserAnimationsModule
   ],
   providers: [
     Utilities,
