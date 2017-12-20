@@ -5,12 +5,10 @@
     <div class="col-xs-12">
         <div class="input-group">
             <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" placeholder="Type to search or add special"
+            <input type="text" class="form-control" placeholder="Type to search or add special" id="specialSearchBox"
                 [(ngModel)]="currentSearch" [(value)]="currentSearch"
                 aria-label="Username" aria-describedby="sizing-addon1"
-                (keyup)="onSearchBoxChange(value)"
-                (paste)="onSearchBoxChange(value)"
-                
+                (keyup)="checkKey($event)"               
             >
             <span class="input-group-btn">
                 <button class="btn btn-success option-column" [disabled]="filterCount > 0" (click)="add(e)"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
@@ -55,10 +53,10 @@
                     {{special.description}}
                 </td>
                 <td class="text-center" *ngIf="canEdit">
-                    <button class="btn btn-info action-button" (click)="edit(special._id)">
+                    <button class="btn btn-info action-button" (click)="edit(special)">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </button>
-                    <button class="btn btn-danger action-button" (click)="delete(special._id)">
+                    <button class="btn btn-danger action-button" (click)="delete(special)">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </button>
                 </td>
@@ -72,7 +70,7 @@
         [hideCloseBtn]="true"
         [buttons]="[]"
         >
-        <app-race-special-abilities-form [name]="currentSearch" (specialFormOutput)="onFormClosed($event)"></app-race-special-abilities-form>
+        <app-race-special-abilities-form [id]="modalFormID" [name]="modalFormName" [description]="modalFormDescription" (specialFormOutput)="onFormClosed($event)"></app-race-special-abilities-form>
     </app-modal>
 
 </div>

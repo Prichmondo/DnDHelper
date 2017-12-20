@@ -34,6 +34,10 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
   currentSearch: string;
   filterCount: number = 0;
 
+  modalFormID: string;
+  modalFormName: string;
+  modalFormDescription: string;
+
   //component options
   @Input() tableIsSelectable: boolean = false;
   @Input() selected: string[] = [];
@@ -65,19 +69,49 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
   }
 
   add(){
+    this.modalFormID = "-1";
+    this.modalFormName = this.utils.trim(this.currentSearch);
+    this.modalFormDescription = "";
     this.modalService.toggle("specialsFormModal");
   }
 
-  edit(id: string){
-
+  edit(special: ISpecialAbilitiesList){
+    this.modalFormID = special._id;
+    this.modalFormName = special.name;
+    this.modalFormDescription = special.description;
+    this.modalService.toggle("specialsFormModal");
   }
 
-  delete(id: string){
+  delete(special: ISpecialAbilitiesList){
+    if (this.utils.confirmBox("Are you sure you want to delete the following special ability?\n\n" +
+                              this.utils.Ucase(special.name) +
+                              "\n\nPlease note this operation cannot be reverted and the ability will be removed from all characters")){
+      this.specialService
+        .delete(special._id)
+        .subscribe((response: any) => {
+          for (var i = 0; i < this.specials.length; i++){
+            if (this.specials[i]._id === special._id){
+              this.specials.splice(i, 1);
+              break;
+            }
+          }
+        })
+    }
+  }
 
+  checkKey(e){
+    if (e.keyCode == 27) {
+      this.currentSearch = "";
+      return;
+    }
+
+    if (e.keyCode == 13 && this.filterCount === 0) {
+      this.add();
+      return;
+    }
   }
 
   onFormClosed(newSpecial: ISpecialAbilitiesList){
-    console.log("on form closed", newSpecial);
     if (!newSpecial || newSpecial._id === "-1"){
       this.modalService.toggle("specialsFormModal");
       return;
@@ -101,12 +135,7 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
     return;
   }
 
-  onSearchBoxChange(value: string){
-    console.log("textbox changed:", value);
-  }
-
   private applyTextFilter(specials: ISpecialAbilitiesList[], filter: string): any[] {
-    console.log(specials, filter);
     if (!filter || filter.length === 0) {
       this.filterCount = specials.length
       return specials;
@@ -123,7 +152,7 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
   }
 
   ngOnInit(){
-    this.specials = [
+    /*this.specials = [
       {_id: "0", name: "Scoreggiare Migliorato", description: "Può scoreggiare mentre fa una capriola", selected: false},
       {_id: "1", name: "Maestro Laido", description: "+2 a tutte le prove da laido", selected: true},
       {_id: "2", name: "Peto eroico", description: "Una volta al giorno, se gli scappa una scoreggia può dare la colpa a un goblin. Non cumulabile con Scoreggiare migliorato", selected: false},
@@ -131,12 +160,11 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
       {_id: "4", name: "Scurovisione", description: "Vedi sempre come se avessi gli occhiali da sole", selected: true},
       {_id: "5", name: "Immunità ai veleni", description: "Puoi mangiare il cilantro senza che ti venga il cagotto", selected: false},
       {_id: "6", name: "Immunità al fuoco", description: "Sì sì, come no.", selected: false}
-    ];
+    ];*/
 
     this.specialService
       .get()
       .subscribe((response: any[])=>{
-          console.log(response);
           this.specials = response;
 
           for (var i = 0; i < this.specials.length; i++){

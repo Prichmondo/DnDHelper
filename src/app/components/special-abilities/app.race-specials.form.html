@@ -1,18 +1,19 @@
 <div>
-    <h2>Edit Special Ability</h2>
+    <h2>Special Ability Editor</h2>
     <form>
         <div class="form-group">
             <label for="specialName">Name</label>
-            <input [(ngModel)]="name" class="form-control" id="specialName" placeholder="" [(value)]="name" name="input-special-name" required>
+            <input [(ngModel)]="name" class="form-control" id="specialName" placeholder="" [(value)]="name" name="input-special-name" required (keyup)="checkKey($event)" autofocus="autofocus">
         </div>
         <div class="form-group">
             <label for="specialDescription">Full Description</label>
-            <input [(ngModel)]="description" class="form-control" id="specialDescription" placeholder="" [(value)]="description" name="input-special-description" required>
+            <input [(ngModel)]="description" class="form-control" id="specialDescription" placeholder="" [(value)]="description" name="input-special-description" required (keyup)="checkKey($event)">
         </div>
+        <div class="alert alert-warning" *ngIf="id != '-1'">Alert: any change will be replicated in every character using this special ability.</div>
 
         <div class="text-right">
             <button type="submit" class="btn btn-success" (click)="specialSave()">Save</button>
             <button type="reset" class="btn btn-warning" (click)="cancelEdit($event)">Cancel</button>
-        </div>     
+        </div>
     </form>
 </div>

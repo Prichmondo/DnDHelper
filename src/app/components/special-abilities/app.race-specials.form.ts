@@ -2,14 +2,14 @@ import { Component,
             Input,
             Output,
             OnInit,
-            EventEmitter }           from '@angular/core';
+            EventEmitter,
+            AfterViewChecked }         from '@angular/core';
 import { validateConfig }           from '@angular/router/src/config';
 
 import { ISpecialAbilities }        from '../../models/race';
 
 import { Utilities }                from '../../utilities/app.utilities';
 import { SpecialAbilitiesService }  from '../../services/special.abilities.service';
-import { ISpecialAbilitiesList } from 'app/components/special-abilities/app.race-special-abilities';
 
 
 @Component({
@@ -53,7 +53,7 @@ export class SpecialAbilityForm {
 
         for (var i = 0; i < this.specials.length; i++) {
             if (this.utils.Ucase(this.specials[i].name) === this.utils.trimUCase(this.name) && this.id !== this.specials[i]._id){
-                window.alert("Another special ability with the same name already exists <br>Please choose a different name.");
+                window.alert("Another special ability with the same name already exists\nPlease choose a different name.");
                 return;
             }
         }
@@ -85,6 +85,21 @@ export class SpecialAbilityForm {
         
     }
 
+    checkKey(e){
+        if (e.keyCode == 27) {
+          this.cancelEdit();
+          return;
+        }
+    }
+    
+    ngAfterViewChecked() {
+
+        /*if (this.id === "-1"){
+            document.getElementById("specialDescription").focus();
+        } else {
+            document.getElementById("specialName").focus();
+        }*/
+    }
 
 
     ngOnInit() {
@@ -95,5 +110,6 @@ export class SpecialAbilityForm {
             console.log(response);
             this.specials = response;
         });
+
     }
 }
