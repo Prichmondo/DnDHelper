@@ -63,7 +63,9 @@
         <app-modal
             id="specialsModal"
             title="Select Specials"
+            [onClose]="onClose"
             [hideCloseBtn]="false"
+            [hideXBtn]="false"
             [width]="1000"
             [buttons]="[{ text:'Save', click:toggleModal }, { text:'Close', click:toggleModal }]">
             <app-race-special-abilities></app-race-special-abilities>

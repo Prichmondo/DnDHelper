@@ -147,6 +147,10 @@ export class RaceForm implements AfterViewInit{
         this.modalService.toggle("specialsModal");
     }
 
+    onClose = (): void => {
+        console.log("modal closed");
+    }
+
     ngAfterViewInit(){
     }
 }

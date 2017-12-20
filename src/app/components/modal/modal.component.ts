@@ -14,8 +14,10 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
   @Input() title: string;
   @Input() hideCloseBtn: boolean = false;
+  @Input() hideXBtn: boolean = false;
   @Input() width: number = 600;
   @Input() buttons: IMobalButton[] = [];
+  @Input() onClose: () => void = ()=>{ console.log("stocazzo") };
 
   visible: boolean = false;
   display: boolean = false;
@@ -77,6 +79,8 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   toggleModal(){
     this.modalService.toggle(this.id);
+    if(!this.modalService.isVisible(this.id))
+      this.onClose();
   }
 
 }
