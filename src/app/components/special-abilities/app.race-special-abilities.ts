@@ -3,6 +3,7 @@ import { Component,
          Output,
          OnInit,
          EventEmitter,
+         ViewChild,
          ViewChildren,
          AfterViewInit,
          QueryList }                from '@angular/core';
@@ -13,6 +14,7 @@ import { ISpecialAbilities }        from '../../models/race';
 import { Utilities }                from '../../utilities/app.utilities';
 import { ModalService }             from '../../services/modal.service'
 import { SpecialAbilitiesService }  from '../../services/special.abilities.service';
+import { SpecialAbilityForm } from 'app/components/special-abilities/app.race-specials.form';
 
 export interface ISpecialAbilitiesList extends ISpecialAbilities {
 
@@ -34,16 +36,14 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
   currentSearch: string;
   filterCount: number = 0;
 
-  modalFormID: string;
-  modalFormName: string;
-  modalFormDescription: string;
-
   //component options
   @Input() tableIsSelectable: boolean = false;
   @Input() selected: string[] = [];
   @Input() canEdit: boolean = true;
 
   @Output() returnedSeletion: EventEmitter<string[]> = new EventEmitter<string[]>();
+
+  @ViewChild(SpecialAbilityForm) specialForm: SpecialAbilityForm;
   
   ngAfterViewInit(){
     
@@ -69,17 +69,19 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
   }
 
   add(){
-    this.modalFormID = "-1";
-    this.modalFormName = this.utils.trim(this.currentSearch);
-    this.modalFormDescription = "";
     this.modalService.toggle("specialsFormModal");
+    this.specialForm.id = "-1";
+    this.specialForm.name = this.utils.trim(this.currentSearch);
+    this.specialForm.description = "";
+    this.utils.setFocus("specialDescription");
   }
 
   edit(special: ISpecialAbilitiesList){
-    this.modalFormID = special._id;
-    this.modalFormName = special.name;
-    this.modalFormDescription = special.description;
     this.modalService.toggle("specialsFormModal");
+    this.specialForm.id = special._id;
+    this.specialForm.name = special.name;
+    this.specialForm.description = special.description;
+    this.utils.setFocus("specialName");
   }
 
   delete(special: ISpecialAbilitiesList){
@@ -112,27 +114,24 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
   }
 
   onFormClosed(newSpecial: ISpecialAbilitiesList){
-    if (!newSpecial || newSpecial._id === "-1"){
-      this.modalService.toggle("specialsFormModal");
-      return;
-    }
-
-    if (this.filterCount > 0){ //edit table line
-      for (var i = 0; i < this.specials.length; i++){
-        if (newSpecial._id === this.specials[i]._id){
-          this.specials[i].name = newSpecial.name;
-          this.specials[i].description = newSpecial.description;
-          break;
+    if (newSpecial && newSpecial._id !== "-1"){
+      if (this.filterCount > 0){ //edit table line
+        for (var i = 0; i < this.specials.length; i++){
+          if (newSpecial._id === this.specials[i]._id){
+            this.specials[i].name = newSpecial.name;
+            this.specials[i].description = newSpecial.description;
+            break;
+          }
         }
+      } else { //add line to table
+        newSpecial.selected = true;
+        newSpecial.unsaved = true;
+        this.specials.unshift(newSpecial);
+        this.currentSearch = "";
       }
-    } else { //add line to table
-      newSpecial.selected = true;
-      newSpecial.unsaved = true;
-      this.specials.unshift(newSpecial);
-      this.currentSearch = "";
     }
     this.modalService.toggle("specialsFormModal");
-    return;
+    this.utils.setFocus("specialSearchBox");
   }
 
   private applyTextFilter(specials: ISpecialAbilitiesList[], filter: string): any[] {
@@ -149,6 +148,10 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
     ));
     this.filterCount = filteredList.length;
     return filteredList;
+  }
+
+  private sortTable(){
+    this.specials.sort(this.utils.sortByKey("selected",true,"name"));
   }
 
   ngOnInit(){
@@ -181,7 +184,7 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
               }
             }
           }
-          this.specials.sort(this.utils.sortByKey("selected",true,"name"));
+          this.sortTable();
       });
   }
 

@@ -2,8 +2,7 @@ import { Component,
             Input,
             Output,
             OnInit,
-            EventEmitter,
-            AfterViewChecked }         from '@angular/core';
+            EventEmitter }          from '@angular/core';
 import { validateConfig }           from '@angular/router/src/config';
 
 import { ISpecialAbilities }        from '../../models/race';
@@ -51,56 +50,57 @@ export class SpecialAbilityForm {
             return;
         }
 
-        for (var i = 0; i < this.specials.length; i++) {
-            if (this.utils.Ucase(this.specials[i].name) === this.utils.trimUCase(this.name) && this.id !== this.specials[i]._id){
-                window.alert("Another special ability with the same name already exists\nPlease choose a different name.");
-                return;
+        this.specialService
+        .get()
+        .subscribe((response: any[])=>{
+            console.log(response);
+            this.specials = response;
+            for (var i = 0; i < this.specials.length; i++) {
+                if (this.utils.Ucase(this.specials[i].name) === this.utils.trimUCase(this.name) && this.id !== this.specials[i]._id){
+                    window.alert("Another special ability with the same name already exists\nPlease choose a different name.");
+                    return;
+                }
             }
-        }
-
-        var special: ISpecialAbilities = {
-            _id: this.id,
-            name: this.utils.trim(this.name),
-            description: this.utils.trim(this.description)    
-        };
-        
-        if (this.id === "-1") {
-            special._id = null;
-            console.log("before posting",special);
-            this.specialService
-                .post(special)
-                .subscribe((res: any) => {
-                    console.log(res);
-                    special._id = res._id;
-                    console.log("before event:", special);
-                    this.specialFormOutput.emit(special);
-                });
-        } else {
-            this.specialService
-                .put(special)
-                .subscribe((res: any) => {
-                    this.specialFormOutput.emit(special);
-                });
-        }
-        
+    
+            var special: ISpecialAbilities = {
+                _id: this.id,
+                name: this.utils.trim(this.name),
+                description: this.utils.trim(this.description)    
+            };
+            
+            if (this.id === "-1") {
+                special._id = null;
+                console.log("before posting",special);
+                this.specialService
+                    .post(special)
+                    .subscribe((res: any) => {
+                        console.log(res);
+                        special._id = res._id;
+                        console.log("before event:", special);
+                        this.specialFormOutput.emit(special);
+                    });
+            } else {
+                this.specialService
+                    .put(special)
+                    .subscribe((res: any) => {
+                        this.specialFormOutput.emit(special);
+                    });
+            }
+        });
     }
 
     checkKey(e){
         if (e.keyCode == 27) {
-          this.cancelEdit();
-          return;
+            this.cancelEdit();
+            return;
         }
     }
-    
-    ngAfterViewChecked() {
-
-        /*if (this.id === "-1"){
-            document.getElementById("specialDescription").focus();
-        } else {
-            document.getElementById("specialName").focus();
-        }*/
+  
+    forceValueUpdate(currentSpecial: ISpecialAbilities) {
+        this.id = currentSpecial._id;
+        this.name = currentSpecial.name;
+        this.description = currentSpecial.description;
     }
-
 
     ngOnInit() {
 

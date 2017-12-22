@@ -60,6 +60,21 @@ export class Utilities {
         }
     }
 
+    public setFocus(componentId: string, timeoutFix?: number) {
+        if (!timeoutFix || timeoutFix < 0){timeoutFix = 200}
+        var obj = document.getElementById(componentId);
+        if (obj === null) {
+            console.log("Set Focus function - unable to find element: " + componentId);
+        } else {
+            console.log("Set Focus function - object found: " + componentId);
+            window.setTimeout(function (){
+                //obj.blur();
+                obj.focus();
+            },timeoutFix);
+        }
+        return obj;
+    }
+
     public sortByKey (key: string, inverse?: boolean, key2?: string, inverse2?: boolean, key3?: string, inverse3?: boolean){
         return function (a, b) {
             var elementA

@@ -5,7 +5,7 @@
     <div class="col-xs-12">
         <div class="input-group">
             <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" placeholder="Type to search or add special" id="specialSearchBox"
+            <input type="text" class="form-control" placeholder="Type to search or add special" id="specialSearchBox" autofocus="autofocus"
                 [(ngModel)]="currentSearch" [(value)]="currentSearch"
                 aria-label="Username" aria-describedby="sizing-addon1"
                 (keyup)="checkKey($event)"               
@@ -68,9 +68,11 @@
         id="specialsFormModal"
         title=""
         [hideCloseBtn]="true"
+        [hideXBtn]="true"
+        [hideHeader]="true"
         [buttons]="[]"
         >
-        <app-race-special-abilities-form [id]="modalFormID" [name]="modalFormName" [description]="modalFormDescription" (specialFormOutput)="onFormClosed($event)"></app-race-special-abilities-form>
+        <app-race-special-abilities-form (specialFormOutput)="onFormClosed($event)"></app-race-special-abilities-form>
     </app-modal>
 
 </div>

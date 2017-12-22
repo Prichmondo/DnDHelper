@@ -15,6 +15,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() title: string;
   @Input() hideCloseBtn: boolean = false;
   @Input() hideXBtn: boolean = false;
+  @Input() hideHeader: boolean = false;
   @Input() width: number = 600;
   @Input() buttons: IMobalButton[] = [];
   @Input() onClose: () => void = ()=>{ console.log("stocazzo") };
