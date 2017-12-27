@@ -26,8 +26,8 @@ import { RollFilterByDice,
          TotalFilterByDice }        from './components/dice-roller/app.diceroller.pipes';
 import { RacesList }                from './components/races-list/app.races-list';
 import { RaceForm }                 from './components/races-list/app.race.form';
-import { SpecialAbilitiesComponent }from './components/special-abilities/app.race-special-abilities';
-import { SpecialAbilityForm }       from './components/special-abilities/app.race-specials.form';
+import { SpecialAbilitiesComponent }from './components/special-abilities/app.special-abilities';
+import { SpecialAbilityForm }       from './components/special-abilities/app.specials.form';
 import { ClassForm }                from './components/app.classForm';
 import { ToggleButtonComponent }    from './components/inputs/toggle-button';
 import { ToggleButtonComponentB }   from './components/inputs/toggle-button-boolean';

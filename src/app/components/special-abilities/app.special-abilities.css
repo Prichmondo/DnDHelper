@@ -14,6 +14,10 @@
     color: white;
 }
 
+.selectable-cell:hover{
+    cursor: pointer;
+}
+
 .check-sign {
     color: #5cb85c;
 }
@@ -22,7 +26,13 @@
     font-weight: bold;
 }
 
-.table-scroll {
-    max-height: 400px;
-    overflow-y: auto;
+.table-wrapper {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+tbody > tr > td {
+    vertical-align: baseline;
 }

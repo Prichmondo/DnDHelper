@@ -1,22 +1,27 @@
-import { IAbilities } from './Abilities';
-
+import { IAbilities }           from './Abilities';
+import { ISpecialAbility }    from './specialAbility';
 
 export interface ISpeeds {
     type: string;
     speed: number
 }
 
-export interface ISpecialAbilities {
-    _id?: string;
-    name: string;
-    description: string
-}
-
-export class Race {
+export interface IRace {
     _id?: string;
     name: string;
     type: string;
     size: string;
     speeds: ISpeeds[];
-    abilitiesModifiers: IAbilities
+    abilitiesModifiers: IAbilities;
+    specials?: ISpecialAbility[];
+}
+
+export interface IRaceUpdate {
+    _id?: string;
+    name: string;
+    type: string;
+    size: string;
+    speeds: ISpeeds[];
+    abilitiesModifiers: IAbilities;
+    specials?: string[];
 }

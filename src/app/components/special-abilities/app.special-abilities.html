@@ -1,5 +1,5 @@
 
-<h2>Races: Special Abilities List</h2>
+<h2>Special Abilities List</h2>
 
 <div class="row">
     <div class="col-xs-12">
@@ -11,16 +11,16 @@
                 (keyup)="checkKey($event)"               
             >
             <span class="input-group-btn">
-                <button class="btn btn-success option-column" [disabled]="filterCount > 0" (click)="add(e)"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+                <button class="btn btn-success option-column" [disabled]="filterCount > 0 || !canEdit" (click)="add(e)"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
             </span>
         </div>
     </div>
 </div>
-<div>   
-    <table class="table table-stripped table-hover">
+<div class="table-wrapper">   
+    <table class="table table-stripped table-hover table-condensed">
         <thead>
             <tr>
-                <th class="checkmark-column">
+                <th class="checkmark-column" *ngIf="tableIsSelectable">
                     
                 </th>
                 <th>
@@ -29,7 +29,7 @@
                 <th>
                     Description
                 </th>
-                <th class="text-center option-column">
+                <th class="text-center option-column" *ngIf="canEdit">
                     Options
                 </th>
             </tr>
@@ -43,36 +43,39 @@
         </tfoot>
         <tbody class="table-scroll">
             <tr *ngFor="let special of applyTextFilter(specials, currentSearch)">
-                <td (click)="rowSelect(special._id)">
+                <td (click)="rowSelect(special._id)" class="selectable-cell" *ngIf="tableIsSelectable">
                     <i class="check-sign" [ngClass]="{'fa fa-check' : special.selected}" aria-hidden="true"></i>
                 </td>
-                <td (click)="rowSelect(special._id)">
+                <td (click)="rowSelect(special._id)" [ngClass]="{'selectable-cell' : tableIsSelectable}">
                     {{special.name}}
                 </td>
-                <td (click)="rowSelect(special._id)">
+                <td (click)="rowSelect(special._id)" [ngClass]="{'selectable-cell' : tableIsSelectable}">
                     {{special.description}}
                 </td>
                 <td class="text-center" *ngIf="canEdit">
-                    <button class="btn btn-info action-button" (click)="edit(special)">
+                    <button class="btn btn-info btn-sm action-button" (click)="edit(special)">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </button>
-                    <button class="btn btn-danger action-button" (click)="delete(special)">
+                    <button class="btn btn-danger btn-sm action-button" (click)="delete(special)">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </button>
                 </td>
             </tr>
         </tbody> 
     </table>
-
-    <app-modal
-        id="specialsFormModal"
-        title=""
-        [hideCloseBtn]="true"
-        [hideXBtn]="true"
-        [hideHeader]="true"
-        [buttons]="[]"
-        >
-        <app-race-special-abilities-form (specialFormOutput)="onFormClosed($event)"></app-race-special-abilities-form>
-    </app-modal>
-
 </div>
+<div class="text-right" *ngIf="tableIsSelectable">
+    <button class="btn btn-success" (click)="submitSelection()" [disabled]="!saveWarning">Submit current Selection</button>
+    <button class="btn btn-warning" (click)="cancelSelection()">Cancel</button>    
+</div>
+
+<app-modal
+    id="specialsFormModal"
+    title=""
+    [hideCloseBtn]="true"
+    [hideXBtn]="true"
+    [hideHeader]="true"
+    [buttons]="[]"
+    >
+    <app-special-abilities-form (specialFormOutput)="onFormClosed($event)"></app-special-abilities-form>
+</app-modal>

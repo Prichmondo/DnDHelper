@@ -5,18 +5,21 @@
                 <label for="raceName">Race Name</label>
                 <input [(ngModel)]="race.name" class="form-control" id="raceName" placeholder="" [(value)]="race.name" name="input-race-name" required>
             </div>
+            
             <div class="form-group">
                 <label for="raceType">Type</label>
                 <select [(ngModel)]="race.type" class="form-control" id="raceType" placeholder="" name="input-race-type" [(value)]="race.type" required="true">
                     <option [value]="item" [label]="item" *ngFor="let item of rulebook.raceType"></option>
                 </select>
             </div>
+            
             <div class="form-group">
                 <label for="raceSize">Size</label>
                 <select [(ngModel)]="race.size" class="form-control" id="raceSize" placeholder="" name="input-race-size" [(value)]="race.size">
                     <option [value]="item" [label]="item" *ngFor="let item of rulebook.size"></option>
                 </select>
             </div>
+            
             <div class="form-group">
                 <label for="raceSpeed">Speed</label>
                 <div class="row">
@@ -25,6 +28,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="form-group">
                 <label>Abilities Modifiers</label>
                 <div class="row">
@@ -48,27 +52,81 @@
                     </div>
                 </div>
             </div>
+            
             <div class="form-group">
-                <label for="raceSpecialAbilities">Special Abilities</label>
-                <table-display-data></table-display-data>
+                <label>Special Abilities</label>
+                <div class="table-wrapper">   
+                    <table class="table table-stripped table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th class="text-center option-column">
+                                    Options
+                                </th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    
+                                </td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr *ngFor="let special of race.specials">
+                                <td>
+                                    {{special.name}}
+                                </td>
+                                <td>
+                                    {{special.description}}
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-info btn-sm action-button" (click)="editSpecial(special)">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm action-button" (click)="removeSpecial(special)">
+                                        <i class="fa fa-minus" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody> 
+                    </table>
+                </div>
+                <button type="button" class="btn btn-primary" (click)="addSpecial()"><i class="fa fa-plus" aria-hidden="true"></i> Add Special Abilities</button>
             </div>
-
+            
             <div class="text-right">
-                <button type="submit" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-success" (click)="raceSave()">Save</button>
                 <button type="button" class="btn btn-warning" (click)="cancelEdit()">Cancel</button>
             </div>     
         </form>
-        <button class="btn btn-primary" (click)="toggleModal()">Add Special</button>
 
+        
         <app-modal
             id="specialsModal"
             title="Select Specials"
-            [onClose]="onClose"
-            [hideCloseBtn]="false"
-            [hideXBtn]="false"
-            [width]="1000"
-            [buttons]="[{ text:'Save', click:toggleModal }, { text:'Close', click:toggleModal }]">
-            <app-race-special-abilities></app-race-special-abilities>
+            [hideCloseBtn]="true"
+            [hideXBtn]="true"
+            [hideHeader]="true"
+            [buttons]="[]">
+            <app-special-abilities [tableIsSelectable]="true" (returnedSelection)="onSpecialAbilitiesSelected($event)"></app-special-abilities>
         </app-modal>
-        
+
+        <app-modal
+            id="specialsDirectEditModal"
+            title=""
+            [hideCloseBtn]="true"
+            [hideXBtn]="true"
+            [hideHeader]="true"
+            [buttons]="[]"
+            >
+            <app-special-abilities-form (specialFormOutput)="onSpecialAbilityEdited($event)"></app-special-abilities-form>
+        </app-modal>
+
     </div>
+

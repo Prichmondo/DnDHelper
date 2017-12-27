@@ -5,27 +5,27 @@ import { Component,
             EventEmitter }          from '@angular/core';
 import { validateConfig }           from '@angular/router/src/config';
 
-import { ISpecialAbilities }        from '../../models/race';
+import { ISpecialAbility }        from '../../models/specialAbility';
 
 import { Utilities }                from '../../utilities/app.utilities';
 import { SpecialAbilitiesService }  from '../../services/special.abilities.service';
 
 
 @Component({
-    selector: 'app-race-special-abilities-form',
-    templateUrl: './app.race-specials.form.html',
-    styleUrls: ['./app.race-specials.form.css'],
+    selector: 'app-special-abilities-form',
+    templateUrl: './app.specials.form.html',
+    styleUrls: ['./app.specials.form.css'],
 })
 
 export class SpecialAbilityForm {
     
-    specials: ISpecialAbilities[] = [];
+    specials: ISpecialAbility[] = [];
     
     @Input() id: string = "-1";
     @Input() name: string = "";
     @Input() description: string = "";
 
-    @Output() specialFormOutput: EventEmitter<ISpecialAbilities> = new EventEmitter<ISpecialAbilities> ()
+    @Output() specialFormOutput: EventEmitter<ISpecialAbility> = new EventEmitter<ISpecialAbility> ()
 
     constructor (
         private utils: Utilities,
@@ -34,7 +34,7 @@ export class SpecialAbilityForm {
 
     cancelEdit(){
         event.preventDefault()
-        var special: ISpecialAbilities = {
+        var special: ISpecialAbility = {
             _id: "-1",
             name: "cancel",
             description: "cancel"    
@@ -53,7 +53,6 @@ export class SpecialAbilityForm {
         this.specialService
         .get()
         .subscribe((response: any[])=>{
-            console.log(response);
             this.specials = response;
             for (var i = 0; i < this.specials.length; i++) {
                 if (this.utils.Ucase(this.specials[i].name) === this.utils.trimUCase(this.name) && this.id !== this.specials[i]._id){
@@ -62,7 +61,7 @@ export class SpecialAbilityForm {
                 }
             }
     
-            var special: ISpecialAbilities = {
+            var special: ISpecialAbility = {
                 _id: this.id,
                 name: this.utils.trim(this.name),
                 description: this.utils.trim(this.description)    
@@ -70,13 +69,10 @@ export class SpecialAbilityForm {
             
             if (this.id === "-1") {
                 special._id = null;
-                console.log("before posting",special);
                 this.specialService
                     .post(special)
                     .subscribe((res: any) => {
-                        console.log(res);
                         special._id = res._id;
-                        console.log("before event:", special);
                         this.specialFormOutput.emit(special);
                     });
             } else {
@@ -96,7 +92,7 @@ export class SpecialAbilityForm {
         }
     }
   
-    forceValueUpdate(currentSpecial: ISpecialAbilities) {
+    forceValueUpdate(currentSpecial: ISpecialAbility) {
         this.id = currentSpecial._id;
         this.name = currentSpecial.name;
         this.description = currentSpecial.description;
@@ -107,7 +103,6 @@ export class SpecialAbilityForm {
         this.specialService
         .get()
         .subscribe((response: any[])=>{
-            console.log(response);
             this.specials = response;
         });
 

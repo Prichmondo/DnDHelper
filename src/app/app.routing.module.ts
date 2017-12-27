@@ -17,8 +17,8 @@ import { ShowClasses }              from './components/app.showClasses';
 import { ClassForm }                from './components/app.classForm';
 import { RacesList }                from './components/races-list/app.races-list';
 import { RaceForm }                 from './components/races-list/app.race.form';
-import { SpecialAbilitiesComponent }from './components/special-abilities/app.race-special-abilities';
-import { SpecialAbilityForm }       from './components/special-abilities/app.race-specials.form';
+import { SpecialAbilitiesComponent }from './components/special-abilities/app.special-abilities';
+import { SpecialAbilityForm }       from './components/special-abilities/app.specials.form';
 
 const routes: AppRoute[] = [
     //ROUTESs
@@ -154,19 +154,19 @@ const routes: AppRoute[] = [
       position      : NavMenu.Main,
       visible       : NavVisibility.LoggedIn
     },  
-      path          : 'race-special-abilities',
+      path          : 'app-special-abilities',
       component     : SpecialAbilitiesComponent 
     },
 
     { nav: { 
     },  
-    path            : 'app-race-special-abilities-form',
+    path            : 'app-special-abilities-form',
     component       : SpecialAbilityForm 
     },
 
     { nav: { 
       },  
-      path          : 'app-race-special-abilities-form/:id',
+      path          : 'app-special-abilities-form/:id',
       component     : SpecialAbilityForm 
     },
   

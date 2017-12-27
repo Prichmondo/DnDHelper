@@ -5,7 +5,7 @@ import { Observable }       from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { ISpecialAbilities }             from '../models/race';
+import { ISpecialAbility }             from '../models/specialAbility';
 
 @Injectable()
 export class SpecialAbilitiesService{
@@ -16,7 +16,7 @@ export class SpecialAbilitiesService{
       private http: HttpService
       ){}
 
-    get(): Observable<ISpecialAbilities[]> {
+    get(): Observable<ISpecialAbility[]> {
         return this.http
             .get(this.apiUrl)
             .map((res: Response) => {
@@ -25,7 +25,7 @@ export class SpecialAbilitiesService{
             });
     }
 
-    getById(id: string): Observable<ISpecialAbilities> {
+    getById(id: string): Observable<ISpecialAbility> {
         return this.http
             .get(this.apiUrl + "/" + id)
             .map((res: Response) => {
@@ -34,7 +34,7 @@ export class SpecialAbilitiesService{
             });
     }
     
-    post(special: ISpecialAbilities): Observable<any>{
+    post(special: ISpecialAbility): Observable<any>{
         return this.http
             .post(this.apiUrl, special)
             .map((res: Response) => {
@@ -43,7 +43,7 @@ export class SpecialAbilitiesService{
             });
     }
 
-    put(special: ISpecialAbilities): Observable<Array<ISpecialAbilities>> {
+    put(special: ISpecialAbility): Observable<Array<ISpecialAbility>> {
         return this.http
             .put(this.apiUrl + "/" + special._id, special)
             .map((res: Response) => {
@@ -52,7 +52,7 @@ export class SpecialAbilitiesService{
             });
     }
 
-    delete(id: string): Observable<Array<ISpecialAbilities>> {
+    delete(id: string): Observable<Array<ISpecialAbility>> {
         return this.http
             .delete(this.apiUrl + "/" + id)
             .map((res: Response) => {

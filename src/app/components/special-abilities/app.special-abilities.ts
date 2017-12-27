@@ -9,30 +9,31 @@ import { Component,
          QueryList }                from '@angular/core';
 import { validateConfig }           from '@angular/router/src/config';
 
-import { ISpecialAbilities }        from '../../models/race';
+import { ISpecialAbility }          from '../../models/specialAbility';
 
 import { Utilities }                from '../../utilities/app.utilities';
 import { ModalService }             from '../../services/modal.service'
 import { SpecialAbilitiesService }  from '../../services/special.abilities.service';
-import { SpecialAbilityForm } from 'app/components/special-abilities/app.race-specials.form';
+import { SpecialAbilityForm }       from './app.specials.form';
 
-export interface ISpecialAbilitiesList extends ISpecialAbilities {
+export interface ISpecialAbilityList extends ISpecialAbility {
 
   selected?: boolean;
   unsaved?: boolean;
 }        
 
 @Component({
-  selector: 'app-race-special-abilities',
-  templateUrl: './app.race-special-abilities.html',
-  styleUrls: ['./app.race-special-abilities.css'],
+  selector: 'app-special-abilities',
+  templateUrl: './app.special-abilities.html',
+  styleUrls: ['./app.special-abilities.css'],
 })
 
 export class SpecialAbilitiesComponent implements AfterViewInit{
   
   title = 'Race Special Abilities';
-  specials: ISpecialAbilitiesList[] = [];
+  specials: ISpecialAbilityList[] = [];
   saveWarning: boolean = false;
+  forceReloadParentView: boolean = false;
   currentSearch: string;
   filterCount: number = 0;
 
@@ -41,7 +42,7 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
   @Input() selected: string[] = [];
   @Input() canEdit: boolean = true;
 
-  @Output() returnedSeletion: EventEmitter<string[]> = new EventEmitter<string[]>();
+  @Output() returnedSelection: EventEmitter<ISpecialAbility[]> = new EventEmitter<ISpecialAbility[]>();
 
   @ViewChild(SpecialAbilityForm) specialForm: SpecialAbilityForm;
   
@@ -57,7 +58,7 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
 
 
   rowSelect(id: string){
-    if (!id){return}
+    if (!id || !this.tableIsSelectable){return}
 
     for (var i = 0; i < this.specials.length; i++){
       if (id === this.specials[i]._id){
@@ -76,7 +77,7 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
     this.utils.setFocus("specialDescription");
   }
 
-  edit(special: ISpecialAbilitiesList){
+  edit(special: ISpecialAbilityList){
     this.modalService.toggle("specialsFormModal");
     this.specialForm.id = special._id;
     this.specialForm.name = special.name;
@@ -84,10 +85,19 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
     this.utils.setFocus("specialName");
   }
 
-  delete(special: ISpecialAbilitiesList){
+  delete(special: ISpecialAbilityList){
     if (this.utils.confirmBox("Are you sure you want to delete the following special ability?\n\n" +
                               this.utils.Ucase(special.name) +
                               "\n\nPlease note this operation cannot be reverted and the ability will be removed from all characters")){
+
+      for (var i = 0; i < this.selected.length; i++){
+        if (this.selected[i] === special._id){
+          this.forceReloadParentView = true;
+          this.saveWarning = true;
+          break;
+        }
+      }
+
       this.specialService
         .delete(special._id)
         .subscribe((response: any) => {
@@ -98,6 +108,30 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
             }
           }
         })
+    }
+  }
+
+  submitSelection(){
+    this.selected = [];
+    var outputSelection: ISpecialAbility[] = [];
+    for (var i = 0; i < this.specials.length; i++){
+      if (this.specials[i].selected === true){outputSelection.push(this.specials[i])}
+    }
+    this.saveWarning = false;
+    this.forceReloadParentView = false;
+    this.returnedSelection.emit(outputSelection);
+  }
+
+  cancelSelection(){
+    if (this.saveWarning){
+      if (!this.utils.confirmBox("Warning:\n\nDo you really want to discard all changes to selected abilities?")){return}
+    }
+    this.saveWarning = false;
+    if (this.forceReloadParentView){
+      this.forceReloadParentView = false;
+      this.returnedSelection.emit([{_id: "-2", name: "force reload", description: "force reload"}]);
+    } else {
+      this.returnedSelection.emit([{_id: "-1", name: "cancel", description: "cancel"}]);
     }
   }
 
@@ -113,34 +147,51 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
     }
   }
 
-  onFormClosed(newSpecial: ISpecialAbilitiesList){
+  onFormClosed(newSpecial: ISpecialAbilityList){
     if (newSpecial && newSpecial._id !== "-1"){
       if (this.filterCount > 0){ //edit table line
         for (var i = 0; i < this.specials.length; i++){
           if (newSpecial._id === this.specials[i]._id){
             this.specials[i].name = newSpecial.name;
             this.specials[i].description = newSpecial.description;
+            if (this.tableIsSelectable && this.specials[i].selected){
+              this.specials[i].unsaved = true;
+              this.saveWarning = true;
+            }
+            for (var j = 0; j < this.selected.length; j++){
+              if (this.selected[j] === newSpecial._id){
+                this.forceReloadParentView = true;
+                break;
+              }
+            }
             break;
           }
         }
       } else { //add line to table
-        newSpecial.selected = true;
-        newSpecial.unsaved = true;
+        if (this.tableIsSelectable){
+          newSpecial.selected = true;
+          newSpecial.unsaved = true;
+          this.saveWarning = true;
+        } else {
+          newSpecial.selected = false;
+          newSpecial.unsaved = false;
+        }
         this.specials.unshift(newSpecial);
         this.currentSearch = "";
       }
+      this.sortTable();
     }
     this.modalService.toggle("specialsFormModal");
     this.utils.setFocus("specialSearchBox");
   }
 
-  private applyTextFilter(specials: ISpecialAbilitiesList[], filter: string): any[] {
+  private applyTextFilter(specials: ISpecialAbilityList[], filter: string): any[] {
     if (!filter || filter.length === 0) {
       this.filterCount = specials.length
       return specials;
     }
 
-    var filteredList: ISpecialAbilitiesList[];
+    var filteredList: ISpecialAbilityList[];
 
     filteredList = specials.filter(item => (
         this.utils.trimUCase(item.name).includes(this.utils.trimUCase(filter))

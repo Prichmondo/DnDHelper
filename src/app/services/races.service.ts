@@ -1,11 +1,11 @@
-import { Injectable }       from '@angular/core'
-import { Http, Response }   from '@angular/http';
-import { HttpService }      from './http.service';
-import { Observable }       from 'rxjs/Observable';
+import { Injectable }           from '@angular/core'
+import { Http, Response }       from '@angular/http';
+import { HttpService }          from './http.service';
+import { Observable }           from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { Race }             from '../models/race';
+import { IRace, IRaceUpdate }   from '../models/race';
 
 @Injectable()
 export class RacesService{
@@ -16,7 +16,7 @@ export class RacesService{
       private http: HttpService
       ){}
 
-    get(): Observable<Race[]> {
+    get(): Observable<IRace[]> {
         return this.http
             .get(this.apiUrl)
             .map((res: Response) => {
@@ -25,7 +25,7 @@ export class RacesService{
             });
     }
 
-    getById(id: string): Observable<Race> {
+    getById(id: string): Observable<IRace> {
         return this.http
             .get(this.apiUrl + "/" + id)
             .map((res: Response) => {
@@ -34,7 +34,7 @@ export class RacesService{
             });
     }
     
-    post(race: Race): Observable<any>{
+    post(race: IRaceUpdate): Observable<any>{
         return this.http
             .post(this.apiUrl, race)
             .map((res: Response) => {
@@ -43,7 +43,7 @@ export class RacesService{
             });
     }
 
-    put(race: Race): Observable<Array<Race>> {
+    put(race: IRaceUpdate): Observable<Array<IRace>> {
         return this.http
             .put(this.apiUrl + "/" + race._id, race)
             .map((res: Response) => {
@@ -52,7 +52,7 @@ export class RacesService{
             });
     }
 
-    delete(id: string): Observable<Array<Race>> {
+    delete(id: string): Observable<Array<IRace>> {
         return this.http
             .delete(this.apiUrl + "/" + id)
             .map((res: Response) => {
