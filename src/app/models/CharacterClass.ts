@@ -1,18 +1,33 @@
-export interface ISaveThrows{
-    fortitude: string;
-    reflex: string;
-    will: string;
-};
+import { ISpecialAbility }      from './specialAbility';
+
+export interface ISavingThrowsProgression {
+    fortitude: string,
+    reflex: string,
+    will: string
+}
 
 export interface IClass{
 
-    _id?:string;
-    name:string;
-    levels:number;
-    savingThrows:ISaveThrows;
-    baseAttackBonus:string;
-    type:string;
-    hitDice:number;
-    skills:any[];
-    specials:any[];
-}
+    _id?: string;
+    name: string;
+    levels: number;
+    baseAttackBonus: string;
+    savingThrows: ISavingThrowsProgression;
+    type: string;
+    hitDice: number;
+    skills?: any[];
+    specials?: Array<Array<ISpecialAbility>>
+};
+
+export interface IClassUpdate{
+
+    _id?: string;
+    name: string;
+    levels: number;
+    baseAttackBonus: string;
+    savingThrows: ISavingThrowsProgression;
+    type: string;
+    hitDice: number;
+    skills?: any[];
+    specials?: Array<Array<string>>;
+};

@@ -1,0 +1,149 @@
+
+<h1>Edit Character Class</h1>
+
+<div class="row" *ngIf="characterClass">
+    <div class="col-sx-12 col-md-5">
+        <form #classForm = "ngForm" (ngSubmit)="onUpdate()">
+            <div class="row">
+                <div class="form-group col-sx-12 col-sm-12 col-md-12">
+                    <label>Class Name</label>
+                    <input type="text" name="name" [(ngModel)]="characterClass.name" class="form-control">  
+                </div>
+                <div class="form-group col-sx-12 col-sm-4">
+                    <label>MaxLevel</label>
+                    <input type="number" name="level" [(ngModel)]="characterClass.levels" class="form-control"
+                        max="30" min="1"
+                        (keyup)="updatePreviewTable()"
+                        (click)="updatePreviewTable()">    
+                </div>
+
+                <div class="form-group col-sx-12 col-sm-4">
+                    <label>Hit-dice</label>
+                    <select name="input-hit-dice" id="hit-dice" [(ngModel)]="characterClass.hitDice" class="form-control">
+                        <option [value]="dice.faces" [label]="'D'.concat(dice.faces)" *ngFor="let dice of availableHitDices"></option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sx-12 col-sm-4">
+                    <label>Type</label>
+                    <select name="input-type" id="type" [(ngModel)]="characterClass.type" class="form-control">
+                        <option [value]="classType" [label]="classType" *ngFor="let classType of this.ruleBook.classType"></option>
+                    </select>
+                </div>
+            </div>
+
+             
+            <label>Saving Throws</label>
+            <div class="row option-container">
+                <div class="col-xs-4">
+                    Fortitude
+                </div>
+                <div class="col-xs-8 text-right">
+                    <toggle-button 
+                        [(value)]="characterClass.savingThrows.fortitude" 
+                        [options]="ruleBook.savingThrowsBonusType"
+                        (click)="updatePreviewTable()"
+                        [fixedButtonWidth]=60
+                        [fixedComponentWidth]=200>
+                    </toggle-button>
+                </div>
+            </div>
+            <div class="row option-container">
+                <div class="col-xs-4">
+                    Reflex
+                </div>
+                <div class="col-xs-8 text-right">
+                    <toggle-button 
+                        [(value)]="characterClass.savingThrows.reflex" 
+                        [options]="ruleBook.savingThrowsBonusType"
+                        (click)="updatePreviewTable()"
+                        [fixedButtonWidth]=60
+                        [fixedComponentWidth]=200>
+                    </toggle-button>
+                </div>
+            </div>
+            <div class="row option-container">
+                <div class="col-xs-4">
+                    Will
+                </div>
+                <div class="col-xs-8 text-right">
+                    <toggle-button 
+                        [(value)]="characterClass.savingThrows.will" 
+                        [options]="ruleBook.savingThrowsBonusType"
+                        (click)="updatePreviewTable()"
+                        [fixedButtonWidth]=60
+                        [fixedComponentWidth]=200>
+                    </toggle-button>
+                </div>
+            </div>
+            <label>Attack Bonus Base</label>
+            <div class="row option-container">
+                <div class="col-xs-4">
+                    Attack Bonus
+                </div>
+                <div class="col-xs-8 text-right">
+                    <toggle-button 
+                        [(value)]="characterClass.baseAttackBonus" 
+                        [options]="ruleBook.attackBonusType"
+                        (click)="updatePreviewTable()"
+                        [fixedButtonWidth]=60
+                        [fixedComponentWidth]=200>
+                    </toggle-button>
+                </div>
+            </div>       
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="col-sx-12 col-md-7">
+        <label>Class Table Preview (Click on a row to edit Special Abilities)</label>
+        <div>
+            <table class="table table-striped table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>
+                            Lvl
+                        </th>
+                        <th>
+                            Base Attack
+                        </th>
+                        <th class="saving-throw-col">
+                            Saving Throw: Fortitude
+                        </th>
+                        <th class="saving-throw-col">
+                            Saving Throw: Reflexes
+                        </th>
+                        <th class="saving-throw-col">
+                            Saving Throw: Will
+                        </th>
+                        <th>
+                            Special Abilities
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let line of tablePreview" (click)="editSpecials(line.level)">
+                        <td>
+                            {{line.level}}
+                        </td>
+                        <td>
+                            {{line.baseAttackBonus.join(" / ")}}
+                        </td>
+                        <td>
+                            {{line.savingThrowFortitude}}
+                        </td>
+                        <td>
+                            {{line.savingThrowReflexes}}
+                        </td>
+                        <td>
+                            {{line.savingThrowWill}}
+                        </td>
+                        <td>
+                            {{line.specials.join(", ")}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

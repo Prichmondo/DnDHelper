@@ -202,7 +202,11 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
   }
 
   private sortTable(){
-    this.specials.sort(this.utils.sortByKey("selected",true,"name"));
+    //this.specials.sort(this.utils.sortByKey("selected",true,"name"));
+    this.specials.sort(this.utils.sortByParams(
+      { prop: (special) => special.selected, inverse: true },
+      { prop: (special) => special.name })
+    );
   }
 
   ngOnInit(){

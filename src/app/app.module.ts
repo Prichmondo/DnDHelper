@@ -19,7 +19,8 @@ import { CampaignComponent }        from './components/campaigns/app.campaign';
 import { AddCampaignComponent }     from './components/campaigns/app.addCampaign';
 import { HomeComponent }            from './components/home/app.home';
 import { ShowCharacters }           from './components/app.showCharacters';
-import { ShowClasses }              from './components/app.showClasses';
+import { ClassesList }              from './components/character-classes/app.classes.list';
+import { ClassForm }                from './components/character-classes/app.class.form';
 import { InputNumberComponent }     from './components/inputs/input-number';
 import { DiceInputComponent }       from './components/inputs/dice-input';
 import { RollFilterByDice,
@@ -28,7 +29,6 @@ import { RacesList }                from './components/races-list/app.races-list
 import { RaceForm }                 from './components/races-list/app.race.form';
 import { SpecialAbilitiesComponent }from './components/special-abilities/app.special-abilities';
 import { SpecialAbilityForm }       from './components/special-abilities/app.specials.form';
-import { ClassForm }                from './components/app.classForm';
 import { ToggleButtonComponent }    from './components/inputs/toggle-button';
 import { ToggleButtonComponentB }   from './components/inputs/toggle-button-boolean';
 import { TableDisplayData }         from './components/table-data/table-display-data';
@@ -36,6 +36,7 @@ import { Pipe3FiltersText }         from './utilities/pipe.3filters.text';
 
 //SERVICES
 import { Utilities }                from './utilities/app.utilities';
+import { DnDUtilities }             from './utilities/app.utilities.dnd';
 import { RulebookService }          from './services/rulebook.service';
 import { AuthenticationService }    from './services/authentication.service';
 import { UsersService }             from './services/users.service';
@@ -72,7 +73,7 @@ import { ModalService }             from './services/modal.service'
     AddCampaignComponent,
     HomeComponent,
     ShowCharacters,
-    ShowClasses,
+    ClassesList,
     ClassForm,
     RacesList,
     RaceForm,
@@ -92,6 +93,7 @@ import { ModalService }             from './services/modal.service'
   ],
   providers: [
     Utilities,
+    DnDUtilities,
     DiceRoller, 
     RulebookService,
     AuthenticationService,

@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core'
-import { Http, Response } from '@angular/http';
-import { HttpService } from './http.service';
-import { Observable } from 'rxjs/Observable';
+import { Injectable }               from '@angular/core'
+import { Http, Response }           from '@angular/http';
+import { HttpService }              from './http.service';
+import { Observable }               from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { IClass } from '../models/CharacterClass';
+import { IClass, IClassUpdate,
+         ISavingThrowsProgression } from '../models/CharacterClass';
 
 @Injectable()
 export class CharacterClassService{
@@ -35,7 +36,7 @@ export class CharacterClassService{
             });
     }
     
-    post(characterClass :IClass): Observable<any> {
+    post(characterClass :IClassUpdate): Observable<any> {
         return this.http
             .post(this.apiUrl, characterClass)
             .map((res: Response) => {
@@ -54,7 +55,7 @@ export class CharacterClassService{
     
     } 
     
-    update(characterClass :IClass): Observable<any> {
+    update(characterClass :IClassUpdate): Observable<any> {
         return this.http
             .put(this.apiUrl + "/" + characterClass._id, characterClass)
             .map((res: Response)=>{
@@ -62,5 +63,27 @@ export class CharacterClassService{
                 return body || { };
             })
 
+    }
+
+    mapForUpdate(inputCharacter: IClass): IClassUpdate {
+        if (!inputCharacter){return null}
+        var oputputCharacter: IClassUpdate = {
+            _id: inputCharacter._id,
+            name: inputCharacter.name,
+            levels: inputCharacter.levels,
+            savingThrows: inputCharacter.savingThrows,
+            baseAttackBonus: inputCharacter.baseAttackBonus,
+            type: inputCharacter.type,
+            hitDice: inputCharacter.hitDice,
+            skills: [],
+            specials: []};
+        
+        for (var i = 0; i < inputCharacter.specials.length; i++){
+            for (var j = 0; j < inputCharacter.specials[i].length; j++){
+                oputputCharacter.specials[i].push(inputCharacter.specials[i][j]._id);
+            }
+        }
+
+        return oputputCharacter;
     }
 }

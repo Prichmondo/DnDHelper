@@ -1,5 +1,5 @@
 import { IAbilities }           from './Abilities';
-import { ISpecialAbility }    from './specialAbility';
+import { ISpecialAbility }      from './specialAbility';
 
 export interface ISpeeds {
     type: string;
