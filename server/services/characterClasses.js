@@ -7,13 +7,13 @@ var characterClasses = {
         CharacterClass
             .find(callback)
             .limit(limit)
-            .populate("race");
+            .populate("classLevels.specials");
     },
 
     getById: function(id, callback){
         CharacterClass
             .findById(id, callback)
-            .populate("race");
+            .populate("classLevels.specials");
     },
 
     add: function(characterClass, callback){
@@ -27,7 +27,7 @@ var characterClasses = {
 
     update: function(id, characterClass, options, callback){
         if(characterClass._id) delete characterClass._id;
-        CharacterClass.findOneAndUpdate(id, characterClass, options, callback);
+        CharacterClass.findOneAndUpdate({ _id: id }, characterClass, options, callback);
     }
 
 }

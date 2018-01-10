@@ -5,6 +5,7 @@ var savingThrowsProgress = require('./savingThrowsProgress');
 var commons = require('./commons');
 var bonus = require('./bonus');
 var special = require('./special');
+var classLevel = require('../schemas/classLevel');
 
 var characterClassSchema = mongoose.Schema({
     name: {
@@ -38,15 +39,8 @@ var characterClassSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Skill'
     }],
-    specials: {
-        type: [{
-            specials:{
-                type: [{
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: 'Special',
-                }]
-            }
-        }]
+    classLevels: {
+        type: [classLevel]
     },
     createDate: {
         type: Date,

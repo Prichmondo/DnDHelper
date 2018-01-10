@@ -65,7 +65,7 @@ export class ClassForm {
                 savingThrowFortitude: this.utils.formatNumberAsTextForceSign(this.dndUtils.calculateSavingThrow(i + 1, this.characterClass.savingThrows.fortitude)),
                 savingThrowReflexes: this.utils.formatNumberAsTextForceSign(this.dndUtils.calculateSavingThrow(i + 1, this.characterClass.savingThrows.reflex)),
                 savingThrowWill: this.utils.formatNumberAsTextForceSign(this.dndUtils.calculateSavingThrow(i + 1, this.characterClass.savingThrows.will)),
-                specials: ["prova 1", "prova 2"]
+                specials: this.characterClass.specials[i].map(special => special.name.toString())
             }
         }
         console.log(this.tablePreview);
@@ -106,6 +106,7 @@ export class ClassForm {
                                 .getById(params.id)
                                 .subscribe((response:any)=>{
                                     this.characterClass = response;
+                                    console.log(this.characterClass);
                                     this.updatePreviewTable();
                                 })
                         }
@@ -120,8 +121,8 @@ export class ClassForm {
                                     reflex: ruleBook.savingThrowsBonusType[0],
                                     will: ruleBook.savingThrowsBonusType[0]
                                 },
-                                type: "",
-                                hitDice: 4,
+                                type: this.ruleBook.classType[0],
+                                hitDice: this.availableHitDices[0].faces,
                                 skills: [],
                                 specials: [[]]
                             }
