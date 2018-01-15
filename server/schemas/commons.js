@@ -7,7 +7,7 @@ var commons = {
     abilities:              ["Str", "Dex", "Con", "Int", "Wis", "Cha"],
     attackBonusType:        ["Slow", "Medium", "Fast"],
     savingThrowsBonusType:  ["Slow", "Fast"],
-    classType:              ["Png", "Pg", "Prestige"],
+    classType:              ["NPC", "PC", "Prestige"],
     featType:               ["General", "Fighter", "Ranger"],
     skills:                 [
         { name: "Appraise",                     modifier: "Int",   trainedOnly: false,  synergies: [] },

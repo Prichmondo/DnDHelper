@@ -13,11 +13,12 @@ import { AddCampaignComponent }     from './components/campaigns/app.addCampaign
 import { HomeComponent }            from './components/home/app.home';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { ShowCharacters }           from './components/app.showCharacters';
-import { ShowClasses }              from './components/app.showClasses';
-import { ClassForm }                from './components/app.classForm';
+import { ClassesList }              from './components/character-classes/app.classes.list';
+import { ClassForm }                from './components/character-classes/app.class.form';
 import { RacesList }                from './components/races-list/app.races-list';
 import { RaceForm }                 from './components/races-list/app.race.form';
-import { SpecialAbilitiesComponent }from './components/races-list/app.race-special-abilities';
+import { SpecialAbilitiesComponent }from './components/special-abilities/app.special-abilities';
+import { SpecialAbilityForm }       from './components/special-abilities/app.specials.form';
 
 const routes: AppRoute[] = [
     //ROUTESs
@@ -88,7 +89,7 @@ const routes: AppRoute[] = [
         visible     : NavVisibility.LoggedIn       
       },  
       path          : 'Classes', 
-      component     : ShowClasses
+      component     : ClassesList
     },
 
     { nav: { 
@@ -96,7 +97,7 @@ const routes: AppRoute[] = [
         visible     : NavVisibility.LoggedIn
       },  
       path          : 'character-class',
-      component     : ClassForm,
+      component     : ClassForm
     },
 
     { nav: { 
@@ -104,7 +105,7 @@ const routes: AppRoute[] = [
         visible     : NavVisibility.LoggedIn
       },  
       path          : 'character-class/:id',
-      component     : ClassForm,
+      component     : ClassForm
     },
 
     { nav: { 
@@ -149,13 +150,25 @@ const routes: AppRoute[] = [
     },
 
     { nav: { 
-      name        : "Special Abilities",
-      position    : NavMenu.Main,
-      visible     : NavVisibility.LoggedIn
-  },  
-    path          : 'race-special-abilities',
-    component     : SpecialAbilitiesComponent 
-  },
+      name          : "Special Abilities",
+      position      : NavMenu.Main,
+      visible       : NavVisibility.LoggedIn
+    },  
+      path          : 'app-special-abilities',
+      component     : SpecialAbilitiesComponent 
+    },
+
+    { nav: { 
+    },  
+    path            : 'app-special-abilities-form',
+    component       : SpecialAbilityForm 
+    },
+
+    { nav: { 
+      },  
+      path          : 'app-special-abilities-form/:id',
+      component     : SpecialAbilityForm 
+    },
   
     //CampaignsComponent
 

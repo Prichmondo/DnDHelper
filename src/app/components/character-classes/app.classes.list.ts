@@ -1,17 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input }     from '@angular/core';
+import { Router }                       from '@angular/router';
 
-import { IClass, ISaveThrows } from '../models/CharacterClass';
-import { CharacterClassService } from '../services/characterClasses.service';
+import { IClass }                       from '../../models/CharacterClass';
+import { CharacterClassService }        from '../../services/characterClasses.service';
 
 @Component({
 
-    selector:"Classes",
-    templateUrl:"./app.showClasses.html",
+    selector:"classes-list",
+    templateUrl:"./app.classes.list.html",
     
 
 })
-export class ShowClasses{
+export class ClassesList{
     
     characterClasses: IClass[];    
 
@@ -50,9 +50,9 @@ export class ShowClasses{
                 
                 })
                 
-            };         
-      
-    }
+    };
+    
+}
 
   
 

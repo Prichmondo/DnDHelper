@@ -1,0 +1,27 @@
+<div class="modal fade allow-overflow" [ngClass]="{'in': visible}" [hidden]="!display">
+    
+    <div class="modal-dialog" [ngStyle]="{'max-width.px': width}" role="document">
+
+        <div class="modal-content">
+
+            <div class="modal-header" *ngIf="!hideHeader">
+                <button *ngIf="!hideXBtn" (click)="toggleModal()" type="button" class="close">
+                    <span aria-hidden="true">×</span>
+                </button> 
+                <h4 class="modal-title" id="myModalLabel">{{title}}</h4> 
+            </div>
+
+            <div class="modal-body">
+                <ng-content></ng-content>
+            </div>
+
+            <div class="modal-footer" *ngIf="getButtons().length>0">
+                <button *ngFor="let button of getButtons()" type="button" [ngClass]="button.className" (click)="button.click()">{{button.text}}</button>
+            </div>
+
+        </div>
+
+    </div>
+    
+</div>
+<div class="modal-backdrop fade" [ngClass]="{'in': visible}" [hidden]="!display"></div>

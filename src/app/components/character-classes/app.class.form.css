@@ -1,0 +1,11 @@
+.saving-throw-col {
+    width: 40px;
+}
+
+tbody > tr {
+    cursor: pointer;
+}
+
+.option-container {
+    margin-bottom: 2px;
+}

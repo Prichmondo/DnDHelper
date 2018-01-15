@@ -1,40 +1,51 @@
-import { Component, OnInit, Input,
-         AfterViewInit }                from '@angular/core';
+import { Component,
+         OnInit,
+         Input,
+         ViewChild }                    from '@angular/core';
 import { Router, ActivatedRoute }       from '@angular/router';
 import { NgForm }                       from '@angular/forms';
 
 import { InputNumberComponent }         from '../inputs/input-number';
-import { TableDisplayData }             from '../table-data/table-display-data';
 
-import { Race, ISpeeds }                from '../../models/race';
+import { IRace, IRaceUpdate, ISpeeds }  from '../../models/race';
+import { ISpecialAbility }              from '../../models/specialAbility';
 import { IAbilities }                   from '../../models/Abilities'
 import { IRulebook }                    from '../../models/rulebook';
 import { RacesService }                 from '../../services/races.service';
+import { SpecialAbilitiesService }      from '../../services/special.abilities.service';
 import { RulebookService }              from '../../services/rulebook.service';
 import { Utilities }                    from '../../utilities/app.utilities';
+import { ModalService }                 from '../../services/modal.service'
+import { SpecialAbilitiesComponent}     from '../special-abilities/app.special-abilities';
+import { SpecialAbilityForm }           from '../special-abilities/app.specials.form';
 
 
 @Component({
 
     selector:"race-form",
     templateUrl:"./app.race.form.html",
-    
-
+    styleUrls: ['./app.race.form.css'],
 })
 
-export class RaceForm implements AfterViewInit{
+export class RaceForm {
 
     rulebook: any;
-
-    race :Race;
+    race: IRace;
+    raceToBeSaved: IRaceUpdate;
     tempSpeeds: ISpeeds[] = [];
+    tempSpecials: ISpecialAbility[] = [];
+
+    @ViewChild(SpecialAbilitiesComponent) specialList: SpecialAbilitiesComponent;
+    @ViewChild(SpecialAbilityForm) specialEditForm: SpecialAbilityForm;
 
     constructor(
         private racesService: RacesService,
+        private specialsService: SpecialAbilitiesService,
         private rulebookService: RulebookService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private utils: Utilities,
+        private modalService: ModalService
         ){}
 
     ngOnInit(){
@@ -55,7 +66,7 @@ export class RaceForm implements AfterViewInit{
                         if (typeof params.id !== "undefined") {
                             this.racesService
                                 .getById(params.id)
-                                .subscribe(race => {
+                                .subscribe((race: IRace) => {
                                     this.race = race;
                                     console.log("Razza", race);
                                     this.fixTempSpeeds(this.race.speeds);
@@ -73,7 +84,8 @@ export class RaceForm implements AfterViewInit{
                                     constitution: 0,
                                     intelligence: 0,
                                     wisdom: 0,
-                                    charisma: 0}
+                                    charisma: 0},
+                                specials: []
                                 }
                             this.fixTempSpeeds(this.race.speeds);
                         }
@@ -96,24 +108,32 @@ export class RaceForm implements AfterViewInit{
             return;
         }
         
-        this.race.speeds = this.tempSpeeds;
+        this.raceToBeSaved = {
+            _id: "00",
+            name: this.race.name,
+            type: this.race.type,
+            size: this.race.size,
+            speeds: this.race.speeds,
+            abilitiesModifiers: this.race.abilitiesModifiers,
+            specials: this.filterSpecialIDs(this.race.specials)
+        };
+        this.race._id ? this.raceToBeSaved._id = this.race._id : this.raceToBeSaved._id = null;
 
-        console.log(this.race);
+        console.log("before save", this.raceToBeSaved);
         if (this.race._id){
             //put
             this.racesService
-                .put(this.race)
+                .put(this.raceToBeSaved)
                 .subscribe((res: any) => {
-                    console.log(res);
+                    console.log("race put:", res);
                     this.router.navigate(["/races-list"]);
                 })
         } else{
             //post
-            this.race._id = null;
             this.racesService
-                .post(this.race)
+                .post(this.raceToBeSaved)
                 .subscribe((res: any) => {
-                    console.log(res);
+                    console.log("race post:", res);
                     this.router.navigate(["/races-list"]);
                 });
         }
@@ -123,6 +143,54 @@ export class RaceForm implements AfterViewInit{
         if (this.utils.confirmBox("Cancel editing and go back to race list?")){
             this.router.navigate(["/races-list"]);
         }
+    }
+
+    addSpecial() {
+        this.specialList.selected = this.filterSpecialIDs(this.race.specials);
+        this.specialList.ngOnInit();
+        this.modalService.toggle("specialsModal");
+    }
+
+    editSpecial(special: ISpecialAbility) {
+        this.modalService.toggle("specialsDirectEditModal");
+        this.specialEditForm.id = special._id;
+        this.specialEditForm.name = special.name;
+        this.specialEditForm.description = special.description;
+    }
+
+    removeSpecial(special: ISpecialAbility) {
+        if (!special){return}
+
+        for (var i = 0; i < this.race.specials.length; i++){
+            if (this.race.specials[i]._id === special._id){
+                this.race.specials.splice(i, 1);
+                break;
+            }
+        }
+    }
+
+    onSpecialAbilityEdited(editedSpecial: ISpecialAbility) {
+        this.modalService.toggle("specialsDirectEditModal");
+        if (!editedSpecial || editedSpecial._id === "-1") {return}
+
+        for (var i = 0; i < this.tempSpecials.length; i++){
+            if (this.tempSpecials[i]._id === editedSpecial._id){
+                this.tempSpecials[i].name = editedSpecial.name;
+                this.tempSpecials[i].description = editedSpecial.description;
+                break;
+            }
+        }
+    }
+
+    onSpecialAbilitiesSelected(newSelection: ISpecialAbility[]) {
+        this.modalService.toggle("specialsModal");
+        if (!newSelection || newSelection[0]._id === "-1") {return}
+        if (newSelection[0]._id === "-2"){
+            this.fixSpecials();
+            return;
+        }
+
+        this.race.specials = newSelection
     }
     
     private fixTempSpeeds(loadedSpeeds: ISpeeds[]){
@@ -143,6 +211,37 @@ export class RaceForm implements AfterViewInit{
         }
     }
 
-    ngAfterViewInit(){
+    private fixSpecials(){
+        var wFound: boolean = false;
+        this.specialsService
+        .get()
+        .subscribe((res: ISpecialAbility[])=>{
+            for (var i = 0; i < this.race.specials.length; i++){
+                wFound = false;
+                for (var j = 0; j < res.length; j++){
+                    if (this.race.specials[i]._id === res[j]._id){
+                        wFound = true;
+                        this.race.specials[i].name = res[j].name;
+                        this.race.specials[i].description = res[j].description;
+                        break;
+                    }
+                }
+                if (!wFound) {
+                    this.race.specials.splice(i, 1);
+                }
+            }
+        });
     }
+
+    private filterSpecialIDs(specials: ISpecialAbility[]): string[]{
+        if (!specials || specials.length === 0){return []}
+
+        var specialsIDs: string[] = [];
+
+        for (var i = 0; i < specials.length; i++){
+            specialsIDs.push(specials[i]._id);
+        }
+        return specialsIDs;
+    }
+
 }

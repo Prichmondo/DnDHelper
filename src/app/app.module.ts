@@ -20,15 +20,16 @@ import { CampaignComponent }        from './components/campaigns/app.campaign';
 import { AddCampaignComponent }     from './components/campaigns/app.addCampaign';
 import { HomeComponent }            from './components/home/app.home';
 import { ShowCharacters }           from './components/app.showCharacters';
-import { ShowClasses }              from './components/app.showClasses';
+import { ClassesList }              from './components/character-classes/app.classes.list';
+import { ClassForm }                from './components/character-classes/app.class.form';
 import { InputNumberComponent }     from './components/inputs/input-number';
 import { DiceInputComponent }       from './components/inputs/dice-input';
 import { RollFilterByDice,
          TotalFilterByDice }        from './components/dice-roller/app.diceroller.pipes';
 import { RacesList }                from './components/races-list/app.races-list';
 import { RaceForm }                 from './components/races-list/app.race.form';
-import { SpecialAbilitiesComponent }from './components/races-list/app.race-special-abilities';
-import { ClassForm }                from './components/app.classForm';
+import { SpecialAbilitiesComponent }from './components/special-abilities/app.special-abilities';
+import { SpecialAbilityForm }       from './components/special-abilities/app.specials.form';
 import { ToggleButtonComponent }    from './components/inputs/toggle-button';
 import { ToggleButtonComponentB }   from './components/inputs/toggle-button-boolean';
 import { TableDisplayData }         from './components/table-data/table-display-data';
@@ -36,6 +37,7 @@ import { Pipe3FiltersText }         from './utilities/pipe.3filters.text';
 
 //SERVICES
 import { Utilities }                from './utilities/app.utilities';
+import { DnDUtilities }             from './utilities/app.utilities.dnd';
 import { RulebookService }          from './services/rulebook.service';
 import { AuthenticationService }    from './services/authentication.service';
 import { UsersService }             from './services/users.service';
@@ -49,10 +51,11 @@ import { Broadcaster }              from './services/broadcast';
 import { CharactersService }        from './services/characthers.service';
 import { CharacterClassService }    from './services/characterClasses.service';
 import { RacesService }             from './services/races.service';
+import { SpecialAbilitiesService }  from './services/special.abilities.service';
 import { PgSkillsService }          from './services/pgSkills.service';
 import { DiceRoller }               from './components/dice-roller/diceroller.engine';
-
-
+import { ModalComponent }           from './components/modal/modal.component';
+import { ModalService }             from './services/modal.service'
 
 @NgModule({
   declarations: [
@@ -71,16 +74,17 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
     AddCampaignComponent,
     HomeComponent,
     ShowCharacters,
-    ShowClasses,
+    ClassesList,
     ClassForm,
     RacesList,
     RaceForm,
     SpecialAbilitiesComponent,
+    SpecialAbilityForm,
     ToggleButtonComponent,
     ToggleButtonComponentB,
     TableDisplayData,
     Pipe3FiltersText,
-    
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +95,7 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
   ],
   providers: [
     Utilities,
+    DnDUtilities,
     DiceRoller, 
     RulebookService,
     AuthenticationService,
@@ -102,10 +107,12 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
     CharactersService,
     CharacterClassService,
     RacesService,
+    SpecialAbilitiesService,
     PgSkillsService,
     Pipe3FiltersText,
     AuthGuard, Anonymus,
-    Broadcaster, UsersService
+    Broadcaster, UsersService, 
+    ModalService
   ],
   bootstrap: [AppComponent]
 })

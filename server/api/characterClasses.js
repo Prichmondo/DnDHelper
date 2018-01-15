@@ -41,7 +41,7 @@ router.put(url + "/:id", (req, res)=>{
     var id = req.params.id;
     var CharacterClass = req.body;
     
-    CharacterClasses.update(id, CharacterClass, {}, (error, CharacterClass)=>{
+    CharacterClasses.update(id, CharacterClass, {new: true}, (error, CharacterClass)=>{
         if(error){
             throw error;
         }

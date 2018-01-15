@@ -4,7 +4,8 @@
         class="btn btn-sm"
         *ngFor="let option of options"
         [ngClass] = "{'btn-default': option !== value, 'btn-primary': option === value}"
-        (click)="onClick(option)">
+        (click)="onClick(option)"
+        [ngStyle]="{'width.px': fixedButtonWidth}">
         {{option}}
     </button>
 </div>
