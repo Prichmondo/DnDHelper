@@ -173,34 +173,35 @@
         </div>
         <div class="col-md-5">
             <ng-container *ngIf="skills">
-                
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">Skills</th>
-                            <th scope="col">Mod</th>
-                            <th scope="col">Training</th>
-                            <th scope="col">Rank</th>
-                        </tr>
-                    </thead>
-                    <tbody >
-                        <tr *ngFor="let skill of skills">
-                            <th scope="row">
-                                {{skill.name}}
-                            </th>
-                            <td>
-                                {{skill.modifier}}
-                            </td>
-                            <td [textContent]="skill.trainedOnly ? 'Y' : 'N'">
+                <div class="tableScroll" infiniteScroll [infiniteScrollDistance]="2" 
+                [infiniteScrollThrottle]="300" (scrolled)="onScroll()" [scrollWindow]="false">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Skills</th>
+                                <th scope="col">Mod</th>
+                                <th scope="col">Training</th>
+                                <th scope="col">Rank</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr *ngFor="let skill of skills">
+                                <th scope="row">
+                                    {{skill.name}}
+                                </th>
+                                <td>
+                                    {{skill.modifier}}
+                                </td>
+                                <td [textContent]="skill.trainedOnly ? 'Y' : 'N'">
 
-                            </td>
-                            <td>
-                                <input type="number" min="0" max="23" [(ngModel)]="skill.rank">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-          
+                                </td>
+                                <td>
+                                    <input type="number" min="0" max="23" [(ngModel)]="skill.rank">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>    
             </ng-container> 
         </div>
     </div>

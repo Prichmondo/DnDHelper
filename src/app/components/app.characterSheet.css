@@ -20,6 +20,11 @@ ul, li {
     box-shadow: none;
 }
 
+.tablleScroll{
+    height:100%;
+    overflow: scroll;
+}
+
 .standard-spacer{
     margin-top:20px;
 }

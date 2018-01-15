@@ -5,6 +5,7 @@ import { FormsModule }              from '@angular/forms';
 import { HttpModule }               from '@angular/http';
 import { RouterModule, Router }     from '@angular/router';
 import { from }                     from 'rxjs/observable/from';
+import { InfiniteScrollModule }     from 'ngx-infinite-scroll';
 
 //COMPONENTS
 import { AppRoutingModule }         from './app.routing.module';
@@ -86,6 +87,7 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    InfiniteScrollModule
   ],
   providers: [
     Utilities,
