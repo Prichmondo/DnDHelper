@@ -76,11 +76,12 @@ export class CharacterClassService{
             type: inputCharacter.type,
             hitDice: inputCharacter.hitDice,
             skills: [],
-            specials: []};
+            classLevels: [{}]
+        };
         
-        for (var i = 0; i < inputCharacter.specials.length; i++){
-            for (var j = 0; j < inputCharacter.specials[i].length; j++){
-                oputputCharacter.specials[i].push(inputCharacter.specials[i][j]._id);
+        for (var i = 0; i < inputCharacter.classLevels.length; i++){
+            for (var j = 0; j < inputCharacter.classLevels[i].specials.length; j++){
+                oputputCharacter.classLevels[i].specials.push(inputCharacter.classLevels[i].specials[j]._id);
             }
         }
 

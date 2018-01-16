@@ -1,6 +1,9 @@
-import { Component, OnInit }            from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute }       from '@angular/router';
 import { NgForm }                       from '@angular/forms';
+
+import { ClassTablePreview,
+         ClassTableData }               from './app.class.table-preview';
 
 import { IClass }                       from '../../models/CharacterClass'; 
 import { RulebookService }              from '../../services/rulebook.service';
@@ -11,16 +14,6 @@ import { forEach } from '@angular/router/src/utils/collection';
 
 import { HIT_DICES }                    from '../../mocks/mock-dices';
 import { Dice } from 'app/models/dice';
-
-export class ClassTableView {
-    level: number;
-    baseAttackBonus: string[];
-    savingThrowFortitude: string;
-    savingThrowReflexes: string;
-    savingThrowWill: string;
-    specials: string[];
-}
-
 
 @Component({
 
@@ -33,9 +26,11 @@ export class ClassForm {
 
     characterClass: IClass;
     ruleBook: any;
-    tablePreview: ClassTableView[] = [];
     availableHitDices: Dice[] = HIT_DICES;
     selectedLevel: number = 0;
+    initComplete: boolean = false;
+
+    @ViewChild(ClassTablePreview) tablePreview: ClassTablePreview;
 
     constructor(
         private utils: Utilities,
@@ -47,92 +42,30 @@ export class ClassForm {
 
     
     updatePreviewTable(){
-        if (!this.characterClass) {return}
-        if (this.characterClass.levels < 1){this.characterClass.levels = 1}
-        if (this.characterClass.levels > 30){this.characterClass.levels = 30}
-
-        if (this.characterClass.levels !== this.tablePreview.length){
-            if (this.characterClass.levels < this.tablePreview.length){
-                this.tablePreview.splice(this.characterClass.levels - 1, this.tablePreview.length - this.characterClass.levels);
-            }
+        if (this.initComplete){
+            this.tablePreview.characterClass = this.characterClass;
+            this.tablePreview.updateTable();
         }
-
-        for (var i = 0; i < (this.characterClass.levels); i++){
-            this.tablePreview[i] = {
-                level: i + 1,
-                baseAttackBonus: this.dndUtils.calculateAllAttackBonuses(this.dndUtils.calculateBaseAttack(i + 1, this.characterClass.baseAttackBonus))
-                    .map(bonus => this.utils.formatNumberAsTextForceSign(bonus)),
-                savingThrowFortitude: this.utils.formatNumberAsTextForceSign(this.dndUtils.calculateSavingThrow(i + 1, this.characterClass.savingThrows.fortitude)),
-                savingThrowReflexes: this.utils.formatNumberAsTextForceSign(this.dndUtils.calculateSavingThrow(i + 1, this.characterClass.savingThrows.reflex)),
-                savingThrowWill: this.utils.formatNumberAsTextForceSign(this.dndUtils.calculateSavingThrow(i + 1, this.characterClass.savingThrows.will)),
-                specials: this.characterClass.specials[i].map(special => special.name.toString())
-            }
-        }
-        console.log(this.tablePreview);
     }
 
     private createSpecialsInTable(level): string[]{
         var outputSpecials: string[] = [];
 
-        for (var i = 0; i < this.characterClass.specials[level -1].length; i++){
-            outputSpecials.push(this.characterClass.specials[level -1][i].name);
+        for (var i = 0; i < this.characterClass.classLevels[level -1].specials.length; i++){
+            outputSpecials.push(this.characterClass.classLevels[level -1].specials[i].name);
         }
 
         return outputSpecials;
     }
 
-    editSpecials(level: number){
-        if (!this.characterClass.specials[level - 1]){
-            console.log("selected level:" + level, "-1");
+    editSpecials(line: ClassTableData){
+        if (!this.characterClass.classLevels[line.level - 1] || !this.characterClass.classLevels[line.level - 1].specials){
+            console.log("selected level:" + line.level, "-1");
         } else {
-            console.log(this.characterClass.specials[level - 1]);
+            console.log(this.characterClass.classLevels[line.level - 1].specials);
         }
     }
-    
-    ngOnInit(){
 
-        this.ruleBookService
-            .get()
-            .subscribe((ruleBook)=>{
-                this.ruleBook = ruleBook;
-                console.log("RuleBook", this.ruleBook);
-
-                
-                this.activatedRoute
-                    .params
-                    .subscribe((params)=>{
-                        if(typeof params.id !== "undefined"){
-                            this.CharacterClassService
-                                .getById(params.id)
-                                .subscribe((response:any)=>{
-                                    this.characterClass = response;
-                                    console.log(this.characterClass);
-                                    this.updatePreviewTable();
-                                })
-                        }
-                        else{
-                            
-                            this.characterClass = {
-                                baseAttackBonus: ruleBook.attackBonusType[0],
-                                levels: 20,
-                                name: "",
-                                savingThrows: {
-                                    fortitude: ruleBook.savingThrowsBonusType[0],
-                                    reflex: ruleBook.savingThrowsBonusType[0],
-                                    will: ruleBook.savingThrowsBonusType[0]
-                                },
-                                type: this.ruleBook.classType[0],
-                                hitDice: this.availableHitDices[0].faces,
-                                skills: [],
-                                specials: [[]]
-                            }
-                            this.updatePreviewTable();
-                        }
-                    })
-            });
-
-    }
-    
     saveClass(){
         
         this.CharacterClassService
@@ -159,5 +92,50 @@ export class ClassForm {
         }
 
     }
-  
+      
+    ngOnInit(){
+
+        this.ruleBookService
+            .get()
+            .subscribe((ruleBook)=>{
+                this.ruleBook = ruleBook;             
+                this.activatedRoute
+                    .params
+                    .subscribe((params)=>{
+                        if(typeof params.id !== "undefined"){
+                            this.CharacterClassService
+                                .getById(params.id)
+                                .subscribe((response:any)=>{
+                                    this.characterClass = response;
+                                    console.log(this.characterClass);
+                                    //this.updatePreviewTable();
+                                })
+                        }
+                        else{
+                            this.characterClass = {
+                                baseAttackBonus: ruleBook.attackBonusType[0],
+                                levels: 20,
+                                name: "",
+                                savingThrows: {
+                                    fortitude: ruleBook.savingThrowsBonusType[0],
+                                    reflex: ruleBook.savingThrowsBonusType[0],
+                                    will: ruleBook.savingThrowsBonusType[0]
+                                },
+                                type: this.ruleBook.classType[0],
+                                hitDice: this.availableHitDices[0].faces,
+                                skills: [],
+                                classLevels: [{}]
+                            }
+                            //this.updatePreviewTable();
+                        }
+                    })
+            });
+
+    }
+
+    ngAfterViewChecked(){
+        this.initComplete = true;
+        //this.updatePreviewTable();
+    }
+    
 }

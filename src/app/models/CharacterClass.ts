@@ -16,7 +16,11 @@ export interface IClass{
     type: string;
     hitDice: number;
     skills?: any[];
-    specials?: Array<Array<ISpecialAbility>>
+    classLevels?: [
+        {
+            specials?: ISpecialAbility[]
+        }
+    ]
 };
 
 export interface IClassUpdate{
@@ -29,5 +33,9 @@ export interface IClassUpdate{
     type: string;
     hitDice: number;
     skills?: any[];
-    specials?: Array<Array<string>>;
+    classLevels?: [
+        {
+            specials?: string[]
+        }
+    ]
 };

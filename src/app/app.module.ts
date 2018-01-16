@@ -21,6 +21,7 @@ import { HomeComponent }            from './components/home/app.home';
 import { ShowCharacters }           from './components/app.showCharacters';
 import { ClassesList }              from './components/character-classes/app.classes.list';
 import { ClassForm }                from './components/character-classes/app.class.form';
+import { ClassTablePreview }        from './components/character-classes/app.class.table-preview';
 import { InputNumberComponent }     from './components/inputs/input-number';
 import { DiceInputComponent }       from './components/inputs/dice-input';
 import { RollFilterByDice,
@@ -75,6 +76,7 @@ import { ModalService }             from './services/modal.service'
     ShowCharacters,
     ClassesList,
     ClassForm,
+    ClassTablePreview,
     RacesList,
     RaceForm,
     SpecialAbilitiesComponent,
