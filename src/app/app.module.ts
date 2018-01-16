@@ -5,6 +5,7 @@ import { FormsModule }              from '@angular/forms';
 import { HttpModule }               from '@angular/http';
 import { RouterModule, Router }     from '@angular/router';
 import { from }                     from 'rxjs/observable/from';
+import { InfiniteScrollModule }     from 'ngx-infinite-scroll';
 
 //COMPONENTS
 import { AppRoutingModule }         from './app.routing.module';
@@ -92,6 +93,7 @@ import { ModalService }             from './services/modal.service'
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    InfiniteScrollModule
   ],
   providers: [
     Utilities,
