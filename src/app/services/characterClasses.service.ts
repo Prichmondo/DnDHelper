@@ -66,7 +66,14 @@ export class CharacterClassService{
     }
 
     mapForUpdate(inputCharacter: IClass): IClassUpdate {
-        if (!inputCharacter){return null}
+        
+        if (!inputCharacter) return null;
+        
+        if (inputCharacter.classLevels.length > inputCharacter.levels){
+            inputCharacter.classLevels
+                .splice(inputCharacter.levels, inputCharacter.classLevels.length - inputCharacter.levels);
+        }
+
         var oputputCharacter: IClassUpdate = {
             _id: inputCharacter._id,
             name: inputCharacter.name,
@@ -76,14 +83,22 @@ export class CharacterClassService{
             type: inputCharacter.type,
             hitDice: inputCharacter.hitDice,
             skills: [],
-            classLevels: [{}]
+            classLevels: inputCharacter.classLevels.map(lvl => {
+                
+                if(lvl===null || typeof lvl === "undefined")
+                    return { specials:[] };
+
+                return { 
+                    specials: lvl.specials.map(s => s._id) 
+                };
+            })
         };
         
-        for (var i = 0; i < inputCharacter.classLevels.length; i++){
+        /*for (var i = 0; i < inputCharacter.classLevels.length; i++){
             for (var j = 0; j < inputCharacter.classLevels[i].specials.length; j++){
                 oputputCharacter.classLevels[i].specials.push(inputCharacter.classLevels[i].specials[j]._id);
             }
-        }
+        }*/
 
         return oputputCharacter;
     }

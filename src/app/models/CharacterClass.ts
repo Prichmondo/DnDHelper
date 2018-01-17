@@ -23,6 +23,14 @@ export interface IClass{
     ]
 };
 
+export interface ILevel {
+    specials: ISpecialAbility[]
+}
+
+export interface ILevelUpdate {
+    specials: string[]
+}
+
 export interface IClassUpdate{
 
     _id?: string;
@@ -33,9 +41,5 @@ export interface IClassUpdate{
     type: string;
     hitDice: number;
     skills?: any[];
-    classLevels?: [
-        {
-            specials?: string[]
-        }
-    ]
+    classLevels?: ILevelUpdate[]
 };

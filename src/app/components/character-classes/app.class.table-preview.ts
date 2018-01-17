@@ -35,7 +35,7 @@ export class ClassTablePreview {
     selectedLevel: number = 0;
 
     @Input() characterClass: IClass;
-    @Input() title: string;
+    @Input() title?: string = "";
     @Input() highlightedLevel: number = 0;
     @Input() rowClickable: boolean = false;
     @Output() rowClickAction: EventEmitter<ClassTableData> = new EventEmitter<ClassTableData>();
