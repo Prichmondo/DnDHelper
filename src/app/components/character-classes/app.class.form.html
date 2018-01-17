@@ -3,7 +3,7 @@
 
 <div class="row" *ngIf="characterClass">
     <div class="col-sx-12 col-md-5">
-        <form #classForm = "ngForm" (ngSubmit)="onUpdate()">
+        <form #classForm = "ngForm">
             <div class="row">
                 <div class="form-group col-sx-12 col-sm-12 col-md-12">
                     <label>Class Name</label>
@@ -32,7 +32,6 @@
                 </div>
             </div>
 
-             
             <label>Saving Throws</label>
             <div class="row option-container">
                 <div class="col-xs-4">
@@ -90,8 +89,11 @@
                         [fixedComponentWidth]=200>
                     </toggle-button>
                 </div>
-            </div>       
-            <button class="btn btn-success" type="submit">Submit</button>
+            </div>
+            <div class="button-container">
+                <button type="button" class="btn btn-success" (click)="classSave()">Save</button>
+                <button type="button" class="btn btn-warning" (click)="cancelEdit()">Cancel</button>
+            </div>     
         </form>
     </div>
 
@@ -102,5 +104,17 @@
             (rowClickAction)="editSpecials($event)"
             >
         </class-form-table-preview>
+        <div class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Click on a row to edit Special Abilities.</div>
     </div>
+
+    <app-modal
+        id="classSpecialsModal"
+        title="Select Specials"
+        [hideCloseBtn]="true"
+        [hideXBtn]="true"
+        [hideHeader]="true"
+        [buttons]="[]">
+        <app-special-abilities [tableIsSelectable]="true" (returnedSelection)="onSpecialAbilitiesSelected($event)"></app-special-abilities>
+    </app-modal>
+
 </div>

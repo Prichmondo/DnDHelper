@@ -1,6 +1,7 @@
 import { Component,
          OnInit,
          Input, Output,
+         AfterViewInit,
          EventEmitter }                 from '@angular/core';
 
 import { IClass }                       from '../../models/CharacterClass'; 
@@ -53,8 +54,6 @@ export class ClassTablePreview {
 
     updateTable(){
         if (!this.characterClass) {return}
-        if (this.characterClass.levels < 1){this.characterClass.levels = 1}
-        if (this.characterClass.levels > 30){this.characterClass.levels = 30}
 
         if (this.characterClass.levels !== this.tablePreview.length){
             if (this.characterClass.levels < this.tablePreview.length){
@@ -87,7 +86,7 @@ export class ClassTablePreview {
         console.log("init",this.characterClass);
     }
 
-    ngAfterViewChecked(){
+    ngAfterViewInit(){
         this.updateTable();
     }
 }

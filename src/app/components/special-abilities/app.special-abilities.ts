@@ -240,6 +240,7 @@ export class SpecialAbilitiesComponent implements AfterViewInit{
             }
           }
           this.sortTable();
+          document.getElementById("table-div").scrollTo(0,0);
       });
   }
 

@@ -4,16 +4,20 @@ import { NgForm }                       from '@angular/forms';
 
 import { ClassTablePreview,
          ClassTableData }               from './app.class.table-preview';
+import { SpecialAbilitiesComponent }    from '../special-abilities/app.special-abilities';
 
-import { IClass }                       from '../../models/CharacterClass'; 
+import { IClass }                       from '../../models/CharacterClass';
+import { ISpecialAbility }              from '../../models/specialAbility';
+import { Dice }                         from '../../models/dice';
+
 import { RulebookService }              from '../../services/rulebook.service';
 import { CharacterClassService }        from '../../services/characterClasses.service';
 import { Utilities }                    from '../../utilities/app.utilities';
 import { DnDUtilities }                 from '../../utilities/app.utilities.dnd';
+import { ModalService }                 from '../../services/modal.service'
 import { forEach } from '@angular/router/src/utils/collection';
 
 import { HIT_DICES }                    from '../../mocks/mock-dices';
-import { Dice } from 'app/models/dice';
 
 @Component({
 
@@ -31,6 +35,7 @@ export class ClassForm {
     initComplete: boolean = false;
 
     @ViewChild(ClassTablePreview) tablePreview: ClassTablePreview;
+    @ViewChild(SpecialAbilitiesComponent) specialsComp: SpecialAbilitiesComponent;
 
     constructor(
         private utils: Utilities,
@@ -38,59 +43,71 @@ export class ClassForm {
         private ruleBookService: RulebookService,
         private CharacterClassService: CharacterClassService,
         private activatedRoute: ActivatedRoute,
-        private router: Router){};
+        private router: Router,
+        private modalService: ModalService
+    ){};
 
     
     updatePreviewTable(){
         if (this.initComplete){
+            if (this.characterClass.levels < 1){this.characterClass.levels = 1}
+            if (this.characterClass.levels > 30){this.characterClass.levels = 30}
             this.tablePreview.characterClass = this.characterClass;
             this.tablePreview.updateTable();
         }
     }
 
-    private createSpecialsInTable(level): string[]{
-        var outputSpecials: string[] = [];
-
-        for (var i = 0; i < this.characterClass.classLevels[level -1].specials.length; i++){
-            outputSpecials.push(this.characterClass.classLevels[level -1].specials[i].name);
-        }
-
-        return outputSpecials;
-    }
-
     editSpecials(line: ClassTableData){
+        this.selectedLevel = line.level;
         if (!this.characterClass.classLevels[line.level - 1] || !this.characterClass.classLevels[line.level - 1].specials){
-            console.log("selected level:" + line.level, "-1");
+            this.specialsComp.selected = [];
         } else {
-            console.log(this.characterClass.classLevels[line.level - 1].specials);
+            this.specialsComp.selected = this.characterClass.classLevels[line.level - 1].specials.map(special => (special._id));
         }
+        this.specialsComp.ngOnInit();
+        this.specialsComp.currentSearch = "";
+        this.modalService.toggle("classSpecialsModal");
+        this.utils.setFocus("specialSearchBox");
     }
 
-    saveClass(){
-        
-        this.CharacterClassService
-            .post(this.CharacterClassService.mapForUpdate(this.characterClass))
-            .subscribe((response:any)=>{
-                console.log("Saving...", response)
-            })
+    onSpecialAbilitiesSelected(newSelection: ISpecialAbility[]) {
+        this.modalService.toggle("classSpecialsModal");
+        if (!newSelection || newSelection[0]._id === "-1") {return}
+        if (newSelection[0]._id === "-2"){
+            this.fixSpecials();
+            return;
+        }
+
+        this.characterClass.classLevels[this.selectedLevel -1] = {specials: newSelection};
+        this.updatePreviewTable();
     }
-    updateClass(){
-        this.CharacterClassService
+
+    private fixSpecials(){
+
+    }
+
+    classSave(){
+        if (this.characterClass._id){
+            this.CharacterClassService
             .update(this.CharacterClassService.mapForUpdate(this.characterClass))
             .subscribe((response :any)=>{
                 console.log("Updating...", response)
                 this.router.navigate(["/Classes"]);
             })
+            
+        } else {
+            this.CharacterClassService
+            .post(this.CharacterClassService.mapForUpdate(this.characterClass))
+            .subscribe((response:any)=>{
+                console.log("Saving...", response)
+            })
+        }
     }
 
-    onUpdate(){
-        if(this.characterClass._id){
-            this.updateClass();
-            
-        }else{
-            this.saveClass();
+    cancelEdit(){
+        if (this.utils.confirmBox("Cancel editing and go back to Class list?")){
+            this.router.navigate(["/Classes"]);
         }
-
     }
       
     ngOnInit(){
@@ -102,7 +119,7 @@ export class ClassForm {
                 this.activatedRoute
                     .params
                     .subscribe((params)=>{
-                        if(typeof params.id !== "undefined"){
+                        if (typeof params.id !== "undefined") {
                             this.CharacterClassService
                                 .getById(params.id)
                                 .subscribe((response:any)=>{
@@ -110,8 +127,7 @@ export class ClassForm {
                                     console.log(this.characterClass);
                                     //this.updatePreviewTable();
                                 })
-                        }
-                        else{
+                        } else {
                             this.characterClass = {
                                 baseAttackBonus: ruleBook.attackBonusType[0],
                                 levels: 20,
@@ -135,7 +151,6 @@ export class ClassForm {
 
     ngAfterViewChecked(){
         this.initComplete = true;
-        //this.updatePreviewTable();
     }
     
 }

@@ -147,8 +147,10 @@ export class RaceForm {
 
     addSpecial() {
         this.specialList.selected = this.filterSpecialIDs(this.race.specials);
+        this.specialList.currentSearch = "";
         this.specialList.ngOnInit();
         this.modalService.toggle("specialsModal");
+        this.utils.setFocus("specialSearchBox");
     }
 
     editSpecial(special: ISpecialAbility) {
