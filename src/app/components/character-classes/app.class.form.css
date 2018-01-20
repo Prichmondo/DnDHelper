@@ -1,11 +1,8 @@
-.saving-throw-col {
-    width: 40px;
-}
-
-tbody > tr {
-    cursor: pointer;
-}
-
 .option-container {
     margin-bottom: 2px;
+}
+
+.button-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

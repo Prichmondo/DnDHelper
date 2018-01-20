@@ -3,7 +3,7 @@
 
 <div class="row" *ngIf="characterClass">
     <div class="col-sx-12 col-md-5">
-        <form #classForm = "ngForm" (ngSubmit)="onUpdate()">
+        <form #classForm = "ngForm">
             <div class="row">
                 <div class="form-group col-sx-12 col-sm-12 col-md-12">
                     <label>Class Name</label>
@@ -32,7 +32,6 @@
                 </div>
             </div>
 
-             
             <label>Saving Throws</label>
             <div class="row option-container">
                 <div class="col-xs-4">
@@ -90,60 +89,32 @@
                         [fixedComponentWidth]=200>
                     </toggle-button>
                 </div>
-            </div>       
-            <button class="btn btn-success" type="submit">Submit</button>
+            </div>
+            <div class="button-container">
+                <button type="button" class="btn btn-success" (click)="classSave()">Save</button>
+                <button type="button" class="btn btn-warning" (click)="cancelEdit()">Cancel</button>
+            </div>     
         </form>
     </div>
 
-    <div class="col-sx-12 col-md-7">
-        <label>Class Table Preview (Click on a row to edit Special Abilities)</label>
-        <div>
-            <table class="table table-striped table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th>
-                            Lvl
-                        </th>
-                        <th>
-                            Base Attack
-                        </th>
-                        <th class="saving-throw-col">
-                            Fortitude
-                        </th>
-                        <th class="saving-throw-col">
-                            Reflexes
-                        </th>
-                        <th class="saving-throw-col">
-                            Will
-                        </th>
-                        <th>
-                            Special Abilities
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let line of tablePreview" (click)="editSpecials(line.level)">
-                        <td>
-                            {{line.level}}
-                        </td>
-                        <td>
-                            {{line.baseAttackBonus.join(" / ")}}
-                        </td>
-                        <td>
-                            {{line.savingThrowFortitude}}
-                        </td>
-                        <td>
-                            {{line.savingThrowReflexes}}
-                        </td>
-                        <td>
-                            {{line.savingThrowWill}}
-                        </td>
-                        <td>
-                            {{line.specials.join(", ")}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="col-sx-12 col-md-7" *ngIf="initComplete">
+        <class-form-table-preview
+            [characterClass]="characterClass"
+            [rowClickable]="true"
+            (rowClickAction)="editSpecials($event)"
+            >
+        </class-form-table-preview>
+        <div class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Click on a row to edit Special Abilities.</div>
     </div>
+
+    <app-modal
+        id="classSpecialsModal"
+        title="Select Specials"
+        [hideCloseBtn]="true"
+        [hideXBtn]="true"
+        [hideHeader]="true"
+        [buttons]="[]">
+        <app-special-abilities title="Class Progression Preview" [tableIsSelectable]="true" (returnedSelection)="onSpecialAbilitiesSelected($event)"></app-special-abilities>
+    </app-modal>
+
 </div>

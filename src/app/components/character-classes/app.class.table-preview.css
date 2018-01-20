@@ -1,0 +1,8 @@
+.saving-throw-col {
+    width: 40px;
+    text-align: center;
+}
+
+.row-clickable {
+    cursor: pointer;
+}

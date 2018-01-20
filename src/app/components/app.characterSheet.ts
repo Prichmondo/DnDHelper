@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { InfiniteScrollModule }     from 'ngx-infinite-scroll';
+//import { InfiniteScrollModule }     from 'ngx-infinite-scroll';
 
 import { ICharacter, ICharacterRequest } from '../models/character';
 import { IAbilities } from '../models/Abilities';
