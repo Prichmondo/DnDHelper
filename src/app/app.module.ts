@@ -1,11 +1,12 @@
 //ANGULAR
-import { BrowserModule }            from '@angular/platform-browser';
-import { NgModule }                 from '@angular/core';
-import { FormsModule }              from '@angular/forms';
-import { HttpModule }               from '@angular/http';
-import { RouterModule, Router }     from '@angular/router';
-import { from }                     from 'rxjs/observable/from';
-import { InfiniteScrollModule }     from 'ngx-infinite-scroll';
+import { BrowserModule }                    from '@angular/platform-browser';
+import { NgModule }                         from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule }                       from '@angular/http';
+import { RouterModule, Router }             from '@angular/router';
+import { from }                             from 'rxjs/observable/from';
+import { InfiniteScrollModule }             from 'ngx-infinite-scroll';
+
 
 //COMPONENTS
 import { AppRoutingModule }         from './app.routing.module';
@@ -34,6 +35,11 @@ import { ToggleButtonComponent }    from './components/inputs/toggle-button';
 import { ToggleButtonComponentB }   from './components/inputs/toggle-button-boolean';
 import { TableDisplayData }         from './components/table-data/table-display-data';
 import { Pipe3FiltersText }         from './utilities/pipe.3filters.text';
+import { InitMgrComponent }         from './components/initiative-manager/init-mgr/init-mgr.component';
+import { CockpitComponent }         from './components/initiative-manager/init-mgr/cockpit/cockpit.component';
+import { CharInfoComponent }        from './components/initiative-manager/init-mgr/char-info/char-info.component';
+import { CharInfoFormComponent }    from './components/initiative-manager/init-mgr/char-info-form/char-info-form.component';
+import { TurnplayerComponent }      from './components/initiative-manager/init-mgr/turn-player/turnplayer/turnplayer.component';
 
 //SERVICES
 import { Utilities }                from './utilities/app.utilities';
@@ -55,7 +61,9 @@ import { SpecialAbilitiesService }  from './services/special.abilities.service';
 import { PgSkillsService }          from './services/pgSkills.service';
 import { DiceRoller }               from './components/dice-roller/diceroller.engine';
 import { ModalComponent }           from './components/modal/modal.component';
-import { ModalService }             from './services/modal.service'
+import { ModalService }             from './services/modal.service';
+import { LocalStorageManagerService } from './services/local-storage-manager.service';
+
 
 @NgModule({
   declarations: [
@@ -84,11 +92,17 @@ import { ModalService }             from './services/modal.service'
     ToggleButtonComponentB,
     TableDisplayData,
     Pipe3FiltersText,
-    ModalComponent
+    ModalComponent,
+    InitMgrComponent,
+    CockpitComponent,
+    CharInfoComponent,
+    CharInfoFormComponent,
+    TurnplayerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
     InfiniteScrollModule
@@ -101,6 +115,7 @@ import { ModalService }             from './services/modal.service'
     AuthenticationService,
     LocalStoreService,
     LocalStoreManagerService,
+    LocalStorageManagerService,
     AppRequestOptions,
     HttpService,
     CampaignsService,

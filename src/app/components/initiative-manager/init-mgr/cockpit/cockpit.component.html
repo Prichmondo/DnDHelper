@@ -1,0 +1,27 @@
+
+<label for="charName">Name</label>
+<input type="text" class="form-control" id="charName" placeholder="Name?" [(ngModel)]="newName">
+<label for="baseInit">Base initiative</label>
+<input type="number" class="form-control" id="baseInit" placeholder="Base initiative?"[(ngModel)]="newBaseInit">
+<label for="quantity">Quantity</label>
+<input type="number" class="form-control" id="quantity" placeholder="how many?" [(ngModel)]="newQuantity">
+<select [ngModel]="newArrayType[2]" id="typeSelect" (change)="setNewType($event.target.value)">
+  <option name="type" *ngFor="let newType of newArrayType" [ngValue]="newType">{{newType}}</option>
+</select>
+<hr>
+<button type="submit" class="btn btn-success" (click)="onAddCharacter()">Save</button> 
+<ng-container *ngIf="!newName || newName== 'undefined'; else showMe">
+  <h2>Enter a new character or new characters</h2>
+</ng-container>
+<ng-container #showMe *ngIf="newQuantity ==1 && newName; else elseblock">
+    <h2>Let's welcome our new friend {{newName}}!!</h2>
+</ng-container>
+<ng-container #elseblock *ngIf="newQuantity >1 && newName">
+  <h2>Whatch out! some {{newName}} here</h2>
+</ng-container> 
+
+
+
+  
+
+

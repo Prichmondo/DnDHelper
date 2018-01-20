@@ -1,0 +1,54 @@
+<li class="list-group-item" [ngStyle]="onSelectCharType()" >
+  <form [formGroup] = "charInfoForm" (ngSubmit)="addPost(charInfoForm.value)">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label class="center-block">Name
+            <input type="text" class="form-control" formControlName = "name" value="characterInfo.charName">
+          </label>
+          <div class="alert-danger text-center" *ngIf="!charInfoForm.controls['name'].valid && charInfoForm.controls['name'].dirty">
+            Name must be at least 2 letters!
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label class="center-block">Bonus
+            <input type="number" class="form-control" formControlName = "bonus" value="characterInfo.charBaseInit">
+          </label>
+          <div class="alert-danger text-center" *ngIf="!charInfoForm.controls['bonus'].valid && charInfoForm.controls['bonus'].dirty">
+            Please set a number
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+          <div class="form-group">
+              <label class="center-block">Initiative
+                <input type="number" class="form-control" formControlName = "initiative" value="characterInfo.initiative">
+              </label>
+              <div class="alert-danger text-center" *ngIf="!charInfoForm.controls['initiative'].valid && charInfoForm.controls['initiative'].dirty">
+                Please set a number
+              </div>
+            </div>
+      </div>        
+      <div class="col-sm-3">
+        <div *ngIf="characterInfo.charQuantity > 1; else diffImg">
+          <img [src]="characterInfo.charImagepath" alt="../assets/Images/icons8-gremlin-50.png" class="img-responsive" style="height: 40px" class="pull-right">
+        <caption>Enemies</caption>
+        <span>{{characterInfo.charQuantity}}</span>
+        </div>
+        <ng-template #diffImg>
+            <img [src]="characterInfo.charImagepath" alt="" class="img-responsive" style="height: 40px" class="pull-right">
+        </ng-template>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <input type="submit" class="btn btn-success" [disabled]="!charInfoForm.valid">
+      </div>
+      <div class="col-sm-6">
+        <button class="btn btn-default" (click)="getStatusForm()">Back</button>
+      </div>
+    </div>
+  </form>
+</li>

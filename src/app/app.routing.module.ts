@@ -19,6 +19,7 @@ import { RacesList }                from './components/races-list/app.races-list
 import { RaceForm }                 from './components/races-list/app.race.form';
 import { SpecialAbilitiesComponent }from './components/special-abilities/app.special-abilities';
 import { SpecialAbilityForm }       from './components/special-abilities/app.specials.form';
+import { InitMgrComponent } from './components/initiative-manager/init-mgr/init-mgr.component';
 
 const routes: AppRoute[] = [
     //ROUTESs
@@ -47,6 +48,15 @@ const routes: AppRoute[] = [
       },  
       path          : 'character-sheet/:id',    
       component     : CharacterSheetComponent  
+    },
+
+    { nav: { 
+      name        : "Initiative Manager", 
+      position    : NavMenu.Main, 
+      visible     : NavVisibility.Always   
+    },  
+    path          : 'initMgr',    
+    component     : InitMgrComponent  
     },
 
     { nav: { 

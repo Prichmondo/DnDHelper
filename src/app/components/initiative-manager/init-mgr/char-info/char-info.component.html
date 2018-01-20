@@ -1,0 +1,71 @@
+<li class="list-group-item" [ngStyle]="onSelectCharType()" >
+  <div>
+    <div class="row">
+      <div class="col-sm-3">
+        <label class="center-block">
+          <span>{{characterInfo.charName}}</span>
+        </label>
+      </div>
+      <div class="col-sm-3">
+        <label class="center-block">Bonus:
+            <span>{{characterInfo.charBaseInit}}</span>
+        </label>
+      </div>
+      <div class="col-sm-3">
+        <label class="center-block">Initiative:
+            <span>{{characterInfo.initiative}}</span>
+        </label>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-3">
+        <div *ngIf="characterInfo.charQuantity > 1; else diffImg">
+          <div class="row">
+            <div class="col-sm-6">
+                <img [src]="characterInfo.charImagepath" alt="../assets/Images/icons8-gremlin-50.png" class="img-responsive" style="height: 30px" class="float-left">
+            </div>
+            <div class="col-sm-6">
+              <label class="center-block">Enemies:
+                  <span>{{characterInfo.charQuantity}}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <ng-template #diffImg>
+            <img [src]="characterInfo.charImagepath" alt="" class="img-responsive" style="height: 30px" class="pull-left">
+        </ng-template>
+      </div>
+      <div class="col-sm-3">
+          <label class="center-block">Hit Points:
+              <span>HP</span>
+          </label>
+        </div>
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-4">
+              <label class="center-block">
+                  <div>
+                      <button class="btn-sm btn-warning" (click)="onMoveClick()">Move</button>
+                  </div>
+              </label>
+          </div>
+          <div class="col-sm-4">       
+            <label class="center-block">
+                <div>
+                    <button class="btn-sm btn-warning" (click)="onEditClick()">Edit</button>
+                </div>
+            </label>
+          </div>
+          <div class="col-sm-4">       
+              <label class="center-block">
+                  <div>
+                      <button class="btn-sm btn-warning" (click)="onRemoveClick()">Remove</button>
+                  </div>
+              </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

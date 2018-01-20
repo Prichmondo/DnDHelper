@@ -6,4 +6,6 @@ import { Utilities } from './utilities/app.utilities';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {}
+export class AppComponent {
+
+}

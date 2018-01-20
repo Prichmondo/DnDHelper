@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <nav class="nav navbar-default">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="navbar-header">
+                  <h4 style ="font-family:cursive; color:darkblue; font-style: oblique ">Initiative pool</h4>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <ul class="list-inline">
+                <li>
+                    <button class="btn btn-primary btn-sm" (click)="showCharInfo()" >NPC Manager</button>                  
+                </li>
+                <li>
+                    <button class="btn btn-primary btn-sm" (click)="showTime = !showtime">Play Turn</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-12">
+      <span *ngIf="!showTime else showBlock">
+        <div class="panel panel-default">
+            <div class="row">
+                <div class="col-sm-6" [ngClass]= "{ 'hidden' : !charInfo}">
+                  <app-cockpit (characterAdded)="onCharacterAdded($event)"></app-cockpit>
+                </div>
+                <div class="col-sm-6">
+                  <span *ngIf="characterList !== null && characterList.length > 0">
+                      <span *ngIf="formSelected === false else showOtherBlock">
+                          <div>
+                            <ul class="list-group" id="dropZone" >
+                              <div [ngClass]="{'alert alert-warning' : listedCharacter.selected}" *ngFor="let listedCharacter of characterList; let i=index" >
+                                <app-char-info [characterInfo]="listedCharacter" id="{{i}}" 
+                                (onEdit)="onClickEdit($event)" 
+                                (onMove)="onCharacterMoved($event)"
+                                (onRemove)="onCharacterRemoved($event)" 
+                                ></app-char-info>
+                              </div>
+                            </ul>
+                          </div>                      
+                      </span>
+                      <ng-template #showOtherBlock>
+                        <app-char-info-form  [characterInfo]="selectedCharacter" (statusForm)="onCancel()" (characterInfoOut)="onCharacterEdited()"></app-char-info-form>
+                      </ng-template>
+                  </span>
+                </div>
+            </div>
+        </div>
+      </span>
+      <ng-template #showBlock>
+          <app-turnplayer></app-turnplayer>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+
