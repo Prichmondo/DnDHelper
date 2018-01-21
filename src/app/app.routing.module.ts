@@ -19,7 +19,8 @@ import { RacesList }                from './components/races-list/app.races-list
 import { RaceForm }                 from './components/races-list/app.race.form';
 import { SpecialAbilitiesComponent }from './components/special-abilities/app.special-abilities';
 import { SpecialAbilityForm }       from './components/special-abilities/app.specials.form';
-import { InitMgrComponent } from './components/initiative-manager/init-mgr/init-mgr.component';
+import { InitMgrComponent }         from './components/initiative-manager/init-mgr/init-mgr.component';
+import { PATHS }                    from './app.paths';
 
 const routes: AppRoute[] = [
     //ROUTESs
@@ -28,7 +29,7 @@ const routes: AppRoute[] = [
         position    : NavMenu.Main, 
         visible     : NavVisibility.Always       
       },  
-      path          : '', 
+      path          : PATHS.HOME, 
       component     : HomeComponent 
     },
 
@@ -37,7 +38,7 @@ const routes: AppRoute[] = [
         position    : NavMenu.Main, 
         visible     : NavVisibility.Always       
       },  
-      path          : 'dice-roller',        
+      path          : PATHS.DICE_ROLLER,        
       component     : DiceRollerComponent      
     },
 
@@ -46,7 +47,7 @@ const routes: AppRoute[] = [
         position    : NavMenu.Main, 
         visible     : NavVisibility.LoggedIn   
       },  
-      path          : 'character-sheet/:id',    
+      path          : `${PATHS.CHARACTER_SHEET}/:id`,    
       component     : CharacterSheetComponent  
     },
 
@@ -55,7 +56,7 @@ const routes: AppRoute[] = [
       position    : NavMenu.Main, 
       visible     : NavVisibility.Always   
     },  
-    path          : 'initMgr',    
+    path          : PATHS.INIT_MANAGER,    
     component     : InitMgrComponent  
     },
 
@@ -64,21 +65,21 @@ const routes: AppRoute[] = [
         position    : NavMenu.Main, 
         visible     : NavVisibility.LoggedIn   
       },  
-      path          : 'campaigns',           
+      path          : PATHS.CAMPAIGNS,           
       component     : CampaignsComponent,       
       canActivate   : [AuthGuard] 
     },
 
     { 
       nav           : null,  
-      path          : 'campaign/:id',           
+      path          : `${PATHS.CAMPAIGN}/:id`,           
       component     : CampaignComponent,       
       canActivate   : [AuthGuard] 
     },
     
     { 
       nav           : null,  
-      path          : 'add-campaign',           
+      path          : PATHS.ADD_CAMPAIGN,           
       component     : AddCampaignComponent,       
       canActivate   : [AuthGuard] 
     },
@@ -88,7 +89,7 @@ const routes: AppRoute[] = [
         position    : NavMenu.Main, 
         visible     : NavVisibility.LoggedIn       
       },  
-      path          : 'party-editor', 
+      path          : PATHS.PARTY_EDITOR, 
       component     : ShowCharacters,
       canActivate   : [AuthGuard] 
     },
@@ -98,7 +99,7 @@ const routes: AppRoute[] = [
         position    : NavMenu.Main, 
         visible     : NavVisibility.LoggedIn       
       },  
-      path          : 'Classes', 
+      path          : PATHS.CLASSES, 
       component     : ClassesList
     },
 
@@ -106,7 +107,7 @@ const routes: AppRoute[] = [
         name        : "Character Class",
         visible     : NavVisibility.LoggedIn
       },  
-      path          : 'character-class',
+      path          : PATHS.CHARACTER_CLASS,
       component     : ClassForm
     },
 
@@ -114,7 +115,7 @@ const routes: AppRoute[] = [
         name        : "Character Class",
         visible     : NavVisibility.LoggedIn
       },  
-      path          : 'character-class/:id',
+      path          : `${PATHS.CHARACTER_CLASS}/:id`,
       component     : ClassForm
     },
 
@@ -123,7 +124,7 @@ const routes: AppRoute[] = [
         position    : NavMenu.User, 
         visible     : NavVisibility.LoggedOut  
       },  
-      path          : 'login',
+      path          : PATHS.LOGIN,
       component     : LoginComponent,
       canActivate   : [Anonymus] 
     },
@@ -133,7 +134,7 @@ const routes: AppRoute[] = [
         position    : NavMenu.User,
         visible     : NavVisibility.LoggedOut
       },  
-      path          : 'register',
+      path          : PATHS.REGISTER,
       component     : RegisterComponent,
       canActivate   : [Anonymus] 
     },
@@ -143,19 +144,19 @@ const routes: AppRoute[] = [
         position    : NavMenu.Main,
         visible     : NavVisibility.LoggedIn
       },  
-      path          : 'races-list',
+      path          : PATHS.RACES,
       component     : RacesList 
     },
 
     { nav: { 
       },  
-      path          : 'race-form',
+      path          : PATHS.RACE_FORM,
       component     : RaceForm 
     },
 
     { nav: { 
       },  
-      path          : 'race-form/:id',
+      path          : `${PATHS.RACE_FORM}/:id`,
       component     : RaceForm 
     },
 
@@ -164,19 +165,19 @@ const routes: AppRoute[] = [
       position      : NavMenu.Main,
       visible       : NavVisibility.LoggedIn
     },  
-      path          : 'app-special-abilities',
+      path          : PATHS.ADD_SPECIAL_ABILITIES,
       component     : SpecialAbilitiesComponent 
     },
 
     { nav: { 
     },  
-    path            : 'app-special-abilities-form',
+    path            : PATHS.APP_SPECIAL_ABILITIES_FORM,
     component       : SpecialAbilityForm 
     },
 
     { nav: { 
       },  
-      path          : 'app-special-abilities-form/:id',
+      path          : `${PATHS.APP_SPECIAL_ABILITIES_FORM}/:id`,
       component     : SpecialAbilityForm 
     },
   

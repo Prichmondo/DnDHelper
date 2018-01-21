@@ -12,6 +12,7 @@ export interface INav{
   name?: string;
   position?: NavMenu;
   visible?: NavVisibility;
+  path?: string;
 }
 
 export interface AppRoute extends Route {
