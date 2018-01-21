@@ -24,7 +24,7 @@ import { SpecialAbilityForm }           from '../special-abilities/app.specials.
 
     selector:"race-form",
     templateUrl:"./app.race.form.html",
-    styleUrls: ['./app.race.form.css'],
+    styleUrls: ['./app.race.form.scss'],
 })
 
 export class RaceForm {

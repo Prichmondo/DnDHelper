@@ -15,7 +15,7 @@ import { ShowCharacters} from './app.showCharacters';
 @Component({
   selector: 'app-character-sheet',
   templateUrl: './app.characterSheet.html',
-  styleUrls: ['./app.characterSheet.css']
+  styleUrls: ['./app.characterSheet.scss']
 })
 export class CharacterSheetComponent {
   

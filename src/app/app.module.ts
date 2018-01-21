@@ -1,22 +1,12 @@
 //ANGULAR
-<<<<<<< HEAD
+
 import { BrowserModule }                    from '@angular/platform-browser';
 import { NgModule }                         from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule }                       from '@angular/http';
 import { RouterModule, Router }             from '@angular/router';
 import { from }                             from 'rxjs/observable/from';
-import { InfiniteScrollModule }             from 'ngx-infinite-scroll';
-
-=======
-import { BrowserModule }            from '@angular/platform-browser';
-import { NgModule }                 from '@angular/core';
-import { FormsModule }              from '@angular/forms';
-import { HttpModule }               from '@angular/http';
-import { RouterModule, Router }     from '@angular/router';
-import { from }                     from 'rxjs/observable/from';
-//import { InfiniteScrollModule }     from 'ngx-infinite-scroll';
->>>>>>> 1e476b41e3e0533d1ace1be224337d9c16999852
+//import { InfiniteScrollModule }             from 'ngx-infinite-scroll';
 
 //COMPONENTS
 import { AppRoutingModule }         from './app.routing.module';

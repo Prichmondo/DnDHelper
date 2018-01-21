@@ -23,7 +23,7 @@ import { HIT_DICES }                    from '../../mocks/mock-dices';
 
     selector:"class-form",
     templateUrl:"./app.class.form.html",
-    styleUrls: ['./app.class.form.css']
+    styleUrls: ['./app.class.form.scss']
 })
 
 export class ClassForm {

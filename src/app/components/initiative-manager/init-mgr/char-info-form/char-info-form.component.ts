@@ -6,7 +6,7 @@ import { LocalStorageManagerService } from '../../../../services/local-storage-m
 @Component({
   selector: 'app-char-info-form',
   templateUrl: './char-info-form.component.html',
-  styleUrls: ['./char-info-form.component.css']
+  styleUrls: ['./char-info-form.component.scss']
 })
 export class CharInfoFormComponent implements OnInit, DoCheck, OnChanges {
 

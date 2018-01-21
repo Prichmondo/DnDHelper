@@ -8,7 +8,7 @@ import { LocalStorageManagerService } from '../../../services/local-storage-mana
 @Component({
   selector: 'app-init-mgr',
   templateUrl: './init-mgr.component.html',
-  styleUrls: ['./init-mgr.component.css']
+  styleUrls: ['./init-mgr.component.scss']
 })
 export class InitMgrComponent implements OnInit, OnChanges {
   characterList= [];

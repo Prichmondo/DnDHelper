@@ -24,7 +24,7 @@ export class ClassTableData {
 
     selector:"class-form-table-preview",
     templateUrl:"./app.class.table-preview.html",
-    styleUrls: ['./app.class.table-preview.css']
+    styleUrls: ['./app.class.table-preview.scss']
 })
 
 export class ClassTablePreview {

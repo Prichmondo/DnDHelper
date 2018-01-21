@@ -14,7 +14,7 @@ import { SpecialAbilitiesService }  from '../../services/special.abilities.servi
 @Component({
     selector: 'app-special-abilities-form',
     templateUrl: './app.specials.form.html',
-    styleUrls: ['./app.specials.form.css'],
+    styleUrls: ['./app.specials.form.scss'],
 })
 
 export class SpecialAbilityForm {

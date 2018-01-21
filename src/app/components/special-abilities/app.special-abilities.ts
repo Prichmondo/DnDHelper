@@ -25,7 +25,7 @@ export interface ISpecialAbilityList extends ISpecialAbility {
 @Component({
   selector: 'app-special-abilities',
   templateUrl: './app.special-abilities.html',
-  styleUrls: ['./app.special-abilities.css'],
+  styleUrls: ['./app.special-abilities.scss'],
 })
 
 export class SpecialAbilitiesComponent implements AfterViewInit{

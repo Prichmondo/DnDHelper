@@ -12,7 +12,7 @@ import { Utilities }                    from '../../utilities/app.utilities';
 
     selector:"races-list",
     templateUrl:"./app.races-list.html",
-    styleUrls: ['./app.races-list.css']
+    styleUrls: ['./app.races-list.scss']
 
 })
 export class RacesList{

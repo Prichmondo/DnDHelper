@@ -31,7 +31,7 @@ export class DiceGui extends Dice {
 @Component({
   selector: 'app-dice-roller',
   templateUrl: './app.diceroller.html',
-  styleUrls: ['./app.diceroller.css'],
+  styleUrls: ['./app.diceroller.scss'],
 })
 
 export class DiceRollerComponent implements AfterViewInit{

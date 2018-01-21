@@ -6,7 +6,7 @@ import { LocalStorageManagerService } from '../../../../services/local-storage-m
 @Component({
   selector: 'app-char-info',
   templateUrl: './char-info.component.html',
-  styleUrls: ['./char-info.component.css']
+  styleUrls: ['./char-info.component.scss']
 })
 export class CharInfoComponent implements OnInit {
   @Output() onMove = new EventEmitter<INpc>();

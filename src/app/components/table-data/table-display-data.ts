@@ -9,7 +9,7 @@ import { Component,
 @Component({
 selector: 'table-display-data',
 templateUrl: './table-display-data.html',
-styleUrls: ['./table-display-data.css']
+styleUrls: ['./table-display-data.scss']
 })
 
 export class TableDisplayData {

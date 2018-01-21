@@ -5,7 +5,7 @@ import { Utilities } from '../../utilities/app.utilities'
 @Component({
   selector: 'input-number',
   templateUrl: './input-number.html',
-  styleUrls: ['./input-number.css'],
+  styleUrls: ['./input-number.scss'],
 })
 
 export class InputNumberComponent {

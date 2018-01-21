@@ -12,7 +12,7 @@ import { Dice, RollRequest }        from '../../models/dice';
 @Component({
   selector: 'dice-input',
   templateUrl: './dice-input.html',
-  styleUrls: ['./dice-input.css']
+  styleUrls: ['./dice-input.scss']
 })
 
 export class DiceInputComponent {

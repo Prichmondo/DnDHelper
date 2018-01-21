@@ -5,7 +5,7 @@ import { INpc } from '../../../../models/inpc';
 @Component({
   selector: 'app-cockpit',
   templateUrl: './cockpit.component.html',
-  styleUrls: ['./cockpit.component.css']
+  styleUrls: ['./cockpit.component.scss']
 })
 export class CockpitComponent implements OnInit {
 

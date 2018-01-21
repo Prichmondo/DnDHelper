@@ -8,7 +8,7 @@ import { Component,
 @Component({
   selector: 'toggle-button-boolean',
   templateUrl: './toggle-button-boolean.html',
-  styleUrls: ['./toggle-button-boolean.css']
+  styleUrls: ['./toggle-button-boolean.scss']
 })
 
 export class ToggleButtonComponentB {

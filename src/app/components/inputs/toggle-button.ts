@@ -8,7 +8,7 @@ import { Component,
 @Component({
   selector: 'toggle-button',
   templateUrl: './toggle-button.html',
-  styleUrls: ['./toggle-button.css']
+  styleUrls: ['./toggle-button.scss']
 })
 
 export class ToggleButtonComponent {
