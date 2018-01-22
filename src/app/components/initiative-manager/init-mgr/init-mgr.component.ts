@@ -126,7 +126,13 @@ export class InitMgrComponent implements OnInit, OnChanges {
 
   forceSort() {
 
-    this.characterList.sort((a, b) => b.initiative - a.initiative );
+    this.characterList.sort(
+      function(a, b) { 
+      if(a.initiative === b.initiative){
+      return (b.charBaseInit - a.charBaseInit);
+      } else { 
+        return (b.initiative - a.initiative)}; 
+      });
   }
 
   onCharacterMoved(character: INpc) {

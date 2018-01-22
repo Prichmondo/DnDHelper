@@ -34,15 +34,15 @@ export class CharInfoComponent implements OnInit {
 
   onSelectCharType(): object {
     switch (this.characterInfo.charOfType) {
-      case 'Character':
-        this.characterInfo.charImagepath = '../assets/Images/Riccardo.jpg';
-        return {'border': '6px solid #5cb85c'};
       case 'Enemy':
         this.characterInfo.charImagepath = '../assets/Images/icons8-gremlin-50.png';
         return {'border': '6px solid #d9534f'};
       case 'Neutral':
         this.characterInfo.charImagepath = '../assets/Images/neutral.png';
         return {'border': '6px solid #f9f9f9'};
+      default: 
+        this.characterInfo.charImagepath = '../assets/Images/Riccardo.jpg';
+        return {'border': '6px solid #5cb85c'};
     }
   }
 
