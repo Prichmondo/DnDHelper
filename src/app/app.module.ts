@@ -64,7 +64,7 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
 import { ModalComponent }           from './components/modal/modal.component';
 import { ModalService }             from './services/modal.service';
 import { LocalStorageManagerService } from './services/local-storage-manager.service';
-
+import { AppNav } from './services/app.nav.service' 
 
 @NgModule({
   declarations: [
@@ -129,7 +129,7 @@ import { LocalStorageManagerService } from './services/local-storage-manager.ser
     Pipe3FiltersText,
     AuthGuard, Anonymus,
     Broadcaster, UsersService, 
-    ModalService
+    ModalService, AppNav
   ],
   bootstrap: [AppComponent]
 })
