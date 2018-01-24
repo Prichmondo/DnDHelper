@@ -126,7 +126,7 @@ export class CharacterSheetComponent {
     }
 
     updatedHp(newValue){
-        this.current=newValue;
+        this.current= newValue;
                 
       };    
       

@@ -2,8 +2,10 @@ import { Component, Input, OnInit, OnChanges } from '@angular/core';
 
 import { Npc } from '../../../models/npc';
 import { INpc } from '../../../models/inpc';
+import { ICharacter } from '../../../models/character';
 
 import { LocalStorageManagerService } from '../../../services/local-storage-manager.service';
+import { CharactersService } from '../../../services/characthers.service';
 
 @Component({
   selector: 'app-init-mgr',
@@ -18,8 +20,12 @@ export class InitMgrComponent implements OnInit, OnChanges {
   selected = false;
   dropped= false;
   showTime = false;
+  showTimeButton = 'Play';
   charInfo = false;
+  pgs: ICharacter[];
+
   @Input() selectedCharacter: INpc;
+
   newCharacter: INpc = {
     charName: '',
     charBaseInit: 0,
@@ -30,14 +36,40 @@ export class InitMgrComponent implements OnInit, OnChanges {
     selected: false
   };
 
-  constructor(private localStorageManager: LocalStorageManagerService) {
+  constructor(private localStorageManager: LocalStorageManagerService, private charactersService: CharactersService) {
   }
 
   ngOnChanges() {
   }
   ngOnInit() {
+    this.charactersService
+    .get()
+    .subscribe((response: ICharacter[])=>{
+
+        this.pgs = response;
+        console.log(this.pgs)
+        this.characterListGenerator();
+    }); 
+
     if (this.characterList !== null && this.characterList.length > 0) {
     this.resetData();
+    }
+  }
+  characterListGenerator(){
+    if(this.pgs.length >0) {
+      for (const pg of this.pgs) {
+        this.newCharacter = new Npc (
+          pg.firstName + " "+pg.lastName,
+          'character',
+          '',
+          0,
+          1,
+          false,
+          0,
+          pg._id
+        )
+        this.characterList.push(this.newCharacter);
+      }
     }
   }
   onDropped() {
@@ -94,7 +126,13 @@ export class InitMgrComponent implements OnInit, OnChanges {
 
   forceSort() {
 
-    this.characterList.sort((a, b) => b.initiative - a.initiative );
+    this.characterList.sort(
+      function(a, b) { 
+      if(a.initiative === b.initiative){
+      return (b.charBaseInit - a.charBaseInit);
+      } else { 
+        return (b.initiative - a.initiative)}; 
+      });
   }
 
   onCharacterMoved(character: INpc) {
@@ -188,6 +226,14 @@ export class InitMgrComponent implements OnInit, OnChanges {
   }
   showCharInfo() {
     this.charInfo = !this.charInfo;
+  }
+  showPlayTurn() {
+    this.showTime = !this.showTime;
+    if(this.showTime){
+      this.showTimeButton = "End";
+    }else {
+      this.showTimeButton = "Play";
+    }
   }
 }
 
