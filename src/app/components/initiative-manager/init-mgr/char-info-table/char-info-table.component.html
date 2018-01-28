@@ -1,34 +1,46 @@
-<table class="table table-stripped table-hover table-condensed">
+<table class="table table-stripped table-hover table-condensed" (mouseover)="mouseover= true" (mouseleave)="mouseover=false">
   <thead>
     <tr>
       <th>
-        Name
+          Name
+      </th>
+      <th>
+          Bonus
       </th>
       <th>
           Initiative
       </th>
     </tr>
   </thead>
-  <tbody *ngFor="let character of characterList">
-    <tr [ngClass]="{'active' : character.selected}" (click)="onMoveClick(character)">
+  <tbody *ngFor="let character of characterList" >
+    <tr [ngClass]="{'active' : character.selected}">
       <td>
-        {{character.charName}}
+          {{character.charName}}
+      </td>
+      <td>
+          {{character.charBaseInit}}
       </td>
       <td>
           {{character.initiative}}
       </td>
-    </tr>
-    <tr *ngIf="character.selected">
-      <td>
-        <div class="row">
-          <div class="col-sm-6">
-              <button class="btn btn-sm btn-primary" (click)="onEditClick(character)">Edit</button>
-          </div>
-          <div class="col-sm-6">
-              <button class="btn btn-sm btn-primary" (click)="onRemoveClick(character)">remove</button>
-          </div>
-        </div>
+      <td class="alert alert-info">
+
       </td>
+    </tr>
+    <tr>
+      <td *ngIf="mouseover">
+          <div class="row">
+            <div class="col-sm-4">
+                <button class="btn btn-sm btn-primary" (click)="onEditClick(character)">Edit</button>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-sm btn-primary" (click)="onRemoveClick(character)">Remove</button>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-sm btn-primary"  (click)="onMoveClick(character)" >{{moved}}</button>
+            </div>
+          </div>
+        </td>
     </tr>
   </tbody>
 </table>
