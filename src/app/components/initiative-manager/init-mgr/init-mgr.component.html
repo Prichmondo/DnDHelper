@@ -12,10 +12,7 @@
             <div class="col-sm-6">
               <ul class="list-inline">
                 <li>
-                    <button class="btn btn-primary btn-sm" (click)="showCharInfo()" >NPC Manager</button>                  
-                </li>
-                <li>
-                    <button class="btn btn-primary btn-sm" (click)="showPlayTurn()">{{showTimeButton}} Turn</button>
+                    <button class="btn btn-primary btn-sm" (click)="showPlayTurn()">Click to {{showTimeButton}}</button>
                 </li>
               </ul>
             </div>
@@ -48,32 +45,14 @@
             </span>
         </div>
         <div class="row">
-          <span *ngIf="formSelected === false else showOtherBlock">
+          <span *ngIf="!charInfo">
             <div class="panel panel-default">
               <div class="col-sm-6">
                 <div>
-                  <table class="table table-stripped table-hover table-condensed">
-                    <thead>
-                      <tr>
-                        <th>
-                          Name
-                        </th>
-                        <th>
-                            Initiative
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody *ngFor="let character of characterList">
-                      <tr>
-                        <td>
-                          {{character.charName}}
-                        </td>
-                        <td>
-                            {{character.initiative}}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <app-char-info-table [characterList]="characterList" 
+                  (onMove)=onCharacterMoved($event) 
+                  (onEdit)="onClickEdit($event)"
+                  (onRemove)="onCharacterRemoved($event)"></app-char-info-table>
                 </div>
               </div>
               <div class="col-sm-6">    
@@ -82,9 +61,9 @@
             </div>
           </span>
         </div>               
-        <ng-template #showOtherBlock>
+        <span *ngIf="formSelected">
           <app-char-info-form  [characterInfo]="selectedCharacter" (statusForm)="onCancel()" (characterInfoOut)="onCharacterEdited()"></app-char-info-form>
-        </ng-template>
+        </span>
       </div>
     </div>
 </div>

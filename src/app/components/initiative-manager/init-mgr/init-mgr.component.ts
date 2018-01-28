@@ -13,13 +13,13 @@ import { CharactersService } from '../../../services/characthers.service';
   styleUrls: ['./init-mgr.component.scss']
 })
 export class InitMgrComponent implements OnInit, OnChanges {
-  characterList: INpc[] = [];
+  @Input() characterList: INpc[] = [];
   indexFrom = null;
   indexTo = null;
   formSelected = false;
   selected = false;
   dropped= false;
-  showTimeButton = 'Play';
+  showTimeButton = 'Manage Initiative';
   charInfo = false;
   pgs: ICharacter[];
 
@@ -132,7 +132,7 @@ export class InitMgrComponent implements OnInit, OnChanges {
     } else {
       character.selected = false;
     }
-
+    
     if (this.indexTo === null && this.indexFrom === null) {
 
       this.indexFrom = charIndex;
@@ -213,15 +213,12 @@ export class InitMgrComponent implements OnInit, OnChanges {
     this.selectedCharacter = selectedCharacter;
     return this.characterList;
   }
-  showCharInfo() {
-    this.charInfo = true;
-  }
   showPlayTurn() {
     this.charInfo = !this.charInfo;
     if(!this.charInfo){
-      this.showTimeButton = "End";
+      this.showTimeButton = "Manage Initiative";
     }else {
-      this.showTimeButton = "Play";
+      this.showTimeButton = "Play Turn";
     }
   }
 }
