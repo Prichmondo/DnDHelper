@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { INpc } from '../../../../models/inpc';
 
 import { LocalStorageManagerService } from '../../../../services/local-storage-manager.service';
-
+ 
 @Component({
   selector: 'app-char-info',
   templateUrl: './char-info.component.html',
@@ -14,6 +14,8 @@ export class CharInfoComponent implements OnInit {
   @Output() onRemove = new EventEmitter<INpc>();
   @Input()characterInfo: INpc;
   @Input()i: number;
+
+  showInfo = false;
 
     constructor() { }
 
@@ -31,17 +33,20 @@ export class CharInfoComponent implements OnInit {
   onRemoveClick() {
     this.onRemove.emit(this.characterInfo);
   }
+  onInfoClick() {
+    this.showInfo = !this.showInfo;
+  }
 
   onSelectCharType(): object {
     switch (this.characterInfo.charOfType) {
       case 'Enemy':
-        this.characterInfo.charImagepath = '../assets/Images/icons8-gremlin-50.png';
+        this.characterInfo.charImagepath = '';
         return {'border': '6px solid #d9534f'};
       case 'Neutral':
-        this.characterInfo.charImagepath = '../assets/Images/neutral.png';
+        this.characterInfo.charImagepath = '';
         return {'border': '6px solid #f9f9f9'};
       default: 
-        this.characterInfo.charImagepath = '../assets/Images/Riccardo.jpg';
+        this.characterInfo.charImagepath = '';
         return {'border': '6px solid #5cb85c'};
     }
   }

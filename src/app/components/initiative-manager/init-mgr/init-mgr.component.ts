@@ -13,13 +13,12 @@ import { CharactersService } from '../../../services/characthers.service';
   styleUrls: ['./init-mgr.component.scss']
 })
 export class InitMgrComponent implements OnInit, OnChanges {
-  characterList= [];
+  characterList: INpc[] = [];
   indexFrom = null;
   indexTo = null;
   formSelected = false;
   selected = false;
   dropped= false;
-  showTime = false;
   showTimeButton = 'Play';
   charInfo = false;
   pgs: ICharacter[];
@@ -44,33 +43,23 @@ export class InitMgrComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.charactersService
     .get()
-    .subscribe((response: ICharacter[])=>{
+    .subscribe((response: ICharacter[]) => {
 
         this.pgs = response;
         console.log(this.pgs)
         this.characterListGenerator();
-    }); 
+        if (this.characterList !== null && this.characterList.length > 0) {
+          this.resetData();
+          console.log('reset data', this.characterList);
+          }
+    });
 
-    if (this.characterList !== null && this.characterList.length > 0) {
-    this.resetData();
-    }
   }
-  characterListGenerator(){
-    if(this.pgs.length >0) {
-      for (const pg of this.pgs) {
-        this.newCharacter = new Npc (
-          pg.firstName + " "+pg.lastName,
-          'character',
-          '',
-          0,
-          1,
-          false,
-          0,
-          pg._id
-        )
-        this.characterList.push(this.newCharacter);
-      }
-    }
+  characterListGenerator() {
+    this.characterList = this.pgs.map(pg => new Npc(
+      pg.firstName + ' ' + pg.lastName,
+      'character', '', 0, 1, false, 0, pg._id
+    ));
   }
   onDropped() {
     if (this.dropped === false && this.characterList.length > 0) {
@@ -225,11 +214,11 @@ export class InitMgrComponent implements OnInit, OnChanges {
     return this.characterList;
   }
   showCharInfo() {
-    this.charInfo = !this.charInfo;
+    this.charInfo = true;
   }
   showPlayTurn() {
-    this.showTime = !this.showTime;
-    if(this.showTime){
+    this.charInfo = !this.charInfo;
+    if(!this.charInfo){
       this.showTimeButton = "End";
     }else {
       this.showTimeButton = "Play";

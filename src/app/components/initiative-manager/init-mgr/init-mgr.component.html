@@ -25,42 +25,68 @@
     </div>
   </div>
   <hr>
-  <div class="row">
-    <div class="col-sm-12">
-      <span *ngIf="!showTime else showBlock">
-        <div class="panel panel-default">
-            <div class="row">
-                <div class="col-sm-6" [ngClass]= "{ 'hidden' : !charInfo}">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+            <span *ngIf="charInfo">
+              <div class="panel panel-default">
+                <div class="col-sm-6">
                   <app-cockpit (characterAdded)="onCharacterAdded($event)"></app-cockpit>
                 </div>
                 <div class="col-sm-6">
-                  <span *ngIf="characterList !== null && characterList.length > 0">
-                      <span *ngIf="formSelected === false else showOtherBlock">
-                          <div>
-                            <ul class="list-group" id="dropZone" >
-                              <div [ngClass]="{'alert alert-warning' : listedCharacter.selected}" *ngFor="let listedCharacter of characterList; let i=index" >
-                                <app-char-info [characterInfo]="listedCharacter" id="{{i}}" 
-                                (onEdit)="onClickEdit($event)" 
-                                (onMove)="onCharacterMoved($event)"
-                                (onRemove)="onCharacterRemoved($event)" 
-                                ></app-char-info>
-                              </div>
-                            </ul>
-                          </div>                      
-                      </span>
-                      <ng-template #showOtherBlock>
-                        <app-char-info-form  [characterInfo]="selectedCharacter" (statusForm)="onCancel()" (characterInfoOut)="onCharacterEdited()"></app-char-info-form>
-                      </ng-template>
-                  </span>
+                  <ul class="list-group">
+                    <div [ngClass]="{'alert alert-warning' : listedCharacter.selected}" *ngFor="let listedCharacter of characterList; let i=index" >
+                      <app-char-info [characterInfo]="listedCharacter" id="{{i}}" 
+                      (onEdit)="onClickEdit($event)" 
+                      (onMove)="onCharacterMoved($event)"
+                      (onRemove)="onCharacterRemoved($event)" 
+                      ></app-char-info>
+                    </div>
+                  </ul>
                 </div>
-            </div>
+              </div>
+            </span>
         </div>
-      </span>
-      <ng-template #showBlock>
-          <app-turnplayer></app-turnplayer>
-      </ng-template>
+        <div class="row">
+          <span *ngIf="formSelected === false else showOtherBlock">
+            <div class="panel panel-default">
+              <div class="col-sm-6">
+                <div>
+                  <table class="table table-stripped table-hover table-condensed">
+                    <thead>
+                      <tr>
+                        <th>
+                          Name
+                        </th>
+                        <th>
+                            Initiative
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let character of characterList">
+                      <tr>
+                        <td>
+                          {{character.charName}}
+                        </td>
+                        <td>
+                            {{character.initiative}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-sm-6">    
+                <app-turnplayer></app-turnplayer>
+              </div>
+            </div>
+          </span>
+        </div>               
+        <ng-template #showOtherBlock>
+          <app-char-info-form  [characterInfo]="selectedCharacter" (statusForm)="onCancel()" (characterInfoOut)="onCharacterEdited()"></app-char-info-form>
+        </ng-template>
+      </div>
     </div>
-  </div>
 </div>
 
 
