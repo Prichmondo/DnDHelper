@@ -1,10 +1,11 @@
 import { Component, OnInit }  from '@angular/core';
 import { AppRoutingModule }   from './app.routing.module';
-import { Routes } from '@angular/router';
+import { Routes, Router } from '@angular/router';
 
 import { AppRoute, NavMenu, NavVisibility } from './models/AppRoute';
 import { AuthenticationService } from './services/authentication.service';
 import { Broadcaster } from './services/broadcast';
+import { AppNav, INav } from './services/app.nav.service'
 
 @Component({
   selector: 'site-header',
@@ -15,14 +16,16 @@ export class HeaderComponent implements OnInit {
   
   title = "Helper v1.0";
   isLoggedIn: boolean = false;
-  mainRoutes: AppRoute[] = [];
-  userRoutes: AppRoute[] = [];
+  main: INav[];
+  selected: INav = null;
   isLoggedin: boolean = false;
   userEmail:  string; 
 
-  constructor( 
+  constructor(
+    private appNav: AppNav,
     private authService: AuthenticationService,
-    private broadcaster: Broadcaster
+    private broadcaster: Broadcaster,
+    private router: Router
     ){}
 
   onLogout(){
@@ -41,28 +44,28 @@ export class HeaderComponent implements OnInit {
     var routes = AppRoutingModule.routes as AppRoute[];
     this.isLoggedin = this.authService.isLoggedIn();
     this.userEmail = this.isLoggedin ? this.authService.currentUser().username : ""
-    this.userRoutes = [];
-    this.mainRoutes = [];
 
-    for(let i=0, route: AppRoute; i<routes.length; i++){
-      route = routes[i];
+    this.main = this.appNav.main.filter(n => {
+      return (
+        n.visible === NavVisibility.Always ||
+        n.visible === NavVisibility.LoggedIn && this.isLoggedin ||
+        n.visible === NavVisibility.LoggedOut && !this.isLoggedin
+      )
+    })
+    
+  }
 
-      if(route.nav){
-        if(
-          route.nav.visible === NavVisibility.Always ||
-          route.nav.visible === NavVisibility.LoggedIn && this.isLoggedin ||
-          route.nav.visible === NavVisibility.LoggedOut && !this.isLoggedin
-        ){
-        
-          if(route.nav.position === NavMenu.User){
-            this.userRoutes.push(route);
-          }
+  onMenuClick(nav:INav){
+    if(nav.children && nav.children.length>0){
+      
+      if(this.selected === nav)
+        this.selected = null;
+      else 
+        this.selected = nav
 
-          if(route.nav.position === NavMenu.Main){
-            this.mainRoutes.push(route);
-          }        
-        }
-      }            
+    } else {
+      this.selected = null;
+      this.router.navigate([nav.path]);
     }
   }
 

@@ -8,9 +8,9 @@
             <div class="col-xs-3 col-sm-6 text-right">
                 <nav class="hidden-xs user-nav">
                     <ul>
-                        <li *ngFor="let route of userRoutes">
-                            <a [routerLink] = "['/'+route.path]">
-                                {{ route.nav.name }}
+                        <li *ngIf="!isLoggedin">
+                            <a [routerLink] = "['/login']">
+                                Login
                             </a>
                         </li>
                         <li *ngIf="isLoggedin">
@@ -25,10 +25,17 @@
                 </nav>
                 <nav class="hidden-xs main-nav">
                     <ul>
-                        <li *ngFor="let route of mainRoutes">
-                            <a [routerLink] = "['/'+route.path]">
-                                {{ route.nav.name }}
+                        <li *ngFor="let nav of main">
+                            <a (click) = "onMenuClick(nav)">
+                                {{ nav.name }}
                             </a>
+                            <ul *ngIf="selected === nav">
+                                <li *ngFor="let subNav of nav.children">
+                                    <a (click) = "onMenuClick(subNav)">
+                                        {{ subNav.name }}
+                                    </a>
+                                </li>        
+                            </ul>
                         </li>
                     </ul>
                 </nav>
