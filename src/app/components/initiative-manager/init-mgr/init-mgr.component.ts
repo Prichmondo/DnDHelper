@@ -19,7 +19,7 @@ export class InitMgrComponent implements OnInit, OnChanges {
   formSelected = false;
   selected = false;
   dropped= false;
-  showTimeButton = 'Manage Initiative';
+  showTimeButton = 'Play Turn';
   charInfo = false;
   pgs: ICharacter[];
 
@@ -216,9 +216,9 @@ export class InitMgrComponent implements OnInit, OnChanges {
   showPlayTurn() {
     this.charInfo = !this.charInfo;
     if(!this.charInfo){
-      this.showTimeButton = "Manage Initiative";
-    }else {
       this.showTimeButton = "Play Turn";
+    }else {
+      this.showTimeButton = "Manage Initiative";
     }
   }
 }

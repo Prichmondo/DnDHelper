@@ -12,6 +12,7 @@ export class CharInfoTableComponent implements OnInit {
   @Output() onEdit = new EventEmitter<INpc>();
   @Output() onRemove = new EventEmitter<INpc>();
   @Input() characterList: INpc[];
+  @Input() playTurn: boolean;
   mouseover=false;
   moved = "Move";
   constructor() { }

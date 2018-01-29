@@ -4,15 +4,22 @@
       <nav class="nav navbar-default">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <div class="navbar-header">
                   <h4 style ="font-family:cursive; color:darkblue; font-style: oblique ">Initiative pool</h4>
               </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <ul class="list-inline">
                 <li>
                     <button class="btn btn-primary btn-sm" (click)="showPlayTurn()">Click to {{showTimeButton}}</button>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <ul class="list-inline pull-right">
+                <li>
+                    <button class="btn btn-primary btn-sm" (click)="showPlayTurn()">Settings</button>
                 </li>
               </ul>
             </div>
@@ -25,19 +32,18 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="row">
-            <span *ngIf="charInfo">
+            <span *ngIf="!charInfo && !formSelected">
               <div class="panel panel-default">
                 <div class="col-sm-6">
                   <app-cockpit (characterAdded)="onCharacterAdded($event)"></app-cockpit>
                 </div>
                 <div class="col-sm-6">
                   <ul class="list-group">
-                    <div [ngClass]="{'alert alert-warning' : listedCharacter.selected}" *ngFor="let listedCharacter of characterList; let i=index" >
-                      <app-char-info [characterInfo]="listedCharacter" id="{{i}}" 
-                      (onEdit)="onClickEdit($event)" 
-                      (onMove)="onCharacterMoved($event)"
-                      (onRemove)="onCharacterRemoved($event)" 
-                      ></app-char-info>
+                    <div>
+                      <app-char-info-table [characterList]="characterList" 
+                      (onRemove)="onCharacterRemoved($event)"
+                      (onEdit)="onClickEdit($event)"  
+                      [playTurn]="false"></app-char-info-table>
                     </div>
                   </ul>
                 </div>
@@ -45,14 +51,13 @@
             </span>
         </div>
         <div class="row">
-          <span *ngIf="!charInfo">
+          <span *ngIf="charInfo && !formSelected">
             <div class="panel panel-default">
               <div class="col-sm-6">
                 <div>
                   <app-char-info-table [characterList]="characterList" 
                   (onMove)=onCharacterMoved($event) 
-                  (onEdit)="onClickEdit($event)"
-                  (onRemove)="onCharacterRemoved($event)"></app-char-info-table>
+                  [playTurn]="true"></app-char-info-table>
                 </div>
               </div>
               <div class="col-sm-6">    
