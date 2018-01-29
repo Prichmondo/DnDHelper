@@ -23,7 +23,7 @@
         <td>
             {{character.initiative}}
         </td>
-        <td class="alert alert-info">
+        <td [ngClass]="{'Character': 'alert alert-info' , 'Enemy' : 'alert alert-danger' }[character.charOfType]">
 
         </td>
         <td *ngIf="!playTurn">

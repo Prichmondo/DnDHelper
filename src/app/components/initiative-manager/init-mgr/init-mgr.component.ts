@@ -48,7 +48,7 @@ export class InitMgrComponent implements OnInit, OnChanges {
         this.pgs = response;
         console.log(this.pgs)
         this.characterListGenerator();
-        if (this.characterList !== null && this.characterList.length > 0) {
+        if (this.characterList !== null && this.characterList.length !== 0) {
           this.resetData();
           console.log('reset data', this.characterList);
           }
@@ -58,7 +58,7 @@ export class InitMgrComponent implements OnInit, OnChanges {
   characterListGenerator() {
     this.characterList = this.pgs.map(pg => new Npc(
       pg.firstName + ' ' + pg.lastName,
-      'character', '', 0, 1, false, 0, pg._id
+      'Character', '', 0, 1, false, 0, pg._id
     ));
   }
   onDropped() {
@@ -204,8 +204,16 @@ export class InitMgrComponent implements OnInit, OnChanges {
     return this.characterList;
   }
   resetData() {
-    this.characterList = this.localStorageManager.getItem(0);
+    let testlist = [];
+    testlist = this.localStorageManager.getItem(0);
+    if (testlist.length > 0 && this.characterList.length > 0){
+    this.characterList.concat(testlist);
     this.forceSort();
+    }else if (testlist.length == 0 && this.characterList.length > 0) {
+      return this.characterList;
+    }else {
+      return this.characterList = testlist;
+    }
   }
   onClickEdit(selectedCharacter: INpc) {
     console.log('onSelected', selectedCharacter);
