@@ -7,8 +7,9 @@ export class Npc {
     initiative: number;
     id: number;
     selected: boolean;
+    isTurn:boolean;
 
-    constructor(name,  charType, imagePath, baseInit, charQuantity, selected, initiative?, id?) {
+    constructor(name,  charType, imagePath, baseInit, charQuantity, selected, initiative?, id?, isTurn?) {
      this.charName = name;
      this.charOfType = charType;
      this.charImagepath = imagePath;
@@ -17,5 +18,6 @@ export class Npc {
      this.selected = false;
      this.initiative = initiative;
      this.id = id;
+     this.isTurn = false; 
      }
 }

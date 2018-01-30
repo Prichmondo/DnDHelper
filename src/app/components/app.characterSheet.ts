@@ -29,6 +29,7 @@ export class CharacterSheetComponent {
       abilities: {} as IAbilities
       
     };
+    @Input() id: string;
 
     skills: IPgSkill[];
     

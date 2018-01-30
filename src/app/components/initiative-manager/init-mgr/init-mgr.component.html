@@ -54,6 +54,12 @@
           <span *ngIf="charInfo && !formSelected">
             <div class="panel panel-default">
               <div class="col-sm-6">
+                <div class="col-sm-4">
+                    <ul class="list-inline pull-left">
+                        <li *ngIf="first"><button class="btn btn-sm btn-info" (click)="onClickNext()">Next</button></li>
+                        <li *ngIf="last"><button class="btn btn-sm btn-info">Previous</button></li>
+                    </ul>
+                </div>
                 <div>
                   <app-char-info-table [characterList]="characterList" 
                   (onMove)=onCharacterMoved($event) 
@@ -61,7 +67,7 @@
                 </div>
               </div>
               <div class="col-sm-6">    
-                <app-turnplayer></app-turnplayer>
+                <app-turnplayer [characterList]="characterList"></app-turnplayer>
               </div>
             </div>
           </span>

@@ -7,4 +7,5 @@ export interface INpc {
     initiative?: number;
     id?: number;
     selected: boolean;
+    isTurn: boolean;
 }

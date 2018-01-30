@@ -13,7 +13,10 @@
     </tr>
   </thead>
   <tbody *ngFor="let character of characterList" >
-    <tr [ngClass]="{'active' : character.selected}" (click)="onMoveClick(character)">
+    <tr 
+    [ngClass]="{'active' : character.selected, 'active' : character.isTurn }" 
+    (click)="onMoveClick(character)"
+    >
         <td>
             {{character.charName}}
         </td>

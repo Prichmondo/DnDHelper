@@ -7,6 +7,7 @@ import { ICharacter } from '../../../models/character';
 import { LocalStorageManagerService } from '../../../services/local-storage-manager.service';
 import { CharactersService } from '../../../services/characthers.service';
 
+
 @Component({
   selector: 'app-init-mgr',
   templateUrl: './init-mgr.component.html',
@@ -21,6 +22,8 @@ export class InitMgrComponent implements OnInit, OnChanges {
   dropped= false;
   showTimeButton = 'Play Turn';
   charInfo = false;
+  first = true;
+  last = false;
   pgs: ICharacter[];
 
   @Input() selectedCharacter: INpc;
@@ -32,10 +35,14 @@ export class InitMgrComponent implements OnInit, OnChanges {
     charOfType: '',
     charQuantity: 1,
     initiative: 0,
-    selected: false
+    selected: false,
+    isTurn: false
   };
 
-  constructor(private localStorageManager: LocalStorageManagerService, private charactersService: CharactersService) {
+  constructor(
+    private localStorageManager: LocalStorageManagerService, 
+    private charactersService: CharactersService
+  ) {
   }
 
   ngOnChanges() {
@@ -58,7 +65,7 @@ export class InitMgrComponent implements OnInit, OnChanges {
   characterListGenerator() {
     this.characterList = this.pgs.map(pg => new Npc(
       pg.firstName + ' ' + pg.lastName,
-      'Character', '', 0, 1, false, 0, pg._id
+      'Character', '', 0, 1, false, 0, pg._id, false
     ));
   }
   onDropped() {
@@ -151,7 +158,7 @@ export class InitMgrComponent implements OnInit, OnChanges {
         this.localStorageManager.addItem(0, this.characterList);
         this.indexFrom = null;
         this.indexTo = null;
-
+        
         return this.characterList;
 
       }else if (this.indexFrom < this.indexTo   ||
@@ -227,6 +234,32 @@ export class InitMgrComponent implements OnInit, OnChanges {
       this.showTimeButton = "Play Turn";
     }else {
       this.showTimeButton = "Manage Initiative";
+    }
+  }
+
+  onClickNext(){
+    for (let i = 0; i < this.characterList.length; i++){
+      if(this.characterList[i + 1].isTurn && this.characterList[i + 1] === this.characterList[this.characterList.length - 1]) {
+        this.characterList[i + 1].isTurn = false;
+      }
+      if (this.characterList[i].isTurn){
+          this.characterList[i].isTurn = false;
+          this.characterList[i + 1].isTurn = true;
+          this.first = true;
+          this.last = true;
+          if (this.characterList[i + 1] === this.characterList[this.characterList.length - 1]) {
+            this.last = true;
+            console.log('è l ultimo', this.characterList[i]);
+            return;
+          }
+          return;
+        }else if(!this.characterList[i].isTurn){
+        this.characterList[i].isTurn = true;
+        this.first = true;
+        this.last = false;
+        return;
+      }
+      return;
     }
   }
 }

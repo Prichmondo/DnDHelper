@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { INpc } from 'app/models/inpc';
 
 @Component({
   selector: 'app-turnplayer',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TurnplayerComponent implements OnInit {
 
+  @Input() characterList: INpc[];
+  @Input() character: INpc;
+
   constructor() { }
 
   ngOnInit() {
   }
-
+  
 }
