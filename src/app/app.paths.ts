@@ -9,6 +9,7 @@ export const PATHS = {
   PARTY_EDITOR: 'party-editor', 
   CLASSES: 'classes', 
   CHARACTER_CLASS: 'character-class',
+  CHARACTERS_LIST: 'characters-list',
   LOGIN: 'login',
   REGISTER: 'register',
   RACES: 'races',

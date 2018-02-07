@@ -21,6 +21,7 @@ import { CampaignComponent }        from './components/campaigns/app.campaign';
 import { AddCampaignComponent }     from './components/campaigns/app.addCampaign';
 import { HomeComponent }            from './components/home/app.home';
 import { ShowCharacters }           from './components/app.showCharacters';
+import { CharactersList }           from './components/character-sheet/app.characters-list';
 import { ClassesList }              from './components/character-classes/app.classes.list';
 import { ClassForm }                from './components/character-classes/app.class.form';
 import { ClassTablePreview }        from './components/character-classes/app.class.table-preview';
@@ -85,6 +86,7 @@ import { CharacterDetailsComponent } from './components/character-sheet/characte
     AddCampaignComponent,
     HomeComponent,
     ShowCharacters,
+    CharactersList,
     ClassesList,
     ClassForm,
     ClassTablePreview,
