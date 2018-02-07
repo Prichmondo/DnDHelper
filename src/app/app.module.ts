@@ -65,7 +65,8 @@ import { ModalComponent }           from './components/modal/modal.component';
 import { ModalService }             from './services/modal.service';
 import { LocalStorageManagerService } from './services/local-storage-manager.service';
 import { AppNav } from './services/app.nav.service';
-import { CharInfoTableComponent } from './components/initiative-manager/init-mgr/char-info-table/char-info-table.component' 
+import { CharInfoTableComponent } from './components/initiative-manager/init-mgr/char-info-table/char-info-table.component';
+import { CharacterDetailsComponent } from './components/character-sheet/character-details/character-details.component' 
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { CharInfoTableComponent } from './components/initiative-manager/init-mgr
     CharInfoComponent,
     CharInfoFormComponent,
     TurnplayerComponent,
-    CharInfoTableComponent
+    CharInfoTableComponent,
+    CharacterDetailsComponent
   ],
   imports: [
     BrowserModule,

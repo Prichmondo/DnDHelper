@@ -34,13 +34,13 @@
         <tbody>
             <tr *ngFor="let character of characters">
                 <td>
-                    {{character.firstName}} {{character.lastName}}
+                    {{character.name}}
                 </td>
                 <td>
                     {{character.race}}
                 </td>
                 <td>
-                    <span *ngFor="let pgClass of character.classes">{{pgClass.name}}{{pgClass.level}}/</span>
+                    <span>{{pgClass.classes}}</span>
                 </td>
                 <td>
                     11
