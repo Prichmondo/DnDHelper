@@ -13,6 +13,7 @@ import { AddCampaignComponent }     from './components/campaigns/app.addCampaign
 import { HomeComponent }            from './components/home/app.home';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { ShowCharacters }           from './components/app.showCharacters';
+import { CharactersList }           from './components/character-sheet/app.characters-list';
 import { ClassesList }              from './components/character-classes/app.classes.list';
 import { ClassForm }                from './components/character-classes/app.class.form';
 import { RacesList }                from './components/races-list/app.races-list';
@@ -26,12 +27,13 @@ const routes: Route[] = [
     //ROUTESs
     { path: PATHS.HOME,                                 component: HomeComponent },
     { path: PATHS.DICE_ROLLER,                          component: DiceRollerComponent },
+    { path: PATHS.CHARACTER_SHEET,                    component: CharacterSheetComponent },
     { path: `${PATHS.CHARACTER_SHEET}/:id`,             component: CharacterSheetComponent },
     { path: PATHS.INIT_MANAGER,                         component: InitMgrComponent },
     { path: PATHS.CAMPAIGNS,                            component: CampaignsComponent,        canActivate   : [AuthGuard] },
     { path: `${PATHS.CAMPAIGN}/:id`,                    component: CampaignComponent,         canActivate   : [AuthGuard] },    
     { path: PATHS.ADD_CAMPAIGN,                         component: AddCampaignComponent,      canActivate   : [AuthGuard] },
-    { path: PATHS.PARTY_EDITOR,                         component: ShowCharacters,            canActivate   : [AuthGuard] },
+    { path: PATHS.PARTY_EDITOR,                         component: CharactersList,            canActivate   : [AuthGuard] },
     { path: PATHS.CLASSES,                              component: ClassesList },
     { path: PATHS.CHARACTER_CLASS,                      component: ClassForm },
     { path: `${PATHS.CHARACTER_CLASS}/:id`,             component: ClassForm },
