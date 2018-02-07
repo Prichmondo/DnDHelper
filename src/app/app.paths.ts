@@ -15,6 +15,6 @@ export const PATHS = {
   RACE_FORM: 'race-form',
   ADD_SPECIAL_ABILITIES: 'app-special-abilities',
   APP_SPECIAL_ABILITIES_FORM: 'app-special-abilities-form', 
-  DED_MANAGER: 'app-special-abilities-form',
+  DND_MANAGER: 'app-special-abilities-form',
   SETTING: 'setting',  
 }

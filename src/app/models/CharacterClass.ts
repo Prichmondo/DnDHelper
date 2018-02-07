@@ -16,11 +16,7 @@ export interface IClass{
     type: string;
     hitDice: number;
     skills?: any[];
-    classLevels?: [
-        {
-            specials?: ISpecialAbility[]
-        }
-    ]
+    classLevels?: ILevel[];
 };
 
 export interface ILevel {

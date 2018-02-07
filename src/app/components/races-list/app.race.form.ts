@@ -34,6 +34,10 @@ export class RaceForm {
     raceToBeSaved: IRaceUpdate;
     tempSpeeds: ISpeeds[] = [];
     tempSpecials: ISpecialAbility[] = [];
+    manualValidators = {
+        name: true
+    };
+
 
     @ViewChild(SpecialAbilitiesComponent) specialList: SpecialAbilitiesComponent;
     @ViewChild(SpecialAbilityForm) specialEditForm: SpecialAbilityForm;
@@ -96,6 +100,10 @@ export class RaceForm {
     }
 
     raceSave(){
+        if (this.utils.trim(this.race.name).length === 0) {
+            this.manualValidators.name = false;
+            return;
+        }
         //check selected speeds
         var wControl: boolean = false;
         for (var i = 0; i < this.tempSpeeds.length; i++){
@@ -104,44 +112,52 @@ export class RaceForm {
                 break;
             }
         }
-        if (!wControl && !this.utils.confirmBox("No speed selected for this race. This race won't be able to move. Do you want to confirm race creation?")){
+        if (!wControl && !this.utils.confirmBox("No speed selected for this race.\nThis race won't be able to move.\n\nDo you want to confirm race creation?")){
             return;
         }
         
-        this.raceToBeSaved = {
-            _id: "00",
-            name: this.race.name,
-            type: this.race.type,
-            size: this.race.size,
-            speeds: this.race.speeds,
-            abilitiesModifiers: this.race.abilitiesModifiers,
-            specials: this.filterSpecialIDs(this.race.specials)
-        };
-        this.race._id ? this.raceToBeSaved._id = this.race._id : this.raceToBeSaved._id = null;
+        this.racesService
+            .get()
+            .subscribe((response: any) => {
+                var races: IRace[];
+                races = response;
+                console.log("races list", races, "race", this.race);
+                if (races.length > 0) {
+                    for (var i = 0; i < races.length; i++){
+                        if (races[i]._id !== this.race._id && this.utils.trimUCase(races[i].name) === this.utils.trimUCase(this.race.name)){
+                            this.manualValidators.name = false;
+                            return;
+                        }
+                    }
+                }
+                this.race.speeds = this.tempSpeeds;
+                this.raceToBeSaved = this.racesService.mapForUpdate(this.race);
+                //this.race._id ? this.raceToBeSaved._id = this.race._id : this.raceToBeSaved._id = null;
 
-        console.log("before save", this.raceToBeSaved);
-        if (this.race._id){
-            //put
-            this.racesService
-                .put(this.raceToBeSaved)
-                .subscribe((res: any) => {
-                    console.log("race put:", res);
-                    this.router.navigate(["/races-list"]);
-                })
-        } else{
-            //post
-            this.racesService
-                .post(this.raceToBeSaved)
-                .subscribe((res: any) => {
-                    console.log("race post:", res);
-                    this.router.navigate(["/races-list"]);
-                });
-        }
+                console.log("before save", this.raceToBeSaved);
+                if (this.race._id){
+                    //put
+                    this.racesService
+                        .put(this.raceToBeSaved)
+                        .subscribe((res: any) => {
+                            console.log("race put:", res);
+                            this.router.navigate(["/races"]);
+                        })
+                } else{
+                    //post
+                    this.racesService
+                        .post(this.raceToBeSaved)
+                        .subscribe((res: any) => {
+                            console.log("race post:", res);
+                            this.router.navigate(["/races"]);
+                    });
+                }
+            })
     }
 
     cancelEdit(){
         if (this.utils.confirmBox("Cancel editing and go back to race list?")){
-            this.router.navigate(["/races-list"]);
+            this.router.navigate(["/races"]);
         }
     }
 

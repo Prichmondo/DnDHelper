@@ -61,4 +61,24 @@ export class RacesService{
             });
     }
 
+    mapForUpdate(inputRace: IRace): IRaceUpdate {
+        if (!inputRace) return null;
+
+        var outputRace: IRaceUpdate;
+        if (!inputRace.specials || inputRace.specials.length === 0) {
+            inputRace.specials = [];
+        }
+
+        outputRace = {
+            _id: (inputRace._id ? inputRace._id : null),
+            name: inputRace.name,
+            type: inputRace.type,
+            size: inputRace.size,
+            speeds: inputRace.speeds.filter(speed => (speed.speed > 0)),
+            abilitiesModifiers: inputRace.abilitiesModifiers,
+            specials: inputRace.specials.map(s => s._id)
+        };
+        return outputRace;
+    }
+
 }

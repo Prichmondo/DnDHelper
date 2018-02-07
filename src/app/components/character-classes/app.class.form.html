@@ -7,7 +7,8 @@
             <div class="row">
                 <div class="form-group col-sx-12 col-sm-12 col-md-12">
                     <label>Class Name</label>
-                    <input type="text" name="name" [(ngModel)]="characterClass.name" class="form-control">  
+                    <input type="text" name="name" [(ngModel)]="characterClass.name" class="form-control" [ngClass]="!manualValidators.name ? 'ng-invalid' : ''">
+                    <div *ngIf="!manualValidators.name" class="alert alert-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Class name not entered or class name already in use!</div>
                 </div>
                 <div class="form-group col-sx-12 col-sm-4">
                     <label>MaxLevel</label>
