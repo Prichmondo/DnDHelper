@@ -27,10 +27,19 @@ character.map = (character) => {
     var characterResp = {}
 
     characterResp._id = character._id;
-    characterResp.firstName = character.firstName;
-    characterResp.lastName = character.lastName;
+    characterResp.name = character.name;
     characterResp.campaign = character.campaign;
     characterResp.race = character.race;
+    characterResp.alignment = character.alignment;
+    characterResp.deity = character.deity;
+    characterResp.size = character.size;
+    characterResp.age = character.age;
+    characterResp.gender = character.gender;
+    characterResp.height = character.height;
+    characterResp.weight = character.weight;
+    characterResp.eyes = character.eyes;
+    characterResp.heir = character.heir;
+    characterResp.skin = character.skin;
     characterResp.abilities = character.abilities;
     characterResp.classes = character.classes;
     characterResp.createDate = character.createDate;
