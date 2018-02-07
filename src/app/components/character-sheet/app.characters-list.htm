@@ -1,0 +1,68 @@
+<h2>Characters List</h2>
+
+<div>   
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Race
+                </th>
+                <th>
+                    Sex
+                </th>
+                <th>
+                    Age
+                </th>
+                <th>
+                    Level and Classes
+                </th>
+                <th>
+                    Campaigns
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="7">
+                    <button class="btn btn-success" (click)="add()">Hire new Character</button>
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr *ngFor="let character of characters">
+                <td>
+                    {{character.name}}
+                </td>
+                <td>
+                    {{character.race}}
+                </td>
+                <td>
+                    {{character.gender}}
+                </td>
+                <td>
+                    {{character.age}}
+                </td>
+                <td>
+                    {{character.classes}}
+                </td>
+                <td>
+                    {{character.campaign}}
+                </td>
+                <td class="text-center">
+                    <button class="btn btn-primary action-button" (click)="edit(character._id)">
+                        Edit
+                    </button>
+                    <button class="btn btn-danger action-button" (click)="delete(character)">
+                        Remove
+                    </button>
+                </td>
+            </tr>
+        </tbody> 
+    </table>
+</div>
