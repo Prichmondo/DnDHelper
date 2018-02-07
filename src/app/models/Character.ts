@@ -4,23 +4,41 @@ import { IPgSkillsCollection, IPgSkill, Iskill, ISkillRequest } from '../models/
 import { IAbilities } from '../models/Abilities';
 
 export interface ICharacter{
-
     _id?:string;
-    firstName:string;
-    lastName:string;
-    campaign:Campaign;
+    name:string;
     race:string;
-    classes:PgClass[];
+    classes:string;    
+    alignment:string;
+    deity:string;
+    size:string;
+    age:number;
+    gender:string;
+    height:number;
+    weight:number;
+    eyes: string;
+    heir: string;
+    skin:string;
+    hitPoints:number;
+    campaign:Campaign;
     skills: IPgSkillsCollection;
     abilities: IAbilities;
 }
 
 export interface ICharacterRequest{
-    firstName:string;
-    lastName:string;
-    campaign:Campaign;
+    name:string;
     race:string;
-    classes:PgClass[];
+    classes:string;    
+    alignment:string;
+    deity:string;
+    size:string;
+    age:number;
+    gender:string;
+    height:number;
+    weight:number;
+    eyes: string;
+    heir: string;
+    skin:string;
+    hitPoints:number;
     skills: ISkillRequest[];
 }
 

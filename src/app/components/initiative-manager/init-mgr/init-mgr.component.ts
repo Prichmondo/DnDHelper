@@ -64,7 +64,7 @@ export class InitMgrComponent implements OnInit, OnChanges {
   }
   characterListGenerator() {
     this.characterList = this.pgs.map(pg => new Npc(
-      pg.firstName + ' ' + pg.lastName,
+      pg.name,
       'Character', '', 0, 1, false, 0, pg._id, false
     ));
   }

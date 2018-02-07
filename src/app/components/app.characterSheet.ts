@@ -20,14 +20,23 @@ import { ShowCharacters} from './app.showCharacters';
 export class CharacterSheetComponent {
   
     character: ICharacter = {
-      firstName:"",
-      lastName:"",
+      name:"",
+      classes:"",    
+      alignment:"",
+      deity:"",
+      size:"",
+      age:0,
+      gender:"",
+      height:0,
+      weight:0,
+      eyes: "",
+      heir: "",
+      skin:"",
+      hitPoints:0,
       campaign: null,
       race:"",
-      classes:[],
       skills: {} as IPgSkillsCollection,
-      abilities: {} as IAbilities
-      
+      abilities: {} as IAbilities      
     };
     @Input() id: string;
 
