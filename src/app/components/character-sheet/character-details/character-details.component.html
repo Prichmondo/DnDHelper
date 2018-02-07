@@ -7,28 +7,30 @@
     <div class="col-sm-6 col-md-4 col-md-pull-4">
         <div class="row">   
             <div class="col-md-12">
-                <input class="input-block from-control base-border" type="text" formControlName = "name">                   
+                <input class="input-block form-control base-border" type="text" formControlName = "name">                   
                 <label > Character name </label>
             </div>
-            <div class="col-md-12"><input class="input-block from-control base-border" type="text"><label> Class and level </label></div>
-            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Size </label></div>
-            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Age </label></div>
-            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Gender </label></div>
-            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Heigth </label></div>
+            <div class="col-md-12"><input class="input-block form-control base-border" type="text" formControlName = "charClass"><label> Class </label></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block form-control base-border" type="number" formControlName = "size"><label> Size </label></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block form-control base-border" type="number" formControlName = "age"><label> Age </label></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block form-control base-border" type="text" formControlName = "gender"><label> Gender </label></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block form-control base-border" type="number" formControlName = "heigth"><label> Height </label></div>
         </div>
     </div>
     <div class="col-sm-6 col-md-4 col-md-pull-4"> 
         <div class="row">  
-            <div class="col-md-12"><input class="input-block from-control base-border" type="text"><label> Player </label></div>
-            <div class="col-xs-4 col-sm-4 col-md-4"><input class="input-block from-control base-border" type="text"><label> Race</label></div>
-            <div class="col-xs-4 col-sm-4 col-md-4"><input class="input-block from-control base-border" type="text"><label> Alignment </label></div>
-            <div class="col-xs-4 col-sm-4 col-md-4"><input class="input-block from-control base-border" type="text"><label> Deity </label></div>
-            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Wheight </label></div>
-            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Eyes </label></div>
-            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Hair </label></div>
-            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block from-control base-border" type="text"><label> Skin</label></div>
+            <div class="col-md-12"><input class="input-block form-control base-border" type="text"><label> Player </label></div>
+            <div class="col-xs-4 col-sm-4 col-md-4"><input class="input-block form-control base-border" type="text" formControlName = "race"><label> Race</label></div>
+            <div class="col-xs-4 col-sm-4 col-md-4"><input class="input-block form-control base-border" type="text" formControlName = "align"><label> Alignment </label></div>
+            <div class="col-xs-4 col-sm-4 col-md-4"><input class="input-block form-control base-border" type="text" formControlName = "god"><label> Deity </label></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block form-control base-border" type="number" formControlName = "weight"><label> Weight </label></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block form-control base-border" type="text" formControlName = "eyes"><label> Eyes </label></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block form-control base-border" type="text" formControlName = "hair"><label> Hair </label></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"><input class="input-block form-control base-border" type="text" formControlName = "skin"><label> Skin</label></div>
         </div>
     </div>
-
   </div>
 </form>
+<span *ngIf="detailsForm.valid">
+    <span class="alert alert-warning">NOOOOOOOOOOOOOOOOOOOOOOOOOOOO!</span>
+</span>
