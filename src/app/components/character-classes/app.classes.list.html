@@ -1,56 +1,67 @@
 <h2>Classes List</h2>
 
-<div class="table-responsive"> 
-    <button (click)="onSelect(characterClass)" class=btn btn-info> Add class </button>  
-    <table class="table table-stripped table-hover">
+<div> 
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>
                     Name
                 </th>
-                <th>
+                <th class="text-center">
+                    Type
+                </th>
+                <th class="text-center">
+                    Hit Dice
+                </th>
+                <th class="text-center">
                     Total Levels
                 </th>
-                <th>Fortitude</th>
-                <th>Reflex</th>
-                <th>Will</th>
-                <th>
+                <th class="text-center">
+                    Saving Throws (F / R / W)
+                </th>
+                <th class="text-center">
                     Attack Bonus
                 </th>
-                <th>
-                    Edit
-                </th>
-                <th>
-                    Remove
+                <th class="text-center">
+                    Actions
                 </th>
             </tr>
         </thead>
+        <tfoot>
+            <tr>
+                <td colspan="7">
+                    <button class="btn btn-success" (click)="add()">Add new class</button>
+                </td>
+            </tr>
+        </tfoot>
         <tbody>
-            <tr  *ngFor="let characterClass of characterClasses; let i = index">
+            <tr  *ngFor="let characterClass of characterClasses">
                 <td>
                     {{characterClass.name}}
                 </td>
-                <td>
+                <td class="text-center">
+                    {{characterClass.type}}
+                </td>
+                <td class="text-center">
+                    D{{characterClass.hitDice}}
+                </td>
+                <td class="text-center">
                     {{characterClass.levels}}
                 </td>
-                <td>{{characterClass.savingThrows.fortitude}}</td>
-                <td>{{characterClass.savingThrows.reflex}}</td>
-                <td>{{characterClass.savingThrows.will}}</td>
-
-                <td>
+                <td class="text-center">
+                    {{characterClass.savingThrows.fortitude}} / {{characterClass.savingThrows.reflex}} / {{characterClass.savingThrows.will}}
+                <td class="text-center">
                     {{characterClass.baseAttackBonus}}
                 </td>
-                <td>
-                    <button (click)="onSelect(characterClass)" class="btn btn-info">
-                        edit
-                    </button>
-                </td>
-                <td>
-                    <button (click)="onDelete(characterClass, i)" class="btn btn-info">
-                        delete
-                    </button>
-                </td>                
-            </tr>
+                <td class="text-center">
+                        <button class="btn btn-primary action-button" (click)="edit(characterClass._id)">
+                            Edit
+                        </button>
+                        <button class="btn btn-danger action-button" (click)="delete(characterClass._id)">
+                            Remove
+                        </button>
+                    </td>
+                </tr>
         </tbody> 
     </table>
 </div>

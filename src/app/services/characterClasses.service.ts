@@ -6,7 +6,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { IClass, IClassUpdate,
-         ISavingThrowsProgression } from '../models/CharacterClass';
+         ISavingThrowsProgression,
+         ILevel, ILevelUpdate }     from '../models/CharacterClass';
 
 @Injectable()
 export class CharacterClassService{
@@ -65,25 +66,25 @@ export class CharacterClassService{
 
     }
 
-    mapForUpdate(inputCharacter: IClass): IClassUpdate {
+    mapForUpdate(inputClass: IClass): IClassUpdate {
         
-        if (!inputCharacter) return null;
+        if (!inputClass) return null;
         
-        if (inputCharacter.classLevels.length > inputCharacter.levels){
-            inputCharacter.classLevels
-                .splice(inputCharacter.levels, inputCharacter.classLevels.length - inputCharacter.levels);
+        if (inputClass.classLevels.length > inputClass.levels){
+            inputClass.classLevels
+                .splice(inputClass.levels, inputClass.classLevels.length - inputClass.levels);
         }
 
-        var oputputCharacter: IClassUpdate = {
-            _id: inputCharacter._id,
-            name: inputCharacter.name,
-            levels: inputCharacter.levels,
-            savingThrows: inputCharacter.savingThrows,
-            baseAttackBonus: inputCharacter.baseAttackBonus,
-            type: inputCharacter.type,
-            hitDice: inputCharacter.hitDice,
+        var oputputClass: IClassUpdate = {
+            _id: inputClass._id,
+            name: inputClass.name,
+            levels: inputClass.levels,
+            savingThrows: inputClass.savingThrows,
+            baseAttackBonus: inputClass.baseAttackBonus,
+            type: inputClass.type,
+            hitDice: inputClass.hitDice,
             skills: [],
-            classLevels: inputCharacter.classLevels.map(lvl => {
+            classLevels: inputClass.classLevels.map(lvl => {
                 
                 if(lvl===null || typeof lvl === "undefined")
                     return { specials:[] };
@@ -94,12 +95,6 @@ export class CharacterClassService{
             })
         };
         
-        /*for (var i = 0; i < inputCharacter.classLevels.length; i++){
-            for (var j = 0; j < inputCharacter.classLevels[i].specials.length; j++){
-                oputputCharacter.classLevels[i].specials.push(inputCharacter.classLevels[i].specials[j]._id);
-            }
-        }*/
-
-        return oputputCharacter;
+        return oputputClass;
     }
 }

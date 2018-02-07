@@ -3,7 +3,8 @@
         <form (submit)="raceSave()">
             <div class="form-group">
                 <label for="raceName">Race Name</label>
-                <input [(ngModel)]="race.name" class="form-control" id="raceName" placeholder="" [(value)]="race.name" name="input-race-name" required>
+                <input [(ngModel)]="race.name" class="form-control" [ngClass]="!manualValidators.name ? 'ng-invalid' : ''" id="raceName" placeholder="" [(value)]="race.name" name="input-race-name" required>
+                <div *ngIf="!manualValidators.name" class="alert alert-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Race name not entered or race name already in use!</div>
             </div>
             
             <div class="form-group">

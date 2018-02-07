@@ -1,0 +1,44 @@
+<table class="table table-stripped table-hover" (mouseover)="mouseover= true" (mouseleave)="mouseover=false">
+  <thead>
+    <tr>
+      <th>
+          Name
+      </th>
+      <th>
+          Bonus
+      </th>
+      <th>
+          Initiative
+      </th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let character of characterList" >
+    <tr 
+    [ngClass]="{'active' : character.selected, 'active' : character.isTurn }" 
+    (click)="onMoveClick(character)"
+    >
+        <td>
+            {{character.charName}}
+        </td>
+        <td>
+            {{character.charBaseInit}}
+        </td>
+        <td>
+            {{character.initiative}}
+        </td>
+        <td [ngClass]="{'Character': 'alert alert-info' , 'Enemy' : 'alert alert-danger' }[character.charOfType]">
+
+        </td>
+        <td *ngIf="!playTurn">
+            <div class="row">
+                <div class="col-sm-4">
+                    <button class="btn btn-sm btn-primary" (click)="onEditClick(character)">Edit</button>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-sm btn-primary" (click)="onRemoveClick(character)">Remove</button>
+                </div>
+            </div>
+        </td>
+    </tr>
+  </tbody>
+</table>

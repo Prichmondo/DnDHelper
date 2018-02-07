@@ -2,6 +2,9 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { INpc } from '../../../../models/inpc';
 
+import { Utilities } from '../../../../utilities/app.utilities';
+
+
 @Component({
   selector: 'app-cockpit',
   templateUrl: './cockpit.component.html',
@@ -31,6 +34,7 @@ export class CockpitComponent implements OnInit {
       charQuantity: this.newQuantity,
       selected: false,
       initiative: this.getInitiative(this.newBaseInit),
+      isTurn: false
     });
   }
   setNewType(e) {
@@ -39,10 +43,10 @@ export class CockpitComponent implements OnInit {
 
   getInitiative(initBonus: number): number {
 
-    return Math.floor((Math.random() * 20)) + initBonus + 1;
+    return this.utilities.getRandomInteger(1, 20) + initBonus;
   }
 
-  constructor() { }
+  constructor(private utilities : Utilities) { }
 
   ngOnInit() {
   }

@@ -4,18 +4,22 @@
       <nav class="nav navbar-default">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <div class="navbar-header">
                   <h4 style ="font-family:cursive; color:darkblue; font-style: oblique ">Initiative pool</h4>
               </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <ul class="list-inline">
                 <li>
-                    <button class="btn btn-primary btn-sm" (click)="showCharInfo()" >NPC Manager</button>                  
+                    <button class="btn btn-primary btn-sm" (click)="showPlayTurn()">Click to {{showTimeButton}}</button>
                 </li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <ul class="list-inline pull-right">
                 <li>
-                    <button class="btn btn-primary btn-sm" (click)="showPlayTurn()">{{showTimeButton}} Turn</button>
+                    <button class="btn btn-primary btn-sm" (click)="showPlayTurn()">Settings</button>
                 </li>
               </ul>
             </div>
@@ -25,42 +29,54 @@
     </div>
   </div>
   <hr>
-  <div class="row">
-    <div class="col-sm-12">
-      <span *ngIf="!showTime else showBlock">
-        <div class="panel panel-default">
-            <div class="row">
-                <div class="col-sm-6" [ngClass]= "{ 'hidden' : !charInfo}">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+            <span *ngIf="!charInfo && !formSelected">
+              <div class="panel panel-default">
+                <div class="col-sm-6">
                   <app-cockpit (characterAdded)="onCharacterAdded($event)"></app-cockpit>
                 </div>
                 <div class="col-sm-6">
-                  <span *ngIf="characterList !== null && characterList.length > 0">
-                      <span *ngIf="formSelected === false else showOtherBlock">
-                          <div>
-                            <ul class="list-group" id="dropZone" >
-                              <div [ngClass]="{'alert alert-warning' : listedCharacter.selected}" *ngFor="let listedCharacter of characterList; let i=index" >
-                                <app-char-info [characterInfo]="listedCharacter" id="{{i}}" 
-                                (onEdit)="onClickEdit($event)" 
-                                (onMove)="onCharacterMoved($event)"
-                                (onRemove)="onCharacterRemoved($event)" 
-                                ></app-char-info>
-                              </div>
-                            </ul>
-                          </div>                      
-                      </span>
-                      <ng-template #showOtherBlock>
-                        <app-char-info-form  [characterInfo]="selectedCharacter" (statusForm)="onCancel()" (characterInfoOut)="onCharacterEdited()"></app-char-info-form>
-                      </ng-template>
-                  </span>
+                  <ul class="list-group">
+                    <div>
+                      <app-char-info-table [characterList]="characterList" 
+                      (onRemove)="onCharacterRemoved($event)"
+                      (onEdit)="onClickEdit($event)"  
+                      [playTurn]="false"></app-char-info-table>
+                    </div>
+                  </ul>
                 </div>
-            </div>
+              </div>
+            </span>
         </div>
-      </span>
-      <ng-template #showBlock>
-          <app-turnplayer></app-turnplayer>
-      </ng-template>
+        <div class="row">
+          <span *ngIf="charInfo && !formSelected">
+            <div class="panel panel-default">
+              <div class="col-sm-6">
+                <div class="col-sm-4">
+                    <ul class="list-inline pull-left">
+                        <li *ngIf="first"><button class="btn btn-sm btn-info" (click)="onClickNext()">Next</button></li>
+                        <li *ngIf="last"><button class="btn btn-sm btn-info">Previous</button></li>
+                    </ul>
+                </div>
+                <div>
+                  <app-char-info-table [characterList]="characterList" 
+                  (onMove)=onCharacterMoved($event) 
+                  [playTurn]="true"></app-char-info-table>
+                </div>
+              </div>
+              <div class="col-sm-6">    
+                <app-turnplayer [characterList]="characterList"></app-turnplayer>
+              </div>
+            </div>
+          </span>
+        </div>               
+        <span *ngIf="formSelected">
+          <app-char-info-form  [characterInfo]="selectedCharacter" (statusForm)="onCancel()" (characterInfoOut)="onCharacterEdited()"></app-char-info-form>
+        </span>
+      </div>
     </div>
-  </div>
 </div>
 
 

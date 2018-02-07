@@ -7,21 +7,23 @@ import { ICharacter } from '../../../models/character';
 import { LocalStorageManagerService } from '../../../services/local-storage-manager.service';
 import { CharactersService } from '../../../services/characthers.service';
 
+
 @Component({
   selector: 'app-init-mgr',
   templateUrl: './init-mgr.component.html',
   styleUrls: ['./init-mgr.component.scss']
 })
 export class InitMgrComponent implements OnInit, OnChanges {
-  characterList= [];
+  @Input() characterList: INpc[] = [];
   indexFrom = null;
   indexTo = null;
   formSelected = false;
   selected = false;
   dropped= false;
-  showTime = false;
-  showTimeButton = 'Play';
+  showTimeButton = 'Play Turn';
   charInfo = false;
+  first = true;
+  last = false;
   pgs: ICharacter[];
 
   @Input() selectedCharacter: INpc;
@@ -33,10 +35,14 @@ export class InitMgrComponent implements OnInit, OnChanges {
     charOfType: '',
     charQuantity: 1,
     initiative: 0,
-    selected: false
+    selected: false,
+    isTurn: false
   };
 
-  constructor(private localStorageManager: LocalStorageManagerService, private charactersService: CharactersService) {
+  constructor(
+    private localStorageManager: LocalStorageManagerService, 
+    private charactersService: CharactersService
+  ) {
   }
 
   ngOnChanges() {
@@ -44,33 +50,23 @@ export class InitMgrComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.charactersService
     .get()
-    .subscribe((response: ICharacter[])=>{
+    .subscribe((response: ICharacter[]) => {
 
         this.pgs = response;
         console.log(this.pgs)
         this.characterListGenerator();
-    }); 
+        if (this.characterList !== null && this.characterList.length !== 0) {
+          this.resetData();
+          console.log('reset data', this.characterList);
+          }
+    });
 
-    if (this.characterList !== null && this.characterList.length > 0) {
-    this.resetData();
-    }
   }
-  characterListGenerator(){
-    if(this.pgs.length >0) {
-      for (const pg of this.pgs) {
-        this.newCharacter = new Npc (
-          pg.firstName + " "+pg.lastName,
-          'character',
-          '',
-          0,
-          1,
-          false,
-          0,
-          pg._id
-        )
-        this.characterList.push(this.newCharacter);
-      }
-    }
+  characterListGenerator() {
+    this.characterList = this.pgs.map(pg => new Npc(
+      pg.firstName + ' ' + pg.lastName,
+      'Character', '', 0, 1, false, 0, pg._id, false
+    ));
   }
   onDropped() {
     if (this.dropped === false && this.characterList.length > 0) {
@@ -143,7 +139,7 @@ export class InitMgrComponent implements OnInit, OnChanges {
     } else {
       character.selected = false;
     }
-
+    
     if (this.indexTo === null && this.indexFrom === null) {
 
       this.indexFrom = charIndex;
@@ -162,7 +158,7 @@ export class InitMgrComponent implements OnInit, OnChanges {
         this.localStorageManager.addItem(0, this.characterList);
         this.indexFrom = null;
         this.indexTo = null;
-
+        
         return this.characterList;
 
       }else if (this.indexFrom < this.indexTo   ||
@@ -215,8 +211,16 @@ export class InitMgrComponent implements OnInit, OnChanges {
     return this.characterList;
   }
   resetData() {
-    this.characterList = this.localStorageManager.getItem(0);
+    let testlist = [];
+    testlist = this.localStorageManager.getItem(0);
+    if (testlist.length > 0 && this.characterList.length > 0){
+    this.characterList.concat(testlist);
     this.forceSort();
+    }else if (testlist.length == 0 && this.characterList.length > 0) {
+      return this.characterList;
+    }else {
+      return this.characterList = testlist;
+    }
   }
   onClickEdit(selectedCharacter: INpc) {
     console.log('onSelected', selectedCharacter);
@@ -224,15 +228,38 @@ export class InitMgrComponent implements OnInit, OnChanges {
     this.selectedCharacter = selectedCharacter;
     return this.characterList;
   }
-  showCharInfo() {
-    this.charInfo = !this.charInfo;
-  }
   showPlayTurn() {
-    this.showTime = !this.showTime;
-    if(this.showTime){
-      this.showTimeButton = "End";
+    this.charInfo = !this.charInfo;
+    if(!this.charInfo){
+      this.showTimeButton = "Play Turn";
     }else {
-      this.showTimeButton = "Play";
+      this.showTimeButton = "Manage Initiative";
+    }
+  }
+
+  onClickNext(){
+    for (let i = 0; i < this.characterList.length; i++){
+      if(this.characterList[i + 1].isTurn && this.characterList[i + 1] === this.characterList[this.characterList.length - 1]) {
+        this.characterList[i + 1].isTurn = false;
+      }
+      if (this.characterList[i].isTurn){
+          this.characterList[i].isTurn = false;
+          this.characterList[i + 1].isTurn = true;
+          this.first = true;
+          this.last = true;
+          if (this.characterList[i + 1] === this.characterList[this.characterList.length - 1]) {
+            this.last = true;
+            console.log('è l ultimo', this.characterList[i]);
+            return;
+          }
+          return;
+        }else if(!this.characterList[i].isTurn){
+        this.characterList[i].isTurn = true;
+        this.first = true;
+        this.last = false;
+        return;
+      }
+      return;
     }
   }
 }

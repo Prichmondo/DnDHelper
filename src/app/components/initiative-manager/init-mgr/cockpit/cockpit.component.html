@@ -11,7 +11,7 @@
 <hr>
 <button type="submit" class="btn btn-success" (click)="onAddCharacter()">Save</button> 
 <ng-container *ngIf="!newName || newName== 'undefined'; else showMe">
-  <h2>Enter a new character or new characters</h2>
+  <h2>Enter a new character</h2>
 </ng-container>
 <ng-container #showMe *ngIf="newQuantity ==1 && newName; else elseblock">
     <h2>Let's welcome our new friend {{newName}}!!</h2>

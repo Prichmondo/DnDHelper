@@ -64,7 +64,8 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
 import { ModalComponent }           from './components/modal/modal.component';
 import { ModalService }             from './services/modal.service';
 import { LocalStorageManagerService } from './services/local-storage-manager.service';
-import { AppNav } from './services/app.nav.service' 
+import { AppNav } from './services/app.nav.service';
+import { CharInfoTableComponent } from './components/initiative-manager/init-mgr/char-info-table/char-info-table.component' 
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { AppNav } from './services/app.nav.service'
     CockpitComponent,
     CharInfoComponent,
     CharInfoFormComponent,
-    TurnplayerComponent
+    TurnplayerComponent,
+    CharInfoTableComponent
   ],
   imports: [
     BrowserModule,

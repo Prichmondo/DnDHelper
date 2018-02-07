@@ -33,6 +33,9 @@ export class ClassForm {
     availableHitDices: Dice[] = HIT_DICES;
     selectedLevel: number = 0;
     initComplete: boolean = false;
+    manualValidators = {
+        name: true
+    };
 
     @ViewChild(ClassTablePreview) tablePreview: ClassTablePreview;
     @ViewChild(SpecialAbilitiesComponent) specialsComp: SpecialAbilitiesComponent;
@@ -87,26 +90,46 @@ export class ClassForm {
     }
 
     classSave(){
-        if (this.characterClass._id){
-            this.CharacterClassService
-            .update(this.CharacterClassService.mapForUpdate(this.characterClass))
-            .subscribe((response :any)=>{
-                console.log("Updating...", response)
-                this.router.navigate(["/Classes"]);
-            })
-            
-        } else {
-            this.CharacterClassService
-            .post(this.CharacterClassService.mapForUpdate(this.characterClass))
-            .subscribe((response:any)=>{
-                console.log("Saving...", response)
-            })
+        if (this.utils.trim(this.characterClass.name).length === 0) {
+            this.manualValidators.name = false;
+            return;
         }
+        this.CharacterClassService
+            .get()
+            .subscribe((response: any)=>{
+                var classList: IClass[];
+                classList = response;
+                console.log("class list", classList, "class", this.characterClass);
+                if (classList.length > 0) {
+                    for (var i = 0; i < classList.length; i++){
+                        if (classList[i]._id !== this.characterClass._id && this.utils.trimUCase(classList[i].name) === this.utils.trimUCase(this.characterClass.name)){
+                            this.manualValidators.name = false;
+                            return;
+                        }
+                    }
+                }
+                if (this.characterClass._id){
+                    this.CharacterClassService
+                    .update(this.CharacterClassService.mapForUpdate(this.characterClass))
+                    .subscribe((response :any)=>{
+                        console.log("Updating...", response)
+                        this.router.navigate(["/classes"]);
+                    })
+                    
+                } else {
+                    this.CharacterClassService
+                    .post(this.CharacterClassService.mapForUpdate(this.characterClass))
+                    .subscribe((response:any)=>{
+                        console.log("Saving...", response)
+                        this.router.navigate(["/classes"]);
+                    })
+                }       
+            })
     }
 
     cancelEdit(){
         if (this.utils.confirmBox("Cancel editing and go back to Class list?")){
-            this.router.navigate(["/Classes"]);
+            this.router.navigate(["/classes"]);
         }
     }
       
@@ -125,6 +148,7 @@ export class ClassForm {
                                 .subscribe((response:any)=>{
                                     this.characterClass = response;
                                     console.log(this.characterClass);
+                                    console.log(this.manualValidators);
                                     //this.updatePreviewTable();
                                 })
                         } else {
@@ -140,9 +164,10 @@ export class ClassForm {
                                 type: this.ruleBook.classType[0],
                                 hitDice: this.availableHitDices[0].faces,
                                 skills: [],
-                                classLevels: [{}]
+                                classLevels: [{specials: []}]
                             }
                             //this.updatePreviewTable();
+                            console.log(this.manualValidators)
                         }
                     })
             });

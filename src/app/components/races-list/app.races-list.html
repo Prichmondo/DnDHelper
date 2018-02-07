@@ -2,7 +2,7 @@
 <h2>Races List</h2>
 
 <div>   
-    <table class="table table-stripped table-hover">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>
@@ -28,6 +28,7 @@
                     <button class="btn btn-success" (click)="add()">Add new race</button>
                 </td>
             </tr>
+        </tfoot>
         <tbody>
             <tr *ngFor="let race of races">
                 <td>
@@ -45,7 +46,7 @@
                     </ul>
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-info action-button" (click)="edit(race._id)">
+                    <button class="btn btn-primary action-button" (click)="edit(race._id)">
                         Edit
                     </button>
                     <button class="btn btn-danger action-button" (click)="delete(race._id)">

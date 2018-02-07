@@ -15,6 +15,5 @@ export const HIT_DICES: Dice[] =[
     { faces: 6 },
     { faces: 8 },
     { faces: 10 },
-    { faces: 12 },
-    { faces: 20 },
+    { faces: 12 }
 ]
