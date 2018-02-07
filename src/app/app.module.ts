@@ -12,7 +12,7 @@ import { from }                             from 'rxjs/observable/from';
 import { AppRoutingModule }         from './app.routing.module';
 import { AppComponent }             from './app.component';
 import { DiceRollerComponent }      from './components/dice-roller/app.diceroller';
-import { CharacterSheetComponent }  from './components/app.characterSheet';
+import { CharacterSheetComponent }  from './components/character-sheet/character-sheet.component';
 import { HeaderComponent }          from './header.component';
 import { LoginComponent }           from './components/login/app.login';
 import { RegisterComponent }        from './components/register/app.register';
