@@ -35,5 +35,14 @@ export class CharactersService{
             });
     }
 
+    delete(id: string): Observable<Array<ICharacter>> {
+        return this.http
+            .delete(this.apiUrl + "/" + id)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            });
+    }
+
 
 }
