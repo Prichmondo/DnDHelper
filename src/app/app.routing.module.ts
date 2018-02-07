@@ -4,7 +4,7 @@ import { AppRoute, NavMenu,
   NavVisibility }                   from './models/AppRoute';
 
 import { DiceRollerComponent }      from './components/dice-roller/app.diceroller';
-import { CharacterSheetComponent }  from './components/app.characterSheet';
+import { CharacterSheetComponent }  from './components/character-sheet/character-sheet.component';
 import { LoginComponent }           from './components/login/app.login';
 import { RegisterComponent }        from './components/register/app.register';
 import { CampaignsComponent }       from './components/campaigns/app.campaigns';
