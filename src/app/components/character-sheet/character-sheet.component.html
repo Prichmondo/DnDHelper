@@ -2,6 +2,17 @@
   <div class="header visible-lg">
       <h2>Caracter Sheet</h2>
   </div>
-  <app-character-details></app-character-details>
-  <character-abilities-component [character]="character"></character-abilities-component>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <app-character-details></app-character-details>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-4">
+        <character-abilities-component [character]="character"></character-abilities-component>
+      </div>
+    </div>
+  </div>
 </div>

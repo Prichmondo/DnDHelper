@@ -41,7 +41,7 @@ export class CharactersList{
         this.charactersService
             .delete(character._id)
             .subscribe((response: any) => {
-                for (var i = 0; i < this.characters.length; i++){
+                for (let i = 0; i < this.characters.length; i++){
                     if (character._id === this.characters[i]._id){
                         this.characters.splice(i, 1);
                         break;
