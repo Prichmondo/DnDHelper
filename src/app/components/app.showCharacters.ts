@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ICharacter } from '../models/Character';
-import { CharactersService } from '../services/characthers.service';
+import { CharactersService } from '../services/characters.service';
 
 @Component({
 

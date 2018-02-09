@@ -13,6 +13,7 @@ import { AppRoutingModule }         from './app.routing.module';
 import { AppComponent }             from './app.component';
 import { DiceRollerComponent }      from './components/dice-roller/app.diceroller';
 import { CharacterSheetComponent }  from './components/character-sheet/character-sheet.component';
+import { CharacterAbilitiesComponent } from './components/character-sheet/character-abilities/character-abilities.component';
 import { HeaderComponent }          from './header.component';
 import { LoginComponent }           from './components/login/app.login';
 import { RegisterComponent }        from './components/register/app.register';
@@ -56,7 +57,7 @@ import { HttpService }              from './services/http.service';
 import { CampaignsService }         from './services/campaigns.service';
 import { AuthGuard, Anonymus }      from './services/authGard.service';
 import { Broadcaster }              from './services/broadcast';
-import { CharactersService }        from './services/characthers.service';
+import { CharactersService }        from './services/characters.service';
 import { CharacterClassService }    from './services/characterClasses.service';
 import { RacesService }             from './services/races.service';
 import { SpecialAbilitiesService }  from './services/special.abilities.service';
@@ -65,7 +66,7 @@ import { DiceRoller }               from './components/dice-roller/diceroller.en
 import { ModalComponent }           from './components/modal/modal.component';
 import { ModalService }             from './services/modal.service';
 import { LocalStorageManagerService } from './services/local-storage-manager.service';
-import { AppNav } from './services/app.nav.service';
+import { AppNav }                   from './services/app.nav.service';
 import { CharInfoTableComponent } from './components/initiative-manager/init-mgr/char-info-table/char-info-table.component';
 import { CharacterDetailsComponent } from './components/character-sheet/character-details/character-details.component' 
 
@@ -105,7 +106,8 @@ import { CharacterDetailsComponent } from './components/character-sheet/characte
     CharInfoFormComponent,
     TurnplayerComponent,
     CharInfoTableComponent,
-    CharacterDetailsComponent
+    CharacterDetailsComponent,
+    CharacterAbilitiesComponent
   ],
   imports: [
     BrowserModule,

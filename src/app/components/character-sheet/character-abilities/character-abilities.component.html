@@ -1,0 +1,99 @@
+<div *ngIf="character">
+    <table class="table table-sm table-bordered table-responsive-sm text-center" id="abilityTab">
+        <thead >
+            <tr>
+                <th class="centered" scope="col"></th>
+                <th class="centered" scope="col">Score</th>
+                <th class="centered" scope="col">Temp</th>
+                <th class="centered" scope="col">Mod</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr>
+                <th class="centered" scope="row">
+                    STR
+                </th>
+                <td>
+                    <input class="ability-input no-border" [(ngModel)]="character.abilities.strength">
+                </td>
+                <td>
+                    <input class="ability-input no-border" readonly="true" value="Temp">
+                </td>
+                <td>
+                    <input class="ability-input no-border" readonly="true" value="Mod">
+                </td>
+            </tr>
+            <tr>
+                <th class="centered" scope="row">
+                    DEX
+                </th>
+                <td>
+                    <input class="ability-input no-border" [(ngModel)]="character.abilities.dexterity">
+                </td>
+                <td>
+                    <input class="ability-input no-border" readonly="true" value="Temp">
+                </td>
+                <td>
+                    <input class="ability-input no-border" readonly="true" value="Mod">
+                </td>
+            </tr>
+            <tr>
+                <th class="centered" scope="row">
+                    CON
+                </th>
+                <td>
+                    <input class="ability-input no-border" [(ngModel)]="character.abilities.constitution">
+                </td>
+                <td>
+                    <input class="ability-input no-border" readonly="true" value="Temp">
+                </td>
+                <td>
+                    <input class="ability-input no-border" readonly="true" value="Mod">
+                </td>
+            </tr>
+            <tr>
+                <th class="centered" scope="row">
+                    INT
+                </th>
+                <td>
+                    <input class="ability-input no-border" [(ngModel)]="character.abilities.intelligence">
+                </td>
+                <td>
+                    <input class="ability-input no-border" readonly="true" value="Temp">
+                </td>
+                <td>
+                    <input class="ability-input no-border" readonly="true" value="Mod">
+                </td>
+            </tr>
+            <tr>
+                <th class="centered" scope="row">
+                    WIS
+                </th>
+                <td>
+                    <input class="ability-input no-border" [(ngModel)]="character.abilities.wisdom">
+                </td>
+                <td>
+                    <input class="ability-input no-border" readonly="true" value="Temp">
+                </td>
+                <td>
+                    <input class="ability-input no-border" readonly="true" value="Mod">
+                </td>
+            </tr>
+            <tr>
+                <th class="centered" scope="row">
+                    CHA
+                </th>
+                <td>
+                    <input class="ability-input no-border" [(ngModel)]="character.abilities.charisma">
+                </td>
+                <td>
+                    <input class="ability-input no-border" readonly="true" value="0">
+                </td>
+                <td>
+                    <input class="ability-input no-border" readonly="true" value="">
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>     

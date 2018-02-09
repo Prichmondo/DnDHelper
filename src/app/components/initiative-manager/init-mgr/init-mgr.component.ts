@@ -5,7 +5,7 @@ import { INpc } from '../../../models/inpc';
 import { ICharacter } from '../../../models/character';
 
 import { LocalStorageManagerService } from '../../../services/local-storage-manager.service';
-import { CharactersService } from '../../../services/characthers.service';
+import { CharactersService } from '../../../services/characters.service';
 
 
 @Component({

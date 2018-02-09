@@ -8,7 +8,7 @@ import { ICharacter, ICharacterRequest } from '../models/character';
 import { IAbilities } from '../models/Abilities';
 import { Iskill, IPgSkill, IPgSkillsCollection, ISkillRequest } from '../models/pgSkills';
 import { PgClass } from '../models/pgClass';
-import { CharactersService } from '../services/characthers.service';
+import { CharactersService } from '../services/characters.service';
 import { PgSkillsService } from '../services/pgSkills.service';
 import { ShowCharacters} from './app.showCharacters';
 

@@ -1,6 +1,7 @@
-<div class="container">
+<div *ngIf="character" class="container">
   <div class="header visible-lg">
       <h2>Caracter Sheet</h2>
   </div>
   <app-character-details></app-character-details>
+  <character-abilities-component [character]="character"></character-abilities-component>
 </div>

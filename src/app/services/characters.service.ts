@@ -25,6 +25,15 @@ export class CharactersService{
             });
     }
 
+    getById(id:string): Observable<ICharacter> {
+        return this.http
+            .get(this.apiUrl + "/" + id)
+            .map((res: Response) => {
+                let body = res.json();
+                return body || { };
+            });
+    } 
+
     put(id: string, character: ICharacterRequest): Observable<ICharacter> {
 
         return this.http
