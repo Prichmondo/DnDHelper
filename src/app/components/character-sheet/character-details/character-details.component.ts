@@ -12,7 +12,7 @@ export class CharacterDetailsComponent implements OnInit {
   name = '';
   charClass = '';
   race = '';
-  size: number;
+  size: '';
   gender= '';
   heigth: number;
   align = '';
@@ -28,19 +28,19 @@ export class CharacterDetailsComponent implements OnInit {
   }
   charDetailsForm() {
     this.detailsForm = this.fb.group({
-      name: [this.name , Validators.compose([Validators.required, Validators.minLength(2)])],
+      name: [this.name , Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
       charClass: [this.charClass, Validators.required],
       race: [this.race, Validators.required],
-      size: [null, Validators.required],
-      age:[null, Validators.required],
-      gender: [this.gender, Validators.required],
-      heigth: [this.heigth, Validators.required],
+      size: [this.size, Validators.maxLength(1)],
+      age: [null, Validators.compose([Validators.min(12), Validators.max(100)])],
+      gender: [this.gender],
+      heigth: [null, Validators.compose([Validators.min(1.20), Validators.max(2)])],
       align : [this.align, Validators.required],
-      god  : [this.god, Validators.required],
-      weight: [null, Validators.required],
-      eyes : [this.eyes, Validators.required],
-      hair : [this.hair, Validators.required],
-      skin : [this.skin, Validators.required],
+      god  : [this.god],
+      weight: [null, Validators.compose([Validators.min(40), Validators.max(200)])],
+      eyes : [this.eyes],
+      hair : [this.hair],
+      skin : [this.skin],
     });
   }
 }
