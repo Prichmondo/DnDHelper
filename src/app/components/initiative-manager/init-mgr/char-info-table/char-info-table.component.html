@@ -14,7 +14,7 @@
   </thead>
   <tbody *ngFor="let character of characterList" >
     <tr 
-    [ngClass]="{'active' : character.selected, 'active' : character.isTurn }" 
+    [ngClass]="{'active' : character.selected}" 
     (click)="onMoveClick(character)"
     >
         <td>
@@ -38,6 +38,9 @@
                     <button class="btn btn-sm btn-primary" (click)="onRemoveClick(character)">Remove</button>
                 </div>
             </div>
+        </td>
+        <td *ngIf="character.isTurn && playTurn">
+            <i class="fa fa-hand-o-left" aria-hidden="true"></i>
         </td>
     </tr>
   </tbody>

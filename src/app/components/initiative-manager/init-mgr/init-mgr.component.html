@@ -56,8 +56,9 @@
               <div class="col-sm-6">
                 <div class="col-sm-4">
                     <ul class="list-inline pull-left">
-                        <li *ngIf="first"><button class="btn btn-sm btn-info" (click)="onClickNext()">Next</button></li>
-                        <li *ngIf="last"><button class="btn btn-sm btn-info">Previous</button></li>
+                        <li *ngIf="next || !next && previous"><button class="btn btn-sm btn-info" (click)="onClickNext()">Next</button></li>
+                        <li *ngIf="next && previous"><button class="btn btn-sm btn-info"(click)="onClickPrevious()">Previous</button></li>
+                        <li *ngIf="!next && previous"><button class="btn btn-sm btn-info">End Turn</button></li>
                     </ul>
                 </div>
                 <div>

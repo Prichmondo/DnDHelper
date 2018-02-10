@@ -22,8 +22,10 @@ export class InitMgrComponent implements OnInit, OnChanges {
   dropped= false;
   showTimeButton = 'Play Turn';
   charInfo = false;
-  first = true;
-  last = false;
+  firstTurn = true;
+  lastTurn = false;
+  next = true;
+  previous = false;
   pgs: ICharacter[];
 
   @Input() selectedCharacter: INpc;
@@ -55,7 +57,7 @@ export class InitMgrComponent implements OnInit, OnChanges {
         this.pgs = response;
         console.log(this.pgs)
         this.characterListGenerator();
-        if (this.characterList !== null && this.characterList.length !== 0) {
+        if (this.characterList !== null) {
           this.resetData();
           console.log('reset data', this.characterList);
           }
@@ -216,7 +218,7 @@ export class InitMgrComponent implements OnInit, OnChanges {
     if (testlist.length > 0 && this.characterList.length > 0){
     this.characterList.concat(testlist);
     this.forceSort();
-    }else if (testlist.length == 0 && this.characterList.length > 0) {
+    }else if (testlist.length < 1 && this.characterList.length > 0) {
       return this.characterList;
     }else {
       return this.characterList = testlist;
@@ -239,29 +241,40 @@ export class InitMgrComponent implements OnInit, OnChanges {
 
   onClickNext(){
     for (let i = 0; i < this.characterList.length; i++){
-      if(this.characterList[i + 1].isTurn && this.characterList[i + 1] === this.characterList[this.characterList.length - 1]) {
-        this.characterList[i + 1].isTurn = false;
+      if (this.characterList[i] === this.characterList[this.characterList.length - 1]) {
+        this.next = false;
+        this.firstTurn = true;
       }
       if (this.characterList[i].isTurn){
           this.characterList[i].isTurn = false;
+          if(this.characterList[i + 1]){
           this.characterList[i + 1].isTurn = true;
-          this.first = true;
-          this.last = true;
-          if (this.characterList[i + 1] === this.characterList[this.characterList.length - 1]) {
-            this.last = true;
-            console.log('è l ultimo', this.characterList[i]);
-            return;
           }
-          return;
-        }else if(!this.characterList[i].isTurn){
+        return;
+
+      }else if (!this.characterList[i].isTurn && this.firstTurn){
         this.characterList[i].isTurn = true;
-        this.first = true;
-        this.last = false;
+        this.firstTurn = false;
+        this.next = true;
+        this.previous = true;
         return;
       }
-      return;
     }
   }
+  onClickPrevious(){
+    for (let i = this.characterList.length - 1; i < 0; i--){
+      if (this.characterList[i] === this.characterList[0]){
+        this.firstTurn = true;
+      }
+      if(this.characterList[i].isTurn){
+        this.characterList[i].isTurn = false;
+        if(this.characterList[i-1]){
+          this.characterList[i - 1].isTurn = true;
+        }
+        return;
+      }
+    }
+  }  
 }
 
 
