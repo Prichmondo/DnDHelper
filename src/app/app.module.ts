@@ -40,7 +40,6 @@ import { TableDisplayData }         from './components/table-data/table-display-
 import { Pipe3FiltersText }         from './utilities/pipe.3filters.text';
 import { InitMgrComponent }         from './components/initiative-manager/init-mgr/init-mgr.component';
 import { CockpitComponent }         from './components/initiative-manager/init-mgr/cockpit/cockpit.component';
-import { CharInfoComponent }        from './components/initiative-manager/init-mgr/char-info/char-info.component';
 import { CharInfoFormComponent }    from './components/initiative-manager/init-mgr/char-info-form/char-info-form.component';
 import { TurnplayerComponent }      from './components/initiative-manager/init-mgr/turn-player/turnplayer/turnplayer.component';
 
@@ -102,7 +101,6 @@ import { CharacterDetailsComponent } from './components/character-sheet/characte
     ModalComponent,
     InitMgrComponent,
     CockpitComponent,
-    CharInfoComponent,
     CharInfoFormComponent,
     TurnplayerComponent,
     CharInfoTableComponent,

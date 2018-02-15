@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute }       from '@angular/router';
 
 import { RulebookService } from '../../services/rulebook.service';
 import { CharactersService } from '../../services/characters.service';
 
 import { ICharacter } from '../../models/Character';
-
+import { CharacterDetailsComponent } from '../character-sheet/character-details/character-details.component'
 @Component({
   selector: 'app-character-sheet',
   templateUrl: './character-sheet.component.html',
@@ -15,6 +15,8 @@ export class CharacterSheetComponent implements OnInit {
 
   character: ICharacter
   rulebook: RulebookService
+  details: {} = {};
+  @ViewChild(CharacterDetailsComponent) characterDetail : CharacterDetailsComponent;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -63,5 +65,12 @@ export class CharacterSheetComponent implements OnInit {
         }
       });
   }
-
+  onSubmit() {
+      this.characterDetail.addPost(this.characterDetail.detailsForm.value);
+      this.onNewCharacter();
+      console.log('dettagli ', this.details)
+  }
+  onNewCharacter(){
+    this.details = this.characterDetail.character;
+  }
 }

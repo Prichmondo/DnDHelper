@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
+import { ICharacter } from '../../../models/Character';
 @Component({
   selector: 'app-character-details',
   templateUrl: './character-details.component.html',
   styleUrls: ['./character-details.component.scss']
 })
 export class CharacterDetailsComponent implements OnInit {
+  // @Output() characterOutput = new EventEmitter();
+  character: {} = {};
   detailsForm: FormGroup;
   post: any;
   name = '';
@@ -42,5 +45,22 @@ export class CharacterDetailsComponent implements OnInit {
       hair : [this.hair],
       skin : [this.skin],
     });
+  }
+  addPost(post) {
+    this.character ={
+    name : post.name,
+    classes : post.charClass,
+    race : post.race,
+    size : post.size,
+    age : post.age,
+    gender : post.gender,
+    height : post.height,
+    alignment : post.align,
+    deity : post.god,
+    weight : post.weight,
+    eyes : post.eyes,
+    heir : post.hair,
+    skin : post.skin
+    };
   }
 }
