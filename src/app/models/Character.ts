@@ -1,7 +1,7 @@
 import { Campaign } from './campaign';
 import { PgClass } from './pgClass';
 import { IPgSkillsCollection, IPgSkill, Iskill, ISkillRequest } from '../models/pgSkills';
-import { IAbilities } from '../models/Abilities';
+import { IAbilities, IAbilitiesCharacter } from '../models/Abilities';
 
 export interface ICharacter{
     _id?:string;
@@ -21,7 +21,7 @@ export interface ICharacter{
     hitPoints:number;
     campaign:Campaign;
     skills: IPgSkillsCollection;
-    abilities: IAbilities;
+    abilities: IAbilitiesCharacter;
 }
 
 export interface ICharacterRequest{

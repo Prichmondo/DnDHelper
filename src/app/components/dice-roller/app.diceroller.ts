@@ -14,6 +14,7 @@ import { Dice,
 import { DICES }                    from '../../mocks/mock-dices';
 import { Utilities }                from '../../utilities/app.utilities';
 import { InputNumberComponent }     from '../inputs/input-number';
+import { InputNumberSmallComponent }from '../inputs/input-number-small';
 import { DiceInputComponent }       from '../inputs/dice-input';
 import { ToggleButtonComponentB }   from '../inputs/toggle-button-boolean';
 import { RollFilterByDice,
@@ -50,7 +51,7 @@ export class DiceRollerComponent implements AfterViewInit{
   @Input() showOptionButton: boolean = true;
   @Input() showLuckRate: boolean = true;
   @Input() showMarkerOptions: boolean = true;
-  @Input() showCompactMode: boolean = true;
+  @Input() showCompactMode: boolean = false;
   @Input() showCommandLine: boolean = true;
   
   @Output() onReturnResults: EventEmitter<object> = new EventEmitter<object>();

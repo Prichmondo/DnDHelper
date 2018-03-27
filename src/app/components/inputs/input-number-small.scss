@@ -1,0 +1,23 @@
+.description-span{
+  min-width: 60px;
+}
+
+.greenCondition{
+  background-color: #5cb85c;
+  color: white;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0;
+}
+
+.input-number-small{
+  width: 105px;
+  display: inline-table;
+}
+
+.centered-input{
+  text-align: center;
+}

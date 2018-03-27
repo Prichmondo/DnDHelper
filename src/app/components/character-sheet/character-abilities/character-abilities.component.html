@@ -1,99 +1,197 @@
 <div *ngIf="character">
-    <table class="table table-sm table-bordered table-responsive-sm text-center" id="abilityTab">
-        <thead >
-            <tr>
-                <th class="centered" scope="col"></th>
-                <th class="centered" scope="col">Score</th>
-                <th class="centered" scope="col">Temp</th>
-                <th class="centered" scope="col">Mod</th>
-            </tr>
-        </thead>
-        <tbody >
-            <tr>
-                <th class="centered" scope="row">
-                    STR
-                </th>
-                <td>
-                    <input class="ability-input no-border" [(ngModel)]="character.abilities.strength">
-                </td>
-                <td>
-                    <input class="ability-input no-border" readonly="true" value="Temp">
-                </td>
-                <td>
-                    <input class="ability-input no-border" readonly="true" value="Mod">
-                </td>
-            </tr>
-            <tr>
-                <th class="centered" scope="row">
-                    DEX
-                </th>
-                <td>
-                    <input class="ability-input no-border" [(ngModel)]="character.abilities.dexterity">
-                </td>
-                <td>
-                    <input class="ability-input no-border" readonly="true" value="Temp">
-                </td>
-                <td>
-                    <input class="ability-input no-border" readonly="true" value="Mod">
-                </td>
-            </tr>
-            <tr>
-                <th class="centered" scope="row">
-                    CON
-                </th>
-                <td>
-                    <input class="ability-input no-border" [(ngModel)]="character.abilities.constitution">
-                </td>
-                <td>
-                    <input class="ability-input no-border" readonly="true" value="Temp">
-                </td>
-                <td>
-                    <input class="ability-input no-border" readonly="true" value="Mod">
-                </td>
-            </tr>
-            <tr>
-                <th class="centered" scope="row">
-                    INT
-                </th>
-                <td>
-                    <input class="ability-input no-border" [(ngModel)]="character.abilities.intelligence">
-                </td>
-                <td>
-                    <input class="ability-input no-border" readonly="true" value="Temp">
-                </td>
-                <td>
-                    <input class="ability-input no-border" readonly="true" value="Mod">
-                </td>
-            </tr>
-            <tr>
-                <th class="centered" scope="row">
-                    WIS
-                </th>
-                <td>
-                    <input class="ability-input no-border" [(ngModel)]="character.abilities.wisdom">
-                </td>
-                <td>
-                    <input class="ability-input no-border" readonly="true" value="Temp">
-                </td>
-                <td>
-                    <input class="ability-input no-border" readonly="true" value="Mod">
-                </td>
-            </tr>
-            <tr>
-                <th class="centered" scope="row">
-                    CHA
-                </th>
-                <td>
-                    <input class="ability-input no-border" [(ngModel)]="character.abilities.charisma">
-                </td>
-                <td>
-                    <input class="ability-input no-border" readonly="true" value="0">
-                </td>
-                <td>
-                    <input class="ability-input no-border" readonly="true" value="">
-                </td>
-            </tr>
-            
-        </tbody>
-    </table>
+    <form #f="ngForm">
+        <table class="table table-sm table-responsive-sm text-center" id="abilityTab">
+            <thead class="header">
+                <tr>
+                    <th class="centered" scope="col"></th>
+                    <th class="centered" scope="col">Base</th>
+                    <th class="centered" scope="col">Equipment</th>
+                    <th class="centered" scope="col">Temp</th>
+                    <th class="centered" scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr>
+                    <th class="centered header" scope="row">
+                        STR
+                        <br>
+                        <span class="ability-fullname">strength</span>
+                    </th>
+                    <td>
+                        <span *ngIf="!str.valid">
+                            <i class="fa fa-exclamation-triangle" style="color: #d9534f"aria-hidden="true"></i>
+                        </span>                  
+                        <input-number-small 
+                            [(ngModel)]="character.abilities.strength"
+                            [description]="'Base Strength'"
+                            [(value)]="character.abilities.strength"
+                            #str = "ngModel"
+                            name="str" 
+                            [setMin]="minAbility" [setMax]="maxAbility" ngDefaultControl name="input-number-str-base"
+                            required>
+                        </input-number-small>
+                    </td>
+                    <td>
+                        <span class="ability-input no-border" readonly="true">
+                            {{character.abilities.strength_modifiers.calculated}}
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngIf="!strtmp.valid">
+                            <i class="fa fa-exclamation-triangle" style="color: #d9534f"aria-hidden="true"></i>
+                        </span>             
+                        <input-number-small 
+                            [(ngModel)]="character.abilities.strength_modifiers.temporary"
+                            [description]="'Temporary Strength'"
+                            [(value)]="character.abilities.strength_modifiers.temporary"
+                            #strtmp = "ngModel"
+                            name="strtmp" 
+                            [setMin]="minModifier" [setMax]="maxModifier" ngDefaultControl name="input-number-str-temp"
+                            required>
+                        </input-number-small>
+                    </td>
+                    <td>
+                        <span *ngIf="!str.valid || !strtmp.valid">
+                            <i class="fa fa-exclamation-triangle" style="color: #d9534f"aria-hidden="true"></i>
+                        </span>             
+                        <h4 *ngIf="str.valid && strtmp.valid">
+                            <span class="ability-input no-border" readonly="true">
+                                {{updateValues(character.abilities.strength, character.abilities.strength_modifiers.temporary)}}
+                                {{character.abilities.strength_modifiers.total}}
+                                <span class="label label-default">
+                                    {{utils.formatNumberAsTextForceSign(character.abilities.strength_modifiers.modifier)}}
+                                </span>
+                            </span>
+                        </h4>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="centered header" scope="row">
+                        DEX
+                        <br>
+                        <span class="ability-fullname">dexterity</span>
+                    </th>
+                    <td>
+                        <span *ngIf="!dex.valid">
+                            <i class="fa fa-exclamation-triangle" style="color: #d9534f"aria-hidden="true"></i>
+                        </span>                  
+                        <input type="number" class="ability-input no-border"
+                        [(ngModel)]="character.abilities.dexterity"
+                        #dex = "ngModel"
+                        name="dex" 
+                        [min]="minAbility" [max]="maxAbility"
+                        [customMin]="minAbility" [customMax]="maxAbility"
+                        required>
+                    </td>
+                    <td>
+                        <input class="ability-input no-border" readonly="true" value="Temp">
+                    </td>
+                    <td>
+                        <input class="ability-input no-border" readonly="true" value="Mod">
+                    </td>
+                </tr>
+                <tr>
+                    <th class="centered header" scope="row">
+                        CON
+                        <br>
+                        <span class="ability-fullname">constitution</span>
+                    </th>
+                    <td>
+                        <span *ngIf="!cos.valid">
+                            <i class="fa fa-exclamation-triangle" style="color: #d9534f"aria-hidden="true"></i>
+                        </span>                  
+                        <input type="number" class="ability-input no-border"
+                        [(ngModel)]="character.abilities.constitution"
+                        #cos = "ngModel"
+                        name="cos" 
+                        [min]="minAbility" [max]="maxAbility"
+                        [customMin]="minAbility" [customMax]="maxAbility"
+                        required>
+                    </td>
+                    <td>
+                        <input class="ability-input no-border" readonly="true" value="Temp">
+                    </td>
+                    <td>
+                        <input class="ability-input no-border" readonly="true" value="Mod">
+                    </td>
+                </tr>
+                <tr>
+                    <th class="centered header" scope="row">
+                        INT
+                        <br>
+                        <span class="ability-fullname">intelligence</span>
+                    </th>
+                    <td>
+                        <span *ngIf="!int.valid">
+                            <i class="fa fa-exclamation-triangle" style="color: #d9534f"aria-hidden="true"></i>
+                        </span>                  
+                        <input type="number" class="ability-input no-border"
+                        [(ngModel)]="character.abilities.intelligence"
+                        #int = "ngModel"
+                        name="int" 
+                        [min]="minAbility" [max]="maxAbility"
+                        [customMin]="minAbility" [customMax]="maxAbility"
+                        required>
+                    </td>
+                    <td>
+                        <input class="ability-input no-border" readonly="true" value="Temp">
+                    </td>
+                    <td>
+                        <input class="ability-input no-border" readonly="true" value="Mod">
+                    </td>
+                </tr>
+                <tr>
+                    <th class="centered header" scope="row">
+                        WIS
+                        <br>
+                        <span class="ability-fullname">wisdom</span>
+                    </th>
+                    <td>
+                        <span *ngIf="!wis.valid">
+                            <i class="fa fa-exclamation-triangle" style="color: #d9534f"aria-hidden="true"></i>
+                        </span>                  
+                        <input type="number" class="ability-input no-border"
+                        [(ngModel)]="character.abilities.wisdom"
+                        #wis = "ngModel"
+                        name="wis" 
+                        [min]="minAbility" [max]="maxAbility"
+                        [customMin]="minAbility" [customMax]="maxAbility"
+                        required>
+                    </td>
+                    <td>
+                        <input class="ability-input no-border" readonly="true" value="Temp">
+                    </td>
+                    <td>
+                        <input class="ability-input no-border" readonly="true" value="Mod">
+                    </td>
+                </tr>
+                <tr>
+                    <th class="centered header" scope="row">
+                        CHA
+                        <br>
+                        <span class="ability-fullname">charisma</span>
+                    </th>
+                    <td>
+                        <span *ngIf="!cha.valid">
+                            <i class="fa fa-exclamation-triangle" style="color: #d9534f"aria-hidden="true"></i>
+                        </span>                  
+                        <input type="number" class="ability-input no-border"
+                        [(ngModel)]="character.abilities.charisma"
+                        #cha = "ngModel"
+                        name="cha" 
+                        [min]="minAbility" [max]="maxAbility"
+                        [customMin]="minAbility" [customMax]="maxAbility"
+                        required>
+                    </td>
+                    <td>
+                        <input class="ability-input no-border" readonly="true" value="Temp">
+                    </td>
+                    <td>
+                        <input class="ability-input no-border" readonly="true" value="Mod">
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </form>
 </div>     

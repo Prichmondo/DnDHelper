@@ -44,4 +44,10 @@ export class DnDUtilities{
                 return Math.floor((lvl / 2) +2);
         }
     }
+
+    calculateAbilityModifier(ability: number): number{
+        if (!ability){return};
+
+        return Math.floor((ability - 10) / 2); 
+    }
 }

@@ -42,11 +42,13 @@
                             <div *ngFor="let total of (totals | filter_totals_by_dice:dice)">
                                 <h3 *ngIf="total.totalRoll > 0">D{{total.faces}} Total: {{total.totalRoll}} + {{total.totalModifier}} = {{total.total}}</h3>
                                 <h5 *ngIf="showLuckRate && total.totalRoll > 0">Luck rate: {{total.luck}}%</h5>
+                                <span class="in-line">
                                 <div *ngIf="showMarkerOptions && total.totalRoll > 0" class="marker-box">
                                     <h5 class="in-line">Mark rolls over:</h5>
-                                    <input [(ngModel)]="dice.markOver" type="number" min="0" [max]="dice.faces" [(value)]="dice.markOver" name="markover">
+                                    <input-number-small [(ngModel)]="dice.markOver" [description]="'Mark over'" [(value)]="dice.markOver" [setMin]="0" [setMax]="dice.faces" ngDefaultControl name="input-number-sm"></input-number-small>
                                     <h5 class="in-line">:  {{calculateSuccessfulRolls(dice)}} Successful</h5>
                                 </div>
+                                </span>
                             </div>
                         </div>
                     </div>

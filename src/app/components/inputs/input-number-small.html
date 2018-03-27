@@ -1,0 +1,23 @@
+<div class="input-group input-number-small">
+    <span class="input-group-btn">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-sm" (click)="spinnerDecrease()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+        </div>
+    </span>
+    <input id="input-component" [(ngModel)]="value"
+        [ngClass] = "{'greenCondition': value >= greenCondition}" 
+        type="number" 
+        class="form-control input-sm centered-input" 
+        placeholder="Value" 
+        value={{value}} 
+        min={{setMin}} 
+        max={{setMax}}
+        (keyup)="doValidate()"
+        (click)="doValidate()"
+        >
+    <span class="input-group-btn">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-sm" (click)="spinnerIncrease()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>
+    </span>
+</div>

@@ -5,10 +5,9 @@ ul, li {
     padding:0;
 }
 
-.base-border {
-    border: 0;
-    border-bottom: 1px solid black;
-    box-shadow: none;
+table, th, td {
+    border: 2px solid black;
+    //border-collapse: collapse;
 }
 
 .no-border {
@@ -103,4 +102,15 @@ ul, li {
 .ability-input{
     max-width:45px;
     text-align: center;
+}
+
+.ability-fullname {
+    font-variant: small-caps;
+    font-size: 15px;
+}
+
+.header {
+    color: white;
+    background-color: black;
+    font-style: bold; 
 }

@@ -27,6 +27,7 @@ import { ClassesList }              from './components/character-classes/app.cla
 import { ClassForm }                from './components/character-classes/app.class.form';
 import { ClassTablePreview }        from './components/character-classes/app.class.table-preview';
 import { InputNumberComponent }     from './components/inputs/input-number';
+import { InputNumberSmallComponent }from './components/inputs/input-number-small';
 import { DiceInputComponent }       from './components/inputs/dice-input';
 import { RollFilterByDice,
          TotalFilterByDice }        from './components/dice-roller/app.diceroller.pipes';
@@ -42,6 +43,8 @@ import { InitMgrComponent }         from './components/initiative-manager/init-m
 import { CockpitComponent }         from './components/initiative-manager/init-mgr/cockpit/cockpit.component';
 import { CharInfoFormComponent }    from './components/initiative-manager/init-mgr/char-info-form/char-info-form.component';
 import { TurnplayerComponent }      from './components/initiative-manager/init-mgr/turn-player/turnplayer/turnplayer.component';
+import { CustomMinDirective,
+         CustomMaxDirective }       from './utilities/app.custom-form-validators';
 
 //SERVICES
 import { Utilities }                from './utilities/app.utilities';
@@ -75,6 +78,7 @@ import { CharacterDetailsComponent } from './components/character-sheet/characte
     DiceRollerComponent,
     CharacterSheetComponent,
     InputNumberComponent,
+    InputNumberSmallComponent,
     DiceInputComponent,
     RollFilterByDice,
     TotalFilterByDice,
@@ -105,7 +109,9 @@ import { CharacterDetailsComponent } from './components/character-sheet/characte
     TurnplayerComponent,
     CharInfoTableComponent,
     CharacterDetailsComponent,
-    CharacterAbilitiesComponent
+    CharacterAbilitiesComponent,
+    CustomMinDirective,
+    CustomMaxDirective
   ],
   imports: [
     BrowserModule,
