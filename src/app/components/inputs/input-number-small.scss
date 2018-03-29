@@ -1,7 +1,3 @@
-.description-span{
-  min-width: 60px;
-}
-
 .greenCondition{
   background-color: #5cb85c;
   color: white;
@@ -14,10 +10,28 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .input-number-small{
-  width: 105px;
+  width: 80px;
   display: inline-table;
 }
 
 .centered-input{
   text-align: center;
+}
+
+.input-xs {
+  height: 22px;
+  padding: 2px 5px;
+  font-size: 12px;
+  line-height: 1.5; /* If Placeholder of the input is moved up, rem/modify this. */
+  border-radius: 3px;
+}
+
+.component-when-read-only {
+  width: 40px;
+}
+
+.form-control[readonly] {
+  background-color: white;
+  border: none;
+  box-shadow: unset;
 }

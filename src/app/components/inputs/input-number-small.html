@@ -1,13 +1,14 @@
-<div class="input-group input-number-small">
-    <span class="input-group-btn">
+<div class="input-group input-number-small" [ngClass] = "{'component-when-read-only': isReadOnly}">
+    <span class="input-group-btn" *ngIf="!isReadOnly">
         <div class="btn-group">
-            <button type="button" class="btn btn-primary btn-sm" (click)="spinnerDecrease()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-primary btn-xs" (click)="spinnerDecrease()"><i class="fa fa-minus" aria-hidden="true"></i></button>
         </div>
     </span>
     <input id="input-component" [(ngModel)]="value"
-        [ngClass] = "{'greenCondition': value >= greenCondition}" 
+        [ngClass] = "{'greenCondition': value >= greenCondition}"
+        [readonly] = "isReadOnly"
         type="number" 
-        class="form-control input-sm centered-input" 
+        class="form-control input-xs centered-input" 
         placeholder="Value" 
         value={{value}} 
         min={{setMin}} 
@@ -15,9 +16,9 @@
         (keyup)="doValidate()"
         (click)="doValidate()"
         >
-    <span class="input-group-btn">
+    <span class="input-group-btn" *ngIf="!isReadOnly">
         <div class="btn-group">
-            <button type="button" class="btn btn-primary btn-sm" (click)="spinnerIncrease()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-primary btn-xs" (click)="spinnerIncrease()"><i class="fa fa-plus" aria-hidden="true"></i></button>
         </div>
     </span>
 </div>

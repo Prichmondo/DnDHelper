@@ -1,6 +1,6 @@
 <div *ngIf="character">
     <form #f="ngForm">
-        <table class="table table-sm table-responsive-sm text-center" id="abilityTab">
+        <table class="table table-sm text-center" id="abilityTab">
             <thead class="header">
                 <tr>
                     <th class="centered" scope="col"></th>
@@ -28,6 +28,7 @@
                             #str = "ngModel"
                             name="str" 
                             [setMin]="minAbility" [setMax]="maxAbility" ngDefaultControl name="input-number-str-base"
+                            [isReadOnly]="false"
                             required>
                         </input-number-small>
                     </td>
@@ -54,15 +55,15 @@
                         <span *ngIf="!str.valid || !strtmp.valid">
                             <i class="fa fa-exclamation-triangle" style="color: #d9534f"aria-hidden="true"></i>
                         </span>             
-                        <h4 *ngIf="str.valid && strtmp.valid">
-                            <span class="ability-input no-border" readonly="true">
+                        <div class="total-mod-container" *ngIf="str.valid && strtmp.valid">
+                            <h4>
                                 {{updateValues(character.abilities.strength, character.abilities.strength_modifiers.temporary)}}
                                 {{character.abilities.strength_modifiers.total}}
-                                <span class="label label-default">
+                                <span class="label label-primary">
                                     {{utils.formatNumberAsTextForceSign(character.abilities.strength_modifiers.modifier)}}
                                 </span>
-                            </span>
-                        </h4>
+                            </h4>
+                        </div>
                     </td>
                 </tr>
                 <tr>

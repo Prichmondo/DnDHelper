@@ -1,13 +1,18 @@
-ul, li {
-    text-decoration: none;
-    list-style: none;
-    margin:0;
-    padding:0;
+table {
+    table-layout: fixed;
+}
+table, td, thead > tr > th {
+    border: 2px solid black;
+    width: 92px;
 }
 
-table, th, td {
-    border: 2px solid black;
-    //border-collapse: collapse;
+tbody > tr > th {
+    border-top: none;
+}
+
+.table > tbody > tr > td{
+    vertical-align: middle;
+    padding: 1px;
 }
 
 .no-border {
@@ -15,92 +20,8 @@ table, th, td {
     box-shadow: none;
 }
 
-.tablleScroll{
-    height:100%;
-    overflow: scroll;
-}
-
-.standard-spacer{
-    margin-top:20px;
-}
-.double-spacer{
-    margin-top: 40px;
-}
-.subtitle {
-    
-    background-color: black;
-    color:white;
-    text-align: center;
-    font-weight: bolder;
-    width:60px;
-    height: 50px;
-    margin-bottom: 2px;
-}
-
-.row-adj{
-    padding-left: 15px;
-}
-
-.subtitle-label{
-    
-    font-size:10px;
-    margin:0;
-}
-
-.small-subtitle-layout {
-    
-    text-align: center;
-}
-
-.input-div-layout{
-    text-align: center;
-}
-
-.subtitle > h5 {
-    margin-top:0;
-    font-size:9px;
-}
-.subtitle > h4{
-    padding-top: 10%;
-    margin-bottom: 0;    
-}
-
-.bg-bar-ok{
-    background-color: none;
-    color: darkgreen;
-}
-
-.bg-bar-no-good{
-    background-color: none;
-    color: darkgoldenrod;
-}
-
-.bg-bar-danger{
-    background-color: none;
-    color: darkred;
-}
-
-
-.hp-input{
-    height: 44px;
-    width: 60px;
-    font-size: 150%;
-}
-.input-block{
-    display: block;
-    width: 100%;
-
-}
-.input-inline-block{
-    display: inline-block;
-    width: auto;
-}
 
 .centered {
-    text-align: center;
-}
-.ability-input{
-    max-width:45px;
     text-align: center;
 }
 
@@ -112,5 +33,11 @@ table, th, td {
 .header {
     color: white;
     background-color: black;
-    font-style: bold; 
+    font-style: bold;
+    vertical-align: middle;
+}
+
+.total-mod-container {
+    display: inline-block;
+    width: 60px;
 }

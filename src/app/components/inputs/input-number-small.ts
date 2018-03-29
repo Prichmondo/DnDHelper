@@ -15,6 +15,7 @@ export class InputNumberSmallComponent {
     @Input() setMin: number = 0;
     @Input() setMax: number = 100;
     @Input() greenCondition: number = 9999;
+    @Input() isReadOnly: boolean = false;
 
     @Output() valueChange: EventEmitter<Number>;
   
